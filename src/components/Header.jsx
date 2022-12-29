@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 export default function Header() {
   return (
@@ -11,13 +12,17 @@ export default function Header() {
         <nav>
           <ul className="flex flex-row gap-x-10">
             <li>
-              <Link to="/#services">Services</Link>
+              <HashLink smooth to="/#services">
+                Services
+              </HashLink>
             </li>
             <li>
               <Link to="/cars">Catalog</Link>
             </li>
             <li>
-              <Link to="/#faqs">FAQs</Link>
+              <HashLink smooth to="/#faqs">
+                FAQs
+              </HashLink>
             </li>
           </ul>
         </nav>
