@@ -2,7 +2,7 @@ import Service from "./Service";
 
 export default function Services() {
   return (
-    <section id="services">
+    <section id="services" className="scroll-mt-10">
       <div className="flex flex-col items-center text-center mx-auto max-w-prose gap-y-6">
         <h2 className="text-3xl lg:text-4xl font-bold">Services</h2>
         <p className="big">

@@ -18,7 +18,7 @@ export default function Footer() {
                 </HashLink>
               </li>
               <li>
-                <Link to="/cars">Catalog</Link>
+                <Link to="/vehicles">Vehicles</Link>
               </li>
               <li>
                 <HashLink smooth to="/#faqs">
@@ -29,17 +29,17 @@ export default function Footer() {
           </div>
           <div className="flex flex-row items-center gap-x-10 max-w-xs">
             <div className="border border-neutral-900 rounded-lg">
-              <div class="relative flex h-24 w-24 flex-none items-center justify-center">
+              <div className="relative flex h-24 w-24 flex-none items-center justify-center">
                 <svg
                   viewBox="0 0 96 96"
                   fill="none"
                   aria-hidden="true"
-                  class="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-cyan-500"
+                  className="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-cyan-500"
                 >
                   <path
                     d="M1 17V9a8 8 0 0 1 8-8h8M95 17V9a8 8 0 0 0-8-8h-8M1 79v8a8 8 0 0 0 8 8h8M95 79v8a8 8 0 0 1-8 8h-8"
-                    stroke-width="2"
-                    stroke-linecap="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
                   ></path>
                 </svg>
               </div>

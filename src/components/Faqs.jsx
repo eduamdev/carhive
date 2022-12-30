@@ -8,13 +8,13 @@ import {
 
 export default function Faqs() {
   return (
-    <section id="faqs" className="max-w-2xl mx-auto text-center">
+    <section id="faqs" className="max-w-2xl mx-auto text-center scroll-mt-10">
       <h2 className="text-3xl lg:text-4xl font-bold">
         Frequently Asked Questions
       </h2>
-      <p className="big mt-6 mb-12">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-        ligula eget.
+      <p className="big mt-8 mb-16">
+        If you can’t find what you’re looking for, email our support team and
+        someone will get back to you as soon as possible.
       </p>
       <Accordion type="single" defaultValue="item-1" collapsible>
         <AccordionItem

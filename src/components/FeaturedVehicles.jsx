@@ -1,6 +1,6 @@
 import CarCard from "./CarCard";
 
-export default function FeaturedCars() {
+export default function FeaturedVehicles() {
   return (
     <section id="featured-cars">
       <div className="flex flex-col items-center text-center mx-auto max-w-prose gap-y-6 px-6 2xl:px-0">

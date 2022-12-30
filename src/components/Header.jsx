@@ -17,7 +17,7 @@ export default function Header() {
               </HashLink>
             </li>
             <li>
-              <Link to="/cars">Catalog</Link>
+              <Link to="/vehicles">Vehicles</Link>
             </li>
             <li>
               <HashLink smooth to="/#faqs">

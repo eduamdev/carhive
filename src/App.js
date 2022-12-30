@@ -1,8 +1,8 @@
 import "./main.css";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Cars } from "./pages/Cars";
-import { Car } from "./pages/Car";
+import { Vehicles } from "./pages/Vehicles";
+import { Vehicle } from "./pages/Vehicle";
 import { NotFound } from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -15,8 +15,8 @@ function App() {
         <main className="flex flex-col gap-y-28">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/cars" element={<Cars />} />
-            <Route path="/cars/:slug" element={<Car />} />
+            <Route path="/vehicles" element={<Vehicles />} />
+            <Route path="/vehicles/:slug" element={<Vehicle />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
