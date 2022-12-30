@@ -1,4 +1,4 @@
-import CarCard from "./CarCard";
+import VehicleCard from "./VehicleCard";
 
 export default function FeaturedVehicles() {
   return (
@@ -7,10 +7,10 @@ export default function FeaturedVehicles() {
         <h2 className="text-3xl lg:text-4xl font-bold">Hot deals</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-10 mt-16">
-        <CarCard></CarCard>
-        <CarCard></CarCard>
-        <CarCard></CarCard>
-        <CarCard></CarCard>
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
       </div>
     </section>
   );

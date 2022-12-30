@@ -1,4 +1,4 @@
-export default function CarCard() {
+export default function VehicleCard() {
   return (
     <div className="flex flex-col items-start gap-y-5 border border-slate-900 p-8 rounded-2xl">
       <span className="h-52 w-full border border-neutral-900 rounded-xl"></span>

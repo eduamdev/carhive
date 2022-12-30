@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CarCard from "../components/CarCard";
+import VehicleCard from "../components/VehicleCard";
 
 export function Vehicles() {
   return (
@@ -20,21 +20,21 @@ export function Vehicles() {
       <div className="mt-16">So much filters</div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-10 mt-16">
         <Link to="/vehicles/1">
-          <CarCard></CarCard>
+          <VehicleCard />
         </Link>
         <Link to="/vehicles/2">
-          <CarCard></CarCard>
+          <VehicleCard />
         </Link>
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
+        <VehicleCard />
       </div>
     </section>
   );
