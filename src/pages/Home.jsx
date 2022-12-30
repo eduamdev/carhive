@@ -1,7 +1,8 @@
 import Hero from "./../components/Hero";
 import Quote from "./../components/Quote";
 import Services from "./../components/Services";
-import Faq from "./../components/Faq";
+import Faqs from "../components/Faqs";
+import FeaturedCars from "../components/FeaturedCars";
 
 export function Home() {
   return (
@@ -9,15 +10,16 @@ export function Home() {
       <Hero></Hero>
       <Quote></Quote>
       <Services></Services>
-      <div className="h-[26rem]">
+      <section className="h-[26rem]">
         <div className="absolute left-0 bg-neutral-900 w-full h-[26rem] flex flex-col items-center justify-center text-center">
           <div className="max-w-prose px-6 2xl:px-0">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Get your free gas card today
+              Get your free coupon today
             </h2>
             <p className="big mt-6">
               It takes 30 seconds to sign up. Download the app and create an
-              account today and we’ll send you a $50 gas card for free.
+              account today and we’ll send you a free $50 gas card or 1,000
+              Supercharging Miles.
             </p>
             <div class="mt-8 flex justify-center">
               <a
@@ -35,11 +37,9 @@ export function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <Faq></Faq>
-      <div>
-        <h2 className="text-3xl lg:text-4xl font-bold">Featured Cars</h2>
-      </div>
+      </section>
+      <FeaturedCars></FeaturedCars>
+      <Faqs></Faqs>
     </>
   );
 }

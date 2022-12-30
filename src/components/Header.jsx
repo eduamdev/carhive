@@ -9,7 +9,7 @@ export default function Header() {
           {" "}
           <Link to="/">Rides</Link>
         </div>
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex flex-row gap-x-10">
             <li>
               <HashLink smooth to="/#services">
@@ -27,16 +27,15 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <nav>
-        <ul className="flex flex-row gap-x-10">
-          <li>
-            <button>Log In</button>
-          </li>
-          <li>
-            <button>Download</button>
-          </li>
-        </ul>
-      </nav>
+      <ul className="hidden md:flex flex-row gap-x-10">
+        <li>
+          <button>Log In</button>
+        </li>
+        <li>
+          <button>Sign Up</button>
+        </li>
+      </ul>
+      <div className="md:hidden">menu icon</div>
     </header>
   );
 }
