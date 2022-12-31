@@ -26,3 +26,16 @@ p.big {
 p.bigger {
   @apply text-2xl leading-10;
 }
+
+.AccordionTrigger {
+  @apply w-full flex flex-row items-center justify-between py-4;
+}
+
+.AccordionChevron,
+.chevron {
+  @apply h-6 w-6 stroke-current text-neutral-200 align-middle;
+}
+
+.AccordionTrigger[data-state="open"] > .AccordionChevron {
+  transform: rotate(180deg);
+}

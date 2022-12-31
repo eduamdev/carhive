@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { ReactComponent as MenuSVG } from "./../images/menu.svg";
 
 export default function Header() {
   return (
@@ -35,7 +36,9 @@ export default function Header() {
           <button>Sign Up</button>
         </li>
       </ul>
-      <div className="md:hidden">menu icon</div>
+      <div className="md:hidden">
+        <MenuSVG className="h-7 w-7 stroke-current text-neutral-200 align-middle" />
+      </div>
     </header>
   );
 }

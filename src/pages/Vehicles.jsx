@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import VehicleCard from "../components/VehicleCard";
+import { ReactComponent as ChevronDownSVG } from "./../images/chevron-down.svg";
 
 export function Vehicles() {
   return (
     <section>
-      <div className="flex flex-row items-center justify-between mx-auto gap-y-6 px-6 2xl:px-0">
+      <div className="flex flex-row items-center justify-between mx-auto gap-y-6">
         <div>
           <p className="mb-3 font-mono">
             <Link to="/">Home</Link> / Vehicles
@@ -14,7 +15,8 @@ export function Vehicles() {
         </div>
         <button className="px-6 py-4 w-48 flex flex-start justify-between border border-neutral-700 rounded-lg">
           <span>Filters</span>
-          <span>icon</span>
+          {/* <span>icon</span> */}
+          <ChevronDownSVG className="chevron" />
         </button>
       </div>
       <div className="mt-16">So much filters</div>

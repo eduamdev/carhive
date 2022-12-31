@@ -1,4 +1,10 @@
 import Service from "./Service";
+import { ReactComponent as RibbonSVG } from "./../images/ribbon.svg";
+import { ReactComponent as LeafSVG } from "./../images/leaf.svg";
+import { ReactComponent as PhoneSVG } from "./../images/phone.svg";
+import { ReactComponent as GlobeSVG } from "./../images/globe.svg";
+import { ReactComponent as ShieldSVG } from "./../images/shield.svg";
+import { ReactComponent as HelpSVG } from "./../images/help.svg";
 
 export default function Services() {
   return (
@@ -11,12 +17,12 @@ export default function Services() {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-10 mt-20">
-        <Service></Service>
-        <Service></Service>
-        <Service></Service>
-        <Service></Service>
-        <Service></Service>
-        <Service></Service>
+        <Service icon={<ShieldSVG />} />
+        <Service icon={<LeafSVG />} />
+        <Service icon={<RibbonSVG />} />
+        <Service icon={<GlobeSVG />} />
+        <Service icon={<PhoneSVG />} />
+        <Service icon={<HelpSVG />} />
       </div>
     </section>
   );

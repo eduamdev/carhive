@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { ReactComponent as KeySVG } from "./../images/key.svg";
 
 export function Vehicle() {
   const { slug } = useParams();
@@ -58,6 +59,7 @@ export function Vehicle() {
           <div className="hidden lg:block mt-20">
             <button className="w-full py-3 px-5 bg-red-500 rounded-lg font-bold text-lg">
               Rent now
+              <KeySVG className="ml-3 inline-block h-6 w-6 text-neutral-200 fill-current" />
             </button>
           </div>
         </div>
@@ -66,6 +68,7 @@ export function Vehicle() {
       <div className="lg:hidden mt-20">
         <button className="w-full py-3 px-5 bg-red-500 rounded-lg font-bold text-lg">
           Rent now
+          <KeySVG className="ml-3 inline-block h-6 w-6 text-neutral-200 fill-current" />
         </button>
       </div>
     </section>

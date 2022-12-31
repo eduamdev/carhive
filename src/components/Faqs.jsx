@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@radix-ui/react-accordion";
+import { ReactComponent as ChevronDownSVG } from "./../images/chevron-down.svg";
 
 export default function Faqs() {
   return (
@@ -22,11 +23,11 @@ export default function Faqs() {
           className="border-t border-neutral-800 py-4"
         >
           <AccordionHeader>
-            <AccordionTrigger className="w-full flex flex-row items-center justify-between py-4">
+            <AccordionTrigger className="AccordionTrigger">
               <span className="text-xl font-semibold">
                 This is a super common question?
               </span>
-              <span>icon</span>
+              <ChevronDownSVG className="AccordionChevron" />
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent className="text-left mt-4">
@@ -41,11 +42,11 @@ export default function Faqs() {
           className="border-t border-b border-neutral-800 py-4"
         >
           <AccordionHeader>
-            <AccordionTrigger className="w-full flex flex-row items-center justify-between py-4">
+            <AccordionTrigger className="AccordionTrigger">
               <span className="text-xl font-semibold">
                 This is a random QA?
               </span>
-              <span>icon</span>
+              <ChevronDownSVG className="AccordionChevron" />
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent className="text-left mt-4">

@@ -10,7 +10,7 @@ export default function VehicleCard() {
           </div>
           <div>
             <p>$300</p>
-            <p>/ day</p>
+            <p className="font-light">/ day</p>
           </div>
         </div>
         <div className="flex flex-row items-center justify-between">
