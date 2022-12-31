@@ -7,7 +7,6 @@ export default function Header() {
     <header className="h-28 flex flex-row items-center justify-between">
       <div className="flex flex-row items-center justify-start gap-x-20">
         <div className="font-bold text-3xl">
-          {" "}
           <Link to="/">Rides</Link>
         </div>
         <nav className="hidden md:block">

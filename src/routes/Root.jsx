@@ -1,12 +1,15 @@
-import Hero from "./../components/Hero";
-import Quote from "./../components/Quote";
-import Services from "./../components/Services";
-import Faqs from "../components/Faqs";
+import Hero from "../components/Hero";
+import Quote from "../components/Quote";
+import Services from "../components/Services";
 import FeaturedVehicles from "../components/FeaturedVehicles";
+import Faqs from "../components/Faqs";
+import Layout from "../components/Layout";
+import { ScrollRestoration } from "react-router-dom";
 
-export function Home() {
+function Root() {
   return (
-    <>
+    <Layout>
+      <ScrollRestoration />
       <Hero></Hero>
       <Quote></Quote>
       <Services></Services>
@@ -40,6 +43,8 @@ export function Home() {
       </section>
       <FeaturedVehicles />
       <Faqs></Faqs>
-    </>
+    </Layout>
   );
 }
+
+export default Root;

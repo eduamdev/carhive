@@ -1,15 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/Root";
+import Vehicles from "./routes/Vehicles";
+import Vehicle from "./routes/Vehicle";
+import NotFound from "./routes/NotFound";
+import "./main.css";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+  {
+    path: "/vehicles",
+    element: <Vehicles />,
+  },
+  {
+    path: "/vehicles/:slug",
+    element: <Vehicle />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

@@ -10,7 +10,9 @@ export default function Footer() {
       <div className="flex flex-row items-center">
         <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-y-20">
           <div>
-            <div className="font-bold text-3xl">Rides</div>
+            <div className="font-bold text-3xl">
+              <Link to="/">Rides</Link>
+            </div>
             <ul className="mt-12 flex flex-row items-center gap-x-8">
               <li>
                 <HashLink smooth to="/#services">
