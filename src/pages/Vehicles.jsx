@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import VehicleCard from "../components/VehicleCard";
 import { ReactComponent as ChevronDownSVG } from "./../images/chevron-down.svg";
+import { vehicles } from "./../vehicles.js";
 
 export function Vehicles() {
   return (
@@ -15,28 +16,16 @@ export function Vehicles() {
         </div>
         <button className="px-6 py-4 w-48 flex flex-start justify-between border border-neutral-700 rounded-lg">
           <span>Filters</span>
-          {/* <span>icon</span> */}
           <ChevronDownSVG className="chevron" />
         </button>
       </div>
       <div className="mt-16">So much filters</div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-10 mt-16">
-        <Link to="/vehicles/1">
-          <VehicleCard />
-        </Link>
-        <Link to="/vehicles/2">
-          <VehicleCard />
-        </Link>
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
+        {vehicles.map((vehicle, index) => (
+          <Link to={`/vehicles/${vehicle.slug}`} key={index}>
+            <VehicleCard vehicle={vehicle} />
+          </Link>
+        ))}
       </div>
     </section>
   );
