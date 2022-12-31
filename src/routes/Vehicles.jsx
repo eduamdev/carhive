@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import { Link, ScrollRestoration } from "react-router-dom";
-import { ReactComponent as ChevronDownSVG } from "./../images/chevron-down.svg";
+import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
 import { vehicles } from "../vehicles.js";
 import VehicleCard from "../components/VehicleCard";
 
@@ -15,7 +15,7 @@ function Vehicles() {
               <Link to="/">Home</Link> / Vehicles
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold">Vehicles</h1>
-            <p className="mt-1 font-mono">32 products</p>
+            <p className="mt-1 font-mono">{vehicles.length} products</p>
           </div>
           <button className="px-6 py-4 w-48 flex flex-start justify-between border border-neutral-700 rounded-lg">
             <span>Filters</span>

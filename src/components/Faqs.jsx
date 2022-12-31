@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@radix-ui/react-accordion";
-import { ReactComponent as ChevronDownSVG } from "./../images/chevron-down.svg";
+import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
 
 export default function Faqs() {
   return (

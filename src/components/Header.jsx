@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { ReactComponent as MenuSVG } from "./../images/menu.svg";
+import { ReactComponent as MenuSVG } from "./../assets/icons/menu.svg";
 
 export default function Header() {
   return (

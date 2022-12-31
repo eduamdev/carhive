@@ -1,11 +1,11 @@
 import Layout from "../components/Layout";
 import { Link, ScrollRestoration } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { ReactComponent as KeySVG } from "./../images/key.svg";
+import { ReactComponent as KeySVG } from "./../assets/icons/key.svg";
 import { vehicles } from "./../vehicles.js";
 
 function getVehicleBySlug(slug) {
-  return vehicles.filter((vehicle) => vehicle.slug === slug)[0];
+  return vehicles.find((vehicle) => vehicle.slug === slug);
 }
 
 function Vehicles() {

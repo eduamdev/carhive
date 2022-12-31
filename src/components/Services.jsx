@@ -1,10 +1,10 @@
 import Service from "./Service";
-import { ReactComponent as RibbonSVG } from "./../images/ribbon.svg";
-import { ReactComponent as LeafSVG } from "./../images/leaf.svg";
-import { ReactComponent as PhoneSVG } from "./../images/phone.svg";
-import { ReactComponent as GlobeSVG } from "./../images/globe.svg";
-import { ReactComponent as ShieldSVG } from "./../images/shield.svg";
-import { ReactComponent as HelpSVG } from "./../images/help.svg";
+import { ReactComponent as RibbonSVG } from "./../assets/icons/ribbon.svg";
+import { ReactComponent as LeafSVG } from "./../assets/icons/leaf.svg";
+import { ReactComponent as PhoneSVG } from "./../assets/icons/phone.svg";
+import { ReactComponent as GlobeSVG } from "./../assets/icons/globe.svg";
+import { ReactComponent as ShieldSVG } from "./../assets/icons/shield.svg";
+import { ReactComponent as HelpSVG } from "./../assets/icons/help.svg";
 
 export default function Services() {
   return (
