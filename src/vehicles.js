@@ -176,12 +176,12 @@ export const vehicles = [
   {
     slug: "jeep",
     brand: "Jeep",
-    model: "Lorem ipsum",
-    year: -2018,
+    model: "Wrangler Rubicon",
+    year: 2020,
     description:
-      "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
+      "The Jeep Wrangler is a series of compact and mid-size four-wheel drive off-road SUVs manufactured by Jeep since 1986, and currently in its fourth generation. The Wrangler JL, the most recent generation, was unveiled in late-2017 and is produced at Jeep's Toledo Complex.",
     image: "jeep.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "black", long: "black" },
     featured: false,
     details: {
       transmission: "automatic",
@@ -198,7 +198,7 @@ export const vehicles = [
       "Bluetooth",
       "Electric",
       '15" digital screen',
-      '20" wheels',
+      '17" wheels',
       "Autopilot",
     ],
   },

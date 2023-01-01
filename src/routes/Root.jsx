@@ -17,7 +17,7 @@ function Root() {
         <div className="absolute left-0 bg-neutral-900 w-full h-[26rem] flex flex-col items-center justify-center text-center">
           <div className="max-w-prose px-6 2xl:px-0">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Get your free coupon today
+              Get your free gift today
             </h2>
             <p className="big mt-6">
               It takes 30 seconds to sign up. Download the app and create an

@@ -9,7 +9,10 @@ import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down
 
 export default function Faqs() {
   return (
-    <section id="faqs" className="max-w-2xl mx-auto text-center scroll-mt-10">
+    <section
+      id="faqs"
+      className="w-full max-w-2xl mx-auto text-center scroll-mt-10"
+    >
       <h2 className="text-3xl lg:text-4xl font-bold">
         Frequently Asked Questions
       </h2>
@@ -24,7 +27,7 @@ export default function Faqs() {
         .
       </p>
       <Accordion
-        className="w-[42rem] mx-auto"
+        className="w-full max-w-[42rem] mx-auto"
         type="single"
         defaultValue="item-1"
         collapsible
