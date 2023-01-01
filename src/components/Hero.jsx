@@ -7,10 +7,9 @@ export default function Hero() {
         <div className="absolute w-full h-full">
           <div
             style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1518466088889-82466d82e1ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)",
+              backgroundImage: "url(/images/hero.jpg)",
             }}
-            className="hidden lg:block w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
+            className="invisible lg:visible w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
           />
         </div>
         <div className="flex flex-col gap-y-8 z-10">

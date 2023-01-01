@@ -9,8 +9,7 @@ export default function NotFound() {
         <div className="relative h-[30rem]">
           <div
             style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1533224379524-2c680bacf540?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)",
+              backgroundImage: "url(/images/red-lights.jpg)",
             }}
             className="w-full h-full bg-cover bg-center bg-no-repeat opacity-60"
           />

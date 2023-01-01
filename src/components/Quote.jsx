@@ -15,7 +15,7 @@ export default function Quote() {
           className="w-full h-full opacity-90 rounded-xl"
           style={{
             background:
-              'linear-gradient(rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.05) 5%, rgba(0, 0, 0, 0.85) 100%), url("https://images.unsplash.com/photo-1551253666-2ea5689ef00c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2077&q=80") center center / cover no-repeat',
+              'linear-gradient(rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.05) 5%, rgba(0, 0, 0, 0.85) 100%), url("/images/timelapse-city-night.jpg") center center / cover no-repeat',
           }}
         ></div>
       </div>
