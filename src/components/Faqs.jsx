@@ -14,10 +14,21 @@ export default function Faqs() {
         Frequently Asked Questions
       </h2>
       <p className="big mt-8 mb-16">
-        If you can’t find what you’re looking for, email our support team and
-        someone will get back to you as soon as possible.
+        If you can’t find what you’re looking for,{" "}
+        <a
+          href="mailto:hello@example.com"
+          className="underline underline-offset-4"
+        >
+          reach out to us
+        </a>
+        .
       </p>
-      <Accordion type="single" defaultValue="item-1" collapsible>
+      <Accordion
+        className="w-[42rem] mx-auto"
+        type="single"
+        defaultValue="item-1"
+        collapsible
+      >
         <AccordionItem
           value="item-1"
           className="border-t border-neutral-800 py-4"
