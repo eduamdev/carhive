@@ -22,13 +22,17 @@ export default function VehicleCard({ vehicle }) {
         <div className="w-full flex flex-row items-baseline justify-between gap-x-3">
           <div>
             <p className="leading-5">
-              <span className="big font-bold uppercase">{brand}</span>
+              <span className="big font-bold uppercase text-neutral-100">
+                {brand}
+              </span>
               <br /> {model} {year}
             </p>
           </div>
           <div>
             <p className="leading-5 text-right">
-              <span className="big font-bold uppercase">${details.price}</span>
+              <span className="big font-bold uppercase text-neutral-100">
+                {details.price}
+              </span>
               <br /> <span className="font-light">/ day</span>
             </p>
           </div>
@@ -41,11 +45,19 @@ export default function VehicleCard({ vehicle }) {
         <div className="text-neutral-200 font-mono align-middle flex flex-row items-center justify-between gap-x-3 leading-5">
           <div className="flex flex-row gap-x-2 text-right">
             <PersonSVG className="w-4 h-4" />
-            <span className="capitalize text-sm">{details.seats}</span>
+            <span className="capitalize text-sm text-neutral-100">
+              {details.seats}
+            </span>
           </div>
           <div className="flex flex-row gap-x-2 text-right">
-            <BagSVG className="w-4 h-4" />
-            <span className="capitalize text-sm">{details.bags}</span>
+            {details.bags !== "-" && (
+              <>
+                <BagSVG className="w-4 h-4" />
+                <span className="capitalize text-sm text-neutral-100">
+                  {details.bags}
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>

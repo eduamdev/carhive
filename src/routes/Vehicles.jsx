@@ -19,7 +19,10 @@ function Vehicles() {
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
               <p className="mb-3 font-mono hidden lg:block">
-                <Link to="/">Home</Link> / Vehicles
+                <Link to="/" className="hover:text-white">
+                  Home
+                </Link>{" "}
+                / Vehicles
               </p>
               <h1 className="text-4xl lg:text-5xl font-bold">
                 Find your next ride
