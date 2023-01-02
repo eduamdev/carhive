@@ -12,8 +12,8 @@ export default function Header() {
         <nav className="hidden md:block">
           <ul className="flex flex-row gap-x-10">
             <li>
-              <HashLink smooth to="/#services">
-                Services
+              <HashLink smooth to="/#features">
+                Features
               </HashLink>
             </li>
             <li>

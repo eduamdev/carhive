@@ -13,13 +13,19 @@ export default function Hero() {
           />
         </div>
         <div className="flex flex-col gap-y-8 z-10">
-          <h1 className="text-4xl md:text-5xl font-bold">Looking for a Car?</h1>
-          <p className="bigger">Look no further, we have you covered!</p>
+          <h1 className="text-4xl md:text-5xl font-bold">
+            Looking for a Vehicle?
+          </h1>
+          <p className="big max-w-prose">
+            Whether you're planning your next adventure or looking to escape to
+            an amazing destination to relax, we have the perfect way to get you
+            there.
+          </p>
           <Link
             to="/vehicles"
             className="flex items-center justify-center w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
           >
-            See our Catalog
+            Meet the fleet
           </Link>
         </div>
       </div>

@@ -15,8 +15,8 @@ export default function Footer() {
             </div>
             <ul className="mt-12 flex flex-row items-center gap-x-8">
               <li>
-                <HashLink smooth to="/#services">
-                  Services
+                <HashLink smooth to="/#features">
+                  Features
                 </HashLink>
               </li>
               <li>
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-5 border-t border-neutral-900 py-8">
-        <p>© Copyright 2022. All rights reserved.</p>
+        <p>© Copyright {new Date().getFullYear()}. All rights reserved.</p>
         <p>Designed and developed by Eduardo R. Ambriz</p>
       </div>
     </footer>

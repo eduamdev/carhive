@@ -24,9 +24,7 @@ function Vehicles() {
                 </Link>{" "}
                 / Vehicles
               </p>
-              <h1 className="text-4xl lg:text-5xl font-bold">
-                Find your next ride
-              </h1>
+              <h1 className="text-4xl lg:text-5xl font-bold">Find your ride</h1>
               <p className="mt-3 font-mono hidden lg:block">
                 {vehicles.length} vehicles
               </p>
