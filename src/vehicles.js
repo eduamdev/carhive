@@ -11,7 +11,7 @@ export const vehicles = [
     featured: true,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "4 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -40,7 +40,7 @@ export const vehicles = [
     featured: true,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "4 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -65,11 +65,11 @@ export const vehicles = [
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
     image: "bmw-blue.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "blue", long: "metallic blue" },
     featured: true,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "4 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -94,11 +94,11 @@ export const vehicles = [
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
     image: "bmw-black.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "black", long: "black" },
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "4 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -123,11 +123,11 @@ export const vehicles = [
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
     image: "van.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "yellow", long: "yellow" },
     featured: true,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "8 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -152,11 +152,11 @@ export const vehicles = [
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
     image: "hyundai.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "cyan", long: "light blue" },
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "4 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -185,7 +185,7 @@ export const vehicles = [
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "2 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -243,7 +243,7 @@ export const vehicles = [
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "2 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -268,11 +268,11 @@ export const vehicles = [
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
     image: "scooter.jpg",
-    color: { short: "white", long: "pearl white" },
+    color: { short: "black", long: "pearl black" },
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "1 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -301,7 +301,7 @@ export const vehicles = [
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "1 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",
@@ -330,7 +330,7 @@ export const vehicles = [
     featured: false,
     details: {
       transmission: "automatic",
-      seats: "5 people",
+      seats: "7 people",
       price: "300",
       bags: "3 bags",
       autonomy: "507 Km",

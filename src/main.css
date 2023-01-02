@@ -19,11 +19,13 @@ p {
   @apply leading-7 text-slate-300;
 }
 
-p.big {
+p.big,
+span.big {
   @apply text-xl leading-9;
 }
 
-p.bigger {
+p.bigger,
+span.bigger {
   @apply text-2xl leading-10;
 }
 
