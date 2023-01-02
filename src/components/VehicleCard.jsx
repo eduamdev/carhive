@@ -22,7 +22,6 @@ export default function VehicleCard({ vehicle }) {
   const { details, brand, model, image, year, color } = vehicle;
 
   const colorClass = getBgColorClass(color.short);
-  console.log(colorClass);
 
   return (
     <div
