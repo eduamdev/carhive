@@ -16,10 +16,6 @@ export default function FeaturedVehicles() {
               <VehicleCard vehicle={vehicle} />
             </Link>
           ))}
-        {/* <VehicleCard />
-        <VehicleCard />
-        <VehicleCard />
-        <VehicleCard /> */}
       </div>
     </section>
   );

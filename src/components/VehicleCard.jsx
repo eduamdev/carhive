@@ -3,7 +3,7 @@ import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
 import { getBgColorClass } from "../utils/color";
 
 export default function VehicleCard({ vehicle }) {
-  const { details, brand, model, image, year, color } = vehicle;
+  const { details, price, brand, model, image, year, color } = vehicle;
 
   const colorClass = getBgColorClass(color.short);
 
@@ -30,9 +30,18 @@ export default function VehicleCard({ vehicle }) {
           </div>
           <div>
             <p className="leading-5 text-right">
-              <span className="big font-bold uppercase text-neutral-100">
-                {details.price}
-              </span>
+              {price.discountPrice ? (
+                <span className="big text-red-400 font-bold">
+                  <span className="text-base font-normal text-neutral-300 line-through">
+                    {price.retailPrice}
+                  </span>{" "}
+                  {price.discountPrice}
+                </span>
+              ) : (
+                <span className="big font-bold text-neutral-100">
+                  {price.retailPrice}
+                </span>
+              )}
               <br /> <span className="font-light">/ day</span>
             </p>
           </div>

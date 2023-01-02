@@ -9,10 +9,13 @@ export const vehicles = [
     image: "tesla.jpg",
     color: { short: "white", long: "pearl white" },
     featured: true,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "$275",
+    },
     details: {
       transmission: "automatic",
       seats: "5 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "272 miles (EPA est.)",
       capacity: "649 L",
@@ -36,10 +39,13 @@ export const vehicles = [
     image: "porsche.jpg",
     color: { short: "white", long: "pearl white" },
     featured: true,
+    price: {
+      retailPrice: "$1199",
+      discountPrice: "$999",
+    },
     details: {
       transmission: "7-Speed Automatic",
       seats: "2 adults",
-      price: "$1199",
       bags: "1 bag",
       autonomy: "EPA estimates not yet available",
       capacity: "130 L",
@@ -65,10 +71,13 @@ export const vehicles = [
     image: "bmw-blue.jpg",
     color: { short: "blue", long: "metallic blue" },
     featured: true,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "$250",
+    },
     details: {
       transmission: "automatic",
       seats: "4 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -94,10 +103,13 @@ export const vehicles = [
     image: "bmw-black.jpg",
     color: { short: "black", long: "black" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "4 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -123,10 +135,13 @@ export const vehicles = [
     image: "van.jpg",
     color: { short: "yellow", long: "yellow" },
     featured: true,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "$200",
+    },
     details: {
       transmission: "automatic",
       seats: "8 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -152,10 +167,13 @@ export const vehicles = [
     image: "hyundai.jpg",
     color: { short: "cyan", long: "light blue" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "4 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -181,10 +199,13 @@ export const vehicles = [
     image: "jeep.jpg",
     color: { short: "black", long: "black" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "2 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -210,10 +231,13 @@ export const vehicles = [
     image: "bmw-white.jpg",
     color: { short: "white", long: "pearl white" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "4 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -239,10 +263,13 @@ export const vehicles = [
     image: "mustang.jpg",
     color: { short: "black", long: "black matte" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "2 adults",
-      price: "$300",
       bags: "3 bags",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -268,10 +295,13 @@ export const vehicles = [
     image: "scooter.jpg",
     color: { short: "black", long: "pearl black" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "1 adults",
-      price: "$300",
       bags: "-",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -297,10 +327,13 @@ export const vehicles = [
     image: "bike.jpg",
     color: { short: "white", long: "pearl white" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "1 adults",
-      price: "$300",
       bags: "-",
       autonomy: "507 Km",
       capacity: "649 L",
@@ -326,10 +359,13 @@ export const vehicles = [
     image: "boat.jpg",
     color: { short: "white", long: "pearl white" },
     featured: false,
+    price: {
+      retailPrice: "$300",
+      discountPrice: "",
+    },
     details: {
       transmission: "automatic",
       seats: "7 adults",
-      price: "$300",
       bags: "-",
       autonomy: "507 Km",
       capacity: "649 L",

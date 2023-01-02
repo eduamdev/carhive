@@ -16,7 +16,7 @@ function Vehicles() {
   const { slug } = useParams();
 
   const vehicle = getVehicleBySlug(slug);
-  const { brand, model, year, description, details, features } = vehicle;
+  const { brand, model, year, description, price, details, features } = vehicle;
 
   return (
     <Layout>
@@ -64,9 +64,22 @@ function Vehicles() {
                     <span className="w-4 h-4">
                       <CashSVG />
                     </span>
-                    <span className="capitalize text-neutral-300">
-                      {details.price} / day
-                    </span>
+                    {price.discountPrice ? (
+                      <span className="text-red-400 font-semibold capitalize">
+                        <span className="text-base text-neutral-300 capitalize line-through">
+                          {price.retailPrice}
+                        </span>{" "}
+                        {price.discountPrice}
+                        <span className="capitalize text-neutral-300">
+                          {" "}
+                          / day
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="capitalize text-neutral-100">
+                        {price.retailPrice} / day
+                      </span>
+                    )}
                   </li>
                   <li className="flex flex-row items-center gap-x-3">
                     <span className="w-4 h-4">
