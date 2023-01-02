@@ -9,7 +9,7 @@ export default function Filters() {
 
   return (
     <section className="mb-20">
-      <div className="hidden grid grid-cols-1 lg:grid-cols-3 items-start gap-x-16 gap-y-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-start gap-x-16 gap-y-10">
         <div>
           <p className="font-bold text-neutral-100">Brand</p>
           <div className="w-full flex flex-row flex-wrap items-center gap-2 mt-4">
@@ -42,7 +42,7 @@ export default function Filters() {
       </div>
       <div
         id="selected-filters"
-        className="w-full flex flex-row flex-wrap items-center gap-2"
+        className="hidden w-full flex flex-row flex-wrap items-center gap-2"
       >
         <div className="flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl">
           <span>White</span> <CloseSVG className="w-5 h-5" />

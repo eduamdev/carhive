@@ -29,15 +29,19 @@ span.bigger {
   @apply text-2xl leading-10;
 }
 
-.AccordionTrigger {
+.accordionTrigger {
   @apply w-full flex flex-row items-center justify-between py-4;
 }
 
-.AccordionChevron,
-.chevron {
+.accordionChevron,
+.collapsibleChevron {
   @apply h-6 w-6 stroke-current text-neutral-200 align-middle;
 }
 
-.AccordionTrigger[data-state="open"] > .AccordionChevron {
+.accordionTrigger[data-state="open"] > .accordionChevron {
+  transform: rotate(180deg);
+}
+
+.collapsibleTrigger[data-state="open"] > .collapsibleChevron {
   transform: rotate(180deg);
 }

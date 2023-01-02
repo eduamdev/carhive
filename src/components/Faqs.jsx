@@ -37,11 +37,11 @@ export default function Faqs() {
           className="border-t border-neutral-800 py-4"
         >
           <AccordionHeader>
-            <AccordionTrigger className="AccordionTrigger">
+            <AccordionTrigger className="accordionTrigger">
               <span className="text-xl font-semibold">
                 This is a super common question?
               </span>
-              <ChevronDownSVG className="AccordionChevron" />
+              <ChevronDownSVG className="accordionChevron" />
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent className="text-left mt-4">
@@ -56,11 +56,11 @@ export default function Faqs() {
           className="border-t border-b border-neutral-800 py-4"
         >
           <AccordionHeader>
-            <AccordionTrigger className="AccordionTrigger">
+            <AccordionTrigger className="accordionTrigger">
               <span className="text-xl font-semibold">
                 This is a random QA?
               </span>
-              <ChevronDownSVG className="AccordionChevron" />
+              <ChevronDownSVG className="accordionChevron" />
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent className="text-left mt-4">
