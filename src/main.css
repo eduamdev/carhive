@@ -45,3 +45,44 @@ span.bigger {
 .collapsibleTrigger[data-state="open"] > .collapsibleChevron {
   transform: rotate(180deg);
 }
+
+.sliderRoot {
+  @apply relative flex items-center w-full;
+  user-select: none;
+  touch-action: none;
+}
+.sliderRoot[data-orientation="horizontal"] {
+  height: 20px;
+}
+.sliderRoot[data-orientation="vertical"] {
+  flex-direction: column;
+  width: 20px;
+  height: 100px;
+}
+
+.sliderTrack {
+  @apply relative bg-neutral-700 rounded-full flex-grow;
+}
+.sliderTrack[data-orientation="horizontal"] {
+  height: 3px;
+}
+.sliderTrack[data-orientation="vertical"] {
+  width: 3px;
+}
+
+.sliderRange {
+  @apply absolute h-full bg-white rounded-full;
+}
+
+.sliderThumb {
+  @apply block bg-white;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.sliderThumb:hover {
+  @apply ring-2 ring-neutral-300;
+}
+.sliderThumb:focus {
+  @apply outline-none ring-2 ring-neutral-300;
+}
