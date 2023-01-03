@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import { ScrollRestoration } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
@@ -23,7 +24,12 @@ export default function NotFound() {
               <p className="big">
                 It looks like the page you are looking for doesnt exist.
               </p>
-              <button className="mt-4">Go back home</button>
+              <Link
+                to="/"
+                className="mt-4 flex items-center justify-center w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
+              >
+                Go back home
+              </Link>
             </div>
           </div>
         </div>

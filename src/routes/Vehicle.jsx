@@ -32,7 +32,7 @@ function Vehicles() {
           </Link>{" "}
           / {slug}
         </p>
-        <h1 className="text-4xl lg:text-5xl font-bold">
+        <h1 className="text-4xl lg:text-5xl font-bold max-w-prose">
           {brand} {model} {year}
         </h1>
         <div className="flex flex-col lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
@@ -44,32 +44,40 @@ function Vehicles() {
                   Details
                 </p>
                 <ul className="space-y-2 mt-4">
-                  <li className="flex flex-row items-center gap-x-3">
-                    <span className="w-4 h-4">
-                      <SpeedometerSVG />
-                    </span>
-                    <span className="capitalize text-neutral-300">
-                      {details.transmission}
-                    </span>
-                  </li>
-                  <li className="flex flex-row items-center gap-x-3">
-                    <span className="w-4 h-4">
-                      <PersonSVG />
-                    </span>
+                  {details.transmission && (
+                    <li
+                      className="grid items-center gap-x-3"
+                      style={{ gridTemplateColumns: "1rem 1fr" }}
+                    >
+                      <SpeedometerSVG className="w-4 h-4" />
+
+                      <span className="capitalize text-neutral-300">
+                        {details.transmission}
+                      </span>
+                    </li>
+                  )}
+                  <li
+                    className="grid items-center gap-x-3"
+                    style={{ gridTemplateColumns: "1rem 1fr" }}
+                  >
+                    <PersonSVG className="w-4 h-4" />
+
                     <span className="capitalize text-neutral-300">
                       {details.seats}
                     </span>
                   </li>
-                  <li className="flex flex-row items-center gap-x-3">
-                    <span className="w-4 h-4">
-                      <CashSVG />
-                    </span>
-                    {price.discountPrice ? (
+                  <li
+                    className="grid items-center gap-x-3"
+                    style={{ gridTemplateColumns: "1rem 1fr" }}
+                  >
+                    <CashSVG className="w-4 h-4" />
+
+                    {price.perDay.discountPrice ? (
                       <span className="text-red-400 font-semibold capitalize">
                         <span className="text-base text-neutral-300 capitalize line-through">
-                          {price.retailPrice}
+                          {price.perDay.retailPrice}
                         </span>{" "}
-                        {price.discountPrice}
+                        {price.perDay.discountPrice}
                         <span className="capitalize text-neutral-300">
                           {" "}
                           / day
@@ -77,26 +85,34 @@ function Vehicles() {
                       </span>
                     ) : (
                       <span className="capitalize text-neutral-100">
-                        {price.retailPrice} / day
+                        {price.perDay.retailPrice} / day
                       </span>
                     )}
                   </li>
-                  <li className="flex flex-row items-center gap-x-3">
-                    <span className="w-4 h-4">
-                      <BagSVG />
-                    </span>
-                    <span className="capitalize text-neutral-300">
-                      {details.bags}
-                    </span>
-                  </li>
-                  <li className="flex flex-row items-center gap-x-3">
-                    <span className="w-4 h-4">
-                      <BatterySVG />
-                    </span>
-                    <span className="capitalize text-neutral-300">
-                      {details.autonomy}
-                    </span>
-                  </li>
+                  {details.bags && (
+                    <li
+                      className="grid items-center gap-x-3"
+                      style={{ gridTemplateColumns: "1rem 1fr" }}
+                    >
+                      <BagSVG className="w-4 h-4" />
+
+                      <span className="capitalize text-neutral-300">
+                        {details.bags}
+                      </span>
+                    </li>
+                  )}
+                  {details.autonomy && (
+                    <li
+                      className="grid items-center gap-x-3"
+                      style={{ gridTemplateColumns: "1rem 1fr" }}
+                    >
+                      <BatterySVG className="w-4 h-4" />
+
+                      <span className="capitalize text-neutral-300">
+                        {details.autonomy}
+                      </span>
+                    </li>
+                  )}
                 </ul>
               </div>
               <div>
@@ -114,7 +130,7 @@ function Vehicles() {
             </div>
             <div className="hidden lg:block mt-20">
               <button className="w-full py-3 px-5 bg-red-500 text-white rounded-lg font-bold text-lg">
-                Rent now
+                Book this Vehicle
               </button>
             </div>
           </div>
@@ -122,7 +138,7 @@ function Vehicles() {
         </div>
         <div className="lg:hidden mt-20">
           <button className="w-full py-3 px-5 bg-red-500 text-white rounded-lg font-bold text-lg">
-            Rent now
+            Book this Vehicle
           </button>
         </div>
       </section>

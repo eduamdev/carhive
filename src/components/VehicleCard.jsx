@@ -19,7 +19,7 @@ export default function VehicleCard({ vehicle }) {
         }}
       ></div>
       <div className="w-full h-full flex flex-col justify-between gap-y-5 p-5">
-        <div className="w-full flex flex-row items-baseline justify-between gap-x-3">
+        <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-3">
           <div>
             <p className="leading-5">
               <span className="big font-bold uppercase text-neutral-100">
@@ -30,16 +30,16 @@ export default function VehicleCard({ vehicle }) {
           </div>
           <div>
             <p className="leading-5 text-right">
-              {price.discountPrice ? (
+              {price.perDay.discountPrice ? (
                 <span className="big text-red-400 font-bold">
                   <span className="text-base font-normal text-neutral-300 line-through">
-                    {price.retailPrice}
+                    {price.perDay.retailPrice}
                   </span>{" "}
-                  {price.discountPrice}
+                  {price.perDay.discountPrice}
                 </span>
               ) : (
                 <span className="big font-bold text-neutral-100">
-                  {price.retailPrice}
+                  {price.perDay.retailPrice}
                 </span>
               )}
               <br /> <span className="font-light">/ day</span>
