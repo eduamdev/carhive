@@ -1,12 +1,12 @@
 import { ReactComponent as BagSVG } from "./../assets/icons/bag.svg";
 import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
-import { getBgColorClass } from "../utils/style";
-import { formatter } from "../utils/number";
+import { getBackgroundColorClass } from "../utils/style";
+import { formatNumberAsCurrency } from "../utils/number";
 
 export default function VehicleCard({ vehicle }) {
   const { details, price, brand, model, image, year, color } = vehicle;
 
-  const colorClass = getBgColorClass(color.short);
+  const backgroundColorClass = getBackgroundColorClass(color.short);
 
   return (
     <div
@@ -36,11 +36,15 @@ export default function VehicleCard({ vehicle }) {
                   <span className="text-sm font-normal text-neutral-300 line-through">
                     {price.perDay.retailPrice}
                   </span>{" "}
-                  {formatter.format(price.perDay.discountPrice.substring(1))}
+                  {formatNumberAsCurrency(
+                    price.perDay.discountPrice.replace("$", "")
+                  )}
                 </span>
               ) : (
                 <span className="text-[18px] font-bold text-neutral-100">
-                  {formatter.format(price.perDay.retailPrice.substring(1))}
+                  {formatNumberAsCurrency(
+                    price.perDay.retailPrice.replace("$", "")
+                  )}
                 </span>
               )}
               <br /> <span className="font-light">/ day</span>
@@ -49,7 +53,7 @@ export default function VehicleCard({ vehicle }) {
         </div>
         <div>
           <div
-            className={`w-3 h-3 rounded-full border border-gray-400 ${colorClass}`}
+            className={`w-3 h-3 rounded-full border border-gray-400 ${backgroundColorClass}`}
           ></div>
         </div>
         <div className="text-neutral-200 font-mono align-middle flex flex-row items-center justify-between gap-x-3 leading-5">

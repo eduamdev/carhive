@@ -1,7 +1,7 @@
 import { vehicles } from "../vehicles";
 import { getUniqueArray } from "../utils/array";
-import { getBgColorClass } from "../utils/style";
-import { formatter } from "../utils/number";
+import { getBackgroundColorClass } from "../utils/style";
+import { formatNumberAsCurrency } from "../utils/number";
 import { ReactComponent as CloseSVG } from "./../assets/icons/close.svg";
 import {
   Slider,
@@ -36,12 +36,12 @@ export default function Filters() {
           <p className="font-bold text-neutral-100">Color</p>
           <div className="w-full flex flex-row flex-wrap items-center gap-5 mt-[22px]">
             {getUniqueArray(colors).map((color) => {
-              const colorClass = getBgColorClass(color);
+              const backgroundColorClass = getBackgroundColorClass(color);
 
               return (
                 <span
                   key={color}
-                  className={`relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400 ${colorClass}`}
+                  className={`relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400 ${backgroundColorClass}`}
                 ></span>
               );
             })}
@@ -51,8 +51,8 @@ export default function Filters() {
           <p className="font-bold text-neutral-100">Price Range (per Day)</p>
           <div className="mt-4">
             <div className="mb-2 flex flex-row items-center justify-between">
-              <p>Price {formatter.format(2899)}</p>
-              <p>{formatter.format(2899)}</p>
+              <p>Price {formatNumberAsCurrency(2899)}</p>
+              <p>{formatNumberAsCurrency(2899)}</p>
             </div>
             <Slider
               defaultValue={[100]}

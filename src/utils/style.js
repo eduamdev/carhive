@@ -1,4 +1,4 @@
-export function getBgColorClass(color) {
+export function getBackgroundColorClass(color) {
   switch (color) {
     case "white":
       return "bg-neutral-200";
