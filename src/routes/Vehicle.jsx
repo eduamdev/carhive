@@ -7,6 +7,7 @@ import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
 import { ReactComponent as CashSVG } from "./../assets/icons/cash.svg";
 import { ReactComponent as BatterySVG } from "./../assets/icons/battery.svg";
 import { ReactComponent as SpeedometerSVG } from "./../assets/icons/speedometer.svg";
+import { formatter } from "../utils/number";
 
 function getVehicleBySlug(slug) {
   return vehicles.find((vehicle) => vehicle.slug === slug);
@@ -77,7 +78,9 @@ function Vehicles() {
                         <span className="text-base text-neutral-300 capitalize line-through">
                           {price.perDay.retailPrice}
                         </span>{" "}
-                        {price.perDay.discountPrice}
+                        {formatter.format(
+                          price.perDay.discountPrice.substring(1)
+                        )}
                         <span className="capitalize text-neutral-300">
                           {" "}
                           / day
@@ -85,7 +88,10 @@ function Vehicles() {
                       </span>
                     ) : (
                       <span className="capitalize text-neutral-100">
-                        {price.perDay.retailPrice} / day
+                        {formatter.format(
+                          price.perDay.retailPrice.substring(1)
+                        )}{" "}
+                        / day
                       </span>
                     )}
                   </li>

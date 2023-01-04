@@ -1,6 +1,7 @@
 import { ReactComponent as BagSVG } from "./../assets/icons/bag.svg";
 import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
-import { getBgColorClass } from "../utils/color";
+import { getBgColorClass } from "../utils/style";
+import { formatter } from "../utils/number";
 
 export default function VehicleCard({ vehicle }) {
   const { details, price, brand, model, image, year, color } = vehicle;
@@ -10,7 +11,7 @@ export default function VehicleCard({ vehicle }) {
   return (
     <div
       className="h-full grid border border-slate-900 rounded-2xl"
-      style={{ gridTemplateRows: "13rem 1fr" }}
+      style={{ gridTemplateRows: "15.5rem 1fr" }}
     >
       <div
         className="h-full bg-cover bg-center bg-no-repeat border border-neutral-900 rounded-xl"
@@ -19,10 +20,10 @@ export default function VehicleCard({ vehicle }) {
         }}
       ></div>
       <div className="w-full h-full flex flex-col justify-between gap-y-5 p-5">
-        <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-3">
+        <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-2">
           <div>
-            <p className="leading-5">
-              <span className="big font-bold uppercase text-neutral-100">
+            <p className="leading-6">
+              <span className="text-[18px] leading-7 font-bold uppercase text-neutral-100">
                 {brand}
               </span>
               <br /> {model} {year}
@@ -31,15 +32,15 @@ export default function VehicleCard({ vehicle }) {
           <div>
             <p className="leading-5 text-right">
               {price.perDay.discountPrice ? (
-                <span className="big text-red-400 font-bold">
-                  <span className="text-base font-normal text-neutral-300 line-through">
+                <span className="text-[18px] text-red-400 font-bold">
+                  <span className="text-sm font-normal text-neutral-300 line-through">
                     {price.perDay.retailPrice}
                   </span>{" "}
-                  {price.perDay.discountPrice}
+                  {formatter.format(price.perDay.discountPrice.substring(1))}
                 </span>
               ) : (
-                <span className="big font-bold text-neutral-100">
-                  {price.perDay.retailPrice}
+                <span className="text-[18px] font-bold text-neutral-100">
+                  {formatter.format(price.perDay.retailPrice.substring(1))}
                 </span>
               )}
               <br /> <span className="font-light">/ day</span>

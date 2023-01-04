@@ -1,6 +1,7 @@
 import { vehicles } from "../vehicles";
 import { getUniqueArray } from "../utils/array";
-import { getBgColorClass } from "../utils/color";
+import { getBgColorClass } from "../utils/style";
+import { formatter } from "../utils/number";
 import { ReactComponent as CloseSVG } from "./../assets/icons/close.svg";
 import {
   Slider,
@@ -50,8 +51,8 @@ export default function Filters() {
           <p className="font-bold text-neutral-100">Price Range (per Day)</p>
           <div className="mt-4">
             <div className="mb-2 flex flex-row items-center justify-between">
-              <p>Price $2899</p>
-              <p>$2899</p>
+              <p>Price {formatter.format(2899)}</p>
+              <p>{formatter.format(2899)}</p>
             </div>
             <Slider
               defaultValue={[100]}

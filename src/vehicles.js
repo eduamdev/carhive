@@ -129,7 +129,7 @@ export const vehicles = [
     color: { short: "yellow", long: "yellow" },
     featured: true,
     price: {
-      perDay: { retailPrice: "$109", discountPrice: "89" },
+      perDay: { retailPrice: "$109", discountPrice: "$89" },
     },
     details: {
       transmission: "manual",
