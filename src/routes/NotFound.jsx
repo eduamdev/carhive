@@ -1,10 +1,9 @@
-import Layout from "../components/Layout";
 import { ScrollRestoration } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <Layout>
+    <>
       <ScrollRestoration />
       <section>
         <div className="relative h-[30rem]">
@@ -34,6 +33,6 @@ export default function NotFound() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

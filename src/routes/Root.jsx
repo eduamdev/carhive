@@ -1,24 +1,15 @@
-import Hero from "../components/Hero";
-import Quote from "../components/Quote";
-import Features from "../components/Features";
-import FeaturedVehicles from "../components/FeaturedVehicles";
-import Faqs from "../components/Faqs";
-import Layout from "../components/Layout";
-import GetFirstGiftToday from "../components/GetFirstGiftToday";
-import { ScrollRestoration } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { Outlet } from "react-router";
 
-function Root() {
+export default function Root() {
   return (
-    <Layout>
-      <ScrollRestoration />
-      <Hero></Hero>
-      <Quote></Quote>
-      <Features></Features>
-      <GetFirstGiftToday />
-      <FeaturedVehicles />
-      <Faqs></Faqs>
-    </Layout>
+    <div className="max-w-screen-xl mx-auto flex flex-col px-6 2xl:px-0 gap-y-16">
+      <Header />
+      <main className="flex flex-col gap-y-28">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
-
-export default Root;

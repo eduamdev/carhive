@@ -1,7 +1,6 @@
-import Layout from "../components/Layout";
 import { Link, ScrollRestoration } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { vehicles } from "./../vehicles.js";
+import { vehicles } from "../vehicles.js";
 import { ReactComponent as BagSVG } from "./../assets/icons/bag.svg";
 import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
 import { ReactComponent as CashSVG } from "./../assets/icons/cash.svg";
@@ -13,14 +12,14 @@ function getVehicleBySlug(slug) {
   return vehicles.find((vehicle) => vehicle.slug === slug);
 }
 
-function Vehicles() {
+function VehicleView() {
   const { slug } = useParams();
 
   const vehicle = getVehicleBySlug(slug);
   const { brand, model, year, description, price, details, features } = vehicle;
 
   return (
-    <Layout>
+    <>
       <ScrollRestoration />
       <section>
         <p className="mb-3 font-mono">
@@ -148,8 +147,8 @@ function Vehicles() {
           </button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
 
-export default Vehicles;
+export default VehicleView;
