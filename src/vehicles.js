@@ -1,5 +1,6 @@
 export const vehicles = [
   {
+    id: "VEH001",
     slug: "tesla-model-3",
     brand: "Tesla",
     model: "Model 3",
@@ -29,6 +30,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH002",
     slug: "porsche-911",
     brand: "Porsche",
     model: "911",
@@ -60,6 +62,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH003",
     slug: "toyota-highlander-hybrid-le",
     brand: "Toyota",
     model: "Highlander Hybrid LE",
@@ -87,6 +90,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH004",
     slug: "bmw-3-series",
     brand: "BMW",
     model: "3 Series",
@@ -119,6 +123,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH005",
     slug: "volkswagen-clementine-t2",
     brand: "Volkswagen",
     model: "Clementine T2 Camper Van",
@@ -148,6 +153,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH006",
     slug: "hyundai-i30n",
     brand: "Hyundai",
     model: "I30N",
@@ -175,6 +181,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH007",
     slug: "jeep-wrangler-rubicon",
     brand: "Jeep",
     model: "Wrangler Rubicon",
@@ -203,6 +210,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH008",
     slug: "bmw-m4-gts",
     brand: "BMW",
     model: "M4 GTS",
@@ -230,6 +238,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH009",
     slug: "ford-mustang-shelby-gt350r",
     brand: "Ford",
     model: "Mustang Shelby GT350R",
@@ -257,6 +266,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH010",
     slug: "turboant-x7-max-folding",
     brand: "TurboAnt",
     model: "X7 Max Folding",
@@ -286,6 +296,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH011",
     slug: "bianchi-specialissima",
     brand: "Bianchi",
     model: "Specialissima",
@@ -312,6 +323,7 @@ export const vehicles = [
     ],
   },
   {
+    id: "VEH012",
     slug: "vz-flybridge",
     brand: "VZ",
     model: "Flybridge",

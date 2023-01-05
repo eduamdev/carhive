@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { filtersReducer, INITIAL_STATE } from "../filtersReducer";
 import { FILTER_ACTION_TYPES } from "../filterActionTypes";
 import { Link, ScrollRestoration } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   SliderRange,
   SliderThumb,
 } from "@radix-ui/react-slider";
+import classNames from "classnames";
 import { getUniqueArray } from "../utils/array";
 import { getBackgroundColorClass } from "../utils/style";
 import { formatNumberAsCurrency } from "../utils/number";
@@ -22,17 +23,20 @@ import { ReactComponent as CloseSVG } from "./../assets/icons/close.svg";
 import { vehicles } from "../vehicles";
 
 function VehicleGrid() {
+  const [openCollapsible, setOpenCollapsible] = useState(false);
+  const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
   const brands = vehicles.map((vehicle) => vehicle.brand);
   const colors = vehicles.map((vehicle) => vehicle.color.short);
-  const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
 
-  console.log({ state });
+  const handleOpenChange = () => {
+    setOpenCollapsible(!openCollapsible);
+  };
 
   return (
     <>
       <ScrollRestoration />
       <section>
-        <Collapsible>
+        <Collapsible open={openCollapsible} onOpenChange={handleOpenChange}>
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
               <p className="mb-3 font-mono hidden lg:block">
@@ -85,7 +89,14 @@ function VehicleGrid() {
                               payload: { brand },
                             })
                           }
-                          className="cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-200 rounded-3xl"
+                          className={classNames(
+                            "cursor-pointer py-[6px] px-5 bg-gray-800 border hover:border-neutral-200 rounded-3xl",
+                            state.selectedBrands.find(
+                              (currentBrand) => currentBrand === brand
+                            )
+                              ? ""
+                              : "border-transparent"
+                          )}
                         >
                           {brand}
                         </div>
@@ -113,7 +124,15 @@ function VehicleGrid() {
                               payload: { color },
                             })
                           }
-                          className={`relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400 ${backgroundColorClass}`}
+                          className={classNames(
+                            backgroundColorClass,
+                            "relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400",
+                            state.selectedColors.find(
+                              (currentColor) => currentColor === color
+                            )
+                              ? "after:visible"
+                              : "after:invisible"
+                          )}
                         ></span>
                       );
                     })}
@@ -143,28 +162,79 @@ function VehicleGrid() {
                   </div>
                 </div>
               </div>
-              <div
-                id="selected-filters"
-                className="hidden w-full flex flex-row flex-wrap items-center gap-2"
-              >
-                <div className="flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl">
-                  <span>White</span> <CloseSVG className="w-5 h-5" />
-                </div>
-                <div className="flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl">
-                  <span>Blue</span> <CloseSVG className="w-5 h-5" />
-                </div>
-                <span className="ml-6 font-semibold cursor-pointer">
-                  Clear All
-                </span>
-              </div>
             </section>
           </CollapsibleContent>
+
+          <div
+            id="selected-filters"
+            className={classNames(
+              "w-full flex flex-row flex-wrap items-center gap-2",
+              !openCollapsible &&
+                (state.selectedBrands.length || state.selectedColors.length)
+                ? "block"
+                : "hidden"
+            )}
+          >
+            {[...state.selectedBrands].map((brand) => {
+              return (
+                <div
+                  key={brand}
+                  onClick={() =>
+                    dispatch({
+                      type: FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION,
+                      payload: { brand },
+                    })
+                  }
+                  className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
+                >
+                  <span>{brand}</span> <CloseSVG className="w-5 h-5" />
+                </div>
+              );
+            })}
+            {[...state.selectedColors].map((color) => {
+              return (
+                <div
+                  key={color}
+                  onClick={() =>
+                    dispatch({
+                      type: FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION,
+                      payload: { color },
+                    })
+                  }
+                  className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
+                >
+                  <span>{color}</span> <CloseSVG className="w-5 h-5" />
+                </div>
+              );
+            })}
+            <span
+              className="ml-6 font-semibold cursor-pointer"
+              onClick={() =>
+                dispatch({
+                  type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
+                })
+              }
+            >
+              Clear All
+            </span>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7 gap-y-10 mt-16">
-            {vehicles.map((vehicle, index) => (
-              <Link to={`/vehicles/${vehicle.slug}`} key={index}>
-                <VehicleCard vehicle={vehicle} />
-              </Link>
-            ))}
+            {vehicles.map((vehicle) => {
+              if (state.selectedBrands.length || state.selectedColors.length) {
+                return state.selectedBrands.includes(vehicle.brand) ||
+                  state.selectedColors.includes(vehicle.color.short) ? (
+                  <Link to={`/vehicles/${vehicle.slug}`} key={vehicle.id}>
+                    <VehicleCard vehicle={vehicle} />
+                  </Link>
+                ) : null;
+              }
+
+              return (
+                <Link to={`/vehicles/${vehicle.slug}`} key={vehicle.id}>
+                  <VehicleCard vehicle={vehicle} />
+                </Link>
+              );
+            })}
           </div>
         </Collapsible>
       </section>

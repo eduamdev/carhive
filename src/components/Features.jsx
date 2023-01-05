@@ -1,4 +1,4 @@
-import Feature from "./Feature";
+import FeatureCard from "./FeatureCard";
 import { ReactComponent as RibbonSVG } from "./../assets/icons/ribbon.svg";
 import { ReactComponent as LeafSVG } from "./../assets/icons/leaf.svg";
 import { ReactComponent as PhoneSVG } from "./../assets/icons/phone.svg";
@@ -57,7 +57,7 @@ export default function Features() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-10 mt-20">
         {features.map((feature) => (
-          <Feature
+          <FeatureCard
             key={feature.key}
             icon={feature.icon}
             title={feature.title}

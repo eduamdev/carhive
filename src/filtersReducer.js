@@ -10,8 +10,6 @@ function filtersReducer(state, action) {
 
   switch (type) {
     case FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION:
-      console.log("TOGGLE_BRAND_SELECTION", payload);
-
       const brandIsSelected = state.selectedBrands.find(
         (currentBrand) => currentBrand === payload.brand
       );
@@ -26,8 +24,6 @@ function filtersReducer(state, action) {
         selectedBrands: updatedBrandSelection,
       };
     case FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION:
-      console.log("TOGGLE_COLOR_SELECTION", payload);
-
       const colorIsSelected = state.selectedColors.find(
         (currentColor) => currentColor === payload.color
       );
@@ -40,6 +36,12 @@ function filtersReducer(state, action) {
       return {
         ...state,
         selectedColors: updatedColorSelection,
+      };
+
+    case FILTER_ACTION_TYPES.CLEAR_SELECTION:
+      return {
+        selectedBrands: [],
+        selectedColors: [],
       };
 
     default:
