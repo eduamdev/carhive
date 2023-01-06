@@ -8,7 +8,7 @@ import "./main.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/car-rental-react",
     element: <Root />,
     children: [
       {
@@ -16,15 +16,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/vehicles",
+        path: "/car-rental-react/vehicles",
         element: <VehicleGrid />,
       },
       {
-        path: "/vehicles/:slug",
+        path: "/car-rental-react/vehicles/:slug",
         element: <VehicleView />,
       },
       {
-        path: "*",
+        path: "/car-rental-react/*",
         element: <NotFound />,
       },
     ],
