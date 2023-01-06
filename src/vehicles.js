@@ -2,12 +2,12 @@ export const vehicles = [
   {
     id: "VEH001",
     slug: "tesla-model-3",
-    brand: "Tesla",
+    brand: { id: "b-tesla", name: "Tesla" },
     model: "Model 3",
     year: 2021,
     description:
       "The Tesla Model 3 is a compact executive sedan that is battery powered and produced by Tesla. The base Model 3 delivers an EPA-rated all-electric range of 272 miles (438 km) and the Long Range version delivers 358 miles (576 km). According to Tesla, the Model 3 carries full self-driving hardware, with periodic software updates adding functionality.",
-    color: { short: "white", long: "pearl white" },
+    color: { id: "c-white", name: "white" },
     featured: true,
     price: {
       perDay: { retailPrice: 99, discountPrice: 79 },
@@ -43,12 +43,12 @@ export const vehicles = [
   {
     id: "VEH002",
     slug: "porsche-911",
-    brand: "Porsche",
+    brand: { id: "b-porsche", name: "Porsche" },
     model: "911",
     year: 2018,
     description:
       "The Porsche 911 (pronounced Nine Eleven or in German: Neunelfer) is a two-door 2+2 high performance rear-engined sports car introduced in September 1964 by Porsche AG of Stuttgart, Germany. It has a rear-mounted flat-six engine and originally a torsion bar suspension. The car has been continuously enhanced through the years but the basic concept has remained unchanged.",
-    color: { short: "white", long: "pearl white" },
+    color: { id: "c-white", name: "white" },
     featured: true,
     price: {
       perDay: { retailPrice: 1199, discountPrice: 899 },
@@ -86,12 +86,12 @@ export const vehicles = [
   {
     id: "VEH003",
     slug: "toyota-highlander-hybrid-le",
-    brand: "Toyota",
+    brand: { id: "b-toyota", name: "Toyota" },
     model: "Highlander Hybrid LE",
     year: 2023,
     description:
       "The Toyota Highlander, also known as the Toyota Kluger (Japanese: トヨタ・クルーガー, Hepburn: Toyota Kurūgā), is a mid-size crossover SUV with three-row seating produced by Toyota since 2000. Announced in April 2000 at the New York International Auto Show and arriving in late 2000 in Japan and January 2001 in North America, the Highlander became one of the first car-based mid-size SUV or mid-size crossovers.",
-    color: { short: "black", long: "black" },
+    color: { id: "c-black", name: "black" },
     featured: true,
     price: {
       perDay: { retailPrice: 149, discountPrice: 109 },
@@ -125,12 +125,12 @@ export const vehicles = [
   {
     id: "VEH004",
     slug: "bmw-3-series",
-    brand: "BMW",
+    brand: { id: "b-bmw", name: "BMW" },
     model: "3 Series",
     year: 2016,
     description:
       "A standard car rental is a larger sedan, which provides more room for passengers and can fit an additional bag in the trunk compared to an intermediate car.",
-    color: { short: "black", long: "black" },
+    color: { id: "c-black", name: "black" },
     featured: false,
     price: {
       perDay: { retailPrice: 300 },
@@ -169,12 +169,12 @@ export const vehicles = [
   {
     id: "VEH005",
     slug: "volkswagen-clementine-t2",
-    brand: "Volkswagen",
+    brand: { id: "b-volkswagen", name: "Volkswagen" },
     model: "Clementine T2 Camper Van",
     year: 2011,
     description:
       "The Volkswagen Type 2, known officially (depending on body type) as the Transporter, Kombi or Microbus, or, informally, as the Bus (US), Camper (UK) or Bulli (Germany), is a forward control light commercial vehicle introduced in 1950 by the German automaker Volkswagen as its second car model.",
-    color: { short: "yellow", long: "yellow" },
+    color: { id: "c-yellow", name: "yellow" },
     featured: true,
     price: {
       perDay: { retailPrice: 109, discountPrice: 89 },
@@ -210,12 +210,12 @@ export const vehicles = [
   {
     id: "VEH006",
     slug: "hyundai-i30n",
-    brand: "Hyundai",
+    brand: { id: "b-hyundai", name: "Hyundai" },
     model: "I30N",
     year: -2018,
     description:
       "The Hyundai i30 is a small family car manufactured by the South Korean manufacturer Hyundai Motor Company since 2007.",
-    color: { short: "cyan", long: "light blue" },
+    color: { id: "c-cyan", name: "cyan" },
     featured: false,
     price: {
       perDay: { retailPrice: 56 },
@@ -249,12 +249,12 @@ export const vehicles = [
   {
     id: "VEH007",
     slug: "jeep-wrangler-rubicon",
-    brand: "Jeep",
+    brand: { id: "b-jeep", name: "Jeep" },
     model: "Wrangler Rubicon",
     year: 2020,
     description:
       "The Jeep Wrangler is a series of compact and mid-size four-wheel drive off-road SUVs manufactured by Jeep since 1986, and currently in its fourth generation. The Wrangler JL, the most recent generation, was unveiled in late-2017 and is produced at Jeep's Toledo Complex.",
-    color: { short: "black", long: "black" },
+    color: { id: "c-black", name: "black" },
     featured: false,
     price: {
       perDay: { retailPrice: 119 },
@@ -289,12 +289,12 @@ export const vehicles = [
   {
     id: "VEH008",
     slug: "bmw-m4-gts",
-    brand: "BMW",
+    brand: { id: "b-bmw", name: "BMW" },
     model: "M4 GTS",
     year: 2018,
     description:
       "The BMW M4 GTS is currently the fastest representative of a whole series of extreme BMW M special models such as the BMW M3 GT (1994), the BMW M3 CSL (2003) and its direct predecessor, the BMW M3 GTS (2009). Once again, it takes the BMW M philosophy to the top: marrying exceptional performance with maximum race track performance, combined in a vehicle that can be driven on public roads.",
-    color: { short: "white", long: "pearl white" },
+    color: { id: "c-white", name: "white" },
     featured: false,
     price: {
       perDay: { retailPrice: 450 },
@@ -328,12 +328,12 @@ export const vehicles = [
   {
     id: "VEH009",
     slug: "ford-mustang-shelby-gt350r",
-    brand: "Ford",
+    brand: { id: "b-ford", name: "Ford" },
     model: "Mustang Shelby GT350R",
     year: 2020,
     description:
       "For 2015, the GT350 debuted featuring a 5.2 L Flat Plane Crank V8 engine with 526 hp (392 kW) and 429 lb⋅ft (582 N⋅m) of torque. Notable features are track-focused chassis tuning, significant aero-dynamic changes to include lowering the hood around the engine, 2-piece, cross-drilled brake rotors paired with Brembo calipers, MagneRide damping option, lightweight Tremec TR-3160 six speed manual transmission, Recaro seats, and various lightweight components.",
-    color: { short: "black", long: "black matte" },
+    color: { id: "c-black", name: "black" },
     featured: false,
     price: {
       perDay: { retailPrice: 199 },
@@ -367,12 +367,12 @@ export const vehicles = [
   {
     id: "VEH010",
     slug: "turboant-x7-max-folding",
-    brand: "TurboAnt",
+    brand: { id: "b-turboant", name: "TurboAnt" },
     model: "X7 Max Folding",
     year: 2021,
     description:
       "A electric scooter is a stand-up scooter powered by either a small utility internal combustion engine or a small electric hub motor in its front and/or rear wheel. Classified as a form of micro-mobility, they are generally designed with a large center deck on which the rider stands. The first motorized scooter was manufactured by Autoped in 1915.",
-    color: { short: "black", long: "pearl black" },
+    color: { id: "c-black", name: "black" },
     featured: false,
     price: {
       perDay: { retailPrice: 47 },
@@ -408,12 +408,12 @@ export const vehicles = [
   {
     id: "VEH011",
     slug: "bianchi-specialissima",
-    brand: "Bianchi",
+    brand: { id: "b-bianchi", name: "Bianchi" },
     model: "Specialissima",
     year: 2020,
     description:
       "The Bianchi Specialissima helps you fly up the climbs and dominate on the flat. The carbon disc frame is light, just 750g, so none of your climbing power is wasted when the road turns upward, but it’s also superbly-stiff providing excellent transfer of that power to the road.",
-    color: { short: "white", long: "pearl white" },
+    color: { id: "c-white", name: "white" },
     featured: false,
     price: {
       perDay: { retailPrice: 29 },
@@ -446,12 +446,12 @@ export const vehicles = [
   {
     id: "VEH012",
     slug: "vz-flybridge",
-    brand: "VZ",
+    brand: { id: "b-vz", name: "VZ" },
     model: "Flybridge",
     year: 2007,
     description:
       "Board a classic! Aboard our 57' VZ you will enjoy an experience unlike any other. Discover the beautiful Miami coastlines aboard this magnificent vessel. This fully equipped yacht has an onboard capacity of 12 people making it excellent for any type of upscale festivities.",
-    color: { short: "white", long: "pearl white" },
+    color: { id: "c-white", name: "white" },
     featured: false,
     price: {
       perDay: { retailPrice: 2899 },

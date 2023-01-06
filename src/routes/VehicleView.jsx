@@ -32,7 +32,7 @@ function VehicleView() {
           / {slug}
         </p>
         <h1 className="text-4xl lg:text-5xl font-bold max-w-prose">
-          {brand} {model} {year}
+          {brand.name} {model} {year}
         </h1>
         <div className="flex flex-col lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
           <div className="lg:max-w-xl">

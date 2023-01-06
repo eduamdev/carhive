@@ -15,7 +15,6 @@ import {
   SliderThumb,
 } from "@radix-ui/react-slider";
 import classNames from "classnames";
-import { getUniqueArray } from "../utils/array";
 import { getBackgroundColorClass } from "../utils/style";
 import { formatNumberAsCurrency } from "../utils/number";
 import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
@@ -26,6 +25,8 @@ import {
   getVehicleColors,
   getVehiclesMaxPricePerDay,
   getVehiclesMinPricePerDay,
+  getBrandById,
+  getColorById,
 } from "../lib/vehicles";
 
 function VehicleGrid() {
@@ -89,26 +90,26 @@ function VehicleGrid() {
                       : ""
                   }`}</p>
                   <div className="w-full flex flex-row flex-wrap items-center gap-2 mt-4">
-                    {getUniqueArray(brands).map((brand) => {
+                    {brands.map((brand) => {
                       return (
                         <div
-                          key={brand}
+                          key={brand.id}
                           onClick={() =>
                             dispatch({
                               type: FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION,
-                              payload: { brand },
+                              payload: { brand: brand.id },
                             })
                           }
                           className={classNames(
                             "cursor-pointer py-[6px] px-5 bg-gray-800 border hover:border-neutral-200 rounded-3xl",
                             state.selectedBrands.find(
-                              (currentBrand) => currentBrand === brand
+                              (currentBrand) => currentBrand === brand.id
                             )
                               ? ""
                               : "border-transparent"
                           )}
                         >
-                          {brand}
+                          {brand.name}
                         </div>
                       );
                     })}
@@ -121,24 +122,25 @@ function VehicleGrid() {
                       : ""
                   }`}</p>
                   <div className="w-full flex flex-row flex-wrap items-center gap-5 mt-[22px]">
-                    {getUniqueArray(colors).map((color) => {
-                      const backgroundColorClass =
-                        getBackgroundColorClass(color);
+                    {colors.map((color) => {
+                      const backgroundColorClass = getBackgroundColorClass(
+                        color.name
+                      );
 
                       return (
                         <span
-                          key={color}
+                          key={color.id}
                           onClick={() =>
                             dispatch({
                               type: FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION,
-                              payload: { color },
+                              payload: { color: color.id },
                             })
                           }
                           className={classNames(
                             backgroundColorClass,
                             "relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400",
                             state.selectedColors.find(
-                              (currentColor) => currentColor === color
+                              (currentColor) => currentColor === color.id
                             )
                               ? "after:visible"
                               : "after:invisible"
@@ -189,35 +191,37 @@ function VehicleGrid() {
                 : "hidden"
             )}
           >
-            {[...state.selectedBrands].map((brand) => {
+            {[...state.selectedBrands].map((brandId) => {
+              const selectedBrand = getBrandById(brandId).name;
               return (
                 <div
-                  key={brand}
+                  key={brandId}
                   onClick={() =>
                     dispatch({
                       type: FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION,
-                      payload: { brand },
+                      payload: { brand: brandId },
                     })
                   }
                   className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
                 >
-                  <span>{brand}</span> <CloseSVG className="w-5 h-5" />
+                  <span>{selectedBrand}</span> <CloseSVG className="w-5 h-5" />
                 </div>
               );
             })}
-            {[...state.selectedColors].map((color) => {
+            {[...state.selectedColors].map((colorId) => {
+              const selectedColor = getColorById(colorId).name;
               return (
                 <div
-                  key={color}
+                  key={colorId}
                   onClick={() =>
                     dispatch({
                       type: FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION,
-                      payload: { color },
+                      payload: { color: colorId },
                     })
                   }
                   className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
                 >
-                  <span>{color}</span> <CloseSVG className="w-5 h-5" />
+                  <span>{selectedColor}</span> <CloseSVG className="w-5 h-5" />
                 </div>
               );
             })}
@@ -234,20 +238,30 @@ function VehicleGrid() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7 gap-y-10 mt-16">
             {vehicles.map((vehicle) => {
-              if (state.selectedBrands.length || state.selectedColors.length) {
-                return state.selectedBrands.includes(vehicle.brand) ||
-                  state.selectedColors.includes(vehicle.color.short) ? (
-                  <Link to={`/vehicles/${vehicle.slug}`} key={vehicle.id}>
-                    <VehicleCard vehicle={vehicle} />
-                  </Link>
-                ) : null;
+              let isVehicleBrand = true;
+              let isVehicleColor = true;
+
+              if (state.selectedBrands.length) {
+                isVehicleBrand = state.selectedBrands.includes(
+                  vehicle.brand.id
+                );
               }
 
-              return (
-                <Link to={`/vehicles/${vehicle.slug}`} key={vehicle.id}>
-                  <VehicleCard vehicle={vehicle} />
-                </Link>
-              );
+              if (state.selectedColors.length) {
+                isVehicleColor = state.selectedColors.includes(
+                  vehicle.color.id
+                );
+              }
+
+              if (isVehicleBrand && isVehicleColor) {
+                return (
+                  <Link key={vehicle.id} to={`/vehicles/${vehicle.slug}`}>
+                    <VehicleCard vehicle={vehicle} />
+                  </Link>
+                );
+              }
+
+              return null;
             })}
           </div>
         </Collapsible>

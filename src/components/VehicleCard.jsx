@@ -26,7 +26,7 @@ export default function VehicleCard({ vehicle }) {
           <div>
             <p className="leading-6">
               <span className="text-[18px] leading-7 font-bold uppercase text-neutral-100">
-                {brand}
+                {brand.name}
               </span>
               <br /> {model} {year}
             </p>
