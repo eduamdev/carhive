@@ -50,12 +50,6 @@ function getAllPrices() {
   return retailPrices.concat(discountPrices);
 }
 
-export function getVehiclesMaxPricePerDay() {
-  const allPrices = getAllPrices();
-  return Math.max(...allPrices);
-}
+export const getVehiclesMaxPricePerDay = () => Math.max(...getAllPrices());
 
-export function getVehiclesMinPricePerDay() {
-  const allPrices = getAllPrices();
-  return Math.min(...allPrices);
-}
+export const getVehiclesMinPricePerDay = () => Math.min(...getAllPrices());

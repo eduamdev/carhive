@@ -30,12 +30,12 @@ span.bigger {
 }
 
 .accordionTrigger {
-  @apply w-full flex flex-row items-center justify-between py-4;
+  @apply w-full flex flex-row items-center justify-between gap-x-10 py-4;
 }
 
 .accordionChevron,
 .collapsibleChevron {
-  @apply h-6 w-6 stroke-current text-neutral-200 align-middle;
+  @apply h-6 w-6 flex-shrink-0 stroke-current text-neutral-200 align-middle;
 }
 
 .accordionTrigger[data-state="open"] > .accordionChevron {

@@ -41,14 +41,11 @@ const faqs = [
 
 export default function Faqs() {
   return (
-    <section
-      id="faqs"
-      className="w-full max-w-2xl mx-auto text-center scroll-mt-10"
-    >
-      <h2 className="text-3xl lg:text-4xl font-bold">
+    <section id="faqs" className="w-full max-w-2xl mx-auto scroll-mt-10">
+      <h2 className="text-3xl lg:text-4xl font-bold text-center">
         Frequently Asked Questions
       </h2>
-      <p className="big mt-8 mb-16">
+      <p className="big mt-8 mb-16 text-center">
         If you can’t find what you’re looking for,{" "}
         <a
           href="mailto:hello@example.com"
@@ -72,7 +69,9 @@ export default function Faqs() {
           >
             <AccordionHeader>
               <AccordionTrigger className="accordionTrigger">
-                <span className="text-xl font-semibold">{faq.question}</span>
+                <span className="text-xl font-semibold text-left">
+                  {faq.question}
+                </span>
                 <svg
                   className="accordionChevron"
                   xmlns="http://www.w3.org/2000/svg"

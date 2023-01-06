@@ -4,7 +4,7 @@ import { formatNumberAsCurrency } from "../utils/number";
 export default function VehicleCard({ vehicle }) {
   const { details, price, brand, model, images, year, color } = vehicle;
 
-  const backgroundColorClass = getBackgroundColorClass(color.short);
+  const backgroundColorClass = getBackgroundColorClass(color.name);
   const coverImage = images.find((image) => image.type === "cover");
 
   return (
@@ -80,7 +80,7 @@ export default function VehicleCard({ vehicle }) {
             </span>
           </div>
           <div className="flex flex-row gap-x-2 text-right">
-            {details.bags !== "-" && (
+            {details.bags && (
               <>
                 <svg
                   className="w-4 h-4"

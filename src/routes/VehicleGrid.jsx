@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
 import { filtersReducer, INITIAL_STATE } from "../filtersReducer";
 import { FILTER_ACTION_TYPES } from "../filterActionTypes";
 import { Link, ScrollRestoration } from "react-router-dom";
@@ -21,8 +21,6 @@ import { vehicles } from "../vehicles";
 import {
   getVehicleBrands,
   getVehicleColors,
-  getVehiclesMaxPricePerDay,
-  getVehiclesMinPricePerDay,
   getBrandById,
   getColorById,
 } from "../lib/vehicles";
@@ -30,11 +28,44 @@ import {
 function VehicleGrid() {
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
   const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
+  const [filteredVehicles, setFilteredVehicles] = useState([]);
 
-  const minPrice = getVehiclesMinPricePerDay();
-  const maxPrice = getVehiclesMaxPricePerDay();
   const brands = getVehicleBrands();
   const colors = getVehicleColors();
+
+  useEffect(() => {
+    let tempVehicles = [...vehicles].map((vehicle) => {
+      const retailPrice = vehicle.price.perDay.retailPrice;
+      const discountPrice = vehicle.price.perDay.discountPrice;
+      const currentPrice = discountPrice ? discountPrice : retailPrice;
+
+      vehicle.price.perDay.currentPrice = currentPrice;
+
+      return {
+        ...vehicle,
+      };
+    });
+
+    if (state.selectedBrands.length) {
+      tempVehicles = tempVehicles.filter((vehicle) =>
+        state.selectedBrands.includes(vehicle.brand.id)
+      );
+    }
+
+    if (state.selectedColors.length) {
+      tempVehicles = tempVehicles.filter((vehicle) =>
+        state.selectedColors.includes(vehicle.color.id)
+      );
+    }
+
+    if (state.price !== state.maxPrice) {
+      tempVehicles = tempVehicles.filter(
+        (vehicle) => state.price >= vehicle.price.perDay.currentPrice
+      );
+    }
+
+    setFilteredVehicles(tempVehicles.map((vehicle) => vehicle.id));
+  }, [state]);
 
   return (
     <>
@@ -53,8 +84,15 @@ function VehicleGrid() {
                 / Vehicles
               </p>
               <h1 className="text-4xl lg:text-5xl font-bold">Find your ride</h1>
-              <p className="mt-3 font-mono hidden lg:block">
-                {vehicles.length} vehicles
+              <p
+                className={classNames(
+                  "mt-3 font-mono",
+                  filteredVehicles.length ? "invisible lg:visible" : "invisible"
+                )}
+              >
+                {`${filteredVehicles.length} ${
+                  filteredVehicles.length > 1 ? "vehicles" : "vehicle"
+                }`}
               </p>
             </div>
             <div className="w-full lg:w-auto flex flex-row items-center justify-between mt-10">
@@ -84,8 +122,15 @@ function VehicleGrid() {
                   </svg>
                 </button>
               </CollapsibleTrigger>
-              <p className="mt-1 font-mono lg:hidden">
-                {vehicles.length} vehicles
+              <p
+                className={classNames(
+                  "mt-1 font-mono",
+                  filteredVehicles.length ? "block lg:hidden" : "hidden"
+                )}
+              >
+                {`${filteredVehicles.length} ${
+                  filteredVehicles.length > 1 ? "vehicles" : "vehicle"
+                }`}
               </p>
             </div>
           </div>
@@ -166,7 +211,7 @@ function VehicleGrid() {
                   <div className="mt-4">
                     <div className="mb-2 flex flex-row items-center justify-between">
                       <p>{formatNumberAsCurrency(state.price)}</p>
-                      <p>{formatNumberAsCurrency(maxPrice)}</p>
+                      <p>{formatNumberAsCurrency(state.maxPrice)}</p>
                     </div>
                     <Slider
                       value={[state.price]}
@@ -176,8 +221,8 @@ function VehicleGrid() {
                           payload: { price: value[0] },
                         })
                       }
-                      max={maxPrice}
-                      min={minPrice}
+                      max={state.maxPrice}
+                      min={state.minPrice}
                       step={30}
                       orientation="horizontal"
                       dir="ltr"
@@ -201,7 +246,7 @@ function VehicleGrid() {
               !isOpenCollapsible &&
                 (state.selectedBrands.length ||
                   state.selectedColors.length ||
-                  state.price !== maxPrice)
+                  state.price !== state.maxPrice)
                 ? "block"
                 : "hidden"
             )}
@@ -279,39 +324,26 @@ function VehicleGrid() {
               Clear All
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7 gap-y-10 mt-16">
+          <div
+            className={classNames(
+              "grid  gap-x-7 gap-y-10 mt-16",
+              !filteredVehicles.length
+                ? "grid-cols-1"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            )}
+          >
+            <div
+              className={classNames(
+                "max-w-3xl mx-auto",
+                !filteredVehicles.length ? "block" : "hidden"
+              )}
+            >
+              <p className="bigger text-center">
+                No vehicles match your filters.
+              </p>
+            </div>
             {vehicles.map((vehicle) => {
-              let isBrandInSelectedBrands = true;
-              let isColorInSelectedColors = true;
-              let isPriceInPriceRange = true;
-
-              if (state.selectedBrands.length) {
-                isBrandInSelectedBrands = state.selectedBrands.includes(
-                  vehicle.brand.id
-                );
-              }
-
-              if (state.selectedColors.length) {
-                isColorInSelectedColors = state.selectedColors.includes(
-                  vehicle.color.id
-                );
-              }
-
-              if (state.price !== maxPrice) {
-                const retailPrice = vehicle.price.perDay.retailPrice;
-                const discountPrice = vehicle.price.perDay.discountPrice;
-                const currentPrice = discountPrice
-                  ? discountPrice
-                  : retailPrice;
-
-                isPriceInPriceRange = state.price >= currentPrice;
-              }
-
-              if (
-                isBrandInSelectedBrands &&
-                isColorInSelectedColors &&
-                isPriceInPriceRange
-              ) {
+              if (filteredVehicles.includes(vehicle.id)) {
                 return (
                   <Link key={vehicle.id} to={`/vehicles/${vehicle.slug}`}>
                     <VehicleCard vehicle={vehicle} />
