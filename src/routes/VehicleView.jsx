@@ -1,22 +1,21 @@
 import { Link, ScrollRestoration } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { vehicles } from "../vehicles.js";
 import { ReactComponent as BagSVG } from "./../assets/icons/bag.svg";
 import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
 import { ReactComponent as CashSVG } from "./../assets/icons/cash.svg";
 import { ReactComponent as BatterySVG } from "./../assets/icons/battery.svg";
 import { ReactComponent as SpeedometerSVG } from "./../assets/icons/speedometer.svg";
 import { formatNumberAsCurrency } from "../utils/number";
-
-function getVehicleBySlug(slug) {
-  return vehicles.find((vehicle) => vehicle.slug === slug);
-}
+import { getVehicleBySlug } from "../lib/vehicles.js";
 
 function VehicleView() {
   const { slug } = useParams();
 
   const vehicle = getVehicleBySlug(slug);
-  const { brand, model, year, description, price, details, features } = vehicle;
+  const { brand, model, year, description, images, price, details, features } =
+    vehicle;
+
+  const displayImage = images.find((image) => image.type === "display");
 
   return (
     <>
@@ -36,9 +35,9 @@ function VehicleView() {
           {brand} {model} {year}
         </h1>
         <div className="flex flex-col lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
-          <div className="max-w-xl">
+          <div className="lg:max-w-xl">
             <p>{description}</p>
-            <div className="grid grid-cols-2 items-baseline justify-between gap-x-8 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 items-baseline justify-between gap-y-12 gap-x-8 mt-10">
               <div>
                 <p className="big uppercase font-bold text-neutral-100">
                   Details
@@ -77,9 +76,7 @@ function VehicleView() {
                         <span className="text-base text-neutral-300 capitalize line-through">
                           {price.perDay.retailPrice}
                         </span>{" "}
-                        {formatNumberAsCurrency(
-                          price.perDay.discountPrice.replace("$", "")
-                        )}
+                        {formatNumberAsCurrency(price.perDay.discountPrice)}
                         <span className="capitalize text-neutral-300">
                           {" "}
                           / day
@@ -87,10 +84,7 @@ function VehicleView() {
                       </span>
                     ) : (
                       <span className="capitalize text-neutral-100">
-                        {formatNumberAsCurrency(
-                          price.perDay.retailPrice.replace("$", "")
-                        )}{" "}
-                        / day
+                        {formatNumberAsCurrency(price.perDay.retailPrice)} / day
                       </span>
                     )}
                   </li>
@@ -124,7 +118,7 @@ function VehicleView() {
                 <p className="big uppercase font-bold text-neutral-100">
                   Features
                 </p>
-                <ul className="list-disc space-y-2 mt-4">
+                <ul className="list-disc space-y-2 mt-4 pl-4">
                   {features.map((feature) => (
                     <li key={feature} className="text-neutral-300">
                       {feature}.
@@ -134,15 +128,21 @@ function VehicleView() {
               </div>
             </div>
             <div className="hidden lg:block mt-20">
-              <button className="w-full py-3 px-5 bg-red-500 text-white rounded-lg font-bold text-lg">
+              <button className="flex items-center justify-center w-full bg-red-500 px-2 py-3 rounded-md text-xl">
                 Book this Vehicle
               </button>
             </div>
           </div>
-          <div className="border border-neutral-800 w-full h-96 rounded-xl"></div>
+          <div className="border border-neutral-800 w-full h-[28rem] rounded-lg overflow-hidden">
+            <img
+              className="w-full h-full object-cover object-center"
+              src={displayImage.urlPath}
+              alt={displayImage.alt}
+            />
+          </div>
         </div>
-        <div className="lg:hidden mt-20">
-          <button className="w-full py-3 px-5 bg-red-500 text-white rounded-lg font-bold text-lg">
+        <div className="lg:hidden mt-32 flex items-center justify-center">
+          <button className="flex items-center justify-center w-full max-w-md bg-red-500 px-2 py-3 rounded-md text-xl">
             Book this Vehicle
           </button>
         </div>

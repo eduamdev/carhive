@@ -21,22 +21,32 @@ import { formatNumberAsCurrency } from "../utils/number";
 import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
 import { ReactComponent as CloseSVG } from "./../assets/icons/close.svg";
 import { vehicles } from "../vehicles";
+import {
+  getVehicleBrands,
+  getVehicleColors,
+  getVehiclesMaxPricePerDay,
+  getVehiclesMinPricePerDay,
+} from "../lib/vehicles";
 
 function VehicleGrid() {
-  const [openCollapsible, setOpenCollapsible] = useState(false);
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
-  const brands = vehicles.map((vehicle) => vehicle.brand);
-  const colors = vehicles.map((vehicle) => vehicle.color.short);
 
-  const handleOpenChange = () => {
-    setOpenCollapsible(!openCollapsible);
-  };
+  const minPrice = getVehiclesMinPricePerDay();
+  const maxPrice = getVehiclesMaxPricePerDay();
+  const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
+  const [sliderValue, setSliderValue] = useState(maxPrice);
+
+  const brands = getVehicleBrands();
+  const colors = getVehicleColors();
 
   return (
     <>
       <ScrollRestoration />
       <section>
-        <Collapsible open={openCollapsible} onOpenChange={handleOpenChange}>
+        <Collapsible
+          open={isOpenCollapsible}
+          onOpenChange={() => setIsOpenCollapsible(!isOpenCollapsible)}
+        >
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
               <p className="mb-3 font-mono hidden lg:block">
@@ -144,15 +154,19 @@ function VehicleGrid() {
                   </p>
                   <div className="mt-4">
                     <div className="mb-2 flex flex-row items-center justify-between">
-                      <p>Price {formatNumberAsCurrency(2899)}</p>
-                      <p>{formatNumberAsCurrency(2899)}</p>
+                      <p>{formatNumberAsCurrency(sliderValue)}</p>
+                      <p>{formatNumberAsCurrency(maxPrice)}</p>
                     </div>
                     <Slider
-                      defaultValue={[100]}
-                      max={100}
-                      step={1}
-                      aria-label="Price Range"
+                      value={[sliderValue]}
+                      onValueChange={(value) => setSliderValue(value)}
+                      max={maxPrice}
+                      min={minPrice}
+                      step={20}
+                      orientation="horizontal"
+                      dir="ltr"
                       className="sliderRoot"
+                      aria-label="Vehicle Price Range per Day"
                     >
                       <SliderTrack className="sliderTrack">
                         <SliderRange className="sliderRange" />
@@ -169,7 +183,7 @@ function VehicleGrid() {
             id="selected-filters"
             className={classNames(
               "w-full flex flex-row flex-wrap items-center gap-2",
-              !openCollapsible &&
+              !isOpenCollapsible &&
                 (state.selectedBrands.length || state.selectedColors.length)
                 ? "block"
                 : "hidden"

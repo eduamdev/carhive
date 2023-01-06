@@ -4,21 +4,23 @@ import { getBackgroundColorClass } from "../utils/style";
 import { formatNumberAsCurrency } from "../utils/number";
 
 export default function VehicleCard({ vehicle }) {
-  const { details, price, brand, model, image, year, color } = vehicle;
+  const { details, price, brand, model, images, year, color } = vehicle;
 
   const backgroundColorClass = getBackgroundColorClass(color.short);
+  const coverImage = images.find((image) => image.type === "cover");
 
   return (
     <div
-      className="h-full grid border border-slate-900 rounded-2xl"
+      className="h-full grid border border-slate-900 rounded-2xl group"
       style={{ gridTemplateRows: "15.5rem 1fr" }}
     >
-      <div
-        className="h-full bg-cover bg-center bg-no-repeat border border-neutral-900 rounded-xl"
-        style={{
-          backgroundImage: `url(/images/${image})`,
-        }}
-      ></div>
+      <div className="h-full overflow-hidden rounded-xl">
+        <img
+          src={coverImage.urlPath}
+          alt={coverImage.alt}
+          className="h-full w-full object-cover object-center object-no-repeat border border-neutral-900 group-hover:grayscale group-hover:scale-105 transition-all ease-in"
+        />
+      </div>
       <div className="w-full h-full flex flex-col justify-between gap-y-5 p-5">
         <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-2">
           <div>
@@ -36,15 +38,11 @@ export default function VehicleCard({ vehicle }) {
                   <span className="text-sm font-normal text-neutral-300 line-through">
                     {price.perDay.retailPrice}
                   </span>{" "}
-                  {formatNumberAsCurrency(
-                    price.perDay.discountPrice.replace("$", "")
-                  )}
+                  {formatNumberAsCurrency(price.perDay.discountPrice)}
                 </span>
               ) : (
                 <span className="text-[18px] font-bold text-neutral-100">
-                  {formatNumberAsCurrency(
-                    price.perDay.retailPrice.replace("$", "")
-                  )}
+                  {formatNumberAsCurrency(price.perDay.retailPrice)}
                 </span>
               )}
               <br /> <span className="font-light">/ day</span>
