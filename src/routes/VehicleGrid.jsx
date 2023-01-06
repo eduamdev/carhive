@@ -31,12 +31,10 @@ import {
 
 function VehicleGrid() {
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
+  const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
 
   const minPrice = getVehiclesMinPricePerDay();
   const maxPrice = getVehiclesMaxPricePerDay();
-  const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
-  const [sliderValue, setSliderValue] = useState(maxPrice);
-
   const brands = getVehicleBrands();
   const colors = getVehicleColors();
 
@@ -156,19 +154,23 @@ function VehicleGrid() {
                   </p>
                   <div className="mt-4">
                     <div className="mb-2 flex flex-row items-center justify-between">
-                      <p>{formatNumberAsCurrency(sliderValue)}</p>
+                      <p>{formatNumberAsCurrency(state.price)}</p>
                       <p>{formatNumberAsCurrency(maxPrice)}</p>
                     </div>
                     <Slider
-                      value={[sliderValue]}
-                      onValueChange={(value) => setSliderValue(value)}
+                      value={[state.price]}
+                      onValueChange={(value) =>
+                        dispatch({
+                          type: FILTER_ACTION_TYPES.CHANGE_PRICE,
+                          payload: { price: value[0] },
+                        })
+                      }
                       max={maxPrice}
                       min={minPrice}
-                      step={20}
+                      step={30}
                       orientation="horizontal"
                       dir="ltr"
                       className="sliderRoot"
-                      aria-label="Vehicle Price Range per Day"
                     >
                       <SliderTrack className="sliderTrack">
                         <SliderRange className="sliderRange" />
@@ -186,7 +188,9 @@ function VehicleGrid() {
             className={classNames(
               "w-full flex flex-row flex-wrap items-center gap-2",
               !isOpenCollapsible &&
-                (state.selectedBrands.length || state.selectedColors.length)
+                (state.selectedBrands.length ||
+                  state.selectedColors.length ||
+                  state.price !== maxPrice)
                 ? "block"
                 : "hidden"
             )}
@@ -226,7 +230,7 @@ function VehicleGrid() {
               );
             })}
             <span
-              className="ml-6 font-semibold cursor-pointer"
+              className="first:m-0 ml-6 font-semibold cursor-pointer py-6"
               onClick={() =>
                 dispatch({
                   type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
@@ -238,22 +242,37 @@ function VehicleGrid() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-7 gap-y-10 mt-16">
             {vehicles.map((vehicle) => {
-              let isVehicleBrand = true;
-              let isVehicleColor = true;
+              let isBrandInSelectedBrands = true;
+              let isColorInSelectedColors = true;
+              let isPriceInPriceRange = true;
 
               if (state.selectedBrands.length) {
-                isVehicleBrand = state.selectedBrands.includes(
+                isBrandInSelectedBrands = state.selectedBrands.includes(
                   vehicle.brand.id
                 );
               }
 
               if (state.selectedColors.length) {
-                isVehicleColor = state.selectedColors.includes(
+                isColorInSelectedColors = state.selectedColors.includes(
                   vehicle.color.id
                 );
               }
 
-              if (isVehicleBrand && isVehicleColor) {
+              if (state.price !== maxPrice) {
+                const retailPrice = vehicle.price.perDay.retailPrice;
+                const discountPrice = vehicle.price.perDay.discountPrice;
+                const currentPrice = discountPrice
+                  ? discountPrice
+                  : retailPrice;
+
+                isPriceInPriceRange = state.price >= currentPrice;
+              }
+
+              if (
+                isBrandInSelectedBrands &&
+                isColorInSelectedColors &&
+                isPriceInPriceRange
+              ) {
                 return (
                   <Link key={vehicle.id} to={`/vehicles/${vehicle.slug}`}>
                     <VehicleCard vehicle={vehicle} />

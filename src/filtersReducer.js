@@ -1,8 +1,13 @@
 import { FILTER_ACTION_TYPES } from "./filterActionTypes";
 
+import { getVehiclesMaxPricePerDay } from "./lib/vehicles";
+
+const maxPrice = getVehiclesMaxPricePerDay();
+
 const INITIAL_STATE = {
   selectedBrands: [],
   selectedColors: [],
+  price: maxPrice,
 };
 
 function filtersReducer(state, action) {
@@ -38,10 +43,17 @@ function filtersReducer(state, action) {
         selectedColors: updatedColorSelection,
       };
 
+    case FILTER_ACTION_TYPES.CHANGE_PRICE:
+      return {
+        ...state,
+        price: payload.price,
+      };
+
     case FILTER_ACTION_TYPES.CLEAR_SELECTION:
       return {
         selectedBrands: [],
         selectedColors: [],
+        price: maxPrice,
       };
 
     default:
