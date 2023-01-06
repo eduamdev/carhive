@@ -17,8 +17,6 @@ import {
 import classNames from "classnames";
 import { getBackgroundColorClass } from "../utils/style";
 import { formatNumberAsCurrency } from "../utils/number";
-import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
-import { ReactComponent as CloseSVG } from "./../assets/icons/close.svg";
 import { vehicles } from "../vehicles";
 import {
   getVehicleBrands,
@@ -70,7 +68,20 @@ function VehicleGrid() {
                         })`
                       : ""
                   }`}</span>
-                  <ChevronDownSVG className="collapsibleChevron" />
+                  <svg
+                    className="collapsibleChevron"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="48"
+                      d="m112 184 144 144 144-144"
+                    />
+                  </svg>
                 </button>
               </CollapsibleTrigger>
               <p className="mt-1 font-mono lg:hidden">
@@ -208,7 +219,21 @@ function VehicleGrid() {
                   }
                   className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
                 >
-                  <span>{selectedBrand}</span> <CloseSVG className="w-5 h-5" />
+                  <span>{selectedBrand}</span>
+                  <svg
+                    className="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="32"
+                      d="M368 368 144 144m224 0L144 368"
+                    />
+                  </svg>
                 </div>
               );
             })}
@@ -225,7 +250,21 @@ function VehicleGrid() {
                   }
                   className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
                 >
-                  <span>{selectedColor}</span> <CloseSVG className="w-5 h-5" />
+                  <span>{selectedColor}</span>{" "}
+                  <svg
+                    className="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="32"
+                      d="M368 368 144 144m224 0L144 368"
+                    />
+                  </svg>
                 </div>
               );
             })}

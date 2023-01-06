@@ -1,5 +1,3 @@
-import { ReactComponent as BagSVG } from "./../assets/icons/bag.svg";
-import { ReactComponent as PersonSVG } from "./../assets/icons/person.svg";
 import { getBackgroundColorClass } from "../utils/style";
 import { formatNumberAsCurrency } from "../utils/number";
 
@@ -56,7 +54,27 @@ export default function VehicleCard({ vehicle }) {
         </div>
         <div className="text-neutral-200 font-mono align-middle flex flex-row items-center justify-between gap-x-3 leading-5">
           <div className="flex flex-row gap-x-2 text-right">
-            <PersonSVG className="w-4 h-4" />
+            <svg
+              className="w-4 h-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="32"
+              />
+              <path
+                d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
+                fill="none"
+                stroke="currentColor"
+                strokeMiterlimit="10"
+                strokeWidth="32"
+              />
+            </svg>
             <span className="capitalize text-sm text-neutral-100">
               {details.seats}
             </span>
@@ -64,7 +82,20 @@ export default function VehicleCard({ vehicle }) {
           <div className="flex flex-row gap-x-2 text-right">
             {details.bags !== "-" && (
               <>
-                <BagSVG className="w-4 h-4" />
+                <svg
+                  className="w-4 h-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="32"
+                    d="M80 176a16 16 0 0 0-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 0 0-16-16zm80 0v-32a96 96 0 0 1 96-96h0a96 96 0 0 1 96 96v32"
+                  />
+                </svg>
                 <span className="capitalize text-sm text-neutral-100">
                   {details.bags}
                 </span>

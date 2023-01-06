@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { ReactComponent as MenuSVG } from "./../assets/icons/menu.svg";
 
 export default function Header() {
   return (
@@ -36,7 +35,20 @@ export default function Header() {
         </li>
       </ul>
       <div className="md:hidden">
-        <MenuSVG className="h-7 w-7 stroke-current text-neutral-200 align-middle" />
+        <svg
+          className="h-7 w-7 stroke-current text-neutral-200 align-middle"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeMiterlimit="10"
+            strokeWidth="32"
+            d="M80 160h352M80 256h352M80 352h352"
+          />
+        </svg>
       </div>
     </header>
   );

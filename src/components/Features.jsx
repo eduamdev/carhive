@@ -1,45 +1,185 @@
-// import FeatureCard from "./FeatureCard";
-import { ReactComponent as RibbonSVG } from "./../assets/icons/ribbon.svg";
-import { ReactComponent as LeafSVG } from "./../assets/icons/leaf.svg";
-import { ReactComponent as PhoneSVG } from "./../assets/icons/phone.svg";
-import { ReactComponent as GlobeSVG } from "./../assets/icons/globe.svg";
-import { ReactComponent as ShieldSVG } from "./../assets/icons/shield.svg";
-import { ReactComponent as HelpSVG } from "./../assets/icons/help.svg";
-
 const features = [
   {
     key: 1,
-    icon: <ShieldSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path
+          d="M463.1 112.37C373.68 96.33 336.71 84.45 256 48c-80.71 36.45-117.68 48.33-207.1 64.37C32.7 369.13 240.58 457.79 256 464c15.42-6.21 223.3-94.87 207.1-351.63z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+      </svg>
+    ),
     title: "Security, from start to finish",
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
   },
   {
     key: 2,
-    icon: <LeafSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path
+          d="M321.89 171.42C233 114 141 155.22 56 65.22c-19.8-21-8.3 235.5 98.1 332.7 77.79 71 197.9 63.08 238.4-5.92s18.28-163.17-70.61-220.58zM173 253c86 81 175 129 292 147"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+      </svg>
+    ),
     title: "Eco-Friendly Driving Options",
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
   },
   {
     key: 3,
-    icon: <RibbonSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <circle
+          cx="256"
+          cy="160"
+          r="128"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <path
+          d="M143.65 227.82 48 400l86.86-.42a16 16 0 0 1 13.82 7.8L192 480l88.33-194.32"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <path
+          d="M366.54 224 464 400l-86.86-.42a16 16 0 0 0-13.82 7.8L320 480l-64-140.8"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <circle
+          cx="256"
+          cy="160"
+          r="64"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+      </svg>
+    ),
     title: "Awarded for America's Best Customer Service 2022",
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
   },
   {
     key: 4,
-    icon: <GlobeSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path
+          d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48z"
+          fill="none"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeWidth="32"
+        />
+        <path
+          d="M256 48c-58.07 0-112.67 93.13-112.67 208S197.93 464 256 464s112.67-93.13 112.67-208S314.07 48 256 48z"
+          fill="none"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeWidth="32"
+        />
+        <path
+          d="M117.33 117.33c38.24 27.15 86.38 43.34 138.67 43.34s100.43-16.19 138.67-43.34m0 277.34c-38.24-27.15-86.38-43.34-138.67-43.34s-100.43 16.19-138.67 43.34"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <path
+          fill="none"
+          stroke="currentColor"
+          strokeMiterlimit="10"
+          strokeWidth="32"
+          d="M256 48v416m208-208H48"
+        />
+      </svg>
+    ),
     title: "20,000 Pickup Locations Worldwide",
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
   },
   {
     key: 5,
-    icon: <PhoneSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <rect
+          x="128"
+          y="16"
+          width="256"
+          height="480"
+          rx="48"
+          ry="48"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <path
+          d="M176 16h24a8 8 0 0 1 8 8h0a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16h0a8 8 0 0 1 8-8h24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+      </svg>
+    ),
     title: "iOS App",
     text: "Compare prices, make vehicle reservations and more wherever you are.",
   },
   {
     key: 6,
-    icon: <HelpSVG />,
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <circle
+          cx="256"
+          cy="256"
+          r="208"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <circle
+          cx="256"
+          cy="256"
+          r="80"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+        />
+        <path
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+          d="m208 54 8 132m80 0 8-132m-96 404 8-132m80 0 8 132m154-250-132 8m0 80 132 8M54 208l132 8m0 80-132 8"
+        />
+      </svg>
+    ),
     title: "24/7 Road Assistence",
     text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
   },

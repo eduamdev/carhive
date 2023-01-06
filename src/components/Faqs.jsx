@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@radix-ui/react-accordion";
-import { ReactComponent as ChevronDownSVG } from "./../assets/icons/chevron-down.svg";
 
 const faqs = [
   {
@@ -74,7 +73,20 @@ export default function Faqs() {
             <AccordionHeader>
               <AccordionTrigger className="accordionTrigger">
                 <span className="text-xl font-semibold">{faq.question}</span>
-                <ChevronDownSVG className="accordionChevron" />
+                <svg
+                  className="accordionChevron"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="48"
+                    d="m112 184 144 144 144-144"
+                  />
+                </svg>
               </AccordionTrigger>
             </AccordionHeader>
             <AccordionContent className="text-left mt-4">

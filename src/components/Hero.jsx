@@ -7,7 +7,7 @@ export default function Hero() {
         <div className="absolute w-full h-full">
           <div
             style={{
-              backgroundImage: "url(/images/hero.jpg)",
+              backgroundImage: "url(./assets/hero.jpg)",
             }}
             className="invisible lg:visible w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
           />
