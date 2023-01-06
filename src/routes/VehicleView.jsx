@@ -22,11 +22,11 @@ function VehicleView() {
       <ScrollRestoration />
       <section>
         <p className="mb-3 font-mono">
-          <Link to="/" className="hover:text-white">
+          <Link to="/car-rental-react" className="hover:text-white">
             Home
           </Link>{" "}
           /{" "}
-          <Link to="/vehicles" className="hover:text-white">
+          <Link to="/car-rental-react/vehicles" className="hover:text-white">
             Vehicles
           </Link>{" "}
           / {slug}

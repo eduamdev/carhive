@@ -7,7 +7,7 @@ export default function Hero() {
         <div className="absolute w-full h-full">
           <div
             style={{
-              backgroundImage: "url(/images/hero.jpg)",
+              backgroundImage: "url(/car-rental-react/images/hero.jpg)",
             }}
             className="invisible lg:visible w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
           />
@@ -22,7 +22,7 @@ export default function Hero() {
             there.
           </p>
           <Link
-            to="/vehicles"
+            to="/car-rental-react/vehicles"
             className="flex items-center justify-center w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
           >
             Meet the fleet

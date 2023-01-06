@@ -22,7 +22,7 @@ export default function Quote() {
           className="w-full h-full opacity-90 rounded-xl"
           style={{
             background:
-              'linear-gradient(rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.05) 5%, rgba(0, 0, 0, 0.85) 100%), url("/images/timelapse-city-night.jpg") center center / cover no-repeat',
+              'linear-gradient(rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.05) 5%, rgba(0, 0, 0, 0.85) 100%), url("/car-rental-react/images/timelapse-city-night.jpg") center center / cover no-repeat',
           }}
         ></div>
       </div>

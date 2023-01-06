@@ -9,7 +9,7 @@ export default function NotFound() {
         <div className="relative h-[30rem]">
           <div
             style={{
-              backgroundImage: "url(/images/red-lights.jpg)",
+              backgroundImage: "url(/car-rental-react/images/red-lights.jpg)",
             }}
             className="w-full h-full bg-cover bg-center bg-no-repeat opacity-60"
           />
@@ -24,7 +24,7 @@ export default function NotFound() {
                 It looks like the page you are looking for doesnt exist.
               </p>
               <Link
-                to="/"
+                to="/car-rental-react"
                 className="mt-4 flex items-center justify-center w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
               >
                 Go back home
