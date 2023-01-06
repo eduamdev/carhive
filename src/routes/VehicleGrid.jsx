@@ -49,7 +49,7 @@ function VehicleGrid() {
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
               <p className="mb-3 font-mono hidden lg:block">
-                <Link to="/car-rental-react" className="hover:text-white">
+                <Link to="/" className="hover:text-white">
                   Home
                 </Link>{" "}
                 / Vehicles
@@ -274,10 +274,7 @@ function VehicleGrid() {
                 isPriceInPriceRange
               ) {
                 return (
-                  <Link
-                    key={vehicle.id}
-                    to={`/car-rental-react/vehicles/${vehicle.slug}`}
-                  >
+                  <Link key={vehicle.id} to={`/vehicles/${vehicle.slug}`}>
                     <VehicleCard vehicle={vehicle} />
                   </Link>
                 );

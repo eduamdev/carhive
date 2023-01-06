@@ -6,30 +6,35 @@ import VehicleView from "./routes/VehicleView";
 import NotFound from "./routes/NotFound";
 import "./main.css";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/vehicles",
+          element: <VehicleGrid />,
+        },
+        {
+          path: "/vehicles/:slug",
+          element: <VehicleView />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/car-rental-react",
-    element: <Root />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/car-rental-react/vehicles",
-        element: <VehicleGrid />,
-      },
-      {
-        path: "/car-rental-react/vehicles/:slug",
-        element: <VehicleView />,
-      },
-      {
-        path: "/car-rental-react/*",
-        element: <NotFound />,
-      },
-    ],
-  },
-]);
+    basename: process.env.PUBLIC_URL,
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;

@@ -31,12 +31,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Tesla Model 3 on a road",
-        urlPath: "/car-rental-react/images/vehicles/tesla-model-3.jpg",
+        urlPath: "/images/vehicles/tesla-model-3.jpg",
       },
       {
         type: "display",
         alt: "White Tesla Model 3 on a road",
-        urlPath: "/car-rental-react/images/vehicles/tesla-model-3.jpg",
+        urlPath: "/images/vehicles/tesla-model-3.jpg",
       },
     ],
   },
@@ -74,12 +74,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Porsche 911",
-        urlPath: "/car-rental-react/images/vehicles/porsche-911.jpg",
+        urlPath: "/images/vehicles/porsche-911.jpg",
       },
       {
         type: "display",
         alt: "White Porsche 911",
-        urlPath: "/car-rental-react/images/vehicles/porsche-911.jpg",
+        urlPath: "/images/vehicles/porsche-911.jpg",
       },
     ],
   },
@@ -113,14 +113,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Toyota Highlander",
-        urlPath:
-          "/car-rental-react/images/vehicles/toyota-highlander-hybrid-le.jpg",
+        urlPath: "/images/vehicles/toyota-highlander-hybrid-le.jpg",
       },
       {
         type: "display",
         alt: "Black Toyota Highlander",
-        urlPath:
-          "/car-rental-react/images/vehicles/toyota-highlander-hybrid-le.jpg",
+        urlPath: "/images/vehicles/toyota-highlander-hybrid-le.jpg",
       },
     ],
   },
@@ -159,12 +157,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black BMW Series 3",
-        urlPath: "/car-rental-react/images/vehicles/bmw-3-series.jpg",
+        urlPath: "/images/vehicles/bmw-3-series.jpg",
       },
       {
         type: "display",
         alt: "Black BMW Series 3",
-        urlPath: "/car-rental-react/images/vehicles/bmw-3-series.jpg",
+        urlPath: "/images/vehicles/bmw-3-series.jpg",
       },
     ],
   },
@@ -200,14 +198,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Yellow Volkswagen Clementine T2 Camper Van",
-        urlPath:
-          "/car-rental-react/images/vehicles/volkswagen-clementine-t2.jpg",
+        urlPath: "/images/vehicles/volkswagen-clementine-t2.jpg",
       },
       {
         type: "display",
         alt: "Yellow Volkswagen Clementine T2 Camper Van",
-        urlPath:
-          "/car-rental-react/images/vehicles/volkswagen-clementine-t2.jpg",
+        urlPath: "/images/vehicles/volkswagen-clementine-t2.jpg",
       },
     ],
   },
@@ -241,12 +237,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Cyan Hyundai I30N",
-        urlPath: "/car-rental-react/images/vehicles/hyundai-i30n.jpg",
+        urlPath: "/images/vehicles/hyundai-i30n.jpg",
       },
       {
         type: "display",
         alt: "Cyan Hyundai I30N",
-        urlPath: "/car-rental-react/images/vehicles/hyundai-i30n.jpg",
+        urlPath: "/images/vehicles/hyundai-i30n.jpg",
       },
     ],
   },
@@ -281,12 +277,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Jeep Wrangler Rubicon",
-        urlPath: "/car-rental-react/images/vehicles/jeep-wrangler-rubicon.jpg",
+        urlPath: "/images/vehicles/jeep-wrangler-rubicon.jpg",
       },
       {
         type: "display",
         alt: "Black Jeep Wrangler Rubicon",
-        urlPath: "/car-rental-react/images/vehicles/jeep-wrangler-rubicon.jpg",
+        urlPath: "/images/vehicles/jeep-wrangler-rubicon.jpg",
       },
     ],
   },
@@ -320,12 +316,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White BMW M4 GTS",
-        urlPath: "/car-rental-react/images/vehicles/bmw-m4-gts.jpg",
+        urlPath: "/images/vehicles/bmw-m4-gts.jpg",
       },
       {
         type: "display",
         alt: "White BMW M4 GTS",
-        urlPath: "/car-rental-react/images/vehicles/bmw-m4-gts.jpg",
+        urlPath: "/images/vehicles/bmw-m4-gts.jpg",
       },
     ],
   },
@@ -359,14 +355,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Ford Mustang Shelby GT350R",
-        urlPath:
-          "/car-rental-react/images/vehicles/ford-mustang-shelby-gt350r.jpg",
+        urlPath: "/images/vehicles/ford-mustang-shelby-gt350r.jpg",
       },
       {
         type: "display",
         alt: "Black Ford Mustang Shelby GT350R",
-        urlPath:
-          "/car-rental-react/images/vehicles/ford-mustang-shelby-gt350r.jpg",
+        urlPath: "/images/vehicles/ford-mustang-shelby-gt350r.jpg",
       },
     ],
   },
@@ -402,14 +396,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black TurboAnt X7 Max Folding Scooter",
-        urlPath:
-          "/car-rental-react/images/vehicles/turboant-x7-max-folding.jpg",
+        urlPath: "/images/vehicles/turboant-x7-max-folding.jpg",
       },
       {
         type: "display",
         alt: "Black TurboAnt X7 Max Folding Scooter",
-        urlPath:
-          "/car-rental-react/images/vehicles/turboant-x7-max-folding.jpg",
+        urlPath: "/images/vehicles/turboant-x7-max-folding.jpg",
       },
     ],
   },
@@ -442,12 +434,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Bianchi Specialissima Bike",
-        urlPath: "/car-rental-react/images/vehicles/bianchi-specialissima.jpg",
+        urlPath: "/images/vehicles/bianchi-specialissima.jpg",
       },
       {
         type: "display",
         alt: "White Bianchi Specialissima Bike",
-        urlPath: "/car-rental-react/images/vehicles/bianchi-specialissima.jpg",
+        urlPath: "/images/vehicles/bianchi-specialissima.jpg",
       },
     ],
   },
@@ -488,12 +480,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White VZ Flybridge Yacht",
-        urlPath: "/car-rental-react/images/vehicles/vz-flybridge.jpg",
+        urlPath: "/images/vehicles/vz-flybridge.jpg",
       },
       {
         type: "display",
         alt: "White VZ Flybridge Yacht",
-        urlPath: "/car-rental-react/images/vehicles/vz-flybridge.jpg",
+        urlPath: "/images/vehicles/vz-flybridge.jpg",
       },
     ],
   },

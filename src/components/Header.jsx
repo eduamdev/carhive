@@ -7,20 +7,20 @@ export default function Header() {
     <header className="h-28 flex flex-row items-center justify-between">
       <div className="flex flex-row items-center justify-start gap-x-20">
         <div className="font-bold text-3xl">
-          <Link to="/car-rental-react">Rides</Link>
+          <Link to="/">Rides</Link>
         </div>
         <nav className="hidden md:block">
           <ul className="flex flex-row gap-x-10">
             <li>
-              <HashLink smooth to="/car-rental-react#features">
+              <HashLink smooth to="/#features">
                 Features
               </HashLink>
             </li>
             <li>
-              <Link to="/car-rental-react/vehicles">Vehicles</Link>
+              <Link to="/vehicles">Vehicles</Link>
             </li>
             <li>
-              <HashLink smooth to="/car-rental-react#faqs">
+              <HashLink smooth to="/#faqs">
                 FAQs
               </HashLink>
             </li>
