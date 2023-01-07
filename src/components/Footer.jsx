@@ -14,15 +14,15 @@ export default function Footer() {
               <Link to="/">Rides</Link>
             </div>
             <ul className="mt-12 flex flex-row items-center gap-x-8">
-              <li>
+              <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors">
                 <HashLink smooth to="/#features">
                   Features
                 </HashLink>
               </li>
-              <li>
+              <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors">
                 <Link to="/vehicles">Vehicles</Link>
               </li>
-              <li>
+              <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors">
                 <HashLink smooth to="/#faqs">
                   FAQs
                 </HashLink>

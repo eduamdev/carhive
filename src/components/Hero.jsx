@@ -23,7 +23,7 @@ export default function Hero() {
           </p>
           <Link
             to="/vehicles"
-            className="flex items-center justify-center w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
+            className="flex items-center justify-center w-full md:w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
           >
             Meet the fleet
           </Link>

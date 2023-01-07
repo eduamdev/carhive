@@ -29,7 +29,7 @@ function VehicleView() {
         <h1 className="text-4xl lg:text-5xl font-bold max-w-prose">
           {brand.name} {model} {year}
         </h1>
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
+        <div className="flex flex-col-reverse lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
           <div className="lg:max-w-xl">
             <p>{description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 items-baseline justify-between gap-y-12 gap-x-8 mt-10">
@@ -200,7 +200,7 @@ function VehicleView() {
                 </ul>
               </div>
             </div>
-            <div className="hidden lg:block mt-20">
+            <div className="mt-20">
               <button className="flex items-center justify-center w-full bg-red-500 px-2 py-3 rounded-md text-xl">
                 Book this Vehicle
               </button>
@@ -213,11 +213,6 @@ function VehicleView() {
               alt={displayImage.alt}
             />
           </div>
-        </div>
-        <div className="lg:hidden mt-32 flex items-center justify-center">
-          <button className="flex items-center justify-center w-full max-w-md bg-red-500 px-2 py-3 rounded-md text-xl">
-            Book this Vehicle
-          </button>
         </div>
       </section>
     </>
