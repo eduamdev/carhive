@@ -9,25 +9,27 @@ export default function VehicleCard({ vehicle }) {
 
   const retailPrice = price.perDay.retailPrice;
   const discountPrice = price.perDay.discountPrice;
+  const discount = Math.round(100 - (discountPrice * 100) / retailPrice);
 
   return (
-    <div
-      className="h-full grid border border-slate-900 rounded-2xl group"
-      style={{ gridTemplateRows: "15.5rem 1fr" }}
-    >
-      <div className="h-full overflow-hidden rounded-xl">
+    <div className="grid-rows-[15.5rem_1fr] h-full grid rounded-2xl group">
+      <div className="relative h-full overflow-hidden rounded-xl">
         <img
           src={coverImage.urlPath}
           alt={coverImage.alt}
-          loading="lazy"
-          className="h-full w-full object-cover object-center object-no-repeat border border-neutral-900 group-hover:grayscale group-hover:scale-105 transition-all ease-in"
+          className="h-full w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
         />
+        {discountPrice && (
+          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-700 py-[3px] px-2 border border-neutral-200">
+            {discount}% off
+          </span>
+        )}
       </div>
-      <div className="w-full h-full flex flex-col justify-between gap-y-5 p-5">
+      <div className="w-full h-full flex flex-col justify-between gap-y-3 py-4">
         <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-2">
           <div>
             <p className="leading-6">
-              <span className="text-[18px] leading-7 font-bold uppercase text-neutral-100">
+              <span className="text-[18px] leading-7 font-semibold text-neutral-100">
                 {brand.name}
               </span>
               <br /> {model} {year}
@@ -36,9 +38,9 @@ export default function VehicleCard({ vehicle }) {
           <div>
             <p className="leading-5 text-right">
               {discountPrice ? (
-                <span className="text-[18px] text-red-400 font-bold">
-                  <span className="text-sm font-normal text-neutral-300 line-through">
-                    {retailPrice}
+                <span className="text-[18px] text-white font-bold">
+                  <span className="font-medium text-neutral-300 line-through">
+                    {formatNumberAsCurrency(retailPrice)}
                   </span>{" "}
                   {formatNumberAsCurrency(discountPrice)}
                 </span>
@@ -56,7 +58,7 @@ export default function VehicleCard({ vehicle }) {
             className={`w-3 h-3 rounded-full border border-gray-400 ${backgroundColorClass}`}
           ></div>
         </div>
-        <div className="text-neutral-200 font-mono align-middle flex flex-row items-center justify-between gap-x-3 leading-5">
+        <div className="text-neutral-200 font-mono align-middle flex flex-row items-center gap-x-8 leading-5">
           <div className="flex flex-row gap-x-2 text-right">
             <svg
               className="w-4 h-4"

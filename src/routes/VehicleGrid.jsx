@@ -314,7 +314,7 @@ function VehicleGrid() {
           <section
             id="vehicle-grid"
             className={classNames(
-              "grid  gap-x-7 gap-y-10 mt-16",
+              "grid gap-x-8 gap-y-10 mt-16",
               !countFilteredVehicles
                 ? "grid-cols-1"
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"

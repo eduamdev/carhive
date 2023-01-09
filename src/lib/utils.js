@@ -2,6 +2,7 @@ export function formatNumberAsCurrency(number) {
   const NUMBER_FORMATTER = new Intl.NumberFormat(undefined, {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 0,
   });
 
   return NUMBER_FORMATTER.format(number);
