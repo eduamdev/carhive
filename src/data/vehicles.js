@@ -14,10 +14,9 @@ export const vehicles = [
     },
     details: {
       transmission: "automatic",
-      seats: "5 adults",
+      capacity: "5 adults",
       bags: "3 bags",
       autonomy: "272 miles (EPA est.)",
-      capacity: "649 L",
     },
     features: [
       "3.1 s 0-60 mph Aceleration",
@@ -55,10 +54,9 @@ export const vehicles = [
     },
     details: {
       transmission: "7-Speed Automatic",
-      seats: "2 adults",
+      capacity: "2 adults",
       bags: "1 bag",
       autonomy: "EPA estimates not yet available",
-      capacity: "130 L",
     },
     features: [
       "Porsche Communication Management* (PCM) including online navigation module and Connect Plus",
@@ -98,10 +96,9 @@ export const vehicles = [
     },
     details: {
       transmission: "FWD, 2.5-Liter 4-cylinder Hybrid Engine, ECVT",
-      seats: "6 adults",
+      capacity: "6 adults",
       bags: "5 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -137,10 +134,9 @@ export const vehicles = [
     },
     details: {
       transmission: "6 speed automatic transmission",
-      seats: "2 adults",
+      capacity: "2 adults",
       bags: "3 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "AUX input",
@@ -181,10 +177,9 @@ export const vehicles = [
     },
     details: {
       transmission: "manual",
-      seats: "4 adults",
+      capacity: "4 adults",
       bags: "3 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -222,10 +217,9 @@ export const vehicles = [
     },
     details: {
       transmission: "6MT or N DCT",
-      seats: "4 adults",
+      capacity: "4 adults",
       bags: "3 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -261,10 +255,9 @@ export const vehicles = [
     },
     details: {
       transmission: "",
-      seats: "2 adults",
+      capacity: "2 adults",
       bags: "2 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -301,10 +294,9 @@ export const vehicles = [
     },
     details: {
       transmission: "8-speed M Steptronic sport transmission",
-      seats: "4 adults",
+      capacity: "4 adults",
       bags: "3 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -340,10 +332,9 @@ export const vehicles = [
     },
     details: {
       transmission: "automatic",
-      seats: "2 adults",
+      capacity: "2 adults",
       bags: "3 bags",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Air Conditioning",
@@ -379,10 +370,9 @@ export const vehicles = [
     },
     details: {
       transmission: "",
-      seats: "1 adult",
+      capacity: "1 adult",
       bags: "",
       autonomy: "35 miles (56 km)",
-      capacity: "",
     },
     features: [
       "Electric",
@@ -420,10 +410,9 @@ export const vehicles = [
     },
     details: {
       transmission: "",
-      seats: "1 adult",
+      capacity: "1 adult",
       bags: "",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Campagnolo Hydraulic Disc Brakes",
@@ -458,10 +447,9 @@ export const vehicles = [
     },
     details: {
       transmission: "",
-      seats: "12 adults",
+      capacity: "12 adults",
       bags: "",
       autonomy: "",
-      capacity: "",
     },
     features: [
       "Deck shower",

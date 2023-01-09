@@ -1,11 +1,14 @@
-import { getBackgroundColorClass } from "../utils/style";
-import { formatNumberAsCurrency } from "../utils/number";
+import { getBackgroundColorClass } from "../lib/utils";
+import { formatNumberAsCurrency } from "../lib/utils";
 
 export default function VehicleCard({ vehicle }) {
   const { details, price, brand, model, images, year, color } = vehicle;
 
   const backgroundColorClass = getBackgroundColorClass(color.name);
   const coverImage = images.find((image) => image.type === "cover");
+
+  const retailPrice = price.perDay.retailPrice;
+  const discountPrice = price.perDay.discountPrice;
 
   return (
     <div
@@ -16,6 +19,7 @@ export default function VehicleCard({ vehicle }) {
         <img
           src={coverImage.urlPath}
           alt={coverImage.alt}
+          loading="lazy"
           className="h-full w-full object-cover object-center object-no-repeat border border-neutral-900 group-hover:grayscale group-hover:scale-105 transition-all ease-in"
         />
       </div>
@@ -31,16 +35,16 @@ export default function VehicleCard({ vehicle }) {
           </div>
           <div>
             <p className="leading-5 text-right">
-              {price.perDay.discountPrice ? (
+              {discountPrice ? (
                 <span className="text-[18px] text-red-400 font-bold">
                   <span className="text-sm font-normal text-neutral-300 line-through">
-                    {price.perDay.retailPrice}
+                    {retailPrice}
                   </span>{" "}
-                  {formatNumberAsCurrency(price.perDay.discountPrice)}
+                  {formatNumberAsCurrency(discountPrice)}
                 </span>
               ) : (
                 <span className="text-[18px] font-bold text-neutral-100">
-                  {formatNumberAsCurrency(price.perDay.retailPrice)}
+                  {formatNumberAsCurrency(retailPrice)}
                 </span>
               )}
               <br /> <span className="font-light">/ day</span>
@@ -76,7 +80,7 @@ export default function VehicleCard({ vehicle }) {
               />
             </svg>
             <span className="capitalize text-sm text-neutral-100">
-              {details.seats}
+              {details.capacity}
             </span>
           </div>
           <div className="flex flex-row gap-x-2 text-right">

@@ -55,6 +55,12 @@ function filtersReducer(state, action) {
         price: payload.price,
       };
 
+    case FILTER_ACTION_TYPES.RESET_PRICE:
+      return {
+        ...state,
+        price: INITIAL_STATE.price,
+      };
+
     case FILTER_ACTION_TYPES.CLEAR_SELECTION:
       return INITIAL_STATE;
 

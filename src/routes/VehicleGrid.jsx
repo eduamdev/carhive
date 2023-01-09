@@ -15,14 +15,17 @@ import {
   SliderThumb,
 } from "@radix-ui/react-slider";
 import classNames from "classnames";
-import { getBackgroundColorClass } from "../utils/style";
-import { formatNumberAsCurrency } from "../utils/number";
-import { vehicles } from "../vehicles";
+import { getBackgroundColorClass } from "../lib/utils";
+import { formatNumberAsCurrency } from "../lib/utils";
 import {
-  getVehicleBrands,
-  getVehicleColors,
+  getBrands,
+  getColors,
   getBrandById,
   getColorById,
+  getVehicles,
+  getCountSelectedBrands,
+  getCountSelectedColors,
+  getCountAllSelectedFilters,
 } from "../lib/vehicles";
 
 function VehicleGrid() {
@@ -30,8 +33,34 @@ function VehicleGrid() {
   const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
   const [filteredVehicles, setFilteredVehicles] = useState([]);
 
-  const brands = getVehicleBrands();
-  const colors = getVehicleColors();
+  const vehicles = getVehicles();
+  const brands = getBrands();
+  const colors = getColors();
+
+  const isFiltersActive =
+    state.selectedBrands.length ||
+    state.selectedColors.length ||
+    state.price !== state.maxPrice;
+
+  const priceRangeFiltered = `${formatNumberAsCurrency(
+    state.minPrice
+  )} - ${formatNumberAsCurrency(state.price)}`;
+
+  const isBrandSelected = (brand) =>
+    state.selectedBrands.find((currentBrand) => currentBrand === brand.id);
+
+  const isColorSelected = (color) =>
+    state.selectedColors.find((currentColor) => currentColor === color.id);
+
+  const countSelectedBrands = getCountSelectedBrands(state.selectedBrands);
+  const countSelectedColors = getCountSelectedColors(state.selectedColors);
+  const countAllSelectedFilters = getCountAllSelectedFilters(
+    state.price,
+    state.maxPrice,
+    state.selectedBrands,
+    state.selectedColors
+  );
+  const countFilteredVehicles = filteredVehicles.length;
 
   useEffect(() => {
     let tempVehicles = [...vehicles].map((vehicle) => {
@@ -65,7 +94,7 @@ function VehicleGrid() {
     }
 
     setFilteredVehicles(tempVehicles.map((vehicle) => vehicle.id));
-  }, [state]);
+  }, [state, vehicles]);
 
   return (
     <>
@@ -87,25 +116,18 @@ function VehicleGrid() {
               <p
                 className={classNames(
                   "mt-3 font-mono",
-                  filteredVehicles.length ? "invisible lg:visible" : "invisible"
+                  countFilteredVehicles ? "invisible lg:visible" : "invisible"
                 )}
               >
-                {`${filteredVehicles.length} ${
-                  filteredVehicles.length > 1 ? "vehicles" : "vehicle"
+                {`${countFilteredVehicles} ${
+                  countFilteredVehicles > 1 ? "vehicles" : "vehicle"
                 }`}
               </p>
             </div>
             <div className="w-full lg:w-auto flex flex-row items-center justify-between mt-10">
               <CollapsibleTrigger asChild>
                 <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start justify-between border border-neutral-700 rounded-lg">
-                  <span>{`Filters ${
-                    state.selectedBrands.length || state.selectedColors.length
-                      ? `(${
-                          state.selectedBrands.length +
-                          state.selectedColors.length
-                        })`
-                      : ""
-                  }`}</span>
+                  <span>{countAllSelectedFilters}</span>
                   <svg
                     className="collapsibleChevron"
                     xmlns="http://www.w3.org/2000/svg"
@@ -125,24 +147,22 @@ function VehicleGrid() {
               <p
                 className={classNames(
                   "mt-1 font-mono",
-                  filteredVehicles.length ? "block lg:hidden" : "hidden"
+                  countFilteredVehicles ? "block lg:hidden" : "hidden"
                 )}
               >
-                {`${filteredVehicles.length} ${
-                  filteredVehicles.length > 1 ? "vehicles" : "vehicle"
+                {`${countFilteredVehicles} ${
+                  countFilteredVehicles > 1 ? "vehicles" : "vehicle"
                 }`}
               </p>
             </div>
           </div>
           <CollapsibleContent>
-            <section className="mb-20">
+            <section id="filters" className="mb-20">
               <div className="grid grid-cols-1 lg:grid-cols-3 items-start gap-x-16 gap-y-10">
                 <div>
-                  <p className="font-bold text-neutral-100">{`Brand ${
-                    state.selectedBrands.length
-                      ? `(${state.selectedBrands.length})`
-                      : ""
-                  }`}</p>
+                  <p className="font-bold text-neutral-100">
+                    {`Brand ${countSelectedBrands}`}
+                  </p>
                   <div className="w-full flex flex-row flex-wrap items-center gap-2 mt-4">
                     {brands.map((brand) => {
                       return (
@@ -156,11 +176,7 @@ function VehicleGrid() {
                           }
                           className={classNames(
                             "cursor-pointer py-[6px] px-5 bg-gray-800 border hover:border-neutral-200 rounded-3xl",
-                            state.selectedBrands.find(
-                              (currentBrand) => currentBrand === brand.id
-                            )
-                              ? ""
-                              : "border-transparent"
+                            isBrandSelected(brand) ? "" : "border-transparent"
                           )}
                         >
                           {brand.name}
@@ -170,11 +186,9 @@ function VehicleGrid() {
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-neutral-100">{`Color ${
-                    state.selectedColors.length
-                      ? `(${state.selectedColors.length})`
-                      : ""
-                  }`}</p>
+                  <p className="font-bold text-neutral-100">
+                    {`Color ${countSelectedColors}`}
+                  </p>
                   <div className="w-full flex flex-row flex-wrap items-center gap-5 mt-[22px]">
                     {colors.map((color) => {
                       const backgroundColorClass = getBackgroundColorClass(
@@ -193,9 +207,7 @@ function VehicleGrid() {
                           className={classNames(
                             backgroundColorClass,
                             "relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400",
-                            state.selectedColors.find(
-                              (currentColor) => currentColor === color.id
-                            )
+                            isColorSelected(color)
                               ? "after:visible"
                               : "after:invisible"
                           )}
@@ -239,95 +251,71 @@ function VehicleGrid() {
             </section>
           </CollapsibleContent>
 
-          <div
-            id="selected-filters"
+          <section
+            id="filters-selected"
             className={classNames(
               "w-full flex flex-row flex-wrap items-center gap-2",
-              !isOpenCollapsible &&
-                (state.selectedBrands.length ||
-                  state.selectedColors.length ||
-                  state.price !== state.maxPrice)
-                ? "block"
-                : "hidden"
+              !isOpenCollapsible && isFiltersActive ? "block" : "hidden"
             )}
           >
-            {[...state.selectedBrands].map((brandId) => {
-              const selectedBrand = getBrandById(brandId).name;
-              return (
-                <div
-                  key={brandId}
+            <>
+              {state.price !== state.maxPrice && (
+                <FilterSelected
+                  item={priceRangeFiltered}
                   onClick={() =>
                     dispatch({
-                      type: FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION,
-                      payload: { brand: brandId },
+                      type: FILTER_ACTION_TYPES.RESET_PRICE,
                     })
                   }
-                  className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
-                >
-                  <span>{selectedBrand}</span>
-                  <svg
-                    className="w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="32"
-                      d="M368 368 144 144m224 0L144 368"
-                    />
-                  </svg>
-                </div>
-              );
-            })}
-            {[...state.selectedColors].map((colorId) => {
-              const selectedColor = getColorById(colorId).name;
-              return (
-                <div
-                  key={colorId}
-                  onClick={() =>
-                    dispatch({
-                      type: FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION,
-                      payload: { color: colorId },
-                    })
-                  }
-                  className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
-                >
-                  <span>{selectedColor}</span>{" "}
-                  <svg
-                    className="w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="32"
-                      d="M368 368 144 144m224 0L144 368"
-                    />
-                  </svg>
-                </div>
-              );
-            })}
-            <span
-              className="first:m-0 ml-6 font-semibold cursor-pointer py-6"
-              onClick={() =>
-                dispatch({
-                  type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
-                })
-              }
-            >
-              Clear All
-            </span>
-          </div>
-          <div
+                />
+              )}
+              {[...state.selectedBrands].map((brandId) => {
+                const selectedBrand = getBrandById(brandId).name;
+                return (
+                  <FilterSelected
+                    key={brandId}
+                    item={selectedBrand}
+                    onClick={() =>
+                      dispatch({
+                        type: FILTER_ACTION_TYPES.TOGGLE_BRAND_SELECTION,
+                        payload: { brand: brandId },
+                      })
+                    }
+                  />
+                );
+              })}
+              {[...state.selectedColors].map((colorId) => {
+                const selectedColor = getColorById(colorId).name;
+                return (
+                  <FilterSelected
+                    key={colorId}
+                    item={selectedColor}
+                    onClick={() =>
+                      dispatch({
+                        type: FILTER_ACTION_TYPES.TOGGLE_COLOR_SELECTION,
+                        payload: { color: colorId },
+                      })
+                    }
+                  />
+                );
+              })}
+              <span
+                className="first:m-0 ml-6 font-semibold cursor-pointer py-6"
+                onClick={() =>
+                  dispatch({
+                    type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
+                  })
+                }
+              >
+                Clear All
+              </span>
+            </>
+          </section>
+          <section
+            id="vehicle-grid"
             className={classNames(
               "grid  gap-x-7 gap-y-10 mt-16",
-              !filteredVehicles.length
+              !countFilteredVehicles
                 ? "grid-cols-1"
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             )}
@@ -335,7 +323,7 @@ function VehicleGrid() {
             <div
               className={classNames(
                 "max-w-3xl mx-auto",
-                !filteredVehicles.length ? "block" : "hidden"
+                !countFilteredVehicles ? "block" : "hidden"
               )}
             >
               <p className="bigger text-center">
@@ -353,10 +341,35 @@ function VehicleGrid() {
 
               return null;
             })}
-          </div>
+          </section>
         </Collapsible>
       </section>
     </>
+  );
+}
+
+function FilterSelected({ item, onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
+    >
+      <span>{item}</span>{" "}
+      <svg
+        className="w-5 h-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+      >
+        <path
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="32"
+          d="M368 368 144 144m224 0L144 368"
+        />
+      </svg>
+    </div>
   );
 }
 

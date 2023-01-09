@@ -1,51 +1,44 @@
-import { vehicles } from "../vehicles";
+import { vehicles } from "../data/vehicles";
+import { getUniqueValuesFromArrayOfObjectsByKey } from "./utils";
+
+export const getVehicles = () => vehicles;
 
 export const getVehicleBySlug = (slug) =>
-  vehicles.find((vehicle) => vehicle.slug === slug);
+  getVehicles().find((vehicle) => vehicle.slug === slug);
 
 export const getFeaturedVehicles = () =>
-  vehicles.filter((vehicle) => vehicle.featured);
+  getVehicles().filter((vehicle) => vehicle.featured);
 
-export function getVehicleBrands() {
-  const arrBrands = vehicles.map((vehicle) => vehicle.brand).filter(Boolean);
+export function getBrands() {
+  const tempArray = getVehicles()
+    .map((vehicle) => vehicle.brand)
+    .filter(Boolean);
 
-  const key = "id";
-  const uniqueBrandsByKey = [
-    ...new Map(arrBrands.map((item) => [item[key], item])).values(),
-  ];
-
-  return uniqueBrandsByKey;
+  return getUniqueValuesFromArrayOfObjectsByKey(tempArray, "name");
 }
 
-export function getVehicleColors() {
-  const arrColors = vehicles.map((vehicle) => vehicle.color).filter(Boolean);
+export function getColors() {
+  const tempArray = getVehicles()
+    .map((vehicle) => vehicle.color)
+    .filter(Boolean);
 
-  const key = "id";
-  const uniqueColorsByKey = [
-    ...new Map(arrColors.map((item) => [item[key], item])).values(),
-  ];
-
-  return uniqueColorsByKey;
+  return getUniqueValuesFromArrayOfObjectsByKey(tempArray, "name");
 }
 
-export function getBrandById(brandId) {
-  const brands = getVehicleBrands();
-  return brands.find((brand) => brand.id === brandId);
-}
+export const getBrandById = (brandId) =>
+  getBrands().find((brand) => brand.id === brandId);
 
-export function getColorById(colorId) {
-  const colors = getVehicleColors();
-  return colors.find((color) => color.id === colorId);
-}
+export const getColorById = (colorId) =>
+  getColors().find((color) => color.id === colorId);
 
 function getAllPrices() {
-  const retailPrices = vehicles
+  const retailPrices = getVehicles()
     .map((vehicle) => vehicle.price.perDay.retailPrice)
-    .filter((price) => price !== undefined || null || 0);
+    .filter(Boolean);
 
-  const discountPrices = vehicles
+  const discountPrices = getVehicles()
     .map((vehicle) => vehicle.price.perDay.discountPrice)
-    .filter((price) => price !== undefined || null || 0);
+    .filter(Boolean);
 
   return retailPrices.concat(discountPrices);
 }
@@ -53,3 +46,26 @@ function getAllPrices() {
 export const getVehiclesMaxPricePerDay = () => Math.max(...getAllPrices());
 
 export const getVehiclesMinPricePerDay = () => Math.min(...getAllPrices());
+
+export const getCountSelectedBrands = (selectedBrands) =>
+  selectedBrands.length ? `(${selectedBrands.length})` : "";
+
+export const getCountSelectedColors = (selectedColors) =>
+  selectedColors.length ? `(${selectedColors.length})` : "";
+
+export function getCountAllSelectedFilters(
+  price,
+  maxPrice,
+  selectedBrands,
+  selectedColors
+) {
+  let counter = 0;
+
+  if (price !== maxPrice) counter++;
+
+  if (selectedBrands.length) counter = counter + selectedBrands.length;
+
+  if (selectedColors.length) counter = counter + selectedColors.length;
+
+  return counter ? `Filters (${counter})` : "Filters";
+}
