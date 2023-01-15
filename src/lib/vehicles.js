@@ -60,12 +60,12 @@ export function getCountAllSelectedFilters(
   selectedColors
 ) {
   let counter = 0;
+  const selectedBrandsCount = selectedBrands.length;
+  const selectedColorsCount = selectedColors.length;
 
   if (price !== maxPrice) counter++;
-
-  if (selectedBrands.length) counter = counter + selectedBrands.length;
-
-  if (selectedColors.length) counter = counter + selectedColors.length;
+  counter = selectedBrandsCount ? counter + selectedBrandsCount : counter;
+  counter = selectedColorsCount ? counter + selectedColorsCount : counter;
 
   return counter ? `Filters (${counter})` : "Filters";
 }

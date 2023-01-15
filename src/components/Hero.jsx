@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Hero() {
+export function Hero() {
   return (
     <section>
       <div className="relative flex flex-row items-center py-8">

@@ -1,9 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/Root";
-import Home from "./routes/Home";
-import VehicleGrid from "./routes/VehicleGrid";
-import VehicleView from "./routes/VehicleView";
-import NotFound from "./routes/NotFound";
+import { Root, Home, VehicleGrid, VehicleView, NotFound } from "./routes";
 import "./main.css";
 
 const router = createBrowserRouter(

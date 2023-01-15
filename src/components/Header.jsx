@@ -11,7 +11,7 @@ import {
   DialogClose,
 } from "@radix-ui/react-dialog";
 
-export default function Header() {
+export function Header() {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
   return (

@@ -185,7 +185,7 @@ const features = [
   },
 ];
 
-export default function Features() {
+export function Features() {
   return (
     <section id="features" className="scroll-mt-10">
       <div className="flex flex-col items-center text-center mx-auto max-w-prose gap-y-6">

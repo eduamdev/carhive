@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="flex flex-col justify-center gap-y-20 pt-20 pb-8">
       <div className="h-px">

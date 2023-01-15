@@ -2,7 +2,7 @@ import { useReducer, useState, useEffect } from "react";
 import { filtersReducer, INITIAL_STATE } from "../filtersReducer";
 import { FILTER_ACTION_TYPES } from "../filterActionTypes";
 import { Link, ScrollRestoration } from "react-router-dom";
-import VehicleCard from "../components/VehicleCard";
+import { VehicleCard } from "../components/VehicleCard";
 import {
   Collapsible,
   CollapsibleContent,
@@ -28,7 +28,7 @@ import {
   getCountAllSelectedFilters,
 } from "../lib/vehicles";
 
-function VehicleGrid() {
+export function VehicleGrid() {
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
   const [isOpenCollapsible, setIsOpenCollapsible] = useState(false);
   const [filteredVehicles, setFilteredVehicles] = useState([]);
@@ -42,7 +42,7 @@ function VehicleGrid() {
     state.selectedColors.length ||
     state.price !== state.maxPrice;
 
-  const priceRangeFiltered = `${formatNumberAsCurrency(
+  const priceRangeSelected = `${formatNumberAsCurrency(
     state.minPrice
   )} - ${formatNumberAsCurrency(state.price)}`;
 
@@ -217,9 +217,9 @@ function VehicleGrid() {
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-neutral-100">
-                    Price Range (per Day)
-                  </p>
+                  <p className="font-bold text-neutral-100">{`Price per Day ${
+                    state.price !== state.maxPrice ? "(1)" : ""
+                  }`}</p>
                   <div className="mt-4">
                     <div className="mb-2 flex flex-row items-center justify-between">
                       <p>{formatNumberAsCurrency(state.price)}</p>
@@ -261,7 +261,7 @@ function VehicleGrid() {
             <>
               {state.price !== state.maxPrice && (
                 <FilterSelected
-                  item={priceRangeFiltered}
+                  item={priceRangeSelected}
                   onClick={() =>
                     dispatch({
                       type: FILTER_ACTION_TYPES.RESET_PRICE,
@@ -372,5 +372,3 @@ function FilterSelected({ item, onClick }) {
     </div>
   );
 }
-
-export default VehicleGrid;

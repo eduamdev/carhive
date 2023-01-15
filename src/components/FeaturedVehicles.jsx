@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import VehicleCard from "./VehicleCard";
+import { VehicleCard } from "./VehicleCard";
 import { getFeaturedVehicles } from "../lib/vehicles";
 
-export default function FeaturedVehicles() {
+export function FeaturedVehicles() {
   const featuredVehicles = getFeaturedVehicles();
 
   return (

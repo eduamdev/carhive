@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { formatNumberAsCurrency } from "../lib/utils";
 import { getVehicleBySlug } from "../lib/vehicles.js";
 
-function VehicleView() {
+export function VehicleView() {
   const { slug } = useParams();
 
   const vehicle = getVehicleBySlug(slug);

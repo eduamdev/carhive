@@ -1,7 +1,7 @@
 import { getBackgroundColorClass } from "../lib/utils";
 import { formatNumberAsCurrency } from "../lib/utils";
 
-export default function VehicleCard({ vehicle }) {
+export function VehicleCard({ vehicle }) {
   const { details, price, brand, model, images, year, color } = vehicle;
 
   const backgroundColorClass = getBackgroundColorClass(color.name);

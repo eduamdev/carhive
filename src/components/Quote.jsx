@@ -1,4 +1,4 @@
-export default function Quote() {
+export function Quote() {
   return (
     <div className="relative py-7 flex flex-col justify-center">
       <figure className="self-end max-w-xl bg-neutral-900/80 p-9 rounded-md z-10 mr-7">

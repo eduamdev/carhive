@@ -39,7 +39,7 @@ const faqs = [
   },
 ];
 
-export default function Faqs() {
+export function Faqs() {
   return (
     <section id="faqs" className="w-full max-w-2xl mx-auto scroll-mt-10">
       <h2 className="text-3xl lg:text-4xl font-bold text-center">

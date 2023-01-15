@@ -1,4 +1,4 @@
-export default function GetFirstGiftToday() {
+export function GetFirstGiftToday() {
   return (
     <section className="h-[26rem]">
       <div className="absolute left-0 bg-neutral-900 w-full h-[26rem] flex flex-col items-center justify-center text-center">
