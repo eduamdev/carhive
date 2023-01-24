@@ -20,7 +20,7 @@ export function VehicleCard({ vehicle }) {
           className="h-full w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
         />
         {discountPrice && (
-          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-700 py-[3px] px-2 border border-neutral-200">
+          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-800 font-medium py-[3px] px-2 border border-neutral-200">
             {discount}% off
           </span>
         )}

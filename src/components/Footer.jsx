@@ -10,7 +10,7 @@ export function Footer() {
       <div className="flex flex-row items-center">
         <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-y-20">
           <div>
-            <div className="font-bold text-3xl">
+            <div className="font-semibold text-3xl">
               <Link to="/">Rides</Link>
             </div>
             <ul className="mt-12 flex flex-row items-center gap-x-8">
@@ -20,7 +20,7 @@ export function Footer() {
                 </HashLink>
               </li>
               <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors">
-                <Link to="/vehicles">Vehicles</Link>
+                <Link to="/vehicles">Fleet</Link>
               </li>
               <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors">
                 <HashLink smooth to="/#faqs">
@@ -55,7 +55,7 @@ export function Footer() {
       </div>
       <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-5 border-t border-neutral-900 py-8">
         <p>© Copyright {new Date().getFullYear()}. All rights reserved.</p>
-        <p>Designed and developed by Eduardo R. Ambriz</p>
+        <p>Designed and developed by Eduardo Ambriz</p>
       </div>
     </footer>
   );

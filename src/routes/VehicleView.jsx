@@ -20,14 +20,14 @@ export function VehicleView() {
       <ScrollRestoration />
       <section>
         <p className="mb-3 font-mono">
-          <Link to="/" className="hover:text-white">
+          <Link to="/" className="hover:text-white font-bold">
             Home
           </Link>{" "}
           /{" "}
-          <Link to="/vehicles" className="hover:text-white">
+          <Link to="/vehicles" className="hover:text-white font-bold">
             Vehicles
           </Link>{" "}
-          / {slug}
+          / <span className="text-slate-400">{slug}</span>
         </p>
         <h1 className="text-4xl lg:text-5xl font-bold max-w-prose">
           {brand.name} {model} {year}
@@ -204,8 +204,8 @@ export function VehicleView() {
               </div>
             </div>
             <div className="mt-20">
-              <button className="flex items-center justify-center w-full bg-red-500 px-2 py-3 rounded-md text-xl">
-                Book this Vehicle
+              <button className="font-semibold w-full flex items-center justify-center md:w-56 bg-white text-slate-900 px-2 py-3 rounded-md text-xl border hover:bg-transparent hover:text-slate-100 hover:border-slate-100 transition-colors duration-150">
+                Book this Vehicle →
               </button>
             </div>
           </div>

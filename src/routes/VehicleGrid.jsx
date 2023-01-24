@@ -107,10 +107,10 @@ export function VehicleGrid() {
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
               <p className="mb-3 font-mono hidden lg:block">
-                <Link to="/" className="hover:text-white">
+                <Link to="/" className="hover:text-white font-bold">
                   Home
                 </Link>{" "}
-                / Vehicles
+                / <span className="text-slate-400">Vehicles</span>
               </p>
               <h1 className="text-4xl lg:text-5xl font-bold">Find your ride</h1>
               <p
@@ -126,7 +126,7 @@ export function VehicleGrid() {
             </div>
             <div className="w-full lg:w-auto flex flex-row items-center justify-between mt-10">
               <CollapsibleTrigger asChild>
-                <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start justify-between border border-neutral-700 rounded-lg">
+                <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start items-center justify-between border border-neutral-700 rounded-lg">
                   <span>{countAllSelectedFilters}</span>
                   <svg
                     className="collapsibleChevron"

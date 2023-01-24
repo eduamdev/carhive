@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply relative min-h-full m-0 bg-black text-white break-words;
+  @apply relative min-h-full m-0 bg-black text-slate-100 break-words;
   max-width: 100vw;
 }
 
@@ -35,7 +35,7 @@ span.bigger {
 
 .accordionChevron,
 .collapsibleChevron {
-  @apply h-6 w-6 flex-shrink-0 stroke-current text-neutral-200 align-middle;
+  @apply h-5 w-5 flex-shrink-0 stroke-current text-neutral-400 align-middle;
 }
 
 .accordionTrigger[data-state="open"] > .accordionChevron {

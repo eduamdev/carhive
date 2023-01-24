@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className="h-28 flex flex-row items-center justify-between">
       <div className="flex flex-row items-center justify-start gap-x-20">
-        <div className="font-bold text-3xl">
+        <div className="font-semibold text-3xl">
           <Link to="/">Rides</Link>
         </div>
         <nav className="hidden md:block">
@@ -28,7 +28,7 @@ export function Header() {
               </HashLink>
             </li>
             <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors font-semibold">
-              <Link to="/vehicles">Vehicles</Link>
+              <Link to="/vehicles">Fleet</Link>
             </li>
             <li className="text-neutral-300 hover:text-neutral-50 hover:transition-colors font-semibold">
               <HashLink smooth to="/#faqs">
@@ -116,7 +116,7 @@ export function Header() {
                   </li>
                   <li className="py-2 font-semibold text-2xl text-neutral-300 hover:text-neutral-50 hover:transition-colors">
                     <DialogClose asChild>
-                      <Link to="/vehicles">Vehicles</Link>
+                      <Link to="/vehicles">Fleet</Link>
                     </DialogClose>
                   </li>
                 </ul>

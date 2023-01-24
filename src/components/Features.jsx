@@ -14,7 +14,7 @@ const features = [
       </svg>
     ),
     title: "Security, from start to finish",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+    text: "Our fleet is regularly updated with the latest models from top manufacturers, ensuring that you're driving a safe and reliable vehicle.",
   },
   {
     key: 2,
@@ -30,8 +30,8 @@ const features = [
         />
       </svg>
     ),
-    title: "Eco-Friendly Driving Options",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+    title: "We are supporting initiatives that promote energy efficiency",
+    text: "We are committed to reducing our carbon footprint through investment in clean technologies and contributing to environmental projects.",
   },
   {
     key: 3,
@@ -76,7 +76,7 @@ const features = [
       </svg>
     ),
     title: "Awarded for America's Best Customer Service 2022",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+    text: "We are committed to providing you with a unique and satisfactory rental experience. We offer a wide variety of rental options and a large selection of vehicles, as well as competitive rates.",
   },
   {
     key: 4,
@@ -114,7 +114,7 @@ const features = [
       </svg>
     ),
     title: "20,000 Pickup Locations Worldwide",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+    text: "With our easy-to-use online booking system, you can reserve your car in minutes and have it delivered to your doorstep or at the airport.",
   },
   {
     key: 5,
@@ -181,7 +181,7 @@ const features = [
       </svg>
     ),
     title: "24/7 Road Assistence",
-    text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.",
+    text: "Our friendly customer service team is always available to assist you with any questions or concerns.",
   },
 ];
 
@@ -191,8 +191,8 @@ export function Features() {
       <div className="flex flex-col items-center text-center mx-auto max-w-prose gap-y-6">
         <h2 className="text-3xl lg:text-4xl font-bold">Features</h2>
         <p className="big">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean
+          Book your car rental today and experience the ultimate in convenience
+          and comfort.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-y-10 mt-20">

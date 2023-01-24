@@ -3,29 +3,30 @@ import { Link } from "react-router-dom";
 export function Hero() {
   return (
     <section>
-      <div className="relative flex flex-row items-center py-8">
+      <div className="relative flex flex-row items-center pt-6 pb-8">
         <div className="absolute w-full h-full">
           <div
             style={{
-              backgroundImage: "url(./assets/hero.jpg)",
+              background:
+                'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%), url("./assets/hero.jpg") center center / cover no-repeat',
             }}
-            className="invisible lg:visible w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
+            className="invisible lg:visible w-full h-full bg-cover bg-center bg-no-repeat"
           />
         </div>
-        <div className="flex flex-col gap-y-8 z-10">
-          <h1 className="text-4xl md:text-5xl font-bold">
-            Looking for a Vehicle?
+        <div className="flex flex-col gap-y-8 z-10 w-full">
+          <h1 className="text-4xl md:text-6xl font-bold lg:max-w-2xl">
+            We have the perfect car for you
           </h1>
-          <p className="big max-w-prose">
-            Whether you're planning your next adventure or looking to escape to
-            an amazing destination to relax, we have the perfect way to get you
-            there.
+          <p className="big lg:max-w-2xl">
+            Whether you're looking for a reliable vehicle for a business trip, a
+            spacious SUV for a family vacation, or a luxury car for a special
+            occasion, we have the perfect vehicle for you.
           </p>
           <Link
             to="/vehicles"
-            className="flex items-center justify-center w-full md:w-56 bg-red-500 px-2 py-3 rounded-md text-xl"
+            className="mt-3 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-slate-900 px-2 py-3 rounded-md text-xl border hover:bg-transparent hover:text-slate-100 hover:border-slate-100 transition-colors duration-150"
           >
-            Meet the fleet
+            Find your ride →
           </Link>
         </div>
       </div>
