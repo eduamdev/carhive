@@ -9,23 +9,23 @@ export function Quote() {
           cite="https://www.brainyquote.com/quotes/dale_evans_192172"
           className="inline-block"
         >
-          <p className="text-xl leading-9 text-slate-300 !leading-7">
+          <p className="text-xl leading-8 text-white">
             It's the way you ride the trail that counts.
           </p>
         </blockquote>
-        <figcaption className="mt-4 text-right font-mono italic tracking-widest">
+        <figcaption className="mt-4 text-right italic tracking-wider">
           <p>— Dale Evans</p>
         </figcaption>
       </figure>
-      <div className="absolute w-full h-full">
-        <div
-          className="w-full h-full opacity-90 rounded-xl"
-          style={{
-            background:
-              'linear-gradient(rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.05) 5%, rgba(0, 0, 0, 0.85) 100%), url("./assets/timelapse-city-night.jpg") center center / cover no-repeat',
-          }}
-        ></div>
-      </div>
+      <img
+        src="./assets/images/timelapse-city-night.jpg"
+        alt="asas"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        loading="lazy"
+        decoding="async"
+        role="presentation"
+      />
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-black/90 to-black/20"></div>
     </div>
   );
 }

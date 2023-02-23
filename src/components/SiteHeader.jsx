@@ -12,25 +12,29 @@ import {
 } from "@radix-ui/react-dialog";
 import { Icons } from "./Icons";
 
-export function Header() {
+export function SiteHeader() {
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
   return (
-    <header className="h-28 flex flex-row items-center justify-between">
-      <div className="flex flex-row items-center justify-start gap-x-20">
-        <div className="font-semibold text-3xl tracking-wide">
-          <Link to="/">Rides</Link>
-        </div>
-        <nav className="hidden md:block">
-          <ul className="flex flex-row gap-x-10">
+    <header className="h-24 flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-start">
+        <Link
+          to="/"
+          className="font-semibold text-[26px] tracking-wide leading-none"
+        >
+          Rides
+        </Link>
+        <nav className="hidden md:block ml-20">
+          <ul className="flex flex-row gap-x-12">
+            <li className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
+              <Link to="/vehicles">Fleet</Link>
+            </li>
             <li className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
               <HashLink smooth to="/#features">
                 Features
               </HashLink>
             </li>
-            <li className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
-              <Link to="/vehicles">Fleet</Link>
-            </li>
+
             <li className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
               <HashLink smooth to="/#faqs">
                 FAQs
@@ -41,12 +45,12 @@ export function Header() {
       </div>
       <ul className="hidden md:flex flex-row gap-x-10">
         <li>
-          <button className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
+          <button className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium py-2 leading-none">
             Log In
           </button>
         </li>
         <li>
-          <button className="text-neutral-300 hover:text-neutral-50 transition-colors font-medium">
+          <button className="font-semibold flex items-center justify-center px-3 bg-white text-black py-2 leading-none rounded-md border hover:bg-transparent hover:text-white hover:border-white transition-all duration-150">
             Sign Up
           </button>
         </li>
@@ -63,34 +67,33 @@ export function Header() {
                   <Icons.Close className="h-7 w-7 fill-current stroke-current align-middle text-neutral-300 hover:text-white transition-colors" />
                 </DialogClose>
                 <DialogTitle asChild>
-                  <p className="pt-2 tracking-wide font-mono text-teal-400">
-                    Navigation
-                  </p>
+                  <p className="pt-2 tracking-wide">Navigation</p>
                 </DialogTitle>
                 <ul className="flex flex-col justify-center gap-y-4 my-4">
-                  <li className="py-2 font-semibold text-2xl text-neutral-300 hover:text-neutral-50 transition-colors">
+                  <li className="py-2 font-semibold text-xl text-neutral-300 hover:text-white transition-colors">
                     <DialogClose asChild>
                       <Link to="/">Home</Link>
                     </DialogClose>
                   </li>
-                  <li className="py-2 font-semibold text-2xl text-neutral-300 hover:text-neutral-50 transition-colors">
+                  <li className="py-2 font-semibold text-xl text-neutral-300 hover:text-white transition-colors">
                     <DialogClose asChild>
                       <Link to="/vehicles">Fleet</Link>
                     </DialogClose>
                   </li>
                 </ul>
-                <div className="border-t border-neutral-700 my-4">
-                  <div className="flex flex-row items-center justify-between gap-x-5 mt-3">
-                    <button className="text-left py-2 font-semibold text-neutral-300 hover:text-neutral-50 transition-colors">
+                <hr className="border-t border-neutral-600" />
+                <div className="mt-2 mb-4">
+                  <div className="flex flex-row items-center justify-between gap-x-5">
+                    <button className="text-left py-2 font-medium text-neutral-300 hover:text-white transition-colors">
                       Download the App
                     </button>
 
                     <div className="flex flex-row items-center gap-x-[10px] shrink-0">
-                      <button className="py-2 font-semibold text-neutral-300 hover:text-neutral-50 transition-colors">
+                      <button className="py-2 font-medium text-neutral-300 hover:text-white transition-colors">
                         Log In
                       </button>
                       <span className="text-sm text-neutral-700">|</span>
-                      <button className="py-2 font-semibold text-neutral-300 hover:text-neutral-50 transition-colors">
+                      <button className="py-2 font-medium text-neutral-300 hover:text-white transition-colors">
                         Sign Up
                       </button>
                     </div>

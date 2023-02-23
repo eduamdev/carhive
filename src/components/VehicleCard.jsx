@@ -19,9 +19,11 @@ export function VehicleCard({ vehicle }) {
           src={coverImage.urlPath}
           alt={coverImage.alt}
           className="h-full w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
+          loading="lazy"
+          decoding="async"
         />
         {discountPrice && (
-          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-700 font-bold py-[3px] px-2 border border-neutral-200">
+          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-700 font-bold py-[3px] px-2 border border-neutral-400/50 shadow-sm">
             {discount}% off
           </span>
         )}
@@ -62,10 +64,10 @@ export function VehicleCard({ vehicle }) {
             className={`w-3 h-3 rounded-full border border-gray-400 ${backgroundColorClass}`}
           ></div>
         </div>
-        <div className="text-neutral-200 font-mono align-middle flex flex-row items-center gap-x-8 leading-5">
+        <div className="text-neutral-200 align-middle flex flex-row items-center gap-x-8 leading-5">
           <div className="flex flex-row gap-x-2 text-right">
             <Icons.Person className="w-4 h-4" />
-            <span className="capitalize text-sm text-slate-300 tracking-wide">
+            <span className="capitalize text-sm text-slate-300 tracking-wider">
               {details.capacity}
             </span>
           </div>
@@ -73,7 +75,7 @@ export function VehicleCard({ vehicle }) {
             {details.bags && (
               <>
                 <Icons.Bag className="w-4 h-4" />
-                <span className="capitalize text-sm text-slate-300 tracking-wide">
+                <span className="capitalize text-sm text-slate-300 tracking-wider">
                   {details.bags}
                 </span>
               </>

@@ -3,7 +3,7 @@ import { Quote } from "../components/Quote";
 import { Features } from "../components/Features";
 import { FeaturedVehicles } from "../components/FeaturedVehicles";
 import { Faqs } from "../components/Faqs";
-import { GetFirstGiftToday } from "../components/GetFirstGiftToday";
+import { JoinOurRewardsProgram } from "../components/JoinOurRewardsProgram";
 import { ScrollRestoration } from "react-router-dom";
 
 export function Home() {
@@ -13,7 +13,7 @@ export function Home() {
       <Hero />
       <Quote />
       <Features />
-      <GetFirstGiftToday />
+      <JoinOurRewardsProgram />
       <FeaturedVehicles />
       <Faqs></Faqs>
     </>

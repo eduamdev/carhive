@@ -30,12 +30,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Tesla Model 3 on a road",
-        urlPath: "./assets/vehicles/tesla-model-3.jpg",
+        urlPath: "./assets/images/vehicles/tesla-model-3.jpg",
       },
       {
         type: "display",
         alt: "White Tesla Model 3 on a road",
-        urlPath: "./assets/vehicles/tesla-model-3.jpg",
+        urlPath: "./assets/images/vehicles/tesla-model-3.jpg",
       },
     ],
   },
@@ -72,12 +72,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Porsche 911",
-        urlPath: "./assets/vehicles/porsche-911.jpg",
+        urlPath: "./assets/images/vehicles/porsche-911.jpg",
       },
       {
         type: "display",
         alt: "White Porsche 911",
-        urlPath: "./assets/vehicles/porsche-911.jpg",
+        urlPath: "./assets/images/vehicles/porsche-911.jpg",
       },
     ],
   },
@@ -110,12 +110,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Toyota Highlander",
-        urlPath: "./assets/vehicles/toyota-highlander-hybrid-le.jpg",
+        urlPath: "./assets/images/vehicles/toyota-highlander-hybrid-le.jpg",
       },
       {
         type: "display",
         alt: "Black Toyota Highlander",
-        urlPath: "./assets/vehicles/toyota-highlander-hybrid-le.jpg",
+        urlPath: "./assets/images/vehicles/toyota-highlander-hybrid-le.jpg",
       },
     ],
   },
@@ -153,12 +153,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black BMW Series 3",
-        urlPath: "./assets/vehicles/bmw-3-series.jpg",
+        urlPath: "./assets/images/vehicles/bmw-3-series.jpg",
       },
       {
         type: "display",
         alt: "Black BMW Series 3",
-        urlPath: "./assets/vehicles/bmw-3-series.jpg",
+        urlPath: "./assets/images/vehicles/bmw-3-series.jpg",
       },
     ],
   },
@@ -193,12 +193,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Yellow Volkswagen Clementine T2 Camper Van",
-        urlPath: "./assets/vehicles/volkswagen-clementine-t2.jpg",
+        urlPath: "./assets/images/vehicles/volkswagen-clementine-t2.jpg",
       },
       {
         type: "display",
         alt: "Yellow Volkswagen Clementine T2 Camper Van",
-        urlPath: "./assets/vehicles/volkswagen-clementine-t2.jpg",
+        urlPath: "./assets/images/vehicles/volkswagen-clementine-t2.jpg",
       },
     ],
   },
@@ -231,12 +231,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Cyan Hyundai I30N",
-        urlPath: "./assets/vehicles/hyundai-i30n.jpg",
+        urlPath: "./assets/images/vehicles/hyundai-i30n.jpg",
       },
       {
         type: "display",
         alt: "Cyan Hyundai I30N",
-        urlPath: "./assets/vehicles/hyundai-i30n.jpg",
+        urlPath: "./assets/images/vehicles/hyundai-i30n.jpg",
       },
     ],
   },
@@ -270,12 +270,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Jeep Wrangler Rubicon",
-        urlPath: "./assets/vehicles/jeep-wrangler-rubicon.jpg",
+        urlPath: "./assets/images/vehicles/jeep-wrangler-rubicon.jpg",
       },
       {
         type: "display",
         alt: "Black Jeep Wrangler Rubicon",
-        urlPath: "./assets/vehicles/jeep-wrangler-rubicon.jpg",
+        urlPath: "./assets/images/vehicles/jeep-wrangler-rubicon.jpg",
       },
     ],
   },
@@ -308,12 +308,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White BMW M4 GTS",
-        urlPath: "./assets/vehicles/bmw-m4-gts.jpg",
+        urlPath: "./assets/images/vehicles/bmw-m4-gts.jpg",
       },
       {
         type: "display",
         alt: "White BMW M4 GTS",
-        urlPath: "./assets/vehicles/bmw-m4-gts.jpg",
+        urlPath: "./assets/images/vehicles/bmw-m4-gts.jpg",
       },
     ],
   },
@@ -346,12 +346,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black Ford Mustang Shelby GT350R",
-        urlPath: "./assets/vehicles/ford-mustang-shelby-gt350r.jpg",
+        urlPath: "./assets/images/vehicles/ford-mustang-shelby-gt350r.jpg",
       },
       {
         type: "display",
         alt: "Black Ford Mustang Shelby GT350R",
-        urlPath: "./assets/vehicles/ford-mustang-shelby-gt350r.jpg",
+        urlPath: "./assets/images/vehicles/ford-mustang-shelby-gt350r.jpg",
       },
     ],
   },
@@ -386,12 +386,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "Black TurboAnt X7 Max Folding Scooter",
-        urlPath: "./assets/vehicles/turboant-x7-max-folding.jpg",
+        urlPath: "./assets/images/vehicles/turboant-x7-max-folding.jpg",
       },
       {
         type: "display",
         alt: "Black TurboAnt X7 Max Folding Scooter",
-        urlPath: "./assets/vehicles/turboant-x7-max-folding.jpg",
+        urlPath: "./assets/images/vehicles/turboant-x7-max-folding.jpg",
       },
     ],
   },
@@ -423,12 +423,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White Bianchi Specialissima Bike",
-        urlPath: "./assets/vehicles/bianchi-specialissima.jpg",
+        urlPath: "./assets/images/vehicles/bianchi-specialissima.jpg",
       },
       {
         type: "display",
         alt: "White Bianchi Specialissima Bike",
-        urlPath: "./assets/vehicles/bianchi-specialissima.jpg",
+        urlPath: "./assets/images/vehicles/bianchi-specialissima.jpg",
       },
     ],
   },
@@ -468,12 +468,12 @@ export const vehicles = [
       {
         type: "cover",
         alt: "White VZ Flybridge Yacht",
-        urlPath: "./assets/vehicles/vz-flybridge.jpg",
+        urlPath: "./assets/images/vehicles/vz-flybridge.jpg",
       },
       {
         type: "display",
         alt: "White VZ Flybridge Yacht",
-        urlPath: "./assets/vehicles/vz-flybridge.jpg",
+        urlPath: "./assets/images/vehicles/vz-flybridge.jpg",
       },
     ],
   },

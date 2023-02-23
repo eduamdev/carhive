@@ -207,7 +207,7 @@ export function VehicleView() {
             <div className="mt-20">
               <button
                 to="/vehicles"
-                className="mt-3 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-black px-2 py-3 rounded-md text-lg border hover:bg-transparent hover:text-white hover:border-white transition-colors duration-150"
+                className="mt-3 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-black px-2 py-[10px] rounded-md text-lg border hover:bg-transparent hover:text-white hover:border-white transition-colors duration-150"
               >
                 Book this Vehicle
               </button>

@@ -113,7 +113,7 @@ export function VehicleGrid() {
                 </Link>{" "}
                 / <span className="text-slate-400">Vehicles</span>
               </p>
-              <h1 className="text-4xl lg:text-5xl font-semibold tracking-wide">
+              <h1 className="text-4xl lg:text-5xl font-semibold">
                 Find your ride
               </h1>
               <p
