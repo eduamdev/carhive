@@ -27,6 +27,7 @@ import {
   getCountSelectedColors,
   getCountAllSelectedFilters,
 } from "../lib/vehicles";
+import { Icons } from "../components/Icons";
 
 export function VehicleGrid() {
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
@@ -106,16 +107,18 @@ export function VehicleGrid() {
         >
           <div className="flex flex-col lg:flex-row items-center justify-between mx-auto gap-y-6 mb-6">
             <div>
-              <p className="mb-3 font-mono hidden lg:block">
-                <Link to="/" className="hover:text-white font-bold">
+              <p className="mb-3 font-mono hidden lg:block tracking-wide">
+                <Link to="/" className="hover:text-white font-semibold">
                   Home
                 </Link>{" "}
                 / <span className="text-slate-400">Vehicles</span>
               </p>
-              <h1 className="text-4xl lg:text-5xl font-bold">Find your ride</h1>
+              <h1 className="text-4xl lg:text-5xl font-semibold tracking-wide">
+                Find your ride
+              </h1>
               <p
                 className={classNames(
-                  "mt-3 font-mono",
+                  "mt-3 font-mono tracking-wide",
                   countFilteredVehicles ? "invisible lg:visible" : "invisible"
                 )}
               >
@@ -128,20 +131,7 @@ export function VehicleGrid() {
               <CollapsibleTrigger asChild>
                 <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start items-center justify-between border border-neutral-700 rounded-lg">
                   <span>{countAllSelectedFilters}</span>
-                  <svg
-                    className="collapsibleChevron"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="48"
-                      d="m112 184 144 144 144-144"
-                    />
-                  </svg>
+                  <Icons.ChevronDown className="collapsibleChevron" />
                 </button>
               </CollapsibleTrigger>
               <p
@@ -254,7 +244,7 @@ export function VehicleGrid() {
           <section
             id="filters-selected"
             className={classNames(
-              "w-full flex flex-row flex-wrap items-center gap-2",
+              "py-6 w-full flex flex-row flex-wrap items-center gap-2",
               !isOpenCollapsible && isFiltersActive ? "block" : "hidden"
             )}
           >
@@ -299,8 +289,8 @@ export function VehicleGrid() {
                   />
                 );
               })}
-              <span
-                className="first:m-0 ml-6 font-semibold cursor-pointer py-6"
+              <button
+                className="first:m-0 ml-6 font-semibold cursor-pointer text-slate-300 hover:text-white underline underline-offset-4 decoration-slate-200"
                 onClick={() =>
                   dispatch({
                     type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
@@ -308,7 +298,7 @@ export function VehicleGrid() {
                 }
               >
                 Clear All
-              </span>
+              </button>
             </>
           </section>
           <section
@@ -326,7 +316,7 @@ export function VehicleGrid() {
                 !countFilteredVehicles ? "block" : "hidden"
               )}
             >
-              <p className="bigger text-center">
+              <p className="text-2xl leading-10 text-center">
                 No vehicles match your filters.
               </p>
             </div>
@@ -350,25 +340,11 @@ export function VehicleGrid() {
 
 function FilterSelected({ item, onClick }) {
   return (
-    <div
+    <button
       onClick={onClick}
       className="capitalize flex flex-row items-center justify-baseline gap-x-3 cursor-pointer py-[6px] px-5 bg-gray-800 border border-transparent hover:border-neutral-700 rounded-3xl"
     >
-      <span>{item}</span>{" "}
-      <svg
-        className="w-5 h-5"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 512 512"
-      >
-        <path
-          fill="none"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="32"
-          d="M368 368 144 144m224 0L144 368"
-        />
-      </svg>
-    </div>
+      <span>{item}</span> <Icons.Close className="w-5 h-5" />
+    </button>
   );
 }

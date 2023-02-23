@@ -10,9 +10,9 @@ export function Home() {
   return (
     <>
       <ScrollRestoration />
-      <Hero></Hero>
-      <Quote></Quote>
-      <Features></Features>
+      <Hero />
+      <Quote />
+      <Features />
       <GetFirstGiftToday />
       <FeaturedVehicles />
       <Faqs></Faqs>

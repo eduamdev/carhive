@@ -19,25 +19,25 @@ export function VehicleView() {
     <>
       <ScrollRestoration />
       <section>
-        <p className="mb-3 font-mono">
-          <Link to="/" className="hover:text-white font-bold">
+        <p className="mb-3 font-mono tracking-wide">
+          <Link to="/" className="hover:text-white font-semibold">
             Home
           </Link>{" "}
           /{" "}
-          <Link to="/vehicles" className="hover:text-white font-bold">
+          <Link to="/vehicles" className="hover:text-white font-semibold">
             Vehicles
           </Link>{" "}
           / <span className="text-slate-400">{slug}</span>
         </p>
-        <h1 className="text-4xl lg:text-5xl font-bold max-w-prose">
-          {brand.name} {model} {year}
+        <h1 className="text-4xl lg:text-5xl font-semibold tracking-wide max-w-prose">
+          {brand.name} {model} ({year})
         </h1>
         <div className="flex flex-col-reverse lg:flex-row items-start justify-between gap-y-16 gap-x-16 mt-12">
           <div className="lg:max-w-xl">
             <p>{description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 items-baseline justify-between gap-y-12 gap-x-8 mt-10">
               <div>
-                <p className="big uppercase font-bold text-neutral-100">
+                <p className="text-xl leading-9 uppercase font-bold tracking-wide text-neutral-100">
                   Details
                 </p>
                 <ul className="space-y-2 mt-4">
@@ -135,8 +135,9 @@ export function VehicleView() {
                         </span>
                       </span>
                     ) : (
-                      <span className="capitalize text-neutral-100">
-                        {formatNumberAsCurrency(retailPrice)} / day
+                      <span className="capitalize font-semibold text-white">
+                        {formatNumberAsCurrency(retailPrice)}{" "}
+                        <span className="text-neutral-300">/ day</span>
                       </span>
                     )}
                   </li>
@@ -191,7 +192,7 @@ export function VehicleView() {
                 </ul>
               </div>
               <div>
-                <p className="big uppercase font-bold text-neutral-100">
+                <p className="text-xl leading-9 uppercase font-bold tracking-wide text-neutral-100">
                   Features
                 </p>
                 <ul className="list-disc space-y-2 mt-4 pl-4">
@@ -204,8 +205,11 @@ export function VehicleView() {
               </div>
             </div>
             <div className="mt-20">
-              <button className="font-semibold w-full flex items-center justify-center md:w-56 bg-white text-slate-900 px-2 py-3 rounded-md text-xl border hover:bg-transparent hover:text-slate-100 hover:border-slate-100 transition-colors duration-150">
-                Book this Vehicle →
+              <button
+                to="/vehicles"
+                className="mt-3 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-black px-2 py-3 rounded-md text-lg border hover:bg-transparent hover:text-white hover:border-white transition-colors duration-150"
+              >
+                Book this Vehicle
               </button>
             </div>
           </div>

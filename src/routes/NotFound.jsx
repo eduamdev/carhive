@@ -19,17 +19,17 @@ export function NotFound() {
               <span className="font-mono tracking-widest text-2xl text-red-400">
                 404
               </span>
-              <h1 className="text-4xl lg:text-5xl font-bold">
+              <h1 className="text-4xl lg:text-5xl font-semibold tracking-wide">
                 Uh oh! Looks like you are lost.
               </h1>
-              <p className="big">
+              <p className="text-xl leading-9">
                 It looks like the page you are looking for doesnt exist.
               </p>
               <Link
-                to="/"
-                className="mt-5 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-slate-900 px-2 py-3 rounded-md text-xl border hover:bg-transparent hover:text-slate-100 hover:border-slate-100 transition-colors duration-150"
+                to="/vehicles"
+                className="mt-3 font-semibold w-full flex items-center justify-center md:w-56 bg-white text-black px-2 py-3 rounded-md text-lg border hover:bg-transparent hover:text-white hover:border-white transition-colors duration-150"
               >
-                Go back home →
+                Go back home
               </Link>
             </div>
           </div>

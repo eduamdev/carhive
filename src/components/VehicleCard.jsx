@@ -1,5 +1,6 @@
 import { getBackgroundColorClass } from "../lib/utils";
 import { formatNumberAsCurrency } from "../lib/utils";
+import { Icons } from "./Icons";
 
 export function VehicleCard({ vehicle }) {
   const { details, price, brand, model, images, year, color } = vehicle;
@@ -20,7 +21,7 @@ export function VehicleCard({ vehicle }) {
           className="h-full w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
         />
         {discountPrice && (
-          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-800 font-medium py-[3px] px-2 border border-neutral-200">
+          <span className="absolute text-[15px] tracking-wide top-3 left-3 bg-white text-red-700 font-bold py-[3px] px-2 border border-neutral-200">
             {discount}% off
           </span>
         )}
@@ -29,17 +30,20 @@ export function VehicleCard({ vehicle }) {
         <div className="w-full grid grid-cols-2 items-baseline justify-between gap-x-2">
           <div>
             <p className="leading-6">
-              <span className="text-[18px] leading-7 font-semibold text-neutral-100">
+              <span className="text-[18px] leading-7 font-semibold text-white">
                 {brand.name}
               </span>
-              <br /> {model} {year}
+              <br />{" "}
+              <span className="text-slate-300">
+                {model} ({year})
+              </span>
             </p>
           </div>
           <div>
-            <p className="leading-5 text-right">
+            <p className="leading-5 text-right tracking-wide">
               {discountPrice ? (
                 <span className="text-[18px] text-white font-bold">
-                  <span className="font-medium text-neutral-300 line-through">
+                  <span className="font-medium text-slate-400 line-through">
                     {formatNumberAsCurrency(retailPrice)}
                   </span>{" "}
                   {formatNumberAsCurrency(discountPrice)}
@@ -60,49 +64,16 @@ export function VehicleCard({ vehicle }) {
         </div>
         <div className="text-neutral-200 font-mono align-middle flex flex-row items-center gap-x-8 leading-5">
           <div className="flex flex-row gap-x-2 text-right">
-            <svg
-              className="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-            >
-              <path
-                d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="32"
-              />
-              <path
-                d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z"
-                fill="none"
-                stroke="currentColor"
-                strokeMiterlimit="10"
-                strokeWidth="32"
-              />
-            </svg>
-            <span className="capitalize text-sm text-neutral-100">
+            <Icons.Person className="w-4 h-4" />
+            <span className="capitalize text-sm text-slate-300 tracking-wide">
               {details.capacity}
             </span>
           </div>
           <div className="flex flex-row gap-x-2 text-right">
             {details.bags && (
               <>
-                <svg
-                  className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="32"
-                    d="M80 176a16 16 0 0 0-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 0 0-16-16zm80 0v-32a96 96 0 0 1 96-96h0a96 96 0 0 1 96 96v32"
-                  />
-                </svg>
-                <span className="capitalize text-sm text-neutral-100">
+                <Icons.Bag className="w-4 h-4" />
+                <span className="capitalize text-sm text-slate-300 tracking-wide">
                   {details.bags}
                 </span>
               </>
