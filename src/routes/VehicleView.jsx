@@ -18,7 +18,7 @@ export function VehicleView() {
   return (
     <>
       <ScrollRestoration />
-      <section>
+      <section className="w-full max-w-screen-xl mx-auto px-6 2xl:px-0">
         <p className="mb-3 font-mono tracking-wide">
           <Link to="/" className="hover:text-white font-semibold">
             Home

@@ -4,7 +4,7 @@ import { Icons } from "./Icons";
 export function Hero() {
   return (
     <section>
-      <div className="relative flex flex-row items-center">
+      <div className="relative flex flex-row items-center px-6 2xl:px-0 max-w-screen-xl mx-auto">
         <img
           src="./assets/images/hero.jpg"
           alt="hero img"
@@ -30,7 +30,7 @@ export function Hero() {
           </Link>
         </div>
       </div>
-      <div className="mt-20">
+      <div className="mt-20 px-6 2xl:px-0 max-w-screen-xl mx-auto">
         <p className="font-semibold mb-8 text-center lg:text-left">
           As featured in
         </p>
@@ -44,7 +44,7 @@ export function Hero() {
           <li className="flex">
             <Icons.Wired />
           </li>
-          <li className="flex hidden xl:block">
+          <li className="hidden xl:flex">
             <Icons.CNN />
           </li>
           <li className="flex">
@@ -56,7 +56,7 @@ export function Hero() {
           <li className="flex">
             <Icons.FastCompany />
           </li>
-          <li className="flex hidden xl:block">
+          <li className="hidden xl:flex">
             <Icons.Huffpost />
           </li>
         </ul>

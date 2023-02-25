@@ -7,14 +7,9 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@radix-ui/react-collapsible";
-import {
-  Slider,
-  SliderTrack,
-  SliderRange,
-  SliderThumb,
-} from "@radix-ui/react-slider";
-import classNames from "classnames";
+} from "../components/ui/collapsible";
+import { Slider } from "../components/ui/slider";
+import { cn } from "../lib/utils";
 import { getBackgroundColorClass } from "../lib/utils";
 import { formatNumberAsCurrency } from "../lib/utils";
 import {
@@ -28,6 +23,7 @@ import {
   getCountAllSelectedFilters,
 } from "../lib/vehicles";
 import { Icons } from "../components/Icons";
+import { Button } from "../components/ui/button";
 
 export function VehicleGrid() {
   const [state, dispatch] = useReducer(filtersReducer, INITIAL_STATE);
@@ -100,7 +96,7 @@ export function VehicleGrid() {
   return (
     <>
       <ScrollRestoration />
-      <section>
+      <section className="w-full max-w-screen-xl mx-auto px-6 2xl:px-0">
         <Collapsible
           open={isOpenCollapsible}
           onOpenChange={() => setIsOpenCollapsible(!isOpenCollapsible)}
@@ -117,7 +113,7 @@ export function VehicleGrid() {
                 Find your ride
               </h1>
               <p
-                className={classNames(
+                className={cn(
                   "mt-3 font-mono tracking-wide",
                   countFilteredVehicles ? "invisible lg:visible" : "invisible"
                 )}
@@ -129,13 +125,13 @@ export function VehicleGrid() {
             </div>
             <div className="w-full lg:w-auto flex flex-row items-center justify-between mt-10">
               <CollapsibleTrigger asChild>
-                <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start items-center justify-between border border-neutral-700 rounded-lg">
+                <button className="collapsibleTrigger px-6 py-4 w-48 flex flex-start items-center justify-between border border-neutral-700 rounded-lg transition-all [&[data-state=open]>svg]:rotate-180">
                   <span>{countAllSelectedFilters}</span>
-                  <Icons.ChevronDown className="collapsibleChevron" />
+                  <Icons.ChevronDown className="h-5 w-5 transition-transform duration-200 flex-shrink-0 stroke-current text-neutral-400 align-middle" />
                 </button>
               </CollapsibleTrigger>
               <p
-                className={classNames(
+                className={cn(
                   "mt-1 font-mono",
                   countFilteredVehicles ? "block lg:hidden" : "hidden"
                 )}
@@ -164,7 +160,7 @@ export function VehicleGrid() {
                               payload: { brand: brand.id },
                             })
                           }
-                          className={classNames(
+                          className={cn(
                             "cursor-pointer py-[6px] px-5 bg-gray-800 border hover:border-neutral-200 rounded-3xl",
                             isBrandSelected(brand) ? "" : "border-transparent"
                           )}
@@ -194,7 +190,7 @@ export function VehicleGrid() {
                               payload: { color: color.id },
                             })
                           }
-                          className={classNames(
+                          className={cn(
                             backgroundColorClass,
                             "relative after:absolute after:w-9 after:h-9 after:border-[1.75px] after:-top-[4.5px] after:-left-[4.5px] after:rounded-full cursor-pointer w-7 h-7 rounded-full border border-gray-400",
                             isColorSelected(color)
@@ -229,12 +225,7 @@ export function VehicleGrid() {
                       orientation="horizontal"
                       dir="ltr"
                       className="sliderRoot"
-                    >
-                      <SliderTrack className="sliderTrack">
-                        <SliderRange className="sliderRange" />
-                      </SliderTrack>
-                      <SliderThumb className="sliderThumb" />
-                    </Slider>
+                    ></Slider>
                   </div>
                 </div>
               </div>
@@ -243,9 +234,9 @@ export function VehicleGrid() {
 
           <section
             id="filters-selected"
-            className={classNames(
-              "py-6 w-full flex flex-row flex-wrap items-center gap-2",
-              !isOpenCollapsible && isFiltersActive ? "block" : "hidden"
+            className={cn(
+              "py-6 w-full flex-row flex-wrap items-center gap-2",
+              !isOpenCollapsible && isFiltersActive ? "flex" : "hidden"
             )}
           >
             <>
@@ -289,8 +280,9 @@ export function VehicleGrid() {
                   />
                 );
               })}
-              <button
-                className="first:m-0 ml-6 font-semibold cursor-pointer text-slate-300 hover:text-white underline underline-offset-4 decoration-slate-200"
+              <Button
+                variant="underline"
+                className="first:m-0 ml-2 font-semibold"
                 onClick={() =>
                   dispatch({
                     type: FILTER_ACTION_TYPES.CLEAR_SELECTION,
@@ -298,12 +290,12 @@ export function VehicleGrid() {
                 }
               >
                 Clear All
-              </button>
+              </Button>
             </>
           </section>
           <section
             id="vehicle-grid"
-            className={classNames(
+            className={cn(
               "grid gap-x-8 gap-y-10 mt-16",
               !countFilteredVehicles
                 ? "grid-cols-1"
@@ -311,7 +303,7 @@ export function VehicleGrid() {
             )}
           >
             <div
-              className={classNames(
+              className={cn(
                 "max-w-3xl mx-auto",
                 !countFilteredVehicles ? "block" : "hidden"
               )}

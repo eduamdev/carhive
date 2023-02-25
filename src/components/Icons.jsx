@@ -1,4 +1,15 @@
 export const Icons = {
+  Menu: (props) => (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M5 6h14M5 18h14M5 12h14"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  ),
   Quote: (props) => (
     <svg viewBox="0 0 24 24" {...props}>
       <path fill="none" d="M0 0h24v24H0z" />
@@ -293,6 +304,20 @@ export const Icons = {
         strokeWidth="48"
         d="m112 184 144 144 144-144"
       />
+    </svg>
+  ),
+  ChevronUp: (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   ),
   AppStore: (props) => (

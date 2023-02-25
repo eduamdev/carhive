@@ -2,7 +2,7 @@ import { Icons } from "./Icons";
 
 export function Quote() {
   return (
-    <div className="relative py-7 flex flex-col justify-center">
+    <div className="relative w-full py-7 flex flex-col justify-center max-w-screen-xl mx-auto">
       <figure className="sm:self-end max-w-xl bg-neutral-900/80 p-9 rounded-md z-10 mx-4 sm:mr-7">
         <Icons.Quote className="mr-3 text-white fill-current h-10 w-10 inline-block align-text-bottom" />
         <blockquote

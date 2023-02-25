@@ -1,16 +1,17 @@
 import {
   Accordion,
-  AccordionItem,
-  AccordionHeader,
-  AccordionTrigger,
   AccordionContent,
-} from "@radix-ui/react-accordion";
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 import { faqs } from "../data/faqs";
-import { Icons } from "./Icons";
 
 export function Faqs() {
   return (
-    <section id="faqs" className="w-full max-w-2xl mx-auto scroll-mt-10">
+    <section
+      id="faqs"
+      className="w-full max-w-2xl mx-auto scroll-mt-10 px-6 2xl:px-0"
+    >
       <h2 className="text-3xl lg:text-4xl font-bold text-center">
         Frequently Asked Questions
       </h2>
@@ -24,29 +25,11 @@ export function Faqs() {
         </a>
         .
       </p>
-      <Accordion
-        className="w-full max-w-[42rem] mx-auto"
-        type="single"
-        defaultValue="item-1"
-        collapsible
-      >
+      <Accordion type="single" collapsible>
         {faqs.map((faq) => (
-          <AccordionItem
-            key={faq.key}
-            value={`item-${faq.key}`}
-            className="border-t border-neutral-800 py-4"
-          >
-            <AccordionHeader>
-              <AccordionTrigger className="accordionTrigger">
-                <span className="text-xl font-medium text-left">
-                  {faq.question}
-                </span>
-                <Icons.ChevronDown className="accordionChevron" />
-              </AccordionTrigger>
-            </AccordionHeader>
-            <AccordionContent className="text-left mt-4">
-              <p>{faq.answer}</p>
-            </AccordionContent>
+          <AccordionItem value={`item-${faq.key}`} key={faq.key}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>{faq.answer}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>

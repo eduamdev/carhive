@@ -1,3 +1,10 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
 export function formatNumberAsCurrency(number) {
   const NUMBER_FORMATTER = new Intl.NumberFormat(undefined, {
     style: "currency",
