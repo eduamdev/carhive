@@ -13,12 +13,13 @@ export function VehicleCard({ vehicle }) {
   const discount = Math.round(100 - (discountPrice * 100) / retailPrice);
 
   return (
-    <div className="grid-rows-[15.5rem_1fr] h-full grid rounded-2xl group">
+    <div className="grid-rows-[auto_1fr] h-full grid rounded-2xl group">
       <div className="relative h-full overflow-hidden rounded-xl">
         <img
           src={coverImage.urlPath}
+          style={{ aspectRatio: "37/31" }}
           alt={coverImage.alt}
-          className="h-full w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
+          className="w-full object-cover object-center object-no-repeat group-hover:grayscale group-hover:scale-105 transition-all ease-in"
           loading="lazy"
           decoding="async"
         />
