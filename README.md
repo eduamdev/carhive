@@ -1,3 +1,5 @@
-# Car Rental React
+# Rides
 
-![car-rental-react](https://user-images.githubusercontent.com/35645733/219885308-4dbbb382-3871-4e61-9667-0070c96da76e.png)
+Car Rental website
+
+![rides-car-rental](https://github.com/shadcn-ui/taxonomy/assets/35645733/eb6ccbaf-fa0d-4e94-be64-7eb6268b68b4)
