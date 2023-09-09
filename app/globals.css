@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
+    touch-action: manipulation;
+    min-width: 360px;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    overscroll-behavior-y: contain;
+  }
+
+  strong {
+    font-weight: 500;
+    color: theme('colors.neutral.900');
+  }
+
+  /* https://bugs.webkit.org/show_bug.cgi?id=243601
+  https://nextjs.org/docs/pages/api-reference/components/image#known-browser-bugs 
+  Safari 15 and 16 display a gray border while loading */
+  @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+    img[loading='lazy'] {
+      clip-path: inset(0.6px);
+    }
+  }
+}
