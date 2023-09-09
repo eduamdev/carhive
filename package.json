@@ -1,56 +1,38 @@
 {
-  "name": "car-rental-react",
+  "name": "car-rental-nextjs",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d build"
+  },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.0.1",
     "@radix-ui/react-collapsible": "^1.0.1",
     "@radix-ui/react-popover": "^1.0.3",
     "@radix-ui/react-slider": "^1.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
+    "eslint": "^8.49.0",
+    "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.1",
-    "react-router-hash-link": "^2.4.3",
-    "react-scripts": "^5.0.1",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "typescript": "5.2.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
+    "@types/node": "^20.6.0",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "autoprefixer": "^10.4.15",
+    "eslint-config-next": "13.4.19",
     "gh-pages": "^4.0.0",
-    "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4"
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3"
   }
 }
