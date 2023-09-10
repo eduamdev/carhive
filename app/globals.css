@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --total-brand: 8;
+    --logo-width: 12rem;
+    --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 2);
+  }
+
   html,
   body {
     /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
