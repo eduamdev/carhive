@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="border-t bg-white">
-      <div className="xl:max-w-8xl mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0">
+      <div className="mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
         <div className="grid grid-cols-2 items-baseline justify-between gap-12 sm:grid-cols-4">
           <ul className="flex flex-col gap-1.5 sm:gap-2.5">
             <li className="font-medium">Company</li>
