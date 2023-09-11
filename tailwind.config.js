@@ -9,8 +9,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: '550px',
+        md: '950px',
+        lg: '1128px',
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
+      },
+      maxWidth: {
+        '8xl': '86rem',
       },
       keyframes: {
         slide: {
@@ -19,7 +27,7 @@ module.exports = {
         },
       },
       animation: {
-        slide: 'slide 32s linear infinite',
+        slide: 'slide 24s linear infinite',
       },
     },
   },

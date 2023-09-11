@@ -1,6 +1,18 @@
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
+  menu: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeMiterlimit="10"
+        strokeWidth="32"
+        d="M80 160h352M80 256h352M80 352h352"
+      />
+    </svg>
+  ),
   user: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path
@@ -29,6 +41,107 @@ export const Icons = {
         strokeLinecap="round"
         strokeLinejoin="round"
       ></path>
+    </svg>
+  ),
+  check: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M416 128L192 384l-96-96"
+      />
+    </svg>
+  ),
+  checkCircle: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
+        fill="none"
+        stroke="currentColor"
+        strokeMiterlimit="10"
+        strokeWidth="32"
+      />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M352 176L217.6 336 160 272"
+      />
+    </svg>
+  ),
+  receipt: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M160 336V48l32 16 32-16 31.94 16 32.37-16L320 64l31.79-16 31.93 16L416 48l32.01 16L480 48v224"
+      />
+      <path
+        d="M480 272v112a80 80 0 01-80 80h0a80 80 0 01-80-80v-48H48a15.86 15.86 0 00-16 16c0 64 6.74 112 80 112h288"
+        fill="none"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="32"
+      />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M224 144h192M288 224h128"
+      />
+    </svg>
+  ),
+  navigate: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        d="M448 64L64 240.14h200a8 8 0 018 8V448z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+      />
+    </svg>
+  ),
+  shield: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M336 176L225.2 304 176 255.8"
+      />
+      <path
+        d="M463.1 112.37C373.68 96.33 336.71 84.45 256 48c-80.71 36.45-117.68 48.33-207.1 64.37C32.7 369.13 240.58 457.79 256 464c15.42-6.21 223.3-94.87 207.1-351.63z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+      />
+    </svg>
+  ),
+  snow: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M256 32v448M313.72 80A111.47 111.47 0 01256 96a111.47 111.47 0 01-57.72-16M198.28 432a112.11 112.11 0 01115.44 0M449.99 144L62.01 368M437.27 218a112.09 112.09 0 01-57.71-100M74.73 294a112.09 112.09 0 0157.71 100M62.01 144l387.98 224M74.73 218a112.09 112.09 0 0057.71-100M437.27 294a112.09 112.09 0 00-57.71 100"
+      />
     </svg>
   ),
 };
