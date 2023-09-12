@@ -185,11 +185,11 @@ export default function Page() {
         </div>
       </section>
       <section className="border-t bg-neutral-50">
-        <div className="mx-auto w-[90%] max-w-4xl items-center justify-between gap-x-4 py-16 text-black">
+        <div className="mx-auto w-[90%] max-w-4xl items-center justify-between py-16 text-black">
           <h2 className="text-center text-2xl font-bold">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta.
           </h2>
-          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
             <div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
                 <Icons.receipt className="h-6 w-6 text-neutral-500" />
@@ -223,8 +223,95 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="border-t py-16">
-        <h2 className="text-center text-2xl font-extrabold">Stuff</h2>
+      <section className="border-t">
+        <div className="mx-auto w-[90%] max-w-8xl items-center justify-between py-12 text-black">
+          <h2 className="text-center text-2xl font-extrabold">
+            Lorem ipsum dolor sit amet.
+          </h2>
+          <div className="columns-1 sm:columns-2 lg:columns-4">
+            <div className="-mx-2">
+              <div className="px-4 pt-8">
+                <div className="rounded-2xl bg-neutral-50 p-7">
+                  <p className="text-sm leading-6 text-neutral-700">
+                    “Anim sit consequat culpa commodo eu do nisi commodo ut aute
+                    aliqua. Laborum esse duis tempor consectetur officia mollit
+                    fugiat. Exercitation qui elit minim minim quis fugiat ex.”
+                  </p>
+                  <div className="mt-6 flex items-center justify-start gap-5">
+                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <div>
+                      <p className="text-[15px] font-semibold">
+                        Michael Foster
+                      </p>
+                      <p className="mt-1 text-sm text-neutral-600">
+                        @michaelfoster
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-4 pt-8">
+                <div className="rounded-2xl bg-neutral-50 p-7">
+                  <p className="text-sm leading-6 text-neutral-700">
+                    “Laborum quis quam. Dolorum et ut quod quia. Voluptas
+                    numquam delectus nihil. Aut enim doloremque et ipsam.”
+                  </p>
+                  <div className="mt-6 flex items-center justify-start gap-5">
+                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <div>
+                      <p className="text-[15px] font-semibold">
+                        Leslie Alexander
+                      </p>
+                      <p className="mt-1 text-sm text-neutral-600">
+                        @lesliealexander
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-4 pt-8">
+                <div className="rounded-2xl bg-neutral-50 p-7">
+                  <p className="text-sm leading-6 text-neutral-700">
+                    “Excepteur consectetur deserunt id incididunt veniam mollit
+                    officia sint qui aute duis sit cillum. Reprehenderit fugiat
+                    amet aliqua in commodo minim sunt laborum.”
+                  </p>
+                  <div className="mt-6 flex items-center justify-start gap-5">
+                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <div>
+                      <p className="text-[15px] font-semibold">
+                        Lindsay Walton
+                      </p>
+                      <p className="mt-1 text-sm text-neutral-600">
+                        @lindsaywalton
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="px-4 pt-8">
+                <div className="rounded-2xl bg-neutral-50 p-7">
+                  <p className="text-sm leading-6 text-neutral-700">
+                    “Voluptas quos itaque ipsam in voluptatem est. Iste eos
+                    blanditiis repudiandae. Earum deserunt enim molestiae ipsum
+                    perferendis.”
+                  </p>
+                  <div className="mt-6 flex items-center justify-start gap-5">
+                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <div>
+                      <p className="text-[15px] font-semibold">
+                        Whitney Francis
+                      </p>
+                      <p className="mt-1 text-sm text-neutral-600">
+                        @whitneyfrancis
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <section className="bg-neutral-900 py-16">
         <h2 className="text-center text-2xl font-extrabold text-white">
