@@ -2,7 +2,10 @@ export function SiteFooter() {
   return (
     <footer className="border-t bg-white">
       <div className="mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-baseline justify-between gap-8 md:flex md:flex-wrap">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-stretch justify-between gap-x-6 gap-y-8 md:flex md:flex-wrap">
+          <p className="col-span-full text-lg font-bold leading-none">
+            Car Dealer
+          </p>
           <ul className="flex flex-col gap-2">
             <h4 className="mb-1 font-medium text-neutral-800">Company</h4>
             <li className="text-neutral-600">About</li>
@@ -26,12 +29,12 @@ export function SiteFooter() {
             <li className="text-neutral-600">Terms of use</li>
             <li className="text-neutral-600">Cookie Preferences</li>
           </ul>
-          <ul className="col-span-auto flex flex-col gap-2 md:col-auto">
+          <ul className="flex flex-col gap-2">
             <h4 className="mb-1 font-medium text-neutral-800">Support</h4>
             <li className="text-neutral-600">Contact us</li>
             <li className="text-neutral-600">FAQs</li>
           </ul>
-          <div className="col-span-full flex flex-col gap-2 md:col-auto">
+          <div className="col-span-full flex flex-col gap-2">
             <h4 className="mb-1 font-medium text-neutral-800">
               Subscribe to our newsletter
             </h4>

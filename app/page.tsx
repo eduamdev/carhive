@@ -192,7 +192,7 @@ export default function Page() {
           <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
             <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
               <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-                <Icons.receipt className="h-6 w-6 text-neutral-500" />
+                <Icons.earth className="h-6 w-6 text-neutral-500" />
               </div>
               <p className="mt-6 font-semibold">Lorem, ipsum dolor.</p>
               <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -238,7 +238,10 @@ export default function Page() {
                     fugiat. Exercitation qui elit minim minim quis fugiat ex.”
                   </blockquote>
                   <figcaption className="mt-6 flex items-center justify-start gap-5">
-                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <img
+                      src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="h-10 w-10 rounded-full border bg-white"
+                    ></img>
                     <div>
                       <p className="text-[15px] font-semibold">
                         Michael Foster
@@ -257,7 +260,10 @@ export default function Page() {
                     numquam delectus nihil. Aut enim doloremque et ipsam.”
                   </blockquote>
                   <figcaption className="mt-6 flex items-center justify-start gap-5">
-                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="h-10 w-10 rounded-full border bg-white"
+                    ></img>
                     <div>
                       <p className="text-[15px] font-semibold">
                         Leslie Alexander
@@ -277,7 +283,10 @@ export default function Page() {
                     perferendis.”
                   </blockquote>
                   <figcaption className="mt-6 flex items-center justify-start gap-5">
-                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <img
+                      src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="h-10 w-10 rounded-full border bg-white"
+                    ></img>
                     <div>
                       <p className="text-[15px] font-semibold">
                         Whitney Francis
@@ -297,7 +306,10 @@ export default function Page() {
                     amet aliqua in commodo minim sunt laborum.”
                   </blockquote>
                   <figcaption className="mt-6 flex items-center justify-start gap-5">
-                    <span className="h-10 w-10 rounded-full border bg-white"></span>
+                    <img
+                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="h-10 w-10 rounded-full border bg-white"
+                    ></img>
                     <div>
                       <p className="text-[15px] font-semibold">
                         Lindsay Walton
@@ -327,11 +339,6 @@ export default function Page() {
               <button className="ml-4 rounded-md px-3 py-2">Learn more</button>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="border-t">
-        <div className="mx-auto max-w-none px-5 py-16 sm:max-w-[90%] sm:px-0 md:max-w-4xl">
-          <h2 className="text-center text-2xl font-extrabold">FAQS</h2>
         </div>
       </section>
     </main>
