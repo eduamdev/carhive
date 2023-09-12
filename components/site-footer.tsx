@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="border-t bg-white">
-      <div className="mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-6xl">
+      <div className="mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-baseline justify-between gap-8 md:flex md:flex-wrap">
           <ul className="flex flex-col gap-2">
             <h4 className="mb-1 font-medium text-neutral-800">Company</h4>

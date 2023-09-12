@@ -185,7 +185,7 @@ export default function Page() {
         </div>
       </section>
       <section className="border-t bg-neutral-50">
-        <div className="mx-auto max-w-[90%] px-5 py-16 sm:px-0 lg:max-w-4xl">
+        <div className="mx-auto max-w-none px-5 py-16 sm:max-w-[90%] sm:px-0 lg:max-w-4xl">
           <h2 className="text-center text-2xl font-bold">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta.
           </h2>
@@ -224,7 +224,7 @@ export default function Page() {
         </div>
       </section>
       <section className="border-t">
-        <div className="mx-auto max-w-[90%] px-5 py-12 sm:px-0 xl:max-w-8xl">
+        <div className="mx-auto max-w-none px-5 py-12 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
           <h2 className="text-center text-2xl font-extrabold">
             Lorem ipsum dolor sit amet.
           </h2>
@@ -314,7 +314,7 @@ export default function Page() {
         </div>
       </section>
       <section className="border-t bg-neutral-50">
-        <div className="mx-auto max-w-[90%] px-5 py-16 sm:px-0 xl:max-w-8xl">
+        <div className="mx-auto max-w-none px-5 py-16 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <h2 className="text-2xl font-extrabold">
               <p>Lorem ipsum dolor sit.</p>
@@ -330,7 +330,7 @@ export default function Page() {
         </div>
       </section>
       <section className="border-t">
-        <div className="mx-auto max-w-[90%] px-5 py-16 sm:px-0 md:max-w-4xl">
+        <div className="mx-auto max-w-none px-5 py-16 sm:max-w-[90%] sm:px-0 md:max-w-4xl">
           <h2 className="text-center text-2xl font-extrabold">FAQS</h2>
         </div>
       </section>
