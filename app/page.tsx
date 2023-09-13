@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Icons } from '@/components/icons';
 import { BrandLogoSlider } from '@/components/brand-logo-slider';
 
-export default function Page() {
+export default function HomePage() {
   return (
     <main>
       <section className="bg-gradient-to-b from-white to-neutral-50 pt-12">
@@ -67,7 +67,7 @@ export default function Page() {
                 priority
                 src="/suv.jpg"
                 alt="suv"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
             <div className="h-40 w-[262px] transition-all hover:grayscale">
@@ -77,7 +77,7 @@ export default function Page() {
                 priority
                 src="/minivan.jpg"
                 alt="minivan"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
             <div className="h-40 w-[262px] transition-all hover:grayscale">
@@ -87,7 +87,7 @@ export default function Page() {
                 priority
                 src="/pick-up.jpg"
                 alt="pick-up"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
             <div className="h-40 w-[262px] transition-all hover:grayscale">
@@ -97,7 +97,7 @@ export default function Page() {
                 priority
                 src="/sedan.jpg"
                 alt="sedan"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
             <div className="h-40 w-[262px] transition-all hover:grayscale">
@@ -107,7 +107,7 @@ export default function Page() {
                 priority
                 src="/convertible.jpg"
                 alt="convertible"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
             <div className="h-40 w-[262px] transition-all hover:grayscale">
@@ -117,7 +117,7 @@ export default function Page() {
                 priority
                 src="/off-road.jpg"
                 alt="off-road"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
+                className="h-full w-full rounded-2xl border bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
               />
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function Page() {
           <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
             <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
               <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-                <Icons.earth className="h-6 w-6 text-neutral-500" />
+                <Icons.gift className="h-6 w-6 text-neutral-500" />
               </div>
               <p className="mt-6 font-semibold">Lorem, ipsum dolor.</p>
               <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
