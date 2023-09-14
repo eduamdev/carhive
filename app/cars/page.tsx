@@ -2,7 +2,7 @@ import { Icons } from '@/components/icons';
 
 export default function CarsPage() {
   return (
-    <main>
+    <div>
       <section className="hidden md:block">
         <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
           <div className="flex items-center justify-center">
@@ -51,16 +51,42 @@ export default function CarsPage() {
       </section>
       <section className="border-t">
         <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-          <div className="flex">
+          <div className="flex h-screen">
             {/* filters */}
-            <div className="mr-4 mt-8 hidden w-full max-w-[200px] md:block">
+            <div className="hidden w-full max-w-[200px] pr-4 pt-8 md:block">
               <div className="sticky h-fit w-full overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col">
                   <p className="text-xs">42 cars</p>
                   <hr className="my-4" />
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold">Car Type</span>
-                    <Icons.chevronDown className="h-4 w-4 text-neutral-600" />
+                    <Icons.chevronUp className="h-4 w-4 text-neutral-600" />
+                  </div>
+                  <div className="mt-4 grid grid-cols-1 gap-2 text-xs">
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>SUV</span>
+                    </div>
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>Minivan</span>
+                    </div>
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>Pick-up</span>
+                    </div>
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>Sedan</span>
+                    </div>
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>Premium</span>
+                    </div>
+                    <div className="flex items-center justify-start gap-2">
+                      <input type="checkbox" />
+                      <span>Convertible</span>
+                    </div>
                   </div>
                   <hr className="my-4" />
                   <div className="flex items-center justify-between">
@@ -70,7 +96,15 @@ export default function CarsPage() {
                   <hr className="my-4" />
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold">Transmission</span>
-                    <Icons.chevronDown className="h-4 w-4 text-neutral-600" />
+                    <Icons.chevronUp className="h-4 w-4 text-neutral-600" />
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-1 text-xs">
+                    <span className="flex h-10 items-center justify-center rounded-sm bg-neutral-100 p-4">
+                      Automatic
+                    </span>
+                    <span className="flex h-10 items-center justify-center rounded-sm bg-neutral-100 p-4">
+                      Manual
+                    </span>
                   </div>
                   <hr className="my-4" />
                   <div className="flex items-center justify-between">
@@ -120,8 +154,8 @@ export default function CarsPage() {
                 </div>
               </div>
             </div>
-            <div className="flex h-screen w-full">
-              <div className="flex basis-full flex-col gap-4 pt-5 md:px-4 xl:basis-2/3">
+            <div className="flex w-full">
+              <main className="flex basis-full flex-col gap-4 overflow-y-auto py-5 md:px-4 xl:basis-2/3">
                 <div className="mb-2 flex items-center justify-between text-[13px]">
                   <div>
                     <span className="mr-2">Sort by</span>
@@ -206,13 +240,13 @@ export default function CarsPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </main>
               {/* map */}
-              <div className="hidden bg-neutral-50 xl:block xl:basis-1/3"></div>
+              <div className="hidden h-full bg-neutral-50 xl:block xl:basis-1/3"></div>
             </div>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
