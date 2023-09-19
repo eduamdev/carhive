@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export function SiteFooter() {
   return (
-    <footer className="border-t bg-white">
-      <div className="mx-auto mt-12 w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
+    <footer className="border-t bg-white py-10">
+      <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-stretch justify-between gap-x-6 gap-y-8 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
@@ -55,7 +55,7 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <div className="mt-2 py-10">
+        <div className="mt-12">
           <p className="text-neutral-600">
             Design and developed by{' '}
             <a href="https://twitter.com/eduamdev">
