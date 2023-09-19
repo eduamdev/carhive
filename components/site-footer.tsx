@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] items-stretch justify-between gap-x-6 gap-y-8 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <p className=" text-lg font-bold leading-none">Car Dealer</p>
+              <p className="text-base font-bold leading-none">Car Dealer</p>
             </Link>
           </div>
           <ul className="flex flex-col gap-2">
