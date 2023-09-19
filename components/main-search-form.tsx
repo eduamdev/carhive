@@ -60,7 +60,7 @@ export function MainSearchForm() {
               <FormControl>
                 <Input
                   placeholder="Add location"
-                  className="overflow-ellipsis"
+                  className="overflow-ellipsis text-[15px]"
                   {...field}
                 />
               </FormControl>
@@ -80,7 +80,7 @@ export function MainSearchForm() {
               <FormControl>
                 <Input
                   placeholder="Add location"
-                  className="overflow-ellipsis"
+                  className="overflow-ellipsis text-[15px]"
                   {...field}
                 />
               </FormControl>
@@ -102,7 +102,7 @@ export function MainSearchForm() {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-sm',
+                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-[15px]',
                         !field.value && 'text-neutral-500',
                       )}
                     >
@@ -142,7 +142,7 @@ export function MainSearchForm() {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-sm',
+                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-[15px]',
                         !field.value && 'text-neutral-500',
                       )}
                     >

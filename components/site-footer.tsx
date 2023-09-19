@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Newsletter } from '@/components/newsletter';
 
 export function SiteFooter() {
   return (
@@ -38,21 +39,15 @@ export function SiteFooter() {
             <li className="text-neutral-600">Contact us</li>
             <li className="text-neutral-600">FAQs</li>
           </ul>
-          <div className="col-span-full flex flex-col gap-2">
+          <div className="col-span-full flex flex-col gap-2 md:max-w-[240px]">
             <h4 className="mb-1 font-medium text-neutral-800">
               Subscribe to our newsletter
             </h4>
-            <p className="leading-6 text-neutral-600 md:max-w-[240px]">
+            <p className="leading-6 text-neutral-600">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit,
               accusamus.
             </p>
-            <div>
-              <input
-                type="text"
-                className="w-full rounded-md border bg-neutral-50 px-3 py-1.5"
-                placeholder="you@domain.com"
-              />
-            </div>
+            <Newsletter />
           </div>
         </div>
         <div className="mt-12">

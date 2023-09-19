@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
 export function CallToAction() {
   return (
     <section className="border-t bg-neutral-50 py-16">
@@ -8,10 +11,15 @@ export function CallToAction() {
             <p>Lorem ipsum dolor sit amet consectetur.</p>
           </h2>
           <div>
-            <button className="rounded-md bg-black px-3 py-2 text-white">
+            <Link
+              href="/cars"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-neutral-50 ring-offset-white transition-colors hover:bg-neutral-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            >
               Get started
-            </button>
-            <button className="ml-4 rounded-md px-3 py-2">Learn more</button>
+            </Link>
+            <Button variant="ghost" className="ml-4">
+              Learn more
+            </Button>
           </div>
         </div>
       </div>
