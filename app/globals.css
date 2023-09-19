@@ -14,6 +14,7 @@
     /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
     touch-action: manipulation;
     min-width: 360px;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
