@@ -24,7 +24,9 @@ export function Hero() {
           </span>
         </div>
       </div>
-      <MainSearchForm />
+      <div className="mt-5">
+        <MainSearchForm />
+      </div>
       <BrandLogoSlider />
     </section>
   );

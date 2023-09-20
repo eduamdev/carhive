@@ -1,6 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
 
 import { Icons } from '@/components/icons';
 import { Input } from '@/components/ui/input';
@@ -21,19 +26,17 @@ import {
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { format } from 'date-fns';
-import { cn } from '@/lib/utils';
-
 const formSchema = z.object({
   pickupDropoff: z.string(),
   checkin: z.date(),
   checkout: z.date(),
 });
 
-export function MainSearchForm() {
+interface MainSearchFormProps {
+  compact?: boolean;
+}
+
+export function MainSearchForm({ compact = false }: MainSearchFormProps) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -52,24 +55,43 @@ export function MainSearchForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative mx-auto mt-5 hidden h-[72px] w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex"
+        className={cn(
+          'relative mx-auto hidden  items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex',
+          compact ? 'w-[680px]' : 'h-[72px] w-[860px]',
+        )}
       >
         <FormField
           control={form.control}
           name="pickupDropoff"
           render={({ field }) => (
             <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
-              <FormLabel className="w-full pb-1 text-[13px] font-semibold">
+              <FormLabel
+                className={cn(
+                  'inline-block w-full font-bold text-neutral-800',
+                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                )}
+              >
                 Pick-up / Drop-off
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Add location"
-                  className="overflow-ellipsis text-[15px]"
+                  className={cn(
+                    'overflow-ellipsis',
+                    compact ? 'text-sm' : 'text-[15px]',
+                    !field.value
+                      ? 'text-neutral-500'
+                      : 'font-semibold text-neutral-800',
+                  )}
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="absolute top-[76px] text-[13px]" />
+              <FormMessage
+                className={cn(
+                  'absolute',
+                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                )}
+              />
             </FormItem>
           )}
         />
@@ -79,7 +101,12 @@ export function MainSearchForm() {
           name="checkin"
           render={({ field }) => (
             <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
-              <FormLabel className="inline-block w-full pb-1 text-[13px] font-semibold">
+              <FormLabel
+                className={cn(
+                  'inline-block w-full font-bold text-neutral-800',
+                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                )}
+              >
                 Check in
               </FormLabel>
               <Popover>
@@ -87,8 +114,11 @@ export function MainSearchForm() {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-[15px]',
-                        !field.value && 'text-neutral-500',
+                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left ',
+                        compact ? 'text-sm' : 'text-[15px]',
+                        !field.value
+                          ? 'text-neutral-500'
+                          : 'font-semibold text-neutral-800',
                       )}
                     >
                       {field.value ? (
@@ -109,7 +139,12 @@ export function MainSearchForm() {
                   />
                 </PopoverContent>
               </Popover>
-              <FormMessage className="absolute top-[76px] text-[13px]" />
+              <FormMessage
+                className={cn(
+                  'absolute',
+                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                )}
+              />
             </FormItem>
           )}
         />
@@ -119,7 +154,12 @@ export function MainSearchForm() {
           name="checkout"
           render={({ field }) => (
             <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
-              <FormLabel className="inline-block w-full pb-1 text-[13px] font-semibold">
+              <FormLabel
+                className={cn(
+                  'inline-block w-full font-bold text-neutral-800',
+                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                )}
+              >
                 Check out
               </FormLabel>
               <Popover>
@@ -128,7 +168,10 @@ export function MainSearchForm() {
                     <button
                       className={cn(
                         'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-[15px]',
-                        !field.value && 'text-neutral-500',
+                        compact ? 'text-sm' : 'text-[15px]',
+                        !field.value
+                          ? 'text-neutral-500'
+                          : 'font-semibold text-neutral-800',
                       )}
                     >
                       {field.value ? (
@@ -149,16 +192,21 @@ export function MainSearchForm() {
                   />
                 </PopoverContent>
               </Popover>
-              <FormMessage className="absolute top-[76px] text-[13px]" />
+              <FormMessage
+                className={cn(
+                  'absolute',
+                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                )}
+              />
             </FormItem>
           )}
         />
         <Button
           type="submit"
-          size="icon-lg"
+          size={compact ? 'icon' : 'icon-lg'}
           className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
         >
-          <Icons.search className="h-[18px] w-[18px]" />
+          <Icons.search className={compact ? 'h-4 w-4' : 'h-[18px] w-[18px]'} />
         </Button>
       </form>
     </Form>

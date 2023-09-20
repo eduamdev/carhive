@@ -23,11 +23,11 @@ export function MainCarsContent() {
 
   return (
     <Collapsible asChild open={open} onOpenChange={setOpen}>
-      <div className="flex w-full">
-        <main
+      <main className="flex w-full">
+        <div
           className={cn(
             'flex basis-full flex-col gap-4 overflow-y-auto py-5 md:px-4',
-            open && 'xl:basis-2/3',
+            open ? 'xl:basis-2/3' : 'md:pr-0',
           )}
         >
           <div className="mb-2 flex items-center justify-between">
@@ -127,12 +127,12 @@ export function MainCarsContent() {
               </div>
             </div>
           </article>
-        </main>
+        </div>
         {/* map */}
         <CollapsibleContent asChild>
           <div className="hidden h-full bg-neutral-50 xl:block xl:basis-1/3"></div>
         </CollapsibleContent>
-      </div>
+      </main>
     </Collapsible>
   );
 }
