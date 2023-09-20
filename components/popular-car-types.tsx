@@ -5,7 +5,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 export function PopularCarTypes() {
   return (
     <section className="border-t pt-10">
-      <div className="2xl:max-w-8xl mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0">
+      <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
         <h2 className="text-2xl font-extrabold">Popular Rental Car Choices</h2>
       </div>
       <div className="relative mt-5 w-full before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
@@ -16,8 +16,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=suv"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   SUV
                 </span>
               </div>
@@ -35,8 +35,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=minivan"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   Minivan
                 </span>
               </div>
@@ -54,8 +54,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=pick-up"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   Pick-Up
                 </span>
               </div>
@@ -73,8 +73,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=sedan"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   Sedan
                 </span>
               </div>
@@ -92,8 +92,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=convertible"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   Convertible
                 </span>
               </div>
@@ -111,8 +111,8 @@ export function PopularCarTypes() {
                 href="/cars?carType=off-road"
                 className="absolute inset-0 z-20 rounded-2xl border"
               />
-              <div className="absolute left-2 top-2 z-10 flex items-center justify-center leading-none">
-                <span className="rounded-md border bg-white px-4 py-2 font-medium">
+              <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                   Off-Road
                 </span>
               </div>
