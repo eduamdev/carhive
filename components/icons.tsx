@@ -250,6 +250,42 @@ export const Icons = {
       />
     </svg>
   ),
+  chevronForward: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="48"
+        d="M184 112l144 144-144 144"
+      />
+    </svg>
+  ),
+  chevronBack: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="48"
+        d="M328 112L184 256l144 144"
+      />
+    </svg>
+  ),
+  close: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+        d="M368 368L144 144M368 144L144 368"
+      />
+    </svg>
+  ),
   mapTrifold: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

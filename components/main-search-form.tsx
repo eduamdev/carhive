@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Icons } from '@/components/icons';
 import { Input } from '@/components/ui/input';
 import {
@@ -26,56 +28,39 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 
 const formSchema = z.object({
-  pickup: z.string(),
-  dropoff: z.string(),
+  pickupDropoff: z.string(),
   checkin: z.date(),
   checkout: z.date(),
 });
 
 export function MainSearchForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    router.push(
+      `/cars?pickupDropoff=${
+        values.pickupDropoff
+      }&checkin=${values.checkin.toISOString()}&checkout=${values.checkout.toISOString()}`,
+    );
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative mx-auto mt-5 hidden h-[72px] w-[900px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex"
+        className="relative mx-auto mt-5 hidden h-[72px] w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex"
       >
         <FormField
           control={form.control}
-          name="pickup"
+          name="pickupDropoff"
           render={({ field }) => (
-            <FormItem className="flex basis-1/4 flex-col items-start justify-center px-4">
+            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel className="w-full pb-1 text-[13px] font-semibold">
-                Pick-up
-              </FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Add location"
-                  className="overflow-ellipsis text-[15px]"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className="absolute top-[76px] text-[13px]" />
-            </FormItem>
-          )}
-        />
-        <Separator orientation="vertical" decorative className="h-8" />
-        <FormField
-          control={form.control}
-          name="dropoff"
-          render={({ field }) => (
-            <FormItem className="flex basis-1/4 flex-col items-start justify-center px-4">
-              <FormLabel className="w-full pb-1 text-[13px] font-semibold">
-                Drop-off
+                Pick-up / Drop-off
               </FormLabel>
               <FormControl>
                 <Input
@@ -93,7 +78,7 @@ export function MainSearchForm() {
           control={form.control}
           name="checkin"
           render={({ field }) => (
-            <FormItem className="flex basis-1/4 flex-col items-start justify-center px-4">
+            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel className="inline-block w-full pb-1 text-[13px] font-semibold">
                 Check in
               </FormLabel>
@@ -133,7 +118,7 @@ export function MainSearchForm() {
           control={form.control}
           name="checkout"
           render={({ field }) => (
-            <FormItem className="flex basis-1/4 flex-col items-start justify-center px-4">
+            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel className="inline-block w-full pb-1 text-[13px] font-semibold">
                 Check out
               </FormLabel>
