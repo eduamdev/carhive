@@ -1,7 +1,4 @@
 import type { Metadata } from 'next';
-
-import { SiteHeader } from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
 import { Toaster } from '@/components/ui/toaster';
 
 import './globals.css';
@@ -22,11 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={cn('min-h-screen font-sans', fontSans.variable)}>
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-        </div>
+        <div className="relative flex min-h-screen flex-col">{children}</div>
         <Toaster />
       </body>
     </html>

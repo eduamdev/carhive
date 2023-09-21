@@ -24,7 +24,7 @@ export function Hero() {
           </span>
         </div>
       </div>
-      <div className="mt-5">
+      <div className="mt-5 hidden md:block">
         <MainSearchForm />
       </div>
       <BrandLogoSlider />

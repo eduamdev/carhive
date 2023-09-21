@@ -7,6 +7,11 @@
     --total-brand: 16;
     --logo-width: 10rem;
     --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 3);
+    --header-height: 64px;
+    --filters-and-search-height: 105px;
+    --header-filters-and-search-offset: calc(
+      var(--header-height) + var(--filters-and-search-height)
+    );
   }
 
   html,
@@ -14,7 +19,6 @@
     /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
     touch-action: manipulation;
     min-width: 360px;
-    overflow-x: hidden;
     text-rendering: optimizeLegibility;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;

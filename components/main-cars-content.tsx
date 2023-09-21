@@ -1,64 +1,15 @@
-'use client';
-
-import { useState } from 'react';
-
 import { Icons } from '@/components/icons';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export function MainCarsContent() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <Collapsible asChild open={open} onOpenChange={setOpen}>
-      <main className="flex w-full">
-        <div
-          className={cn(
-            'flex basis-full flex-col gap-4 overflow-y-auto py-5 md:px-4',
-            open ? 'xl:basis-2/3' : 'md:pr-0',
-          )}
-        >
-          <div className="mb-2 flex items-center justify-between">
-            <div className="flex items-center justify-center">
-              <span className="mr-3 text-[13px]">Sort by</span>
-              <Select defaultValue="lowp">
-                <SelectTrigger className="w-[180px] text-[13px]">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="lowp" className="text-[13px]">
-                    Lowest Price
-                  </SelectItem>
-                  <SelectItem value="higp" className="text-[13px]">
-                    Higher Price
-                  </SelectItem>
-                  <SelectItem value="stuff" className="text-[13px]">
-                    Other stuff
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <CollapsibleTrigger asChild>
-              <Button variant="outline" className="hidden xl:flex">
-                <Icons.mapTrifold className="h-[18px] w-[18px]" />
-                <span className="ml-2 text-[13px]">
-                  {open ? 'Hide map' : 'Show map'}
-                </span>
-              </Button>
-            </CollapsibleTrigger>
-          </div>
+    <main className="flex">
+      <div className="min-h-[calc(100vh-var(--header-filters-and-search-offset))] w-[55%] max-w-[1184px] shrink-0 grow-0 flex-col overflow-y-auto xl:w-[63%]">
+        <div className="mx-5 my-6 sm:mx-6">
+          <p className="text-[13px] font-semibold text-neutral-800">
+            Over 45 cars
+          </p>
+        </div>
+        <div className="mx-5 my-6 sm:mx-6">
           {/* card */}
           <article className="grid w-full grid-cols-[11rem_1fr] rounded-xl border sm:grid-cols-[11rem_1.5fr_1fr]">
             <div className="relative border-r">
@@ -128,11 +79,13 @@ export function MainCarsContent() {
             </div>
           </article>
         </div>
-        {/* map */}
-        <CollapsibleContent asChild>
-          <div className="hidden h-full bg-neutral-50 xl:block xl:basis-1/3"></div>
-        </CollapsibleContent>
-      </main>
-    </Collapsible>
+      </div>
+      {/* map */}
+      <div className="block flex-auto">
+        <div className="sticky top-[var(--header-filters-and-search-offset)] z-10 basis-auto">
+          <div className="h-[calc(100vh-var(--header-filters-and-search-offset))] bg-neutral-50"></div>
+        </div>
+      </div>
+    </main>
   );
 }

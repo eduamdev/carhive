@@ -56,7 +56,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto hidden  w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex',
+          'relative mx-auto flex w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black',
           !compact && 'h-[72px]',
         )}
       >
