@@ -23,11 +23,11 @@ module.exports = {
       keyframes: {
         slide: {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-100% /2))' },
+          '100%': { transform: 'translateX(calc(-100% /3))' },
         },
       },
       animation: {
-        slide: 'slide 24s linear infinite',
+        slide: 'slide 48s linear infinite',
       },
     },
   },

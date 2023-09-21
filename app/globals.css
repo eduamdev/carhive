@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --total-brand: 8;
-    --logo-width: 12rem;
-    --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 2);
+    --total-brand: 16;
+    --logo-width: 10rem;
+    --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 3);
   }
 
   html,

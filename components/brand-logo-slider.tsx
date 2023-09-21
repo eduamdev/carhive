@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { Icons } from '@/components/icons';
 
 export function BrandLogoSlider() {
   useEffect(() => {
@@ -12,13 +13,18 @@ export function BrandLogoSlider() {
       brands.length.toString(),
     );
 
-    let i = 0;
-    brands.forEach((brand) => {
-      i++;
-      const clone = brand.cloneNode(true) as HTMLElement;
-      clone.id = `clone_${i}`;
-      brandList.appendChild(clone);
-    });
+    function cloneBrands(setNumber) {
+      let i = 0;
+      brands.forEach((brand) => {
+        i++;
+        const clone = brand.cloneNode(true) as HTMLElement;
+        clone.id = `clone_set${setNumber}_${i}`;
+        brandList.appendChild(clone);
+      });
+    }
+
+    cloneBrands(1);
+    cloneBrands(2);
 
     return () => {
       const clones = document.querySelectorAll("li[id^='clone_']");
@@ -37,60 +43,52 @@ export function BrandLogoSlider() {
           className="flex w-[var(--total-logo-width)] animate-slide items-center opacity-50 grayscale"
         >
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-7"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b128d90b754e37dcce4c2_6398d0a6fb288823cb821283_Wing_Logo_Primary.svg"
-              alt=""
-            />
+            <Icons.volvo className="h-[18px]" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-10"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b154f233e27a250dc5d0a_seedcamp-logo-p-500.webp"
-              alt=""
-            />
+            <Icons.suvaru className="h-[52px]" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-8"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b13dbaff30afc07ac1640_logo.svg"
-              alt=""
-            />
+            <Icons.jeep className="h-7" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-4"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b124c9a41d5d78bebb8a9_613b85712c9672feefb12665_Logo%20-%20new.svg"
-              alt=""
-            />
+            <Icons.porsche className="h-9" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-7"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b128d90b754e37dcce4c2_6398d0a6fb288823cb821283_Wing_Logo_Primary.svg"
-              alt=""
-            />
+            <Icons.volkswagen className="h-10" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-10"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b154f233e27a250dc5d0a_seedcamp-logo-p-500.webp"
-              alt=""
-            />
+            <Icons.toyota className="h-10" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-8"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b13dbaff30afc07ac1640_logo.svg"
-              alt=""
-            />
+            <Icons.bmw className="h-12" />
           </li>
           <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
-            <img
-              className="h-4"
-              src="https://assets-global.website-files.com/611a9c161d362bab9bf15fd8/648b124c9a41d5d78bebb8a9_613b85712c9672feefb12665_Logo%20-%20new.svg"
-              alt=""
-            />
+            <Icons.honda className="h-9" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.audi className="h-8" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.mini className="h-10" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.ford className="h-12" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.tesla className="h-5" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.nissan className="h-12" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.kia className="h-[18px]" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.hyundai className="h-5" />
+          </li>
+          <li className="mx-5 inline-flex w-[var(--logo-width)] items-center justify-center">
+            <Icons.mercedesBenz className="h-11" />
           </li>
         </ul>
       </div>

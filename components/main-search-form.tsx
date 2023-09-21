@@ -56,8 +56,8 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto hidden  items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex',
-          compact ? 'w-[680px]' : 'h-[72px] w-[860px]',
+          'relative mx-auto hidden  w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black md:flex',
+          !compact && 'h-[72px]',
         )}
       >
         <FormField
@@ -88,8 +88,10 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </FormControl>
               <FormMessage
                 className={cn(
-                  'absolute',
-                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                  'absolute overflow-hidden overflow-ellipsis',
+                  compact
+                    ? 'top-16 max-w-[240px] text-xs'
+                    : 'top-[76px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -141,8 +143,10 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute',
-                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                  'absolute overflow-hidden overflow-ellipsis',
+                  compact
+                    ? 'top-16 max-w-[240px] text-xs'
+                    : 'top-[76px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -194,8 +198,10 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute',
-                  compact ? 'top-16 text-xs' : 'top-[76px] text-[13px]',
+                  'absolute overflow-hidden overflow-ellipsis',
+                  compact
+                    ? 'top-16 max-w-[240px] text-xs'
+                    : 'top-[76px] text-[13px]',
                 )}
               />
             </FormItem>

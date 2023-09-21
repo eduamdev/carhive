@@ -7,7 +7,7 @@ export function TrendingDestinations() {
         <h2 className="text-2xl font-extrabold">
           Trending Rent a Car Destinations
         </h2>
-        <div className="mt-8 grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/cars?pickupDropoff=Paris,France"
             className="group rounded-t-2xl"
