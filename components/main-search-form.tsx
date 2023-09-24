@@ -56,18 +56,18 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto flex w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 py-2.5 text-black',
-          !compact && 'h-[72px]',
+          'relative mx-auto flex w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
+          compact ? 'h-[54px] py-2' : 'h-[68px] py-2.5',
         )}
       >
         <FormField
           control={form.control}
           name="pickupDropoff"
           render={({ field }) => (
-            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
+            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel
                 className={cn(
-                  'inline-block w-full font-bold text-neutral-800',
+                  'inline-block h-full w-full font-bold text-neutral-800',
                   compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
                 )}
               >
@@ -90,22 +90,26 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                 className={cn(
                   'absolute overflow-hidden overflow-ellipsis',
                   compact
-                    ? 'top-16 max-w-[240px] text-xs'
-                    : 'top-[76px] text-[13px]',
+                    ? 'top-14 max-w-[240px] text-xs'
+                    : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>
           )}
         />
-        <Separator orientation="vertical" decorative className="h-8" />
+        <Separator
+          orientation="vertical"
+          decorative
+          className={compact ? 'h-6' : 'h-8'}
+        />
         <FormField
           control={form.control}
           name="checkin"
           render={({ field }) => (
-            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
+            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel
                 className={cn(
-                  'inline-block w-full font-bold text-neutral-800',
+                  'inline-block h-full w-full font-bold text-neutral-800',
                   compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
                 )}
               >
@@ -145,22 +149,26 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                 className={cn(
                   'absolute overflow-hidden overflow-ellipsis',
                   compact
-                    ? 'top-16 max-w-[240px] text-xs'
-                    : 'top-[76px] text-[13px]',
+                    ? 'top-14 max-w-[240px] text-xs'
+                    : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>
           )}
         />
-        <Separator orientation="vertical" decorative className="h-8" />
+        <Separator
+          orientation="vertical"
+          decorative
+          className={compact ? 'h-6' : 'h-8'}
+        />
         <FormField
           control={form.control}
           name="checkout"
           render={({ field }) => (
-            <FormItem className="flex basis-1/3 flex-col items-start justify-center px-4">
+            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center px-4">
               <FormLabel
                 className={cn(
-                  'inline-block w-full font-bold text-neutral-800',
+                  'inline-block h-full w-full font-bold text-neutral-800',
                   compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
                 )}
               >
@@ -200,8 +208,8 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                 className={cn(
                   'absolute overflow-hidden overflow-ellipsis',
                   compact
-                    ? 'top-16 max-w-[240px] text-xs'
-                    : 'top-[76px] text-[13px]',
+                    ? 'top-14 max-w-[240px] text-xs'
+                    : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -212,7 +220,9 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
           size={compact ? 'icon' : 'icon-lg'}
           className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
         >
-          <Icons.search className={compact ? 'h-4 w-4' : 'h-[18px] w-[18px]'} />
+          <Icons.search
+            className={compact ? 'h-[14px] w-[14px]' : 'h-[18px] w-[18px]'}
+          />
         </Button>
       </form>
     </Form>

@@ -7,10 +7,10 @@
     --total-brand: 16;
     --logo-width: 10rem;
     --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 3);
-    --header-height: 64px;
-    --filters-and-search-height: 105px;
-    --header-filters-and-search-offset: calc(
-      var(--header-height) + var(--filters-and-search-height)
+    --header-height: 56px;
+    --search-height: 110px;
+    --header-and-search-offset: calc(
+      var(--header-height) + var(--search-height)
     );
   }
 

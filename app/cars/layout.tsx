@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/site-header';
 import { MainSearchForm } from '@/components/main-search-form';
 import { SiteFooter } from '@/components/site-footer';
-import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,23 +16,15 @@ interface CarsLayoutProps {
 export default function CarsLayout({ children }: CarsLayoutProps) {
   return (
     <>
-      <div className="sticky top-0 z-20 h-[calc(var(--header-height)+var(--filters-and-search-height))] w-full border-b border-black/10 bg-white">
+      <div className="sticky top-0 z-20 h-[calc(var(--header-height)+var(--search-height))] w-full border-b border-black/10 bg-white">
         <div className="border-b">
           <div className="mx-auto h-[var(--header-height)] w-full max-w-none px-5 sm:max-w-none sm:px-6">
             <SiteHeader />
           </div>
         </div>
-        <section className="h-[var(--filters-and-search-height)]">
-          <div className="grid h-full w-full max-w-none grid-cols-[1fr,auto,1fr] items-center justify-between gap-x-6 px-6">
-            <div>
-              <Button variant="outline">
-                <Icons.filters className="mr-2 h-4 w-4" />
-                Filters
-              </Button>
-            </div>
-            <div className="hidden items-center justify-between pb-8 pt-2 lg:flex">
-              <MainSearchForm compact />
-            </div>
+        <section className="h-[var(--search-height)]">
+          <div className="hidden h-full items-center justify-center lg:flex">
+            <MainSearchForm compact />
           </div>
         </section>
       </div>
