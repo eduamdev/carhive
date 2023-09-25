@@ -7,16 +7,16 @@ export function TrendingDestinations() {
         <h2 className="text-2xl font-extrabold">
           Trending Rent a Car Destinations
         </h2>
-        <div className="mt-8 grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="group mt-8 grid grid-cols-1 items-center justify-between gap-4 transition-all sm:grid-cols-2 lg:grid-cols-4 hover:[&_a]:!grayscale-0 [&_a]:group-hover:grayscale">
           <Link
             href="/cars?pickupDropoff=Paris,France"
-            className="group rounded-t-2xl"
+            className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
               <img
                 src="https://images.unsplash.com/photo-1605701877331-645ad05dcb97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBhcmlzfGVufDB8MHwwfHx8Mg%3D%3D&auto=format&fit=crop&w=600&q=60"
                 alt="Paris, France"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center grayscale transition-all group-hover:grayscale-0"
+                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
               ></img>
             </div>
             <div className="mt-3">
@@ -26,13 +26,13 @@ export function TrendingDestinations() {
           </Link>
           <Link
             href="/cars?pickupDropoff=Dubai,UnitedArabEmirates"
-            className="group rounded-t-2xl"
+            className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
               <img
                 src="https://images.unsplash.com/photo-1523816572-a1a23d1a67b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
                 alt="Dubai, United Arab Emirates"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center grayscale transition-all group-hover:grayscale-0"
+                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
               />
             </div>
             <div className="mt-3">
@@ -44,13 +44,13 @@ export function TrendingDestinations() {
           </Link>
           <Link
             href="/cars?pickupDropoff=Cancun,Mexico"
-            className="group rounded-t-2xl"
+            className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
               <img
                 src="https://images.unsplash.com/photo-1616423841125-8307665a0469?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
                 alt="Cancún, México"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center grayscale transition-all group-hover:grayscale-0"
+                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
               />
             </div>
             <div className="mt-3">
@@ -60,13 +60,13 @@ export function TrendingDestinations() {
           </Link>
           <Link
             href="/cars?pickupDropoff=Rome,Italy"
-            className="group rounded-t-2xl"
+            className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
               <img
                 src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cm9tZXxlbnwwfDB8MHx8fDI%3D&auto=format&fit=crop&w=600&q=60"
                 alt="Rome, Italy"
-                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center grayscale transition-all group-hover:grayscale-0"
+                className="h-full w-full rounded-2xl border bg-neutral-50 object-cover object-center"
               />
             </div>
             <div className="mt-3">

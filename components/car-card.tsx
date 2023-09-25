@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -95,7 +96,9 @@ export function CarCard({
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">View details</Button>
+        <Button className="w-full" asChild>
+          <Link href="/car">View details</Link>
+        </Button>
       </CardFooter>
     </Card>
   );
