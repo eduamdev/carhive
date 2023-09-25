@@ -96,10 +96,9 @@ export default function CarPage() {
                 <p className="text-neutral-600">Some cool stuff</p>
               </div>
             </div>
-            <hr className="my-12" />
           </div>
           <div className="hidden md:block">
-            <div className="rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)] ">
+            <div className="sticky top-[calc(var(--header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
               <div className="grid grid-cols-1 items-baseline gap-4 lg:grid-cols-2">
                 <div className="flex items-baseline gap-1">
                   <span className="text-2xl font-semibold leading-none">
@@ -122,17 +121,7 @@ export default function CarPage() {
                 <div className="flex flex-col border-b border-neutral-300">
                   <div className="flex flex-col gap-1.5 p-2.5">
                     <div className="text-xs font-medium leading-none">
-                      Pick-up
-                    </div>
-                    <div className="text-sm leading-none text-neutral-600">
-                      New York
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col border-b border-neutral-300">
-                  <div className="flex flex-col gap-1.5 p-2.5">
-                    <div className="text-xs font-medium leading-none">
-                      Drop-off
+                      Pick-up / Drop-off
                     </div>
                     <div className="text-sm leading-none text-neutral-600">
                       New York
@@ -190,7 +179,8 @@ export default function CarPage() {
             </div>
           </div>
         </div>
-        <div className="w-full">
+        <hr className="my-14" />
+        <div className="mb-6 w-full">
           <h2 className="text-lg font-bold">Things to know</h2>
           <div className="my-6 grid grid-cols-3">
             <div>Some things to know</div>

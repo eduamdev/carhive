@@ -27,7 +27,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 const formSchema = z.object({
-  pickupDropoff: z.string(),
+  pickupDropoff: z.string().nonempty(),
   checkin: z.date(),
   checkout: z.date(),
 });
