@@ -1,9 +1,20 @@
-import { Suspense } from 'react';
-
+import dynamic from 'next/dynamic';
 import { CarCard } from '@/components/car-card';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import { Map } from '@/components/map';
+
+const DynamicMap = dynamic(
+  async () => {
+    const { Map: DynamicMap } = await import('@/components/map');
+    return { default: DynamicMap };
+  },
+  {
+    loading: () => (
+      <div className="h-[calc(100vh-var(--header-and-search-offset))] bg-neutral-50" />
+    ),
+    ssr: false,
+  },
+);
 
 export function MainCarsContent() {
   return (
@@ -144,13 +155,7 @@ export function MainCarsContent() {
       </div>
       <div className="hidden flex-auto md:block">
         <div className="sticky top-[var(--header-and-search-offset)] z-10 basis-auto">
-          <Suspense
-            fallback={
-              <div className="h-[calc(100vh-var(--header-and-search-offset))] bg-neutral-50" />
-            }
-          >
-            <Map />
-          </Suspense>
+          <DynamicMap />
         </div>
       </div>
     </main>

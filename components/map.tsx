@@ -1,11 +1,14 @@
 'use client';
 
+import { useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export function Map() {
+  const mapRef = useRef();
+
   const searchParams = useSearchParams();
   const lat = searchParams.has('lat')
     ? Number(searchParams.get('lat'))
@@ -19,7 +22,7 @@ export function Map() {
       className="h-[calc(100vh-var(--header-and-search-offset))]"
       center={position}
       zoom={ZOOM_LEVEL}
-      scrollWheelZoom={false}
+      ref={mapRef}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
