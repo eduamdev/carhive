@@ -1,6 +1,9 @@
+import { Suspense } from 'react';
+
 import { CarCard } from '@/components/car-card';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
+import { Map } from '@/components/map';
 
 export function MainCarsContent() {
   return (
@@ -139,10 +142,15 @@ export function MainCarsContent() {
           </div>
         </div>
       </div>
-      {/* map */}
       <div className="hidden flex-auto md:block">
         <div className="sticky top-[var(--header-and-search-offset)] z-10 basis-auto">
-          <div className="h-[calc(100vh-var(--header-and-search-offset))] bg-neutral-50"></div>
+          <Suspense
+            fallback={
+              <div className="h-[calc(100vh-var(--header-and-search-offset))] bg-neutral-50" />
+            }
+          >
+            <Map />
+          </Suspense>
         </div>
       </div>
     </main>

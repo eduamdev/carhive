@@ -9,7 +9,10 @@ export function TrendingDestinations() {
         </h2>
         <div className="group mt-8 grid grid-cols-1 items-center justify-between gap-4 transition-all sm:grid-cols-2 lg:grid-cols-4 hover:[&_a]:!grayscale-0 [&_a]:group-hover:grayscale">
           <Link
-            href="/cars?pickupDropoff=Paris,France"
+            href={{
+              pathname: '/cars',
+              query: { lat: '48.864716', lng: '2.349014' },
+            }}
             className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
@@ -25,7 +28,10 @@ export function TrendingDestinations() {
             </div>
           </Link>
           <Link
-            href="/cars?pickupDropoff=Dubai,UnitedArabEmirates"
+            href={{
+              pathname: '/cars',
+              query: { lat: '25.276987', lng: '55.296249' },
+            }}
             className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
@@ -43,7 +49,10 @@ export function TrendingDestinations() {
             </div>
           </Link>
           <Link
-            href="/cars?pickupDropoff=Cancun,Mexico"
+            href={{
+              pathname: '/cars',
+              query: { lat: '21.17429000', lng: '-86.84656000' },
+            }}
             className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">
@@ -59,7 +68,10 @@ export function TrendingDestinations() {
             </div>
           </Link>
           <Link
-            href="/cars?pickupDropoff=Rome,Italy"
+            href={{
+              pathname: '/cars',
+              query: { lat: '41.902782', lng: '12.496366' },
+            }}
             className="rounded-t-2xl group-hover:grayscale"
           >
             <div className="h-72 w-full">

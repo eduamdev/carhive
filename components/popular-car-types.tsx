@@ -12,7 +12,10 @@ export function PopularCarTypes() {
             <div className="mb-3 whitespace-nowrap">
               <div className="relative mr-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=suv"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'suv' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
@@ -31,7 +34,10 @@ export function PopularCarTypes() {
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=minivan"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'minivan' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
@@ -50,7 +56,10 @@ export function PopularCarTypes() {
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=pick-up"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'pick-up' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
@@ -69,7 +78,10 @@ export function PopularCarTypes() {
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=sedan"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'sedan' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
@@ -88,7 +100,10 @@ export function PopularCarTypes() {
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=convertible"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'convertible' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
@@ -107,7 +122,10 @@ export function PopularCarTypes() {
               </div>
               <div className="relative ml-1.5 inline-block h-36 w-[250px]">
                 <Link
-                  href="/cars?carType=off-road"
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'off-road' },
+                  }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
