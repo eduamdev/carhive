@@ -1,7 +1,9 @@
+import Image from 'next/image';
+
 export function Testimonials() {
   return (
     <section className="border-t py-12">
-      <div className="2xl:max-w-8xl mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0">
+      <div className="mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
         <h2 className="text-center text-2xl font-extrabold">
           Lorem ipsum dolor sit amet.
         </h2>
@@ -15,10 +17,13 @@ export function Testimonials() {
                   fugiat. Exercitation qui elit minim minim quis fugiat ex.”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <img
-                    src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  <Image
+                    src="/faces/face1.avif"
+                    alt=""
+                    height={40}
+                    width={40}
                     className="h-10 w-10 rounded-full border bg-white"
-                  ></img>
+                  />
                   <div>
                     <p className="text-[15px] font-semibold">Michael Foster</p>
                     <p className="mt-1 text-sm text-neutral-600">
@@ -35,10 +40,13 @@ export function Testimonials() {
                   delectus nihil. Aut enim doloremque et ipsam.”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <img
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  <Image
+                    src="/faces/face2.avif"
+                    alt=""
+                    height={40}
+                    width={40}
                     className="h-10 w-10 rounded-full border bg-white"
-                  ></img>
+                  />
                   <div>
                     <p className="text-[15px] font-semibold">
                       Leslie Alexander
@@ -58,10 +66,13 @@ export function Testimonials() {
                   perferendis.”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <img
-                    src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  <Image
+                    src="/faces/face3.avif"
+                    alt=""
+                    height={40}
+                    width={40}
                     className="h-10 w-10 rounded-full border bg-white"
-                  ></img>
+                  />
                   <div>
                     <p className="text-[15px] font-semibold">Whitney Francis</p>
                     <p className="mt-1 text-sm text-neutral-600">
@@ -79,10 +90,13 @@ export function Testimonials() {
                   amet aliqua in commodo minim sunt laborum.”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  <Image
+                    src="/faces/face4.avif"
+                    alt=""
+                    height={40}
+                    width={40}
                     className="h-10 w-10 rounded-full border bg-white"
-                  ></img>
+                  />
                   <div>
                     <p className="text-[15px] font-semibold">Lindsay Walton</p>
                     <p className="mt-1 text-sm text-neutral-600">

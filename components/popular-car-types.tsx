@@ -27,7 +27,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/suv.jpg"
+                  src="/car-types/suv.avif"
                   alt="suv"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -49,7 +49,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/minivan.jpg"
+                  src="/car-types/minivan.avif"
                   alt="minivan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -71,7 +71,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/pick-up.jpg"
+                  src="/car-types/pick-up.avif"
                   alt="pick-up"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -93,7 +93,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/sedan.jpg"
+                  src="/car-types/sedan.avif"
                   alt="sedan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -115,7 +115,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/convertible.jpg"
+                  src="/car-types/convertible.avif"
                   alt="convertible"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -137,7 +137,7 @@ export function PopularCarTypes() {
                   width={250}
                   height={144}
                   priority
-                  src="/off-road.jpg"
+                  src="/car-types/off-road.avif"
                   alt="off-road"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
