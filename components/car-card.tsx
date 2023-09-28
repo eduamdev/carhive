@@ -58,7 +58,7 @@ export function CarCard({
           </div>
         </div>
         {unlimitedMileage && (
-          <div className="flex items-center justify-start text-sm leading-none text-neutral-600">
+          <div className="flex items-center justify-start text-[13px] leading-none text-neutral-600">
             <Icons.speedometer className="mr-2 inline-block h-[14px] w-[14px]" />
             Unlimited mileage
           </div>

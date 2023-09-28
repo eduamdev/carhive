@@ -1,38 +1,54 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import type { LatLngExpression } from 'leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export function Map() {
+  const searchParams = useSearchParams();
   const mapRef = useRef();
 
-  const searchParams = useSearchParams();
-  const lat = searchParams.has('lat')
-    ? Number(searchParams.get('lat'))
-    : 51.505;
-  const lng = searchParams.has('lng') ? Number(searchParams.get('lng')) : -0.09;
-  const position: [number, number] = [lat, lng];
-  const ZOOM_LEVEL = 13;
+  const DEFAULT_LAT = 51.505;
+  const DEFAULT_LNG = -0.09;
+  const DEFAULT_ZOOM_LEVEL = 13;
+
+  const center: LatLngExpression = {
+    lat: Number(searchParams.get('lat')) || DEFAULT_LAT,
+    lng: Number(searchParams.get('lng')) || DEFAULT_LNG,
+  };
+  const zoom: number = Number(searchParams.get('zoom')) || DEFAULT_ZOOM_LEVEL;
+
+  function UpdateMapPosition() {
+    const map = useMap();
+
+    useEffect(() => {
+      if (searchParams.has('lat') && searchParams.has('lng')) {
+        const center: LatLngExpression = {
+          lat: Number(searchParams.get('lat')),
+          lng: Number(searchParams.get('lng')),
+        };
+        map.setView(center, map.getZoom());
+      }
+    }, [searchParams]);
+
+    return null;
+  }
 
   return (
     <MapContainer
       className="h-[calc(100vh-var(--header-and-search-offset))]"
-      center={position}
-      zoom={ZOOM_LEVEL}
+      center={center}
+      zoom={zoom}
       ref={mapRef}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      <UpdateMapPosition />
     </MapContainer>
   );
 }

@@ -11,7 +11,7 @@ export function TrendingDestinations() {
           <Link
             href={{
               pathname: '/cars',
-              query: { lat: '48.864716', lng: '2.349014' },
+              query: { lat: '48.8589', lng: '2.3469', zoom: 12 },
             }}
             className="rounded-t-2xl group-hover:grayscale"
           >
@@ -30,7 +30,7 @@ export function TrendingDestinations() {
           <Link
             href={{
               pathname: '/cars',
-              query: { lat: '25.276987', lng: '55.296249' },
+              query: { lat: '25.2655', lng: '55.2925', zoom: 11 },
             }}
             className="rounded-t-2xl group-hover:grayscale"
           >
@@ -51,7 +51,7 @@ export function TrendingDestinations() {
           <Link
             href={{
               pathname: '/cars',
-              query: { lat: '21.17429000', lng: '-86.84656000' },
+              query: { lat: '21.1214', lng: '-86.8559', zoom: 12 },
             }}
             className="rounded-t-2xl group-hover:grayscale"
           >
@@ -70,7 +70,7 @@ export function TrendingDestinations() {
           <Link
             href={{
               pathname: '/cars',
-              query: { lat: '41.902782', lng: '12.496366' },
+              query: { lat: '41.8988', lng: '12.5451', zoom: 10 },
             }}
             className="rounded-t-2xl group-hover:grayscale"
           >
