@@ -1,12 +1,12 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { format } from 'date-fns';
-import { cn } from '@/lib/utils';
+import { cn, createUrl } from '@/lib/utils';
 
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -54,6 +54,7 @@ interface Location {
 
 export function MainSearchForm({ compact = false }: MainSearchFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [suggestions, setSuggestions] = useState<Location[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -91,9 +92,20 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { lat, lng, checkin, checkout } = values;
-    router.push(
-      `/cars?lat=${lat}&lng=${lng}&checkin=${checkin.toISOString()}&checkout=${checkout.toISOString()}`,
-    );
+
+    const newParams = new URLSearchParams(searchParams.toString());
+
+    newParams.delete('lat');
+    newParams.delete('lng');
+    newParams.delete('checkin');
+    newParams.delete('checkout');
+
+    newParams.set('lat', lat.toString());
+    newParams.set('lng', lng.toString());
+    newParams.set('checkin', checkin.toString());
+    newParams.set('checkout', checkout.toString());
+
+    router.push(createUrl('/cars', newParams));
   }
 
   return (
