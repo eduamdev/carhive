@@ -10,8 +10,8 @@ import { CallToAction } from '@/components/call-to-action';
 export default function HomePage() {
   return (
     <>
-      <div className="sticky top-0 z-20 border-b border-black/10 bg-white">
-        <div className="mx-auto h-[var(--header-height)] w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
+      <div className="sticky top-0 z-30 bg-white shadow-[inset_0_-1px_0_0_#eaeaea]">
+        <div className="mx-auto h-[var(--site-header-height)] w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
           <SiteHeader />
         </div>
       </div>

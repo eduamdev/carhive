@@ -7,10 +7,21 @@
     --total-brand: 16;
     --logo-width: 10rem;
     --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 3);
-    --header-height: 56px;
+    --site-header-height: 56px;
     --search-height: 110px;
-    --header-and-search-offset: calc(
-      var(--header-height) + var(--search-height)
+    --site-header-and-search-offset: calc(
+      var(--site-header-height) + var(--search-height)
+    );
+    --cars-page-main-content-height: calc(
+      100vh - var(--site-header-and-search-offset)
+    );
+    --map-height: var(--cars-page-main-content-height);
+    --filters-header-height: 64px;
+    --filters-footer-height: 80px;
+    --filters-viewport-offset: 80px;
+    --filters-content-height: calc(
+      100dvh - var(--filters-header-height) - var(--filters-footer-height) -
+        var(--filters-viewport-offset)
     );
   }
 
@@ -40,5 +51,42 @@
     img[loading='lazy'] {
       clip-path: inset(0.6px);
     }
+  }
+}
+
+@layer utilities {
+  .dot-pulse {
+    position: relative;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: black;
+    box-shadow: 9999px 0 0 -5px;
+    animation: theme('animation.dot-pulse');
+    animation-delay: 0.25s;
+  }
+  .dot-pulse::before,
+  .dot-pulse::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: black;
+  }
+  .dot-pulse::before {
+    box-shadow: 9984px 0 0 -5px;
+    animation: theme('animation.dot-pulse-before');
+    animation-delay: 0s;
+  }
+  .dot-pulse::after {
+    box-shadow: 10014px 0 0 -5px;
+    animation: theme('animation.dot-pulse-after');
+    animation-delay: 0.5s;
   }
 }

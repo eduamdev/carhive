@@ -98,7 +98,7 @@ export default function CarPage() {
             </div>
           </div>
           <div className="hidden md:block">
-            <div className="sticky top-[calc(var(--header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+            <div className="sticky top-[calc(var(--site-header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
               <div className="grid grid-cols-1 items-baseline gap-4 lg:grid-cols-2">
                 <div className="flex items-baseline gap-1">
                   <span className="text-2xl font-semibold leading-none">

@@ -39,7 +39,7 @@ export function Map() {
 
   return (
     <MapContainer
-      className="h-[calc(100vh-var(--header-and-search-offset))]"
+      className="h-[var(--map-height)]"
       center={center}
       zoom={zoom}
       ref={mapRef}

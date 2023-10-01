@@ -102,18 +102,18 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
           'relative mx-auto flex w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
-          compact ? 'h-[54px] py-2' : 'h-[68px] py-2.5',
+          compact ? 'h-[58px] py-2' : 'h-[68px] py-2.5',
         )}
       >
         <FormField
           control={form.control}
           name="location"
           render={({ field }) => (
-            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center overflow-hidden px-4">
+            <FormItem className="grid h-full w-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
               <FormLabel
                 className={cn(
                   'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                  compact ? 'text-xs' : 'text-[13px]',
                 )}
               >
                 Pick-up / Drop-off
@@ -121,11 +121,10 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
-                    <Button
-                      variant="ghost"
+                    <button
                       role="combobox"
                       className={cn(
-                        'm-0 w-full grow-0 justify-between overflow-hidden overflow-ellipsis bg-none p-0 text-left hover:bg-transparent',
+                        'm-0 inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -138,7 +137,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                               suggestion.display_name === field.value,
                           )?.display_name
                         : 'Add location'}
-                    </Button>
+                    </button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="p-0">
@@ -178,10 +177,8 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute overflow-hidden overflow-ellipsis',
-                  compact
-                    ? 'top-14 max-w-[240px] text-xs'
-                    : 'top-[72px] text-[13px]',
+                  'absolute max-w-[310px] overflow-hidden overflow-ellipsis',
+                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -196,11 +193,11 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
           control={form.control}
           name="checkin"
           render={({ field }) => (
-            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center px-4">
+            <FormItem className="grid h-full shrink-0 grow-0 basis-1/4 grid-cols-1 items-start justify-center px-4">
               <FormLabel
                 className={cn(
                   'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                  compact ? 'text-xs' : 'text-[13px]',
                 )}
               >
                 Check in
@@ -210,7 +207,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left ',
+                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -237,10 +234,8 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute overflow-hidden overflow-ellipsis',
-                  compact
-                    ? 'top-14 max-w-[240px] text-xs'
-                    : 'top-[72px] text-[13px]',
+                  'absolute max-w-[180px] overflow-hidden overflow-ellipsis',
+                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -255,11 +250,11 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
           control={form.control}
           name="checkout"
           render={({ field }) => (
-            <FormItem className="flex h-full basis-1/3 flex-col items-start justify-center px-4">
+            <FormItem className="grid h-full shrink-0 grow-0 basis-1/4 grid-cols-1 items-start justify-center px-4">
               <FormLabel
                 className={cn(
                   'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'pb-[3px] text-xs' : 'pb-1 text-[13px]',
+                  compact ? 'text-xs' : 'text-[13px]',
                 )}
               >
                 Check out
@@ -269,7 +264,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left text-[15px]',
+                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -296,10 +291,8 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute overflow-hidden overflow-ellipsis',
-                  compact
-                    ? 'top-14 max-w-[240px] text-xs'
-                    : 'top-[72px] text-[13px]',
+                  'absolute max-w-[180px] overflow-hidden overflow-ellipsis',
+                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
             </FormItem>

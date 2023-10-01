@@ -80,43 +80,21 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'sedan' },
+                    query: { carType: 'sport' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    Sedan
+                    Sport
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/sedan.avif"
-                  alt="sedan"
-                  className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
-                />
-              </div>
-              <div className="relative mx-1.5 inline-block h-36 w-[250px]">
-                <Link
-                  href={{
-                    pathname: '/cars',
-                    query: { carType: 'convertible' },
-                  }}
-                  className="absolute inset-0 z-20 rounded-2xl border"
-                />
-                <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
-                  <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    Convertible
-                  </span>
-                </div>
-                <Image
-                  width={250}
-                  height={144}
-                  priority
-                  src="/car-types/convertible.avif"
-                  alt="convertible"
+                  src="/car-types/sport.avif"
+                  alt="sport"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
               </div>
@@ -139,6 +117,28 @@ export function PopularCarTypes() {
                   priority
                   src="/car-types/off-road.avif"
                   alt="off-road"
+                  className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                />
+              </div>
+              <div className="relative mx-1.5 inline-block h-36 w-[250px]">
+                <Link
+                  href={{
+                    pathname: '/cars',
+                    query: { carType: 'sedan' },
+                  }}
+                  className="absolute inset-0 z-20 rounded-2xl border"
+                />
+                <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
+                  <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
+                    Sedan
+                  </span>
+                </div>
+                <Image
+                  width={250}
+                  height={144}
+                  priority
+                  src="/car-types/sedan.avif"
+                  alt="sedan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
               </div>
