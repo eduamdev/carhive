@@ -89,4 +89,28 @@
     animation: theme('animation.dot-pulse-after');
     animation-delay: 0.5s;
   }
+
+  .filter-item-selected {
+    background-color: theme('colors.black');
+    color: theme('colors.white');
+    border-color: theme('colors.black');
+  }
+
+  .filter-area-selected {
+    background-color: theme('colors.neutral.50');
+  }
+
+  .filter-item-selected::after,
+  .filter-area-selected::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    height: calc(100% + 2px);
+    width: calc(100% + 2px);
+    border-radius: inherit;
+    border-width: 2px;
+    border-color: inherit;
+    border-color: theme('borderColor.black');
+  }
 }

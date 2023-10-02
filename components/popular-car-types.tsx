@@ -14,7 +14,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'suv' },
+                    query: { 'car-type': 'suv' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
@@ -36,7 +36,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'minivan' },
+                    query: { 'car-type': 'minivan' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
@@ -58,7 +58,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'pick-up' },
+                    query: { 'car-type': 'pick-up' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
@@ -80,7 +80,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'sport' },
+                    query: { 'car-type': 'sport' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
@@ -102,7 +102,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'off-road' },
+                    query: { 'car-type': 'off-road' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
@@ -124,7 +124,7 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { carType: 'sedan' },
+                    query: { 'car-type': 'sedan' },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
