@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
-import { Filters } from '@/components/filters';
+import { FiltersView } from '@/components/filters-view';
 import { CarCard } from '@/components/car-card';
+import { LoadingDots } from '@/components/loading-dots';
 
 const DynamicMap = dynamic(
   async () => {
@@ -10,7 +11,7 @@ const DynamicMap = dynamic(
   {
     loading: () => (
       <div className="flex h-[var(--map-height)] items-center justify-center gap-x-2.5 bg-neutral-100">
-        <div className="dot-pulse"></div>
+        <LoadingDots />
       </div>
     ),
     ssr: false,
@@ -27,7 +28,7 @@ export default function CarsPage() {
               <p className="text-[13px] font-semibold text-neutral-800">
                 Over 45 cars
               </p>
-              <Filters />
+              <FiltersView />
             </div>
             <div className="mx-5 mb-12 sm:mx-6">
               <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
