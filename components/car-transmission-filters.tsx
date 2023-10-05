@@ -1,30 +1,39 @@
 import { Icons } from '@/components/icons';
 import { Filter } from '@/components/filter';
+import { CarTransmission, IFilters } from '@/types/filters';
 
 const carTransmissions = [
   {
     id: 'c_transmission_auto',
-    slug: 'auto',
+    slug: CarTransmission.Auto,
     text: 'Automatic',
     icon: <Icons.automaticTransmission className="h-7 w-7" />,
   },
   {
     id: 'c_transmission_manual',
-    slug: 'manual',
+    slug: CarTransmission.Manual,
     text: 'Manual',
     icon: <Icons.manualTransmission className="h-7 w-7" />,
   },
 ];
 
-export function CarTransmissionFilters({ selectedFilters, onClick }) {
+interface CarTransmissionFiltersProps {
+  selectedFilters: IFilters;
+  onClick: Function;
+}
+
+export function CarTransmissionFilters({
+  selectedFilters,
+  onClick,
+}: CarTransmissionFiltersProps) {
   return (
     <div className="px-6 py-8">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
         <div className="grid grid-cols-2 items-center gap-4">
-          {carTransmissions.map(({ id: key, slug, text, icon }) => (
+          {carTransmissions.map(({ id, slug, text, icon }) => (
             <Filter
-              key={key}
+              key={id}
               area
               selected={selectedFilters.transmission === slug}
               onClick={() => onClick(slug)}

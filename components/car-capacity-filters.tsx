@@ -1,4 +1,5 @@
 import { Filter } from '@/components/filter';
+import { IFilters } from '@/types/filters';
 
 const minCarSeats = [
   { id: 'c_seats_any', slug: null, text: 'Any' },
@@ -24,11 +25,17 @@ const minCarBags = [
   { id: 'c_bags_8', slug: '8', text: '8+' },
 ];
 
+interface CarCapacityFiltersProps {
+  selectedFilters: IFilters;
+  onMinCarSeatsClick: Function;
+  onMinCarBagsClick: Function;
+}
+
 export function CarCapacityFilters({
   selectedFilters,
   onMinCarSeatsClick,
   onMinCarBagsClick,
-}) {
+}: CarCapacityFiltersProps) {
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-black/10 after:content-['']">
       <section>
@@ -37,9 +44,9 @@ export function CarCapacityFilters({
           <div>
             <h4 className="pb-5 pt-1">Seats</h4>
             <div className="flex flex-row flex-wrap items-center gap-3">
-              {minCarSeats.map(({ id: key, slug, text }) => (
+              {minCarSeats.map(({ id, slug, text }) => (
                 <Filter
-                  key={key}
+                  key={id}
                   selected={
                     slug
                       ? selectedFilters.minSeats === slug
@@ -55,9 +62,9 @@ export function CarCapacityFilters({
           <div>
             <h4 className="pb-5 pt-1">Bags</h4>
             <div className="flex flex-row flex-wrap items-center gap-3">
-              {minCarBags.map(({ id: key, slug, text }) => (
+              {minCarBags.map(({ id, slug, text }) => (
                 <Filter
-                  key={key}
+                  key={id}
                   selected={
                     slug
                       ? selectedFilters.minBags === slug

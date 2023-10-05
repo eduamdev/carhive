@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
 import {
   Dialog,
   DialogContent,
@@ -12,16 +13,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Slider } from '@/components/ui/slider';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Icons } from '@/components/icons';
 import { Badge } from '@/components/badge';
+import { CarPriceRangeFilters } from '@/components/car-price-range-filters';
 import { CarTypeFilters } from '@/components/car-type-filters';
 import { CarCapacityFilters } from '@/components/car-capacity-filters';
 import { CarTransmissionFilters } from '@/components/car-transmission-filters';
 
 import { createUrl } from '@/lib/utils';
+import { CarTransmission, CarType, IFilters } from '@/types/filters';
 
 export function FiltersView() {
   const router = useRouter();
@@ -29,7 +28,7 @@ export function FiltersView() {
   const MIN_PRICE = 0;
   const MAX_PRICE = 100;
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedFilters, setSelectedFilters] = useState(
+  const [selectedFilters, setSelectedFilters] = useState<IFilters>(
     getCurrentFilterSelection(),
   );
 
@@ -40,16 +39,28 @@ export function FiltersView() {
     setOpen(!open);
   }
 
-  function getCurrentFilterSelection() {
+  function getCurrentFilterSelection(): IFilters {
+    const minPrice = Number(searchParams.get('min-price') || MIN_PRICE);
+    const maxPrice = Number(searchParams.get('max-price') || MAX_PRICE);
+    const priceRange: number[] = [minPrice, maxPrice];
+
+    const carTypes: CarType[] = searchParams
+      .getAll('car-type')
+      .filter((type) =>
+        Object.values(CarType).includes(type as CarType),
+      ) as CarType[];
+
+    const minSeats = searchParams.get('min-seats') || '';
+    const minBags = searchParams.get('min-bags') || '';
+    const transmission =
+      (searchParams.get('transmission') as CarTransmission) || '';
+
     return {
-      priceRange: [
-        Number(searchParams.get('min-price') || MIN_PRICE),
-        Number(searchParams.get('max-price') || MAX_PRICE),
-      ],
-      carTypes: searchParams.getAll('car-type') || [],
-      minSeats: searchParams.get('min-seats') || '',
-      minBags: searchParams.get('min-bags') || '',
-      transmission: searchParams.get('transmission') || '',
+      priceRange,
+      carTypes: carTypes.length > 0 ? carTypes : [],
+      minSeats,
+      minBags,
+      transmission,
     };
   }
 
@@ -67,7 +78,28 @@ export function FiltersView() {
     return count;
   }
 
-  function handleCarTypeClick(slug: string) {
+  function handleCarPriceRangeChange(priceRange: number[]) {
+    setSelectedFilters({
+      ...selectedFilters,
+      priceRange: priceRange,
+    });
+  }
+
+  function handleMinCarPriceChange(e: ChangeEvent<HTMLInputElement>) {
+    setSelectedFilters({
+      ...selectedFilters,
+      priceRange: [Number(e.target.value), selectedFilters.priceRange[1]],
+    });
+  }
+
+  function handleMaxCarPriceChange(e: ChangeEvent<HTMLInputElement>) {
+    setSelectedFilters({
+      ...selectedFilters,
+      priceRange: [selectedFilters.priceRange[0], Number(e.target.value)],
+    });
+  }
+
+  function handleCarTypeClick(slug: CarType) {
     let newCarTypesSelected = [];
 
     if (selectedFilters.carTypes.includes(slug)) {
@@ -95,7 +127,7 @@ export function FiltersView() {
     });
   }
 
-  function handleCarTransmissionClick(slug: string) {
+  function handleCarTransmissionClick(slug: CarTransmission) {
     setSelectedFilters({
       ...selectedFilters,
       transmission: selectedFilters.transmission === slug ? '' : slug,
@@ -164,87 +196,14 @@ export function FiltersView() {
           </DialogTitle>
         </DialogHeader>
         <div className="h-full max-h-[var(--filters-content-height)] overflow-y-auto border-b border-t">
-          <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-black/10 after:content-['']">
-            <section>
-              <h3 className="pb-6 text-xl font-semibold">Price range</h3>
-              <div className="mx-auto flex max-w-[600px] flex-col items-start justify-between gap-12 pt-2">
-                <Slider
-                  defaultValue={[MIN_PRICE, MAX_PRICE]}
-                  value={selectedFilters.priceRange}
-                  onValueChange={(values) =>
-                    setSelectedFilters({
-                      ...selectedFilters,
-                      priceRange: values,
-                    })
-                  }
-                  onValueCommit={(values) =>
-                    setSelectedFilters({
-                      ...selectedFilters,
-                      priceRange: values,
-                    })
-                  }
-                  min={MIN_PRICE}
-                  max={MAX_PRICE}
-                  step={1}
-                  minStepsBetweenThumbs={1}
-                />
-
-                <div className="flex w-full items-center justify-between gap-6">
-                  <div className="relative h-14 w-full">
-                    <Label
-                      htmlFor="i-minimum"
-                      className="absolute left-3 top-2.5 w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap pr-6 text-xs font-normal leading-none text-neutral-500"
-                    >
-                      Minimum
-                    </Label>
-                    <div className="absolute bottom-3 left-3 leading-none">
-                      $
-                    </div>
-                    <Input
-                      id="i-minimum"
-                      className="absolute inset-0 h-full rounded-lg border bg-transparent pl-7 pr-4 pt-4 leading-none"
-                      value={selectedFilters.priceRange[0]}
-                      onChange={(e) =>
-                        setSelectedFilters({
-                          ...selectedFilters,
-                          priceRange: [
-                            Number(e.target.value),
-                            selectedFilters.priceRange[1],
-                          ],
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="h-px shrink-0 basis-4 bg-neutral-400"></div>
-                  <div className="relative h-14 w-full">
-                    <Label
-                      htmlFor="i-maximum"
-                      className="absolute left-3 top-2.5 w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap pr-6 text-xs font-normal leading-none text-neutral-500"
-                    >
-                      Maximum
-                    </Label>
-                    <div className="absolute bottom-3 left-3 leading-none">
-                      $
-                    </div>
-                    <Input
-                      id="i-maximum"
-                      className="absolute inset-0 h-full rounded-lg border bg-transparent pl-7 pr-4 pt-4 leading-none"
-                      value={selectedFilters.priceRange[1]}
-                      onChange={(e) =>
-                        setSelectedFilters({
-                          ...selectedFilters,
-                          priceRange: [
-                            selectedFilters.priceRange[0],
-                            Number(e.target.value),
-                          ],
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
+          <CarPriceRangeFilters
+            minPrice={MIN_PRICE}
+            maxPrice={MAX_PRICE}
+            selectedFilters={selectedFilters}
+            onSliderChange={handleCarPriceRangeChange}
+            onMinPriceInputChange={handleMinCarPriceChange}
+            onMaxPriceInputChange={handleMaxCarPriceChange}
+          />
           <CarTypeFilters
             selectedFilters={selectedFilters}
             onClick={handleCarTypeClick}
