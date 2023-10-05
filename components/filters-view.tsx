@@ -1,7 +1,7 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -26,19 +26,21 @@ import { createUrl } from '@/lib/utils';
 export function FiltersView() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [open, setOpen] = useState(false);
   const MIN_PRICE = 0;
   const MAX_PRICE = 100;
-  const [selectedFilters, setSelectedFilters] = useState(getInitFilters());
+  const [open, setOpen] = useState<boolean>(false);
+  const [selectedFilters, setSelectedFilters] = useState(
+    getCurrentFilterSelection(),
+  );
 
   function handleOpenChange() {
     if (!open) {
-      setSelectedFilters(getInitFilters());
+      setSelectedFilters(getCurrentFilterSelection());
     }
     setOpen(!open);
   }
 
-  function getInitFilters() {
+  function getCurrentFilterSelection() {
     return {
       priceRange: [
         Number(searchParams.get('min-price') || MIN_PRICE),
@@ -51,28 +53,16 @@ export function FiltersView() {
     };
   }
 
-  function getFiltersCount() {
+  function getCountSelectedFilters() {
     let count = 0;
-    if (searchParams.has('min-price') || searchParams.has('max-price')) {
-      count++;
-    }
 
+    if (searchParams.has('min-price') || searchParams.has('max-price')) count++;
     if (searchParams.has('car-type')) {
-      const cartypes = searchParams.getAll('car-type');
-      count += cartypes.length;
+      count += searchParams.getAll('car-type').length;
     }
-
-    if (searchParams.has('min-seats')) {
-      count++;
-    }
-
-    if (searchParams.has('min-bags')) {
-      count++;
-    }
-
-    if (searchParams.has('transmission')) {
-      count++;
-    }
+    if (searchParams.has('min-seats')) count++;
+    if (searchParams.has('min-bags')) count++;
+    if (searchParams.has('transmission')) count++;
 
     return count;
   }
@@ -164,7 +154,7 @@ export function FiltersView() {
         <Button variant="outline" className="relative">
           <Icons.filters className="mr-2 h-[14px] w-[14px]" />
           Filters
-          {getFiltersCount() > 0 && <Badge>{getFiltersCount()}</Badge>}
+          <Badge count={getCountSelectedFilters()} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-3xl gap-0 !rounded-xl p-0">
