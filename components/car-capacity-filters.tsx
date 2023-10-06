@@ -2,7 +2,6 @@ import { Filter } from '@/components/filter';
 import { IFilters } from '@/types/filters';
 
 const minCarSeats = [
-  { id: 'c_seats_any', slug: null, text: 'Any' },
   { id: 'c_seats_1', slug: '1', text: '1' },
   { id: 'c_seats_2', slug: '2', text: '2' },
   { id: 'c_seats_3', slug: '3', text: '3' },
@@ -14,7 +13,6 @@ const minCarSeats = [
 ];
 
 const minCarBags = [
-  { id: 'c_bags_any', slug: null, text: 'Any' },
   { id: 'c_bags_1', slug: '1', text: '1' },
   { id: 'c_bags_2', slug: '2', text: '2' },
   { id: 'c_bags_3', slug: '3', text: '3' },
@@ -44,15 +42,17 @@ export function CarCapacityFilters({
           <div>
             <h4 className="pb-5 pt-1">Seats</h4>
             <div className="flex flex-row flex-wrap items-center gap-3">
+              <Filter
+                selected={!selectedFilters.minSeats}
+                onClick={() => onMinCarSeatsClick('')}
+              >
+                Any
+              </Filter>
               {minCarSeats.map(({ id, slug, text }) => (
                 <Filter
                   key={id}
-                  selected={
-                    slug
-                      ? selectedFilters.minSeats === slug
-                      : !selectedFilters.minSeats
-                  }
-                  onClick={() => onMinCarSeatsClick(slug ? slug : '')}
+                  selected={selectedFilters.minSeats === slug}
+                  onClick={() => onMinCarSeatsClick(slug)}
                 >
                   {text}
                 </Filter>
@@ -62,15 +62,17 @@ export function CarCapacityFilters({
           <div>
             <h4 className="pb-5 pt-1">Bags</h4>
             <div className="flex flex-row flex-wrap items-center gap-3">
+              <Filter
+                selected={!selectedFilters.minBags}
+                onClick={() => onMinCarBagsClick('')}
+              >
+                Any
+              </Filter>
               {minCarBags.map(({ id, slug, text }) => (
                 <Filter
                   key={id}
-                  selected={
-                    slug
-                      ? selectedFilters.minBags === slug
-                      : !selectedFilters.minBags
-                  }
-                  onClick={() => onMinCarBagsClick(slug ? slug : '')}
+                  selected={selectedFilters.minBags === slug}
+                  onClick={() => onMinCarBagsClick(slug)}
                 >
                   {text}
                 </Filter>
