@@ -1,4 +1,5 @@
-import { BrandLogoSlider } from '@/components/brand-logo-slider';
+import { Suspense } from 'react';
+import { LogoSlider } from '@/components/logo-slider';
 import { MainSearchForm } from '@/components/main-search-form';
 import { Icons } from '@/components/icons';
 
@@ -25,9 +26,11 @@ export function Hero() {
         </div>
       </div>
       <div className="mt-5 hidden md:block">
-        <MainSearchForm />
+        <Suspense>
+          <MainSearchForm />
+        </Suspense>
       </div>
-      <BrandLogoSlider />
+      <LogoSlider />
     </section>
   );
 }

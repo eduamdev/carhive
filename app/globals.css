@@ -4,25 +4,29 @@
 
 @layer base {
   :root {
-    --total-brand: 16;
-    --logo-width: 10rem;
-    --total-logo-width: calc(var(--total-brand) * var(--logo-width) * 3);
+    --slider-total-logos: 16;
+    --slider-logo-width: 10rem;
+    --slider-total-logo-width: calc(
+      var(--slider-total-logos) * var(--slider-logo-width) * 3
+    );
+
     --site-header-height: 56px;
-    --search-height: 110px;
-    --site-header-and-search-offset: calc(
-      var(--site-header-height) + var(--search-height)
+    --search-bar-height: 110px;
+    --header-gap: calc(var(--site-header-height) + var(--search-bar-height));
+    --cars-page-main-content-height: calc(100vh - var(--header-gap));
+    --map-container-height: var(--cars-page-main-content-height);
+
+    --modal-filters-header-height: 64px;
+    --modal-filters-footer-height: 80px;
+    --modal-filters-viewport-gap: 80px;
+    --modal-filters-content-max-height: calc(
+      100dvh - var(--modal-filters-header-height) -
+        var(--modal-filters-footer-height) - var(--modal-filters-viewport-gap)
     );
-    --cars-page-main-content-height: calc(
-      100vh - var(--site-header-and-search-offset)
-    );
-    --map-height: var(--cars-page-main-content-height);
-    --filters-header-height: 64px;
-    --filters-footer-height: 80px;
-    --filters-viewport-offset: 80px;
-    --filters-content-height: calc(
-      100dvh - var(--filters-header-height) - var(--filters-footer-height) -
-        var(--filters-viewport-offset)
-    );
+
+    --skeleton-bg-start-0: #eeeeee;
+    --skeleton-bg-start-75: #eeeeee;
+    --skeleton-bg-mid-50: #dedede;
   }
 
   html,

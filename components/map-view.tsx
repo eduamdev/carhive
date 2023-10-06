@@ -7,7 +7,7 @@ import type { LatLngExpression } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-export function Map() {
+export function MapView() {
   const searchParams = useSearchParams();
   const mapRef = useRef();
 
@@ -39,7 +39,7 @@ export function Map() {
 
   return (
     <MapContainer
-      className="h-[var(--map-height)]"
+      className="h-[var(--map-container-height)]"
       center={center}
       zoom={zoom}
       ref={mapRef}

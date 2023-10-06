@@ -190,12 +190,12 @@ export function FiltersView() {
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-3xl gap-0 !rounded-xl p-0">
-        <DialogHeader className="flex min-h-[var(--filters-header-height)] items-center justify-center px-6">
+        <DialogHeader className="flex min-h-[var(--modal-filters-header-height)] items-center justify-center px-6">
           <DialogTitle className="text-center text-base tracking-normal">
             Filters
           </DialogTitle>
         </DialogHeader>
-        <div className="h-full max-h-[var(--filters-content-height)] overflow-y-auto border-b border-t">
+        <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-b border-t">
           <CarPriceRangeFilters
             minPrice={MIN_PRICE}
             maxPrice={MAX_PRICE}
@@ -218,7 +218,7 @@ export function FiltersView() {
             onClick={handleCarTransmissionClick}
           />
         </div>
-        <DialogFooter className="flex min-h-[var(--filters-footer-height)] items-center justify-center px-6">
+        <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">
           <div className="flex w-full items-center justify-between gap-x-2">
             <Button
               variant="ghost"

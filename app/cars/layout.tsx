@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { SiteHeader } from '@/components/site-header';
@@ -16,15 +17,17 @@ interface CarsLayoutProps {
 export default function CarsLayout({ children }: CarsLayoutProps) {
   return (
     <>
-      <div className="sticky top-0 z-30 h-[var(--site-header-and-search-offset)] w-full bg-white shadow-[inset_0_-1px_0_0_#eaeaea]">
+      <div className="sticky top-0 z-30 h-[var(--header-gap)] w-full bg-white shadow-[inset_0_-1px_0_0_#eaeaea]">
         <div className="shadow-[inset_0_-1px_0_0_#eaeaea]">
           <div className="mx-auto h-[var(--site-header-height)] w-full max-w-none px-5 sm:max-w-none sm:px-6">
             <SiteHeader />
           </div>
         </div>
-        <section className="h-[var(--search-height)]">
+        <section className="h-[var(--search-bar-height)]">
           <div className="hidden h-full items-center justify-center lg:flex">
-            <MainSearchForm compact />
+            <Suspense>
+              <MainSearchForm compact />
+            </Suspense>
           </div>
         </section>
       </div>
