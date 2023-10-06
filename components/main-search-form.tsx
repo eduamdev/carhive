@@ -1,23 +1,14 @@
 'use client';
 
-import { useCallback, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { format } from 'date-fns';
-import { cn, createUrl } from '@/lib/utils';
 
-import { Icons } from '@/components/icons';
+import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command';
 import {
   Form,
   FormControl,
@@ -26,12 +17,33 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Calendar } from '@/components/ui/calendar';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/components/ui/command';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { Icons } from '@/components/icons';
+
+import { cn, createUrl } from '@/lib/utils';
+
+const locations = [
+  { label: 'Paris, France', value: 'paris', lat: '48.8589', lng: '2.3469' },
+  {
+    label: 'Dubai, United Arab Emirates',
+    value: 'dubai',
+    lat: '25.2655',
+    lng: '55.2925',
+  },
+  { label: 'Cancún, México', value: 'cancun', lat: '21.1214', lng: '-86.8559' },
+  { label: 'Rome, Italy', value: 'rome', lat: '41.8988', lng: '12.5451' },
+] as const;
 
 const formSchema = z.object({
   location: z.string({ required_error: 'Please enter a location' }),
@@ -45,50 +57,13 @@ interface MainSearchFormProps {
   compact?: boolean;
 }
 
-interface Location {
-  place_id: string;
-  lat: string;
-  lon: string;
-  display_name: string;
-}
-
 export function MainSearchForm({ compact = false }: MainSearchFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [suggestions, setSuggestions] = useState<Location[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-
-  const handleValueChange = useCallback((value: string) => {
-    getSuggestions(value);
-    console.log(value);
-
-    return value;
-  }, []);
-
-  async function getSuggestions(query: string) {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?city=${query}&format=json`,
-      );
-
-      if (response.ok) {
-        const data: Location[] = await response.json();
-        if (data.length > 0) {
-          setSuggestions(data);
-          console.log(data);
-        } else {
-          setSuggestions([]);
-        }
-      } else {
-        console.error('Error fetching suggestions:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error fetching suggestions:', error);
-    }
-  }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { lat, lng, checkin, checkout } = values;
@@ -144,43 +119,37 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                       )}
                     >
                       {field.value
-                        ? suggestions.find(
-                            (suggestion) =>
-                              suggestion.display_name === field.value,
-                          )?.display_name
+                        ? locations.find(
+                            (location) => location.value === field.value,
+                          )?.label
                         : 'Add location'}
                     </button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="p-0">
                   <Command>
-                    <CommandInput
-                      placeholder="Search city..."
-                      onValueChange={(value) => {
-                        field.onChange(handleValueChange(value));
-                      }}
-                    />
+                    <CommandInput placeholder="Search city..." />
                     <CommandEmpty>No place found.</CommandEmpty>
                     <CommandGroup>
-                      {suggestions.map((suggestion) => (
+                      {locations.map((location) => (
                         <CommandItem
-                          value={suggestion.display_name}
-                          key={suggestion.place_id}
+                          value={location.label}
+                          key={location.value}
                           onSelect={() => {
-                            form.setValue('location', suggestion.display_name);
-                            form.setValue('lat', Number(suggestion.lat));
-                            form.setValue('lng', Number(suggestion.lon));
+                            form.setValue('location', location.value);
+                            form.setValue('lat', Number(location.lat));
+                            form.setValue('lng', Number(location.lng));
                           }}
                         >
                           <Icons.check
                             className={cn(
                               'mr-2 h-4 w-4 shrink-0',
-                              suggestion.display_name === field.value
+                              location.value === field.value
                                 ? 'opacity-100'
                                 : 'opacity-0',
                             )}
                           />
-                          {suggestion.display_name}
+                          {location.label}
                         </CommandItem>
                       ))}
                     </CommandGroup>
