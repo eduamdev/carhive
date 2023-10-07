@@ -15,7 +15,9 @@
     --header-gap: calc(var(--site-header-height) + var(--search-bar-height));
     --cars-page-main-content-height: calc(100vh - var(--header-gap));
     --map-container-height: var(--cars-page-main-content-height);
+    --cars-page-main-content-max-width: 1184px;
 
+    --modal-filters-max-width: 780px;
     --modal-filters-header-height: 64px;
     --modal-filters-footer-height: 80px;
     --modal-filters-viewport-gap: 80px;

@@ -35,10 +35,10 @@ export function CarCapacityFilters({
   onMinCarBagsClick,
 }: CarCapacityFiltersProps) {
   return (
-    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-black/10 after:content-['']">
+    <div className="px-6 py-8">
       <section>
         <h3 className="pb-6 text-lg font-semibold">Capacity</h3>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 last:mb-2">
           <div>
             <h4 className="pb-5 pt-1">Seats</h4>
             <div className="flex flex-row flex-wrap items-center gap-3">

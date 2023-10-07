@@ -17,13 +17,14 @@ const buttonVariants = cva(
         ghost: 'hover:bg-neutral-100 hover:text-neutral-900',
         link: 'text-neutral-900 underline-offset-4 hover:underline',
         filter:
-          'relative border border-neutral-200 bg-white hover:border-black',
+          'relative border border-neutral-300 bg-white hover:border-black',
       },
       size: {
         default: 'h-10 px-4 py-2',
         xs: 'h-7 px-2',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
+        xl: 'h-12 px-6',
         icon: 'h-9 w-9',
         'icon-lg': 'h-12 w-12',
         item: 'px-5 py-2.5 rounded-[30px]',

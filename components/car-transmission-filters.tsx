@@ -27,7 +27,7 @@ export function CarTransmissionFilters({
   onClick,
 }: CarTransmissionFiltersProps) {
   return (
-    <div className="px-6 py-8">
+    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
         <div className="grid grid-cols-2 items-center gap-4">

@@ -178,6 +178,8 @@ export function FiltersView() {
     }
 
     router.push(createUrl('/cars', newParams));
+
+    setOpen(false);
   }
 
   return (
@@ -189,7 +191,7 @@ export function FiltersView() {
           <Badge count={getCountSelectedFilters()} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-3xl gap-0 !rounded-xl p-0">
+      <DialogContent className="max-w-[var(--modal-filters-max-width)] gap-0 !rounded-xl p-0">
         <DialogHeader className="flex min-h-[var(--modal-filters-header-height)] items-center justify-center px-6">
           <DialogTitle className="text-center text-base tracking-normal">
             Filters
@@ -208,26 +210,30 @@ export function FiltersView() {
             selectedFilters={selectedFilters}
             onClick={handleCarTypeClick}
           />
+          <CarTransmissionFilters
+            selectedFilters={selectedFilters}
+            onClick={handleCarTransmissionClick}
+          />
           <CarCapacityFilters
             selectedFilters={selectedFilters}
             onMinCarSeatsClick={handleMinCarSeatsClick}
             onMinCarBagsClick={handleMinCarBagsClick}
-          />
-          <CarTransmissionFilters
-            selectedFilters={selectedFilters}
-            onClick={handleCarTransmissionClick}
           />
         </div>
         <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">
           <div className="flex w-full items-center justify-between gap-x-2">
             <Button
               variant="ghost"
-              className="-ml-2 px-2 text-base font-semibold underline"
+              className="-ml-2 px-2.5 text-[15px] font-semibold underline"
               onClick={resetFilters}
             >
               Clear all
             </Button>
-            <Button size="lg" onClick={applyFilters}>
+            <Button
+              size="xl"
+              className="text-[15px] font-semibold"
+              onClick={applyFilters}
+            >
               Show cars
             </Button>
           </div>

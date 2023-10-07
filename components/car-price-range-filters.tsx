@@ -21,7 +21,7 @@ export function CarPriceRangeFilters({
   onMaxPriceInputChange,
 }: CarPriceRangeFiltersProps) {
   return (
-    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-black/10 after:content-['']">
+    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Price range</h3>
         <div className="mx-auto flex max-w-[600px] flex-col items-start justify-between gap-12 pt-2">
@@ -47,7 +47,7 @@ export function CarPriceRangeFilters({
               <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
                 id="i-minimum"
-                className="absolute inset-0 h-full rounded-lg border bg-transparent pl-7 pr-4 pt-4 leading-none"
+                className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[0]}
                 onChange={(e) => onMinPriceInputChange(e)}
               />
@@ -63,7 +63,7 @@ export function CarPriceRangeFilters({
               <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
                 id="i-maximum"
-                className="absolute inset-0 h-full rounded-lg border bg-transparent pl-7 pr-4 pt-4 leading-none"
+                className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[1]}
                 onChange={(e) => onMaxPriceInputChange(e)}
               />

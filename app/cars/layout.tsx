@@ -23,15 +23,17 @@ export default function CarsLayout({ children }: CarsLayoutProps) {
             <SiteHeader />
           </div>
         </div>
-        <section className="h-[var(--search-bar-height)]">
+        <div className="h-[var(--search-bar-height)]">
           <div className="hidden h-full items-center justify-center lg:flex">
             <Suspense>
               <MainSearchForm compact />
             </Suspense>
           </div>
-        </section>
+        </div>
       </div>
-      {children}
+      <div className="mx-auto w-full max-w-none">
+        <main>{children}</main>
+      </div>
       <SiteFooter />
     </>
   );

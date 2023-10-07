@@ -1,11 +1,6 @@
-'use client';
-
 import { CarCard } from '@/components/car-card';
-import { useSearchParams } from 'next/navigation';
 
 export function CarsView() {
-  const searchParams = useSearchParams();
-  console.log(searchParams);
   return (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
       <CarCard
