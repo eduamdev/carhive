@@ -16,17 +16,19 @@ import {
 import { Badge } from '@/components/badge';
 import { CarPriceRangeFilters } from '@/components/car-price-range-filters';
 import { CarTypeFilters } from '@/components/car-type-filters';
-import { CarCapacityFilters } from '@/components/car-capacity-filters';
+import { CarSeatingCapacityFilters } from '@/components/car-seating-capacity-filters';
 import { CarTransmissionFilters } from '@/components/car-transmission-filters';
+import { CarEngineTypeFilters } from '@/components/car-engine-type-filters';
 
 import { createUrl } from '@/lib/utils';
-import { CarTransmission, CarType, IFilters } from '@/types/filters';
+import { IFilters } from '@/types/filters';
+import { ECarEngineType, ECarTransmission, ECarType } from '@/types/car-specs';
 
 export function FiltersView() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const MIN_PRICE = 0;
-  const MAX_PRICE = 100;
+  const MAX_PRICE = 5000;
   const [open, setOpen] = useState<boolean>(false);
   const [selectedFilters, setSelectedFilters] = useState<IFilters>(
     getCurrentFilterSelection(),
@@ -44,22 +46,23 @@ export function FiltersView() {
     const maxPrice = Number(searchParams.get('max-price') || MAX_PRICE);
     const priceRange: number[] = [minPrice, maxPrice];
 
-    const carTypes: CarType[] = searchParams
+    const carTypes: ECarType[] = searchParams
       .getAll('car-type')
       .filter((type) =>
-        Object.values(CarType).includes(type as CarType),
-      ) as CarType[];
+        Object.values(ECarType).includes(type as ECarType),
+      ) as ECarType[];
 
     const minSeats = searchParams.get('min-seats') || '';
-    const minBags = searchParams.get('min-bags') || '';
     const transmission =
-      (searchParams.get('transmission') as CarTransmission) || '';
+      (searchParams.get('transmission') as ECarTransmission) || '';
+    const engineTypes =
+      (searchParams.get('engine-type') as ECarEngineType) || '';
 
     return {
       priceRange,
       carTypes: carTypes.length > 0 ? carTypes : [],
       minSeats,
-      minBags,
+      engineTypes,
       transmission,
     };
   }
@@ -72,8 +75,8 @@ export function FiltersView() {
       count += searchParams.getAll('car-type').length;
     }
     if (searchParams.has('min-seats')) count++;
-    if (searchParams.has('min-bags')) count++;
     if (searchParams.has('transmission')) count++;
+    if (searchParams.has('engine-type')) count++;
 
     return count;
   }
@@ -99,7 +102,7 @@ export function FiltersView() {
     });
   }
 
-  function handleCarTypeClick(slug: CarType) {
+  function handleCarTypeClick(slug: ECarType) {
     let newCarTypesSelected = [];
 
     if (selectedFilters.carTypes.includes(slug)) {
@@ -120,17 +123,17 @@ export function FiltersView() {
     });
   }
 
-  function handleMinCarBagsClick(slug: string) {
-    setSelectedFilters({
-      ...selectedFilters,
-      minBags: selectedFilters.minBags === slug ? '' : slug,
-    });
-  }
-
-  function handleCarTransmissionClick(slug: CarTransmission) {
+  function handleCarTransmissionClick(slug: ECarTransmission) {
     setSelectedFilters({
       ...selectedFilters,
       transmission: selectedFilters.transmission === slug ? '' : slug,
+    });
+  }
+
+  function handleCarEngineTypeClick(slug: ECarEngineType) {
+    setSelectedFilters({
+      ...selectedFilters,
+      engineTypes: selectedFilters.engineTypes === slug ? '' : slug,
     });
   }
 
@@ -139,7 +142,7 @@ export function FiltersView() {
       priceRange: [MIN_PRICE, MAX_PRICE],
       carTypes: [],
       minSeats: '',
-      minBags: '',
+      engineTypes: '',
       transmission: '',
     });
   }
@@ -151,8 +154,8 @@ export function FiltersView() {
     newParams.delete('max-price');
     newParams.delete('car-type');
     newParams.delete('min-seats');
-    newParams.delete('min-bags');
     newParams.delete('transmission');
+    newParams.delete('engine-type');
 
     if (selectedFilters.priceRange[0] !== MIN_PRICE) {
       newParams.set('min-price', selectedFilters.priceRange[0].toString());
@@ -170,11 +173,12 @@ export function FiltersView() {
     if (selectedFilters.minSeats) {
       newParams.set('min-seats', selectedFilters.minSeats.toString());
     }
-    if (selectedFilters.minBags) {
-      newParams.set('min-bags', selectedFilters.minBags.toString());
-    }
     if (selectedFilters.transmission) {
       newParams.set('transmission', selectedFilters.transmission);
+    }
+
+    if (selectedFilters.engineTypes) {
+      newParams.set('engine-type', selectedFilters.engineTypes);
     }
 
     router.push(createUrl('/cars', newParams));
@@ -210,14 +214,17 @@ export function FiltersView() {
             selectedFilters={selectedFilters}
             onClick={handleCarTypeClick}
           />
+          <CarSeatingCapacityFilters
+            selectedFilters={selectedFilters}
+            onMinCarSeatsClick={handleMinCarSeatsClick}
+          />
+          <CarEngineTypeFilters
+            selectedFilters={selectedFilters}
+            onClick={handleCarEngineTypeClick}
+          />
           <CarTransmissionFilters
             selectedFilters={selectedFilters}
             onClick={handleCarTransmissionClick}
-          />
-          <CarCapacityFilters
-            selectedFilters={selectedFilters}
-            onMinCarSeatsClick={handleMinCarSeatsClick}
-            onMinCarBagsClick={handleMinCarBagsClick}
           />
         </div>
         <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">

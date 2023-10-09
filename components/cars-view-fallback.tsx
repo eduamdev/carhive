@@ -39,15 +39,23 @@ function SkeletonCard() {
 
 export function CarsViewFallback() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-      <SkeletonCard />
-    </div>
+    <>
+      <div className="mx-5 my-4 flex items-center justify-between sm:mx-6">
+        <Skeleton className="h-4 w-16" />
+        <Skeleton className="h-10 w-24" />
+      </div>
+      <div className="mx-5 mb-12 sm:mx-6">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      </div>
+    </>
   );
 }

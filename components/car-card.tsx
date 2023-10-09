@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+
 import {
   Card,
   CardContent,
@@ -9,37 +7,53 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Icons } from '@/components/icons';
+import { getEnumKeyByEnumValue } from '@/lib/utils';
+import { ECarEngineType, ECarTransmission } from '@/types/car-specs';
 
 interface CarCardProps {
+  slug: string;
   title: string;
-  rating: number;
-  reviews: number;
-  unlimitedMileage: boolean;
   image: {
     src: string;
     alt: string;
   };
-  transmission: string;
-  capacity: {
-    seats: number;
-    bags: number;
+  specs: {
+    carType: string;
+    engineType: string;
+    transmission: string;
+    capacity: {
+      seats: string;
+    };
   };
   price: {
-    previousPrice: string;
-    discountedPrice: string;
-    currency: string;
+    perDay: {
+      retail: {
+        amount: number;
+        currency: string;
+      };
+      discount: {
+        amount: number;
+        currency: string;
+      };
+    };
   };
+  rating: number;
+  reviews: number;
+  unlimitedMileage?: boolean;
 }
 
 export function CarCard({
+  slug,
   title,
+  image,
+  specs,
+  price,
   rating,
   reviews,
   unlimitedMileage,
-  image,
-  transmission,
-  capacity,
-  price,
 }: CarCardProps) {
   return (
     <Card>
@@ -72,23 +86,27 @@ export function CarCard({
             className="h-20 object-cover object-center"
           />
         </div>
-        <div className="mt-6 flex items-center justify-evenly gap-x-2">
-          <p className="text-sm text-neutral-600">{transmission}</p>
-          <Separator orientation="vertical" decorative className="h-4" />
+        <div className="mt-6 flex items-center justify-between gap-x-2">
           <p className="text-sm text-neutral-600">
-            <span className="leading-none">{capacity.seats}</span> Seats
+            {getEnumKeyByEnumValue(ECarTransmission, specs.transmission)}
           </p>
           <Separator orientation="vertical" decorative className="h-4" />
           <p className="text-sm text-neutral-600">
-            <span className="leading-none">{capacity.bags}</span> Bags
+            <span className="leading-none">
+              {getEnumKeyByEnumValue(ECarEngineType, specs.engineType)}
+            </span>
+          </p>
+          <Separator orientation="vertical" decorative className="h-4" />
+          <p className="text-sm text-neutral-600">
+            <span className="leading-none">{specs.capacity.seats}</span> Seats
           </p>
         </div>
         <div className="mt-3 text-base">
           <span className="mr-2 leading-none text-neutral-500 line-through">
-            {price.previousPrice}
+            {price.perDay.retail.amount}
           </span>
           <span className="mr-1 font-bold leading-none">
-            {price.discountedPrice} {price.currency}
+            {price.perDay.discount.amount} {price.perDay.discount.currency}
           </span>
           <span className="text-sm font-normal leading-none text-neutral-700">
             day
@@ -97,7 +115,7 @@ export function CarCard({
       </CardContent>
       <CardFooter>
         <Button className="w-full" asChild>
-          <Link href="/car">View details</Link>
+          <Link href={`/car/${slug}`}>View details</Link>
         </Button>
       </CardFooter>
     </Card>

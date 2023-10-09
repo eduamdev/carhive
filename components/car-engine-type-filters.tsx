@@ -1,26 +1,26 @@
 import { Filter } from '@/components/filter';
-import { transmissions } from '@/data/car-specs';
+import { carEngines } from '@/data/car-specs';
 import { IFilters } from '@/types/filters';
 
-interface CarTransmissionFiltersProps {
+interface CarEngineTypeFiltersProps {
   selectedFilters: IFilters;
   onClick: Function;
 }
 
-export function CarTransmissionFilters({
+export function CarEngineTypeFilters({
   selectedFilters,
   onClick,
-}: CarTransmissionFiltersProps) {
+}: CarEngineTypeFiltersProps) {
   return (
-    <div className="mb-2 px-6 py-8">
+    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
-        <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
-        <div className="grid grid-cols-2 items-center gap-4">
-          {transmissions.map(({ id, slug, value, icon }) => (
+        <h3 className="pb-6 text-xl font-semibold">Engine type</h3>
+        <div className="grid grid-cols-3 items-center gap-4">
+          {carEngines.map(({ id, slug, value, icon }) => (
             <Filter
               key={id}
               area
-              selected={selectedFilters.transmission === slug}
+              selected={selectedFilters.engineTypes === slug}
               onClick={() => onClick(slug)}
             >
               <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
