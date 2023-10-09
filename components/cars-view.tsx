@@ -44,14 +44,14 @@ export function CarsView() {
     }
 
     if (searchParams.has('transmission')) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) => car.specs.transmission === searchParams.get('transmission'),
+      newFilteredCars = newFilteredCars.filter((car) =>
+        searchParams.getAll('transmission').includes(car.specs.transmission),
       );
     }
 
     if (searchParams.has('engine-type')) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) => car.specs.engineType === searchParams.get('engine-type'),
+      newFilteredCars = newFilteredCars.filter((car) =>
+        searchParams.getAll('engine-type').includes(car.specs.engineType),
       );
     }
 

@@ -1,33 +1,42 @@
-import { Filter } from '@/components/filter';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { transmissions } from '@/data/car-specs';
 import { IFilters } from '@/types/filters';
+import { ECarTransmission } from '@/types/car-specs';
 
 interface CarTransmissionFiltersProps {
   selectedFilters: IFilters;
-  onClick: Function;
+  onCheckedChange: (
+    checked: boolean | 'indeterminate',
+    slug: ECarTransmission,
+  ) => void;
 }
 
 export function CarTransmissionFilters({
   selectedFilters,
-  onClick,
+  onCheckedChange,
 }: CarTransmissionFiltersProps) {
   return (
     <div className="mb-2 px-6 py-8">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
-        <div className="grid grid-cols-2 items-center gap-4">
-          {transmissions.map(({ id, slug, value, icon }) => (
-            <Filter
-              key={id}
-              area
-              selected={selectedFilters.transmission === slug}
-              onClick={() => onClick(slug)}
-            >
-              <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-                {icon}
-                <span className="text-base font-medium">{value}</span>
+        <div className="grid grid-cols-2 items-center">
+          {transmissions.map(({ id, slug, value }) => (
+            <div className="flex items-center py-3" key={id}>
+              <Checkbox
+                id={id}
+                onCheckedChange={(checked) => onCheckedChange(checked, slug)}
+                checked={selectedFilters.transmission.includes(slug)}
+              />
+              <div className="w-full">
+                <Label
+                  htmlFor={id}
+                  className="block cursor-pointer pl-4 text-base font-normal"
+                >
+                  {value}
+                </Label>
               </div>
-            </Filter>
+            </div>
           ))}
         </div>
       </section>

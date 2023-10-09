@@ -4,6 +4,6 @@ export interface IFilters {
   priceRange: number[];
   carTypes: ECarType[];
   minSeats: string;
-  engineTypes: ECarEngineType | '';
-  transmission: ECarTransmission | '';
+  engineTypes: ECarEngineType[];
+  transmission: ECarTransmission[];
 }

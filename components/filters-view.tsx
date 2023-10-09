@@ -52,18 +52,26 @@ export function FiltersView() {
         Object.values(ECarType).includes(type as ECarType),
       ) as ECarType[];
 
+    const transmissions: ECarTransmission[] = searchParams
+      .getAll('transmission')
+      .filter((type) =>
+        Object.values(ECarTransmission).includes(type as ECarTransmission),
+      ) as ECarTransmission[];
+
+    const engineTypes: ECarEngineType[] = searchParams
+      .getAll('engine-type')
+      .filter((type) =>
+        Object.values(ECarEngineType).includes(type as ECarEngineType),
+      ) as ECarEngineType[];
+
     const minSeats = searchParams.get('min-seats') || '';
-    const transmission =
-      (searchParams.get('transmission') as ECarTransmission) || '';
-    const engineTypes =
-      (searchParams.get('engine-type') as ECarEngineType) || '';
 
     return {
       priceRange,
       carTypes: carTypes.length > 0 ? carTypes : [],
       minSeats,
-      engineTypes,
-      transmission,
+      engineTypes: engineTypes.length > 0 ? engineTypes : [],
+      transmission: transmissions.length > 0 ? transmissions : [],
     };
   }
 
@@ -75,8 +83,12 @@ export function FiltersView() {
       count += searchParams.getAll('car-type').length;
     }
     if (searchParams.has('min-seats')) count++;
-    if (searchParams.has('transmission')) count++;
-    if (searchParams.has('engine-type')) count++;
+    if (searchParams.has('transmission')) {
+      count += searchParams.getAll('transmission').length;
+    }
+    if (searchParams.has('engine-type')) {
+      count += searchParams.getAll('engine-type').length;
+    }
 
     return count;
   }
@@ -123,17 +135,43 @@ export function FiltersView() {
     });
   }
 
-  function handleCarTransmissionClick(slug: ECarTransmission) {
+  function handleCarTransmissionCheckedChange(
+    checked: boolean | 'indeterminate',
+    slug: ECarTransmission,
+  ) {
+    let newCarTransmissionsSelected = [];
+
+    if (!checked || checked === 'indeterminate') {
+      newCarTransmissionsSelected = selectedFilters.transmission.filter(
+        (selected) => selected !== slug,
+      );
+    } else {
+      newCarTransmissionsSelected = [...selectedFilters.transmission, slug];
+    }
+
     setSelectedFilters({
       ...selectedFilters,
-      transmission: selectedFilters.transmission === slug ? '' : slug,
+      transmission: newCarTransmissionsSelected,
     });
   }
 
-  function handleCarEngineTypeClick(slug: ECarEngineType) {
+  function handleCarEngineTypeCheckedChange(
+    checked: boolean | 'indeterminate',
+    slug: ECarEngineType,
+  ) {
+    let newCarEngineTypesSelected = [];
+
+    if (!checked || checked === 'indeterminate') {
+      newCarEngineTypesSelected = selectedFilters.engineTypes.filter(
+        (selected) => selected !== slug,
+      );
+    } else {
+      newCarEngineTypesSelected = [...selectedFilters.engineTypes, slug];
+    }
+
     setSelectedFilters({
       ...selectedFilters,
-      engineTypes: selectedFilters.engineTypes === slug ? '' : slug,
+      engineTypes: newCarEngineTypesSelected,
     });
   }
 
@@ -141,9 +179,9 @@ export function FiltersView() {
     setSelectedFilters({
       priceRange: [MIN_PRICE, MAX_PRICE],
       carTypes: [],
+      engineTypes: [],
       minSeats: '',
-      engineTypes: '',
-      transmission: '',
+      transmission: [],
     });
   }
 
@@ -157,32 +195,34 @@ export function FiltersView() {
     newParams.delete('transmission');
     newParams.delete('engine-type');
 
-    if (selectedFilters.priceRange[0] !== MIN_PRICE) {
+    if (selectedFilters.priceRange[0] !== MIN_PRICE)
       newParams.set('min-price', selectedFilters.priceRange[0].toString());
-    }
 
-    if (selectedFilters.priceRange[1] !== MAX_PRICE) {
+    if (selectedFilters.priceRange[1] !== MAX_PRICE)
       newParams.set('max-price', selectedFilters.priceRange[1].toString());
-    }
+
+    if (selectedFilters.minSeats)
+      newParams.set('min-seats', selectedFilters.minSeats.toString());
 
     if (selectedFilters.carTypes.length) {
       selectedFilters.carTypes.forEach((type) => {
         newParams.append('car-type', type);
       });
     }
-    if (selectedFilters.minSeats) {
-      newParams.set('min-seats', selectedFilters.minSeats.toString());
-    }
-    if (selectedFilters.transmission) {
-      newParams.set('transmission', selectedFilters.transmission);
+
+    if (selectedFilters.engineTypes.length) {
+      selectedFilters.engineTypes.forEach((type) => {
+        newParams.append('engine-type', type);
+      });
     }
 
-    if (selectedFilters.engineTypes) {
-      newParams.set('engine-type', selectedFilters.engineTypes);
+    if (selectedFilters.transmission.length) {
+      selectedFilters.transmission.forEach((type) => {
+        newParams.append('transmission', type);
+      });
     }
 
     router.push(createUrl('/cars', newParams));
-
     setOpen(false);
   }
 
@@ -214,17 +254,17 @@ export function FiltersView() {
             selectedFilters={selectedFilters}
             onClick={handleCarTypeClick}
           />
+          <CarEngineTypeFilters
+            selectedFilters={selectedFilters}
+            onCheckedChange={handleCarEngineTypeCheckedChange}
+          />
           <CarSeatingCapacityFilters
             selectedFilters={selectedFilters}
             onMinCarSeatsClick={handleMinCarSeatsClick}
           />
-          <CarEngineTypeFilters
-            selectedFilters={selectedFilters}
-            onClick={handleCarEngineTypeClick}
-          />
           <CarTransmissionFilters
             selectedFilters={selectedFilters}
-            onClick={handleCarTransmissionClick}
+            onCheckedChange={handleCarTransmissionCheckedChange}
           />
         </div>
         <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">

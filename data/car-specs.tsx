@@ -50,13 +50,11 @@ export const transmissions = [
     id: 'niWHkEKrP_Uw269',
     slug: ECarTransmission.Automatic,
     value: getEnumKeyByEnumValue(ECarTransmission, ECarTransmission.Automatic),
-    icon: <Icons.automaticTransmission className="h-7 w-7" />,
   },
   {
     id: 'qm_4myAA0aDGwee',
     slug: ECarTransmission.Manual,
     value: getEnumKeyByEnumValue(ECarTransmission, ECarTransmission.Manual),
-    icon: <Icons.manualTransmission className="h-7 w-7" />,
   },
 ];
 
@@ -65,19 +63,16 @@ export const carEngines = [
     id: '23akPY5Utv03CBN',
     slug: ECarEngineType.Gas,
     value: getEnumKeyByEnumValue(ECarEngineType, ECarEngineType.Gas),
-    icon: '',
   },
   {
     id: 'JAtOstQ8XDcmzq0',
     slug: ECarEngineType.Hybrid,
     value: getEnumKeyByEnumValue(ECarEngineType, ECarEngineType.Hybrid),
-    icon: '',
   },
   {
     id: '_jquqvDA9koeT7Q',
     slug: ECarEngineType.Electric,
     value: getEnumKeyByEnumValue(ECarEngineType, ECarEngineType.Electric),
-    icon: '',
   },
 ];
 

@@ -1,33 +1,42 @@
-import { Filter } from '@/components/filter';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { carEngines } from '@/data/car-specs';
 import { IFilters } from '@/types/filters';
+import { ECarEngineType } from '@/types/car-specs';
 
 interface CarEngineTypeFiltersProps {
   selectedFilters: IFilters;
-  onClick: Function;
+  onCheckedChange: (
+    checked: boolean | 'indeterminate',
+    slug: ECarEngineType,
+  ) => void;
 }
 
 export function CarEngineTypeFilters({
   selectedFilters,
-  onClick,
+  onCheckedChange,
 }: CarEngineTypeFiltersProps) {
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Engine type</h3>
-        <div className="grid grid-cols-3 items-center gap-4">
-          {carEngines.map(({ id, slug, value, icon }) => (
-            <Filter
-              key={id}
-              area
-              selected={selectedFilters.engineTypes === slug}
-              onClick={() => onClick(slug)}
-            >
-              <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-                {icon}
-                <span className="text-base font-medium">{value}</span>
+        <div className="grid grid-cols-2 items-center">
+          {carEngines.map(({ id, slug, value }) => (
+            <div className="flex items-center py-3" key={id}>
+              <Checkbox
+                id={id}
+                onCheckedChange={(checked) => onCheckedChange(checked, slug)}
+                checked={selectedFilters.engineTypes.includes(slug)}
+              />
+              <div className="w-full">
+                <Label
+                  htmlFor={id}
+                  className="block cursor-pointer pl-4 text-base font-normal"
+                >
+                  {value}
+                </Label>
               </div>
-            </Filter>
+            </div>
           ))}
         </div>
       </section>
