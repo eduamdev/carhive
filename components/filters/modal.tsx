@@ -13,18 +13,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Badge } from '@/components/badge';
-import { CarPriceRangeFilters } from '@/components/car-price-range-filters';
-import { CarTypeFilters } from '@/components/car-type-filters';
-import { CarSeatingCapacityFilters } from '@/components/car-seating-capacity-filters';
-import { CarTransmissionFilters } from '@/components/car-transmission-filters';
-import { CarEngineTypeFilters } from '@/components/car-engine-type-filters';
+import { Badge } from '@/components/filters/badge';
+import { PriceRange } from '@/components/filters/price-range';
+import { CarTypes } from '@/components/filters/car-types';
+import { SeatingCapacity } from '@/components/filters/seating-capacity';
+import { CarTransmissions } from '@/components/filters/car-transmissions';
+import { EngineTypes } from '@/components/filters/engine-types';
 
 import { createUrl } from '@/lib/utils';
 import { IFilters } from '@/types/filters';
 import { ECarEngineType, ECarTransmission, ECarType } from '@/types/car-specs';
 
-export function FiltersView() {
+export function Modal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const MIN_PRICE = 0;
@@ -78,11 +78,11 @@ export function FiltersView() {
   function getCountSelectedFilters() {
     let count = 0;
 
+    if (searchParams.has('min-seats')) count++;
     if (searchParams.has('min-price') || searchParams.has('max-price')) count++;
     if (searchParams.has('car-type')) {
       count += searchParams.getAll('car-type').length;
     }
-    if (searchParams.has('min-seats')) count++;
     if (searchParams.has('transmission')) {
       count += searchParams.getAll('transmission').length;
     }
@@ -93,21 +93,21 @@ export function FiltersView() {
     return count;
   }
 
-  function handleCarPriceRangeChange(priceRange: number[]) {
+  function handleSliderChange(priceRange: number[]) {
     setSelectedFilters({
       ...selectedFilters,
       priceRange: priceRange,
     });
   }
 
-  function handleMinCarPriceChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleMinPriceInputChange(e: ChangeEvent<HTMLInputElement>) {
     setSelectedFilters({
       ...selectedFilters,
       priceRange: [Number(e.target.value), selectedFilters.priceRange[1]],
     });
   }
 
-  function handleMaxCarPriceChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleMaxPriceInputChange(e: ChangeEvent<HTMLInputElement>) {
     setSelectedFilters({
       ...selectedFilters,
       priceRange: [selectedFilters.priceRange[0], Number(e.target.value)],
@@ -155,7 +155,7 @@ export function FiltersView() {
     });
   }
 
-  function handleCarEngineTypeCheckedChange(
+  function handleEngineTypeCheckedChange(
     checked: boolean | 'indeterminate',
     slug: ECarEngineType,
   ) {
@@ -242,27 +242,27 @@ export function FiltersView() {
           </DialogTitle>
         </DialogHeader>
         <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-b border-t">
-          <CarPriceRangeFilters
+          <PriceRange
             minPrice={MIN_PRICE}
             maxPrice={MAX_PRICE}
             selectedFilters={selectedFilters}
-            onSliderChange={handleCarPriceRangeChange}
-            onMinPriceInputChange={handleMinCarPriceChange}
-            onMaxPriceInputChange={handleMaxCarPriceChange}
+            onSliderChange={handleSliderChange}
+            onMinPriceInputChange={handleMinPriceInputChange}
+            onMaxPriceInputChange={handleMaxPriceInputChange}
           />
-          <CarTypeFilters
+          <CarTypes
             selectedFilters={selectedFilters}
             onClick={handleCarTypeClick}
           />
-          <CarEngineTypeFilters
+          <EngineTypes
             selectedFilters={selectedFilters}
-            onCheckedChange={handleCarEngineTypeCheckedChange}
+            onCheckedChange={handleEngineTypeCheckedChange}
           />
-          <CarSeatingCapacityFilters
+          <SeatingCapacity
             selectedFilters={selectedFilters}
             onMinCarSeatsClick={handleMinCarSeatsClick}
           />
-          <CarTransmissionFilters
+          <CarTransmissions
             selectedFilters={selectedFilters}
             onCheckedChange={handleCarTransmissionCheckedChange}
           />

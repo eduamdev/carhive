@@ -1,4 +1,3 @@
-import { Icons } from '@/components/icons';
 import { convertPascalCaseToWords, getEnumKeyByEnumValue } from '@/lib/utils';
 import { ECarEngineType, ECarTransmission, ECarType } from '@/types/car-specs';
 
@@ -7,13 +6,11 @@ export const carTypes = [
     id: '0kmdcajKrMM4aXS',
     slug: ECarType.Hatchback,
     value: getEnumKeyByEnumValue(ECarType, ECarType.Hatchback),
-    icon: <Icons.hatchback className="h-8 w-8" />,
   },
   {
     id: 'MM9sWmoTWBpHXNF',
     slug: ECarType.Minivan,
     value: getEnumKeyByEnumValue(ECarType, ECarType.Minivan),
-    icon: <Icons.minivan className="h-8 w-8" />,
   },
   {
     id: 'p25Na0wAQbXANhl',
@@ -21,7 +18,6 @@ export const carTypes = [
     value: convertPascalCaseToWords(
       getEnumKeyByEnumValue(ECarType, ECarType.PickupTruck),
     ),
-    icon: <Icons.pickupTruck className="h-8 w-8" />,
   },
   {
     id: 'v3_htQJdhGeG3Pb',
@@ -29,19 +25,16 @@ export const carTypes = [
     value: convertPascalCaseToWords(
       getEnumKeyByEnumValue(ECarType, ECarType.SportsCar),
     ),
-    icon: <Icons.sportsCar className="h-8 w-8" />,
   },
   {
     id: 'VXvMj2lZqlWZJS3',
     slug: ECarType.SUV,
     value: getEnumKeyByEnumValue(ECarType, ECarType.SUV),
-    icon: <Icons.suv className="h-8 w-8" />,
   },
   {
     id: 'bG32yeQrdsgCQIl',
     slug: ECarType.Sedan,
     value: getEnumKeyByEnumValue(ECarType, ECarType.Sedan),
-    icon: <Icons.sedan className="h-8 w-8" />,
   },
 ];
 

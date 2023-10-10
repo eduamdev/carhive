@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/car-card';
-import { FiltersView } from '@/components/filters-view';
+import { Modal as ModalFilters } from '@/components/filters/modal';
 import { allCars } from '@/data/all-cars';
 
 function getAllCars() {
@@ -75,7 +75,7 @@ export function CarsView() {
               ? `${filteredCars.length} cars`
               : `${filteredCars.length} car`)}
         </p>
-        <FiltersView />
+        <ModalFilters />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">

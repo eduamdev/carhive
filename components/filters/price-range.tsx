@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { IFilters } from '@/types/filters';
 
-interface CarPriceRangeFiltersProps {
+interface PriceRangeProps {
   selectedFilters: IFilters;
   minPrice: number;
   maxPrice: number;
@@ -12,14 +12,14 @@ interface CarPriceRangeFiltersProps {
   onMaxPriceInputChange: Function;
 }
 
-export function CarPriceRangeFilters({
+export function PriceRange({
   selectedFilters,
   minPrice,
   maxPrice,
   onSliderChange,
   onMinPriceInputChange,
   onMaxPriceInputChange,
-}: CarPriceRangeFiltersProps) {
+}: PriceRangeProps) {
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
