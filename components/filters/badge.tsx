@@ -1,4 +1,4 @@
-export function Badge({ count }) {
+export function FiltersBadge({ count }) {
   if (!count) return null;
 
   return (

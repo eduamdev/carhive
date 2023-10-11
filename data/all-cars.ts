@@ -1,4 +1,4 @@
-import { ECarEngineType, ECarTransmission, ECarType } from '@/types/car-specs';
+import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
 
 export const allCars = [
   {
@@ -16,9 +16,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Hatchback,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Manual,
+      carType: ECarTypes.HATCHBACK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.MANUAL,
       capacity: {
         seats: '4',
       },
@@ -51,9 +51,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Minivan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.MINIVAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '7',
       },
@@ -86,9 +86,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SUV,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SUV,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -121,9 +121,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Sedan,
-      engineType: ECarEngineType.Electric,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SEDAN,
+      engineType: EEngineTypes.ELECTRIC,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -156,9 +156,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Sedan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SEDAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -191,9 +191,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Sedan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SEDAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -226,9 +226,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Sedan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SEDAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -261,9 +261,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SUV,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SUV,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -296,9 +296,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Sedan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SEDAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -331,9 +331,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Hatchback,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.HATCHBACK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -366,9 +366,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Hatchback,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.HATCHBACK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -401,9 +401,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SUV,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SUV,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -436,9 +436,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SUV,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SUV,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '7',
       },
@@ -471,9 +471,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Minivan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.MINIVAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '7',
       },
@@ -506,9 +506,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Minivan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.MINIVAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -541,9 +541,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.PickupTruck,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.PICKUP_TRUCK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -576,9 +576,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.PickupTruck,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.PICKUP_TRUCK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -611,9 +611,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SUV,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SUV,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '5',
       },
@@ -646,9 +646,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SportsCar,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SPORTS_CAR,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -681,9 +681,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Minivan,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.MINIVAN,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '7',
       },
@@ -716,9 +716,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SportsCar,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SPORTS_CAR,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -751,9 +751,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.SportsCar,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.SPORTS_CAR,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -786,9 +786,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.PickupTruck,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.PICKUP_TRUCK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },
@@ -821,9 +821,9 @@ export const allCars = [
       alt: '',
     },
     specs: {
-      carType: ECarType.Hatchback,
-      engineType: ECarEngineType.Gas,
-      transmission: ECarTransmission.Automatic,
+      carType: ECarTypes.HATCHBACK,
+      engineType: EEngineTypes.GAS,
+      transmission: ETransmissions.AUTOMATIC,
       capacity: {
         seats: '4',
       },

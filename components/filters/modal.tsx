@@ -13,63 +13,61 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Badge } from '@/components/filters/badge';
-import { PriceRange } from '@/components/filters/price-range';
-import { CarTypes } from '@/components/filters/car-types';
-import { SeatingCapacity } from '@/components/filters/seating-capacity';
-import { CarTransmissions } from '@/components/filters/car-transmissions';
-import { EngineTypes } from '@/components/filters/engine-types';
+import {
+  FiltersBadge,
+  FiltersPriceRange,
+  FiltersCarTypes,
+  FiltersSeatingCapacity,
+  FiltersTransmissions,
+  FiltersEngineTypes,
+} from '@/components/filters';
 
-import { createUrl } from '@/lib/utils';
-import { IFilters } from '@/types/filters';
-import { ECarEngineType, ECarTransmission, ECarType } from '@/types/car-specs';
+import { createUrl, convertToKebabCase, reverseMapToEnum } from '@/lib/utils';
+import { ESearchParams, ISelectedFilters } from '@/types/filters';
+import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
 
-export function Modal() {
+export function FiltersModal() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const MIN_PRICE = 0;
   const MAX_PRICE = 5000;
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedFilters, setSelectedFilters] = useState<IFilters>(
-    getCurrentFilterSelection(),
+  const [selectedFilters, setSelectedFilters] = useState<ISelectedFilters>(
+    getSelectedFilters(),
   );
 
   function handleOpenChange() {
     if (!open) {
-      setSelectedFilters(getCurrentFilterSelection());
+      setSelectedFilters(getSelectedFilters());
     }
     setOpen(!open);
   }
 
-  function getCurrentFilterSelection(): IFilters {
-    const minPrice = Number(searchParams.get('min-price') || MIN_PRICE);
-    const maxPrice = Number(searchParams.get('max-price') || MAX_PRICE);
+  function getSelectedFilters(): ISelectedFilters {
+    const minPrice =
+      Number(searchParams.get(ESearchParams.MIN_PRICE)) || MIN_PRICE;
+    const maxPrice =
+      Number(searchParams.get(ESearchParams.MAX_PRICE)) || MAX_PRICE;
     const priceRange: number[] = [minPrice, maxPrice];
 
-    const carTypes: ECarType[] = searchParams
-      .getAll('car-type')
-      .filter((type) =>
-        Object.values(ECarType).includes(type as ECarType),
-      ) as ECarType[];
+    const minSeats = searchParams.get(ESearchParams.MIN_SEATS) || '';
 
-    const transmissions: ECarTransmission[] = searchParams
-      .getAll('transmission')
-      .filter((type) =>
-        Object.values(ECarTransmission).includes(type as ECarTransmission),
-      ) as ECarTransmission[];
+    const carTypes: ECarTypes[] = searchParams
+      .getAll(ESearchParams.CAR_TYPE)
+      .map((value) => reverseMapToEnum(value)) as ECarTypes[];
 
-    const engineTypes: ECarEngineType[] = searchParams
-      .getAll('engine-type')
-      .filter((type) =>
-        Object.values(ECarEngineType).includes(type as ECarEngineType),
-      ) as ECarEngineType[];
+    const engineTypes: EEngineTypes[] = searchParams
+      .getAll(ESearchParams.ENGINE_TYPE)
+      .map((value) => reverseMapToEnum(value)) as EEngineTypes[];
 
-    const minSeats = searchParams.get('min-seats') || '';
+    const transmissions: ETransmissions[] = searchParams
+      .getAll(ESearchParams.TRANSMISSION)
+      .map((value) => reverseMapToEnum(value)) as ETransmissions[];
 
     return {
       priceRange,
-      carTypes: carTypes.length > 0 ? carTypes : [],
       minSeats,
+      carTypes: carTypes.length > 0 ? carTypes : [],
       engineTypes: engineTypes.length > 0 ? engineTypes : [],
       transmission: transmissions.length > 0 ? transmissions : [],
     };
@@ -78,16 +76,20 @@ export function Modal() {
   function getCountSelectedFilters() {
     let count = 0;
 
-    if (searchParams.has('min-seats')) count++;
-    if (searchParams.has('min-price') || searchParams.has('max-price')) count++;
-    if (searchParams.has('car-type')) {
-      count += searchParams.getAll('car-type').length;
+    if (searchParams.has(ESearchParams.MIN_SEATS)) count++;
+    if (
+      searchParams.has(ESearchParams.MIN_PRICE) ||
+      searchParams.has(ESearchParams.MAX_PRICE)
+    )
+      count++;
+    if (searchParams.has(ESearchParams.CAR_TYPE)) {
+      count += searchParams.getAll(ESearchParams.CAR_TYPE).length;
     }
-    if (searchParams.has('transmission')) {
-      count += searchParams.getAll('transmission').length;
+    if (searchParams.has(ESearchParams.TRANSMISSION)) {
+      count += searchParams.getAll(ESearchParams.TRANSMISSION).length;
     }
-    if (searchParams.has('engine-type')) {
-      count += searchParams.getAll('engine-type').length;
+    if (searchParams.has(ESearchParams.ENGINE_TYPE)) {
+      count += searchParams.getAll(ESearchParams.ENGINE_TYPE).length;
     }
 
     return count;
@@ -100,78 +102,115 @@ export function Modal() {
     });
   }
 
-  function handleMinPriceInputChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleMinPriceInputChange(
+    event: ChangeEvent<HTMLInputElement>,
+  ): void {
+    const inputValue = event.target.value;
+    // Remove non-numeric characters using regular expression
+    let numericValue = Number(inputValue.replace(/[^0-9]/g, ''));
+
+    // Ensure numeric value is a valid number, else default to MIN_PRICE
+    if (isNaN(numericValue)) numericValue = MIN_PRICE;
+
+    let newMinPrice: number;
+    const currentMaxPrice = selectedFilters.priceRange[1];
+
+    // Ensure the value does not exceed the current maximum price
+    newMinPrice = Math.min(numericValue, currentMaxPrice - 1);
+
+    // Ensure the value does not exceed the MIN_PRICE
+    newMinPrice = Math.max(newMinPrice, MIN_PRICE);
+
     setSelectedFilters({
       ...selectedFilters,
-      priceRange: [Number(e.target.value), selectedFilters.priceRange[1]],
+      priceRange: [newMinPrice, currentMaxPrice],
     });
   }
 
-  function handleMaxPriceInputChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleMaxPriceInputChange(
+    event: ChangeEvent<HTMLInputElement>,
+  ): void {
+    alert('changing');
+    const inputValue = event.target.value;
+    // Remove non-numeric characters using regular expression
+    let numericValue = Number(inputValue.replace(/[^0-9]/g, ''));
+
+    // Ensure numeric value is a valid number, else default to MAX_PRICE
+    if (isNaN(numericValue)) numericValue = MAX_PRICE;
+
+    let newMaxPrice: number;
+    const currentMinPrice = selectedFilters.priceRange[0];
+
+    // Ensure the value does not exceed the current minimum price
+    newMaxPrice = Math.max(numericValue, currentMinPrice + 1);
+
+    // Ensure the value does not exceed the MAX_PRICE
+    newMaxPrice = Math.min(numericValue, MAX_PRICE);
+
     setSelectedFilters({
       ...selectedFilters,
-      priceRange: [selectedFilters.priceRange[0], Number(e.target.value)],
+      priceRange: [currentMinPrice, newMaxPrice],
     });
   }
 
-  function handleCarTypeClick(slug: ECarType) {
-    let newCarTypesSelected = [];
+  function handlECarTypesClick(value: ECarTypes) {
+    let carTypesSelected: ECarTypes[] = [];
 
-    if (selectedFilters.carTypes.includes(slug)) {
-      newCarTypesSelected = selectedFilters.carTypes.filter(
-        (selected) => selected !== slug,
+    if (selectedFilters.carTypes.includes(value)) {
+      carTypesSelected = selectedFilters.carTypes.filter(
+        (selected) => selected !== value,
       );
     } else {
-      newCarTypesSelected = [...selectedFilters.carTypes, slug];
+      carTypesSelected = [...selectedFilters.carTypes, value];
     }
 
-    setSelectedFilters({ ...selectedFilters, carTypes: newCarTypesSelected });
+    setSelectedFilters({ ...selectedFilters, carTypes: carTypesSelected });
   }
 
-  function handleMinCarSeatsClick(slug: string) {
+  function handleMinCarSeatsClick(value: string) {
     setSelectedFilters({
       ...selectedFilters,
-      minSeats: selectedFilters.minSeats === slug ? '' : slug,
+      minSeats: selectedFilters.minSeats === value ? '' : value,
     });
   }
 
-  function handleCarTransmissionCheckedChange(
+  function handlETransmissionsCheckedChange(
     checked: boolean | 'indeterminate',
-    slug: ECarTransmission,
+    value: ETransmissions,
   ) {
-    let newCarTransmissionsSelected = [];
+    let transmissionsSelected: ETransmissions[] = [];
 
     if (!checked || checked === 'indeterminate') {
-      newCarTransmissionsSelected = selectedFilters.transmission.filter(
-        (selected) => selected !== slug,
+      transmissionsSelected = selectedFilters.transmission.filter(
+        (selected) => selected !== value,
       );
     } else {
-      newCarTransmissionsSelected = [...selectedFilters.transmission, slug];
+      transmissionsSelected = [...selectedFilters.transmission, value];
     }
 
     setSelectedFilters({
       ...selectedFilters,
-      transmission: newCarTransmissionsSelected,
+      transmission: transmissionsSelected,
     });
   }
 
   function handleEngineTypeCheckedChange(
     checked: boolean | 'indeterminate',
-    slug: ECarEngineType,
+    value: EEngineTypes,
   ) {
-    let newCarEngineTypesSelected = [];
+    let engineTypesSelected: EEngineTypes[] = [];
 
     if (!checked || checked === 'indeterminate') {
-      newCarEngineTypesSelected = selectedFilters.engineTypes.filter(
-        (selected) => selected !== slug,
+      engineTypesSelected = selectedFilters.engineTypes.filter(
+        (selected) => selected !== value,
       );
     } else {
-      newCarEngineTypesSelected = [...selectedFilters.engineTypes, slug];
+      engineTypesSelected = [...selectedFilters.engineTypes, value];
     }
 
     setSelectedFilters({
       ...selectedFilters,
-      engineTypes: newCarEngineTypesSelected,
+      engineTypes: engineTypesSelected,
     });
   }
 
@@ -188,37 +227,46 @@ export function Modal() {
   function applyFilters() {
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete('min-price');
-    newParams.delete('max-price');
-    newParams.delete('car-type');
-    newParams.delete('min-seats');
-    newParams.delete('transmission');
-    newParams.delete('engine-type');
+    newParams.delete(ESearchParams.MIN_PRICE);
+    newParams.delete(ESearchParams.MAX_PRICE);
+    newParams.delete(ESearchParams.CAR_TYPE);
+    newParams.delete(ESearchParams.MIN_SEATS);
+    newParams.delete(ESearchParams.TRANSMISSION);
+    newParams.delete(ESearchParams.ENGINE_TYPE);
 
     if (selectedFilters.priceRange[0] !== MIN_PRICE)
-      newParams.set('min-price', selectedFilters.priceRange[0].toString());
+      newParams.set(
+        ESearchParams.MIN_PRICE,
+        selectedFilters.priceRange[0].toString(),
+      );
 
     if (selectedFilters.priceRange[1] !== MAX_PRICE)
-      newParams.set('max-price', selectedFilters.priceRange[1].toString());
+      newParams.set(
+        ESearchParams.MAX_PRICE,
+        selectedFilters.priceRange[1].toString(),
+      );
 
     if (selectedFilters.minSeats)
-      newParams.set('min-seats', selectedFilters.minSeats.toString());
+      newParams.set(
+        ESearchParams.MIN_SEATS,
+        selectedFilters.minSeats.toString(),
+      );
 
     if (selectedFilters.carTypes.length) {
-      selectedFilters.carTypes.forEach((type) => {
-        newParams.append('car-type', type);
+      selectedFilters.carTypes.forEach((value) => {
+        newParams.append(ESearchParams.CAR_TYPE, convertToKebabCase(value));
       });
     }
 
     if (selectedFilters.engineTypes.length) {
-      selectedFilters.engineTypes.forEach((type) => {
-        newParams.append('engine-type', type);
+      selectedFilters.engineTypes.forEach((value) => {
+        newParams.append(ESearchParams.ENGINE_TYPE, convertToKebabCase(value));
       });
     }
 
     if (selectedFilters.transmission.length) {
-      selectedFilters.transmission.forEach((type) => {
-        newParams.append('transmission', type);
+      selectedFilters.transmission.forEach((value) => {
+        newParams.append(ESearchParams.TRANSMISSION, convertToKebabCase(value));
       });
     }
 
@@ -232,7 +280,7 @@ export function Modal() {
         <Button variant="outline" className="relative">
           <Icons.filters className="mr-2 h-[14px] w-[14px]" />
           Filters
-          <Badge count={getCountSelectedFilters()} />
+          <FiltersBadge count={getCountSelectedFilters()} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[var(--modal-filters-max-width)] gap-0 !rounded-xl p-0">
@@ -242,7 +290,7 @@ export function Modal() {
           </DialogTitle>
         </DialogHeader>
         <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-b border-t">
-          <PriceRange
+          <FiltersPriceRange
             minPrice={MIN_PRICE}
             maxPrice={MAX_PRICE}
             selectedFilters={selectedFilters}
@@ -250,21 +298,21 @@ export function Modal() {
             onMinPriceInputChange={handleMinPriceInputChange}
             onMaxPriceInputChange={handleMaxPriceInputChange}
           />
-          <CarTypes
+          <FiltersCarTypes
             selectedFilters={selectedFilters}
-            onClick={handleCarTypeClick}
+            onClick={handlECarTypesClick}
           />
-          <EngineTypes
+          <FiltersEngineTypes
             selectedFilters={selectedFilters}
             onCheckedChange={handleEngineTypeCheckedChange}
           />
-          <SeatingCapacity
+          <FiltersSeatingCapacity
             selectedFilters={selectedFilters}
             onMinCarSeatsClick={handleMinCarSeatsClick}
           />
-          <CarTransmissions
+          <FiltersTransmissions
             selectedFilters={selectedFilters}
-            onCheckedChange={handleCarTransmissionCheckedChange}
+            onCheckedChange={handlETransmissionsCheckedChange}
           />
         </div>
         <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">

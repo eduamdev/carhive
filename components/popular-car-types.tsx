@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { convertPascalCaseToWords, getEnumKeyByEnumValue } from '@/lib/utils';
-import { ECarType } from '@/types/car-specs';
+import { convertToKebabCase } from '@/lib/utils';
+import { ECarTypes } from '@/types/car-specs';
 
 export function PopularCarTypes() {
   return (
@@ -16,13 +16,15 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.Hatchback },
+                    query: {
+                      'car-type': convertToKebabCase(ECarTypes.HATCHBACK),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {getEnumKeyByEnumValue(ECarType, ECarType.Hatchback)}
+                    {ECarTypes.HATCHBACK}
                   </span>
                 </div>
                 <Image
@@ -38,13 +40,15 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.Minivan },
+                    query: {
+                      'car-type': convertToKebabCase(ECarTypes.MINIVAN),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {getEnumKeyByEnumValue(ECarType, ECarType.Minivan)}
+                    {ECarTypes.MINIVAN}
                   </span>
                 </div>
                 <Image
@@ -60,15 +64,15 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.PickupTruck },
+                    query: {
+                      'car-type': convertToKebabCase(ECarTypes.PICKUP_TRUCK),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {convertPascalCaseToWords(
-                      getEnumKeyByEnumValue(ECarType, ECarType.PickupTruck),
-                    )}
+                    {ECarTypes.PICKUP_TRUCK}
                   </span>
                 </div>
                 <Image
@@ -84,15 +88,15 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.SportsCar },
+                    query: {
+                      'car-type': convertToKebabCase(ECarTypes.SPORTS_CAR),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {convertPascalCaseToWords(
-                      getEnumKeyByEnumValue(ECarType, ECarType.SportsCar),
-                    )}
+                    {ECarTypes.SPORTS_CAR}
                   </span>
                 </div>
                 <Image
@@ -108,13 +112,13 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.SUV },
+                    query: { 'car-type': convertToKebabCase(ECarTypes.SUV) },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {getEnumKeyByEnumValue(ECarType, ECarType.SUV)}
+                    {ECarTypes.SUV}
                   </span>
                 </div>
                 <Image
@@ -130,13 +134,13 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': ECarType.Sedan },
+                    query: { 'car-type': convertToKebabCase(ECarTypes.SEDAN) },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {getEnumKeyByEnumValue(ECarType, ECarType.Sedan)}
+                    {ECarTypes.SEDAN}
                   </span>
                 </div>
                 <Image

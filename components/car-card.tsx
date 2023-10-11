@@ -10,8 +10,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
-import { getEnumKeyByEnumValue } from '@/lib/utils';
-import { ECarEngineType, ECarTransmission } from '@/types/car-specs';
 
 interface CarCardProps {
   slug: string;
@@ -87,14 +85,10 @@ export function CarCard({
           />
         </div>
         <div className="mt-6 flex items-center justify-between gap-x-2">
-          <p className="text-sm text-neutral-600">
-            {getEnumKeyByEnumValue(ECarTransmission, specs.transmission)}
-          </p>
+          <p className="text-sm text-neutral-600">{specs.transmission}</p>
           <Separator orientation="vertical" decorative className="h-4" />
           <p className="text-sm text-neutral-600">
-            <span className="leading-none">
-              {getEnumKeyByEnumValue(ECarEngineType, specs.engineType)}
-            </span>
+            <span className="leading-none">{specs.engineType}</span>
           </p>
           <Separator orientation="vertical" decorative className="h-4" />
           <p className="text-sm text-neutral-600">

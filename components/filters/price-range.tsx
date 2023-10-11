@@ -1,10 +1,10 @@
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { IFilters } from '@/types/filters';
+import { ISelectedFilters } from '@/types/filters';
 
-interface PriceRangeProps {
-  selectedFilters: IFilters;
+interface FiltersPriceRangeProps {
+  selectedFilters: ISelectedFilters;
   minPrice: number;
   maxPrice: number;
   onSliderChange: Function;
@@ -12,14 +12,14 @@ interface PriceRangeProps {
   onMaxPriceInputChange: Function;
 }
 
-export function PriceRange({
+export function FiltersPriceRange({
   selectedFilters,
   minPrice,
   maxPrice,
   onSliderChange,
   onMinPriceInputChange,
   onMaxPriceInputChange,
-}: PriceRangeProps) {
+}: FiltersPriceRangeProps) {
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
@@ -39,33 +39,37 @@ export function PriceRange({
           <div className="flex w-full items-center justify-between gap-6">
             <div className="relative h-14 w-full">
               <Label
-                htmlFor="i-minimum"
+                htmlFor="price_filter_min"
                 className="absolute left-3 top-2.5 w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap pr-6 text-xs font-normal leading-none text-neutral-500"
               >
                 Minimum
               </Label>
               <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
-                id="i-minimum"
+                id="price_filter_min"
+                type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[0]}
+                autoComplete="off"
                 onChange={(e) => onMinPriceInputChange(e)}
               />
             </div>
             <div className="h-px shrink-0 basis-4 bg-neutral-400"></div>
             <div className="relative h-14 w-full">
               <Label
-                htmlFor="i-maximum"
+                htmlFor="price_filter_max"
                 className="absolute left-3 top-2.5 w-full max-w-full overflow-hidden text-ellipsis whitespace-nowrap pr-6 text-xs font-normal leading-none text-neutral-500"
               >
                 Maximum
               </Label>
               <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
-                id="i-maximum"
+                id="price_filter_max"
+                type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[1]}
-                onChange={(e) => onMaxPriceInputChange(e)}
+                autoComplete="off"
+                onBlur={(e) => onMaxPriceInputChange(e)}
               />
             </div>
           </div>

@@ -1,34 +1,34 @@
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ISelectedFilters } from '@/types/filters';
-import { EEngineTypes } from '@/types/car-specs';
+import { ETransmissions } from '@/types/car-specs';
 
-interface FiltersEngineTypesProps {
+interface FiltersTransmissionsProps {
   selectedFilters: ISelectedFilters;
   onCheckedChange: (
     checked: boolean | 'indeterminate',
-    value: EEngineTypes,
+    value: ETransmissions,
   ) => void;
 }
 
-export function FiltersEngineTypes({
+export function FiltersTransmissions({
   selectedFilters,
   onCheckedChange,
-}: FiltersEngineTypesProps) {
+}: FiltersTransmissionsProps) {
   return (
-    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
+    <div className="mb-2 px-6 py-8">
       <section>
-        <h3 className="pb-6 text-xl font-semibold">Engine type</h3>
+        <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
         <div className="grid grid-cols-2 items-center">
-          {Object.keys(EEngineTypes).map((key) => {
-            const value: EEngineTypes = EEngineTypes[key];
+          {Object.keys(ETransmissions).map((key) => {
+            const value: ETransmissions = ETransmissions[key];
 
             return (
               <div key={key} className="flex items-center py-3">
                 <Checkbox
                   id={key}
                   onCheckedChange={(checked) => onCheckedChange(checked, value)}
-                  checked={selectedFilters.engineTypes.includes(value)}
+                  checked={selectedFilters.transmission.includes(value)}
                 />
                 <div className="w-full">
                   <Label

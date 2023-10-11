@@ -1,6 +1,7 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { ECarTypes, EEngineTypes, ETransmissions } from '@/types/car-specs';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,19 +17,29 @@ export const createUrl = (
   return `${pathname}${queryString}`;
 };
 
-export function getEnumKeyByEnumValue<T>(
-  enumObject: T,
-  enumValue: string,
-): keyof T | null {
-  const keys = Object.keys(enumObject).filter(
-    (key) => enumObject[key] === enumValue,
-  ) as (keyof T)[];
-  return keys.length > 0 ? keys[0] : null;
+export function convertToKebabCase(inputString: string): string {
+  // Replace spaces and underscores with dashes, then convert to lowercase
+  return inputString.replace(/[\s_]+/g, '-').toLowerCase();
 }
 
-export function convertPascalCaseToWords(input: string): string {
-  return input
-    .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between lowercase and uppercase letters
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Handle consecutive uppercase letters
-    .trim(); // Trim spaces from the beginning and end
+export function reverseMapToEnum(
+  inputString: string,
+): ECarTypes | ETransmissions | EEngineTypes | undefined {
+  const kebabToEnumMap: {
+    [key: string]: ECarTypes | ETransmissions | EEngineTypes;
+  } = {
+    suv: ECarTypes.SUV,
+    minivan: ECarTypes.MINIVAN,
+    'pickup-truck': ECarTypes.PICKUP_TRUCK,
+    'sports-car': ECarTypes.SPORTS_CAR,
+    hatchback: ECarTypes.HATCHBACK,
+    sedan: ECarTypes.SEDAN,
+    automatic: ETransmissions.AUTOMATIC,
+    manual: ETransmissions.MANUAL,
+    gas: EEngineTypes.GAS,
+    hybrid: EEngineTypes.HYBRID,
+    electric: EEngineTypes.ELECTRIC,
+  };
+
+  return kebabToEnumMap[inputString.toLowerCase()];
 }
