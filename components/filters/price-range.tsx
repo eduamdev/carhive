@@ -19,65 +19,12 @@ export function FiltersPriceRange({
 }: FiltersPriceRangeProps) {
   function handleSliderChange(
     priceRange: number[],
+    selectedFilters: ISelectedFilters,
     setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
   ) {
     setSelectedFilters({
       ...selectedFilters,
       priceRange,
-    });
-  }
-
-  function handleMinPriceInputChange(
-    event: ChangeEvent<HTMLInputElement>,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
-  ): void {
-    const inputValue = event.target.value;
-    // Remove non-numeric characters using regular expression
-    let numericValue = Number(inputValue.replace(/[^0-9]/g, ''));
-
-    // Ensure numeric value is a valid number, else default to MIN_PRICE
-    if (isNaN(numericValue)) numericValue = MIN_PRICE;
-
-    let newMinPrice: number;
-    const currentMaxPrice = selectedFilters.priceRange[1];
-
-    // Ensure the value does not exceed the current maximum price
-    newMinPrice = Math.min(numericValue, currentMaxPrice - 1);
-
-    // Ensure the value does not exceed the MIN_PRICE
-    newMinPrice = Math.max(newMinPrice, MIN_PRICE);
-
-    setSelectedFilters({
-      ...selectedFilters,
-      priceRange: [newMinPrice, currentMaxPrice],
-    });
-  }
-
-  function handleMaxPriceInputChange(
-    event: ChangeEvent<HTMLInputElement>,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
-  ): void {
-    const inputValue = event.target.value;
-    // Remove non-numeric characters using regular expression
-    let numericValue = Number(inputValue.replace(/[^0-9]/g, ''));
-
-    // Ensure numeric value is a valid number, else default to MAX_PRICE
-    if (isNaN(numericValue)) numericValue = MAX_PRICE;
-
-    let newMaxPrice: number;
-    const currentMinPrice = selectedFilters.priceRange[0];
-
-    // Ensure the value does not exceed the current minimum price
-    newMaxPrice = Math.max(numericValue, currentMinPrice + 1);
-
-    // Ensure the value does not exceed the MAX_PRICE
-    newMaxPrice = Math.min(numericValue, MAX_PRICE);
-
-    setSelectedFilters({
-      ...selectedFilters,
-      priceRange: [currentMinPrice, newMaxPrice],
     });
   }
 
@@ -90,10 +37,7 @@ export function FiltersPriceRange({
             defaultValue={[MIN_PRICE, MAX_PRICE]}
             value={selectedFilters.priceRange}
             onValueChange={(values) =>
-              handleSliderChange(values, setSelectedFilters)
-            }
-            onValueCommit={(values) =>
-              handleSliderChange(values, setSelectedFilters)
+              handleSliderChange(values, selectedFilters, setSelectedFilters)
             }
             min={MIN_PRICE}
             max={MAX_PRICE}
@@ -115,14 +59,7 @@ export function FiltersPriceRange({
                 type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[0]}
-                autoComplete="off"
-                onChange={(event) =>
-                  handleMinPriceInputChange(
-                    event,
-                    selectedFilters,
-                    setSelectedFilters,
-                  )
-                }
+                readOnly
               />
             </div>
             <div className="h-px shrink-0 basis-4 bg-neutral-400"></div>
@@ -139,14 +76,7 @@ export function FiltersPriceRange({
                 type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
                 value={selectedFilters.priceRange[1]}
-                autoComplete="off"
-                onChange={(event) =>
-                  handleMaxPriceInputChange(
-                    event,
-                    selectedFilters,
-                    setSelectedFilters,
-                  )
-                }
+                readOnly
               />
             </div>
           </div>

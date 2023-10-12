@@ -90,21 +90,31 @@ export function CarsView() {
         <FiltersModal />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
-          {filteredCars.map((car) => (
-            <CarCard
-              key={car.id}
-              slug={car.slug}
-              title={car.title}
-              image={car.image}
-              specs={car.specs}
-              price={car.price}
-              rating={Number(car.rating)}
-              reviews={Number(car.reviews)}
-              unlimitedMileage
-            />
-          ))}
-        </div>
+        {!filteredCars.length ? (
+          <div>
+            <h1 className="text-xl font-semibold">No exact matches</h1>
+            <p className="mt-3 text-slate-700">
+              Try changing or removing some of your filters or adjusting your
+              search area.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
+            {filteredCars.map((car) => (
+              <CarCard
+                key={car.id}
+                slug={car.slug}
+                title={car.title}
+                image={car.image}
+                specs={car.specs}
+                price={car.price}
+                rating={Number(car.rating)}
+                reviews={Number(car.reviews)}
+                unlimitedMileage
+              />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
