@@ -1,20 +1,41 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
 import { ETransmissions } from '@/types/car-specs';
 
 interface FiltersTransmissionsProps {
   selectedFilters: ISelectedFilters;
-  onCheckedChange: (
-    checked: boolean | 'indeterminate',
-    value: ETransmissions,
-  ) => void;
+  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersTransmissions({
   selectedFilters,
-  onCheckedChange,
+  setSelectedFilters,
 }: FiltersTransmissionsProps) {
+  function handleCheckedChange(
+    checked: CheckedState,
+    value: ETransmissions,
+    selectedFilters: ISelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+  ) {
+    let transmissionsSelected: ETransmissions[] = [];
+
+    if (!checked || checked === 'indeterminate') {
+      transmissionsSelected = selectedFilters.transmission.filter(
+        (selected) => selected !== value,
+      );
+    } else {
+      transmissionsSelected = [...selectedFilters.transmission, value];
+    }
+
+    setSelectedFilters({
+      ...selectedFilters,
+      transmission: transmissionsSelected,
+    });
+  }
+
   return (
     <div className="mb-2 px-6 py-8">
       <section>
@@ -27,7 +48,14 @@ export function FiltersTransmissions({
               <div key={key} className="flex items-center py-3">
                 <Checkbox
                   id={key}
-                  onCheckedChange={(checked) => onCheckedChange(checked, value)}
+                  onCheckedChange={(checked) =>
+                    handleCheckedChange(
+                      checked,
+                      value,
+                      selectedFilters,
+                      setSelectedFilters,
+                    )
+                  }
                   checked={selectedFilters.transmission.includes(value)}
                 />
                 <div className="w-full">

@@ -6,6 +6,8 @@ import { FiltersModal } from '@/components/filters/modal';
 import { FiltersPriceRange } from '@/components/filters/price-range';
 import { FiltersSeatingCapacity } from '@/components/filters/seating-capacity';
 import { FiltersTransmissions } from '@/components/filters/transmissions';
+import { FiltersResetButton } from '@/components/filters/reset-button';
+import { FiltersApplyButton } from '@/components/filters/apply-button';
 
 export {
   FiltersBadge,
@@ -16,4 +18,6 @@ export {
   FiltersPriceRange,
   FiltersSeatingCapacity,
   FiltersTransmissions,
+  FiltersResetButton,
+  FiltersApplyButton,
 };

@@ -1,16 +1,28 @@
+import { Dispatch, SetStateAction } from 'react';
 import { FiltersItem } from '@/components/filters/item';
 import { ESeats } from '@/types/car-specs';
 import { ISelectedFilters } from '@/types/filters';
 
 interface FiltersSeatingCapacityProps {
   selectedFilters: ISelectedFilters;
-  onMinCarSeatsClick: Function;
+  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersSeatingCapacity({
   selectedFilters,
-  onMinCarSeatsClick,
+  setSelectedFilters,
 }: FiltersSeatingCapacityProps) {
+  function handleClick(
+    value: string,
+    selectedFilters: ISelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+  ) {
+    setSelectedFilters({
+      ...selectedFilters,
+      minSeats: selectedFilters.minSeats === value ? '' : value,
+    });
+  }
+
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
@@ -19,7 +31,7 @@ export function FiltersSeatingCapacity({
           <FiltersItem
             className="font-normal"
             selected={!selectedFilters.minSeats}
-            onClick={() => onMinCarSeatsClick('')}
+            onClick={() => handleClick('', selectedFilters, setSelectedFilters)}
           >
             Any
           </FiltersItem>
@@ -31,7 +43,9 @@ export function FiltersSeatingCapacity({
                 key={key}
                 className="font-normal"
                 selected={selectedFilters.minSeats === value}
-                onClick={() => onMinCarSeatsClick(value)}
+                onClick={() =>
+                  handleClick(value, selectedFilters, setSelectedFilters)
+                }
               >
                 {index === array.length - 1 ? `${value}+` : value}
               </FiltersItem>

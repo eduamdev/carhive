@@ -1,20 +1,41 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
 import { EEngineTypes } from '@/types/car-specs';
 
 interface FiltersEngineTypesProps {
   selectedFilters: ISelectedFilters;
-  onCheckedChange: (
-    checked: boolean | 'indeterminate',
-    value: EEngineTypes,
-  ) => void;
+  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersEngineTypes({
   selectedFilters,
-  onCheckedChange,
+  setSelectedFilters,
 }: FiltersEngineTypesProps) {
+  function handleCheckedChange(
+    checked: CheckedState,
+    value: EEngineTypes,
+    selectedFilters: ISelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+  ) {
+    let engineTypesSelected: EEngineTypes[] = [];
+
+    if (!checked || checked === 'indeterminate') {
+      engineTypesSelected = selectedFilters.engineTypes.filter(
+        (selected) => selected !== value,
+      );
+    } else {
+      engineTypesSelected = [...selectedFilters.engineTypes, value];
+    }
+
+    setSelectedFilters({
+      ...selectedFilters,
+      engineTypes: engineTypesSelected,
+    });
+  }
+
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
@@ -27,7 +48,14 @@ export function FiltersEngineTypes({
               <div key={key} className="flex items-center py-3">
                 <Checkbox
                   id={key}
-                  onCheckedChange={(checked) => onCheckedChange(checked, value)}
+                  onCheckedChange={(checked) =>
+                    handleCheckedChange(
+                      checked,
+                      value,
+                      selectedFilters,
+                      setSelectedFilters,
+                    )
+                  }
                   checked={selectedFilters.engineTypes.includes(value)}
                 />
                 <div className="w-full">

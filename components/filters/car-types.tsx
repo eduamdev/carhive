@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/components/icons';
 import { FiltersItem } from '@/components/filters/item';
 import { ISelectedFilters } from '@/types/filters';
@@ -14,13 +15,31 @@ const carTypeIcons = {
 
 interface FiltersCarTypesProps {
   selectedFilters: ISelectedFilters;
-  onClick: Function;
+  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersCarTypes({
   selectedFilters,
-  onClick,
+  setSelectedFilters,
 }: FiltersCarTypesProps) {
+  function handleClick(
+    value: ECarTypes,
+    selectedFilters: ISelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+  ) {
+    let carTypesSelected: ECarTypes[] = [];
+
+    if (selectedFilters.carTypes.includes(value)) {
+      carTypesSelected = selectedFilters.carTypes.filter(
+        (selected) => selected !== value,
+      );
+    } else {
+      carTypesSelected = [...selectedFilters.carTypes, value];
+    }
+
+    setSelectedFilters({ ...selectedFilters, carTypes: carTypesSelected });
+  }
+
   return (
     <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
@@ -34,7 +53,9 @@ export function FiltersCarTypes({
                 key={key}
                 area
                 selected={selectedFilters.carTypes.includes(value)}
-                onClick={() => onClick(value)}
+                onClick={() =>
+                  handleClick(value, selectedFilters, setSelectedFilters)
+                }
               >
                 <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
                   {carTypeIcons[key]}
