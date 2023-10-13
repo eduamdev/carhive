@@ -17,6 +17,12 @@
     --map-container-height: var(--cars-page-main-content-height);
     --cars-page-main-content-max-width: 1184px;
 
+    --car-page-main-content-padding-y: 32px;
+    --modal-reserve-width: 370px;
+    --modal-reserve-top-offset: calc(
+      var(--site-header-height) + var(--car-page-main-content-padding-y)
+    );
+
     --modal-filters-max-width: 780px;
     --modal-filters-header-height: 64px;
     --modal-filters-footer-height: 80px;

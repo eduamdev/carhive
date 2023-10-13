@@ -17,7 +17,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
 
   return (
     <div className="hidden normal-nums md:block">
-      <div className="sticky top-[calc(var(--site-header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+      <div className="sticky top-[var(--modal-reserve-top-offset)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
         <div className="grid grid-cols-1 items-baseline gap-4 leading-none lg:grid-cols-2">
           <div className="flex items-baseline gap-1.5 ">
             <span className="shrink-0 text-xl font-semibold leading-none tracking-tight">
