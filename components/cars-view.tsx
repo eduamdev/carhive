@@ -101,17 +101,7 @@ export function CarsView() {
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
             {filteredCars.map((car) => (
-              <CarCard
-                key={car.id}
-                slug={car.slug}
-                title={car.title}
-                image={car.image}
-                specs={car.specs}
-                price={car.price}
-                rating={Number(car.rating)}
-                reviews={Number(car.reviews)}
-                unlimitedMileage
-              />
+              <CarCard key={car.id} car={car} />
             ))}
           </div>
         )}

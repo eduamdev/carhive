@@ -10,49 +10,23 @@ import {
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
+import { ICar } from '@/types/car';
 
 interface CarCardProps {
-  slug: string;
-  title: string;
-  image: {
-    src: string;
-    alt: string;
-  };
-  specs: {
-    carType: string;
-    engineType: string;
-    transmission: string;
-    capacity: {
-      seats: string;
-    };
-  };
-  price: {
-    perDay: {
-      retail: {
-        amount: number;
-        currency: string;
-      };
-      discount: {
-        amount: number;
-        currency: string;
-      };
-    };
-  };
-  rating: number;
-  reviews: number;
-  unlimitedMileage?: boolean;
+  car: ICar;
 }
 
-export function CarCard({
-  slug,
-  title,
-  image,
-  specs,
-  price,
-  rating,
-  reviews,
-  unlimitedMileage,
-}: CarCardProps) {
+export function CarCard({ car }: CarCardProps) {
+  const {
+    slug,
+    title,
+    image,
+    specs,
+    price,
+    rating,
+    reviews,
+    unlimitedMileage,
+  } = car;
   return (
     <Card>
       <CardHeader>
