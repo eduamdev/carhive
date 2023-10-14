@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import { SiteHeader } from '@/components/site-header';
-import { MainSearchForm } from '@/components/main-search-form';
+import { SearchForm } from '@/components/search-form';
 import { SiteFooter } from '@/components/site-footer';
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function CarsLayout({ children }: CarsLayoutProps) {
         <div className="h-[var(--search-bar-height)]">
           <div className="hidden h-full items-center justify-center lg:flex">
             <Suspense>
-              <MainSearchForm compact />
+              <SearchForm compact />
             </Suspense>
           </div>
         </div>

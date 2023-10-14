@@ -8,9 +8,9 @@ export function SiteHeader() {
         <p className="text-base font-bold leading-none">Car Dealer</p>
       </Link>
       <nav>
-        <div className="flex items-center justify-center gap-2 text-neutral-800">
-          <Icons.menu className="h-6 w-6" />
-          <Icons.user className="h-7 w-7" />
+        <div className="flex items-center justify-center text-neutral-800">
+          <Icons.menu className="mr-1.5 h-6 w-6 shrink-0" />
+          <Icons.user className="h-7 w-7 shrink-0" />
         </div>
       </nav>
     </header>

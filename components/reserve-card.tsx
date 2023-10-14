@@ -2,12 +2,16 @@ import { ICar } from '@/types/car';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 
-interface ReserveModalProps {
+interface ReserveCardProps {
   car: ICar;
 }
 
-export function ReserveModal({ car }: ReserveModalProps) {
-  const currentPrice = car.price.perDay.discount.amount
+export function ReserveCard({ car }: ReserveCardProps) {
+  const pickupDropoff = 'New York, USA';
+  const checkIn = '2/12/2024';
+  const checkout = '10/12/2024';
+
+  const currentPrice = car.price.perDay.discount?.amount
     ? car.price.perDay.discount.amount
     : car.price.perDay.retail.amount;
 
@@ -17,7 +21,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
 
   return (
     <div className="hidden normal-nums md:block">
-      <div className="sticky top-[var(--modal-reserve-top-offset)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+      <div className="sticky top-[var(--card-reserve-top-offset)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
         <div className="grid grid-cols-1 items-baseline gap-4 leading-none lg:grid-cols-2">
           <div className="flex items-baseline gap-1.5 ">
             <span className="shrink-0 text-xl font-semibold leading-none tracking-tight">
@@ -28,14 +32,18 @@ export function ReserveModal({ car }: ReserveModalProps) {
             </span>
           </div>
           <div className="flex flex-row items-baseline justify-start gap-1 tracking-tight lg:justify-end">
-            <Icons.star className="h-[13px] w-[13px]" />
+            <Icons.star className="h-[15px] w-[15px] self-center" />
             <span className="text-sm font-medium leading-none">
               {car.rating}
             </span>
-            <span>·</span>
-            <span className="text-sm leading-none text-neutral-600">
-              {car.reviews} reviews
-            </span>
+            {car.reviews && (
+              <>
+                <span>·</span>
+                <span className="text-sm leading-none text-neutral-600">
+                  {car.reviews} reviews
+                </span>
+              </>
+            )}
           </div>
         </div>
         <div className="mt-6 w-full rounded-xl border border-neutral-300">
@@ -45,7 +53,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
                 Pick-up / Drop-off
               </div>
               <div className="text-sm leading-none text-neutral-600">
-                New York
+                {pickupDropoff}
               </div>
             </div>
           </div>
@@ -54,7 +62,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
               <div className="flex flex-col gap-1.5 p-2.5">
                 <div className="text-xs font-medium leading-none">Check-in</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  2/12/2024
+                  {checkIn}
                 </div>
               </div>
             </div>
@@ -62,7 +70,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
               <div className="flex flex-col gap-1.5 p-2.5">
                 <div className="text-xs font-medium leading-none">Checkout</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  10/12/2024
+                  {checkout}
                 </div>
               </div>
             </div>
@@ -72,7 +80,7 @@ export function ReserveModal({ car }: ReserveModalProps) {
           Reserve
         </Button>
         <p className="mt-4 text-center text-sm text-neutral-600">
-          You won't be charged yet
+          You won&apos;t be charged yet
         </p>
         <div className="mt-5">
           <div className="flex items-center justify-between">

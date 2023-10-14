@@ -8,7 +8,7 @@ export function PopularCarTypes() {
   return (
     <section className="border-t pt-10">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-2xl font-extrabold">Popular Rental Car Choices</h2>
+        <h2 className="text-2xl font-bold">Popular Rental Car Choices</h2>
         <div className="relative mt-8 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
           <ScrollArea>
             <div className="mb-3 whitespace-nowrap">

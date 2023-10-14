@@ -49,6 +49,7 @@
     "autoprefixer": "^10.4.15",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "gh-pages": "^4.0.0",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",

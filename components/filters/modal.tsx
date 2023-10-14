@@ -77,9 +77,12 @@ export function FiltersModal() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="outline" className="relative">
-          <Icons.filters className="mr-2 h-[14px] w-[14px]" />
-          Filters
+        <Button
+          variant="outline"
+          className="relative flex items-center justify-center"
+        >
+          <Icons.filters className="mr-2.5 h-5 w-5" />
+          <span>Filters</span>
           <FiltersBadge />
         </Button>
       </DialogTrigger>
@@ -89,7 +92,7 @@ export function FiltersModal() {
             Filters
           </DialogTitle>
         </DialogHeader>
-        <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-b border-t">
+        <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-y">
           <FiltersPriceRange
             MIN_PRICE={MIN_PRICE}
             MAX_PRICE={MAX_PRICE}

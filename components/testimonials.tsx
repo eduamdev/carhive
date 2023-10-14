@@ -4,30 +4,30 @@ export function Testimonials() {
   return (
     <section className="border-t py-12">
       <div className="mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-center text-2xl font-extrabold">
-          Lorem ipsum dolor sit amet.
-        </h2>
+        <h2 className="text-center text-2xl font-bold">Driven by Feedback</h2>
         <div className="mt-4 columns-1 sm:columns-2 lg:columns-4">
           <div className="-mx-4">
             <div className="inline-block px-4 pt-4">
               <figure className="rounded-2xl bg-neutral-50 p-8">
                 <blockquote className="text-sm leading-6 text-neutral-700">
-                  “Anim sit consequat culpa commodo eu do nisi commodo ut aute
-                  aliqua. Laborum esse duis tempor consectetur officia mollit
-                  fugiat. Exercitation qui elit minim minim quis fugiat ex.”
+                  “Best Car Rental Experience! The website&apos;s interface is
+                  intuitive, making it easy to find the ideal car. The reviews
+                  from other users were incredibly helpful, and the entire
+                  process, from booking to return, was a breeze. Highly
+                  recommended!”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
                   <Image
-                    src="/faces/face1.avif"
+                    src="/avatars/oliviaparker.avif"
                     alt=""
                     height={40}
                     width={40}
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">Michael Foster</p>
+                    <p className="text-[15px] font-semibold">Olivia Parker</p>
                     <p className="mt-1 text-sm text-neutral-600">
-                      @michaelfoster
+                      @oliviaparker
                     </p>
                   </div>
                 </figcaption>
@@ -36,12 +36,39 @@ export function Testimonials() {
             <div className="inline-block px-4 pt-4">
               <figure className="rounded-2xl bg-neutral-50 p-8">
                 <blockquote className="text-sm leading-6 text-neutral-700">
-                  “Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam
-                  delectus nihil. Aut enim doloremque et ipsam.”
+                  “A Seamless Experience! This website made renting a car
+                  hassle-free. The search filters helped me find the perfect car
+                  for my trip, and the customer support was responsive and
+                  friendly. 5-star service all the way!”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
                   <Image
-                    src="/faces/face2.avif"
+                    src="/avatars/emmathompson.avif"
+                    alt=""
+                    height={40}
+                    width={40}
+                    className="h-10 w-10 rounded-full border bg-white"
+                  />
+                  <div>
+                    <p className="text-[15px] font-semibold">Emma Thompson</p>
+                    <p className="mt-1 text-sm text-neutral-600">
+                      @emmathompson
+                    </p>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+            <div className="inline-block px-4 pt-4">
+              <figure className="rounded-2xl bg-neutral-50 p-8">
+                <blockquote className="text-sm leading-6 text-neutral-700">
+                  “Reliable and Affordable! I&apos;ve used several car rental
+                  websites before, but this one stands out. The prices are
+                  transparent, no hidden fees, and the cars are well-maintained.
+                  I&apos;ll be coming back for all my future trips.”
+                </blockquote>
+                <figcaption className="mt-6 flex items-center justify-start gap-5">
+                  <Image
+                    src="/avatars/sophiarodriguez.avif"
                     alt=""
                     height={40}
                     width={40}
@@ -49,10 +76,10 @@ export function Testimonials() {
                   />
                   <div>
                     <p className="text-[15px] font-semibold">
-                      Leslie Alexander
+                      Sophia Rodriguez
                     </p>
                     <p className="mt-1 text-sm text-neutral-600">
-                      @lesliealexander
+                      @sophiarodriguez
                     </p>
                   </div>
                 </figcaption>
@@ -61,47 +88,21 @@ export function Testimonials() {
             <div className="inline-block px-4 pt-4">
               <figure className="rounded-2xl bg-neutral-50 p-8">
                 <blockquote className="text-sm leading-6 text-neutral-700">
-                  “Voluptas quos itaque ipsam in voluptatem est. Iste eos
-                  blanditiis repudiandae. Earum deserunt enim molestiae ipsum
-                  perferendis.”
+                  “Exceptional Service! From booking to drop-off, everything was
+                  smooth and easy. The selection of cars was impressive, and the
+                  prices were unbeatable. Will definitely recommend to friends!”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
                   <Image
-                    src="/faces/face3.avif"
+                    src="/avatars/danjohnson.avif"
                     alt=""
                     height={40}
                     width={40}
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">Whitney Francis</p>
-                    <p className="mt-1 text-sm text-neutral-600">
-                      @whitneyfrancis
-                    </p>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-            <div className="inline-block px-4 pt-4">
-              <figure className="rounded-2xl bg-neutral-50 p-8">
-                <blockquote className="text-sm leading-6 text-neutral-700">
-                  “Excepteur consectetur deserunt id incididunt veniam mollit
-                  officia sint qui aute duis sit cillum. Reprehenderit fugiat
-                  amet aliqua in commodo minim sunt laborum.”
-                </blockquote>
-                <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <Image
-                    src="/faces/face4.avif"
-                    alt=""
-                    height={40}
-                    width={40}
-                    className="h-10 w-10 rounded-full border bg-white"
-                  />
-                  <div>
-                    <p className="text-[15px] font-semibold">Lindsay Walton</p>
-                    <p className="mt-1 text-sm text-neutral-600">
-                      @lindsaywalton
-                    </p>
+                    <p className="text-[15px] font-semibold">Daniel Johnson</p>
+                    <p className="mt-1 text-sm text-neutral-600">@danjohnson</p>
                   </div>
                 </figcaption>
               </figure>

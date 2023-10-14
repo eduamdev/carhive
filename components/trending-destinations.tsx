@@ -6,10 +6,10 @@ export function TrendingDestinations() {
   return (
     <section className="pt-10">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-2xl font-extrabold">
-          Trending Rent a Car Destinations
+        <h2 className="text-2xl font-bold">
+          Renting Trends: Must-Visit Places
         </h2>
-        <div className="group -ml-2 -mr-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 lg:grid-cols-4 [&_a:hover_img]:!opacity-100">
+        <div className="group -mx-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 lg:grid-cols-4 [&_a:hover_img]:!opacity-100">
           <Link
             href={{
               pathname: '/cars',
@@ -30,7 +30,9 @@ export function TrendingDestinations() {
             </div>
             <div className="mt-3">
               <h3 className="text-[15px] font-semibold">Paris, France</h3>
-              <p className="mt-1 text-sm text-neutral-600">Cars from $12+</p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Cars from $700+ MXN
+              </p>
             </div>
           </Link>
           <Link
@@ -55,7 +57,9 @@ export function TrendingDestinations() {
               <h3 className="text-[15px] font-semibold">
                 Dubai, United Arab Emirates
               </h3>
-              <p className="mt-1 text-sm text-neutral-600">Cars from $12+</p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Cars from $700+ MXN
+              </p>
             </div>
           </Link>
           <Link
@@ -78,7 +82,9 @@ export function TrendingDestinations() {
             </div>
             <div className="mt-3">
               <h3 className="text-[15px] font-semibold">Cancún, México</h3>
-              <p className="mt-1 text-sm text-neutral-600">Cars from $12+</p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Cars from $700+ MXN
+              </p>
             </div>
           </Link>
           <Link
@@ -101,7 +107,9 @@ export function TrendingDestinations() {
             </div>
             <div className="mt-3">
               <h3 className="text-[15px] font-semibold">Rome, Italy</h3>
-              <p className="mt-1 text-sm text-neutral-600">Cars from $12+</p>
+              <p className="mt-1 text-sm text-neutral-600">
+                Cars from $700+ MXN
+              </p>
             </div>
           </Link>
         </div>

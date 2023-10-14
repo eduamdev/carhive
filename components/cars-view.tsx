@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/car-card';
 import { FiltersModal } from '@/components/filters/modal';
 import { convertToKebabCase } from '@/lib/utils';
 import { allCars } from '@/data/all-cars';
 import { ESearchParams } from '@/types/filters';
+import { ICar } from '@/types/car';
 
 function getAllCars() {
   return allCars;
@@ -14,19 +15,14 @@ function getAllCars() {
 
 export function CarsView() {
   const searchParams = useSearchParams();
-  const [filteredCars, setFilteredCars] = useState(getNewFilteredCars());
 
-  useEffect(() => {
-    setFilteredCars(getNewFilteredCars());
-  }, [searchParams]);
-
-  function getNewFilteredCars() {
-    let newFilteredCars = getAllCars();
+  const getNewFilteredCars = useCallback(() => {
+    let newFilteredCars: ICar[] = getAllCars();
 
     if (searchParams.has(ESearchParams.MIN_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
-          car.price.perDay.discount.amount || car.price.perDay.retail.amount;
+          car.price.perDay.discount?.amount || car.price.perDay.retail.amount;
         return (
           currentPrice >= Number(searchParams.get(ESearchParams.MIN_PRICE))
         );
@@ -36,7 +32,7 @@ export function CarsView() {
     if (searchParams.has(ESearchParams.MAX_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
-          car.price.perDay.discount.amount || car.price.perDay.retail.amount;
+          car.price.perDay.discount?.amount || car.price.perDay.retail.amount;
         return (
           currentPrice <= Number(searchParams.get(ESearchParams.MAX_PRICE))
         );
@@ -76,7 +72,13 @@ export function CarsView() {
     }
 
     return newFilteredCars;
-  }
+  }, [searchParams]);
+
+  const [filteredCars, setFilteredCars] = useState(getNewFilteredCars());
+
+  useEffect(() => {
+    setFilteredCars(getNewFilteredCars());
+  }, [getNewFilteredCars, searchParams]);
 
   return (
     <>
@@ -99,7 +101,7 @@ export function CarsView() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-center justify-center gap-6">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
             {filteredCars.map((car) => (
               <CarCard key={car.id} car={car} />
             ))}

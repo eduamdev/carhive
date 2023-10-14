@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export function ReserveModalFallback() {
+export function ReserveCardFallback() {
   return (
     <div className="hidden normal-nums md:block">
       <div className="sticky top-[calc(var(--site-header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">

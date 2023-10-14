@@ -10,7 +10,7 @@ export interface ICar {
         amount: number;
         currency: string;
       };
-      discount: {
+      discount?: {
         amount: number;
         currency: string;
       };
@@ -28,9 +28,9 @@ export interface ICar {
       seats: string;
     };
   };
-  description: string;
+  description: string[];
   features: string[];
   rating: string;
-  reviews: string;
+  reviews?: string;
   unlimitedMileage?: boolean;
 }

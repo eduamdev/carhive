@@ -45,7 +45,7 @@ const locations = [
   { label: 'Rome, Italy', value: 'rome', lat: '41.8988', lng: '12.5451' },
 ] as const;
 
-const formSchema = z.object({
+const FormSchema = z.object({
   location: z.string({ required_error: 'Please enter a location' }),
   lat: z.number(),
   lng: z.number(),
@@ -53,19 +53,19 @@ const formSchema = z.object({
   checkout: z.date(),
 });
 
-interface MainSearchFormProps {
+interface SearchFormProps {
   compact?: boolean;
 }
 
-export function MainSearchForm({ compact = false }: MainSearchFormProps) {
+export function SearchForm({ compact = false }: SearchFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof FormSchema>) {
     const { lat, lng, checkin, checkout } = values;
 
     const newParams = new URLSearchParams(searchParams.toString());
@@ -111,7 +111,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                     <button
                       role="combobox"
                       className={cn(
-                        'm-0 inline-block w-full overflow-hidden text-ellipsis whitespace-nowrap p-0 text-left',
+                        'm-0 inline-block w-full truncate p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -158,7 +158,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[310px] overflow-hidden overflow-ellipsis',
+                  'absolute max-w-[310px] overflow-hidden text-ellipsis',
                   compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
@@ -188,7 +188,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left',
+                        'm-0 inline-block w-full text-ellipsis p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -215,7 +215,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[180px] overflow-hidden overflow-ellipsis',
+                  'absolute max-w-[180px] overflow-hidden text-ellipsis',
                   compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
@@ -245,7 +245,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
                   <FormControl>
                     <button
                       className={cn(
-                        'm-0 inline-block w-full overflow-ellipsis p-0 text-left',
+                        'm-0 inline-block w-full text-ellipsis p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -272,7 +272,7 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[180px] overflow-hidden overflow-ellipsis',
+                  'absolute max-w-[180px] overflow-hidden text-ellipsis',
                   compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
                 )}
               />
@@ -284,8 +284,11 @@ export function MainSearchForm({ compact = false }: MainSearchFormProps) {
           size={compact ? 'icon' : 'icon-lg'}
           className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
         >
-          <Icons.search
-            className={compact ? 'h-[14px] w-[14px]' : 'h-[18px] w-[18px]'}
+          <Icons.magnifyingGlass
+            className={cn(
+              '[stroke-width:3px]',
+              compact ? 'h-[14px] w-[14px]' : 'h-[18px] w-[18px]',
+            )}
           />
         </Button>
       </form>

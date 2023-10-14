@@ -11,13 +11,12 @@ export function CarView({ car }: CarViewProps) {
       <div className="grid grid-cols-[1fr_auto] justify-between">
         <div className="flex flex-col">
           <h1 className="text-xl font-bold">{car.title}</h1>
-          <div className="mt-2 flex items-center gap-1.5 text-[13px] text-neutral-800 md:text-base">
+          <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[13px] text-neutral-800 lg:text-base">
             <span>{car.specs.capacity.seats} seats</span>
             <span>·</span>
             <span>{car.specs.engineType}</span>
             <span>·</span>
             <span>{car.specs.transmission}</span>
-
             {car.unlimitedMileage && (
               <>
                 <span>·</span>
@@ -39,21 +38,22 @@ export function CarView({ car }: CarViewProps) {
       <hr className="my-6" />
       <div className="flex flex-col gap-6">
         <div className="flex flex-row gap-8">
-          <Icons.navigate className="h-6 w-6 shrink-0" />
+          <Icons.gift className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-medium">GPS</p>
+            <p className="font-medium">Exclusive Deals</p>
             <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Exercitationem, distinctio.
+              Unlock special discounts and exclusive offers tailored just for
+              you.
             </p>
           </div>
         </div>
         <div className="flex flex-row gap-8">
-          <Icons.door className="h-6 w-6 shrink-0" />
+          <Icons.key className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-medium">Self check-in</p>
+            <p className="font-medium">Instant Confirmation</p>
             <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
-              You can check in with the building staff.
+              Receive instant booking confirmations for a hassle-free
+              experience.
             </p>
           </div>
         </div>
@@ -66,44 +66,22 @@ export function CarView({ car }: CarViewProps) {
       </div>
       <hr className="my-6" />
       <div className="mt-10 space-y-6">
-        <p className="text-neutral-600">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-          libero iste nihil, minus laboriosam at numquam quis odit repellat?
-          Dignissimos, harum.
-        </p>
-        <p className="text-neutral-600">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo
-          provident ducimus sint explicabo magnam maiores quam rerum. Obcaecati.
-        </p>
+        {car.description.map((paragraph) => (
+          <p key={paragraph} className="text-neutral-600">
+            {paragraph}
+          </p>
+        ))}
       </div>
       <hr className="my-12" />
       <div className="mb-6">
-        <h2 className="text-lg font-bold">Stuff</h2>
+        <h2 className="text-lg font-semibold">Features</h2>
         <div className="mt-6 grid grid-cols-2 gap-4">
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Icons.checkCircle className="h-5 w-5 shrink-0" />
-            <p className="text-neutral-600">Some cool stuff</p>
-          </div>
+          {car.features.map((feature) => (
+            <div key={feature} className="flex flex-row items-center gap-4">
+              <Icons.check className="h-4 w-4 shrink-0" />
+              <p className="text-neutral-600">{feature}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
