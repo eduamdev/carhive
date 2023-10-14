@@ -102,8 +102,8 @@ export function CarsView() {
           </div>
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
-            {filteredCars.map((car) => (
-              <CarCard key={car.id} car={car} />
+            {filteredCars.map((car, index) => (
+              <CarCard key={car.id} index={index} car={car} />
             ))}
           </div>
         )}

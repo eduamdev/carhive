@@ -24,7 +24,7 @@ export function FiltersSeatingCapacity({
   }
 
   return (
-    <div className="relative px-6 py-8 after:absolute after:bottom-0 after:left-6 after:right-6 after:h-px after:bg-neutral-100 after:content-['']">
+    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
         <h3 className="pb-6 text-xl font-semibold">Seating capacity</h3>
         <div className="mb-2 flex flex-row flex-wrap items-center gap-3">

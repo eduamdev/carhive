@@ -12,7 +12,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/43/697aa338-040e-41de-9546-b30e682e2515.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/eco-hatchback.webp',
       alt: '',
     },
     specs: {
@@ -50,7 +50,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/6/25ddba2e-8a4b-4464-9906-6326a59ba455.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/city-minivan.webp',
       alt: '',
     },
     specs: {
@@ -87,7 +87,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/40/acd4c247-0074-45c3-9542-bbac04fff9c2.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/mid-size-suv.webp',
       alt: '',
     },
     specs: {
@@ -124,7 +124,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/40/178ec0a9-cc9b-4597-a360-f062f3dc0458.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/electric-luxury-sedan.webp',
       alt: '',
     },
     specs: {
@@ -160,7 +160,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/6/26375bb6-dc88-4d0a-bf94-a9b843583c31.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/full-size-sedan.webp',
       alt: '',
     },
     specs: {
@@ -197,7 +197,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/9068594d-74f4-4e98-bc19-b9ab90f7463a.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/luxury-sedan.webp',
       alt: '',
     },
     specs: {
@@ -235,7 +235,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/45/cc21c28b-8a84-4275-93f9-a89f95a40d9c.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/premium-sedan.webp',
       alt: '',
     },
     specs: {
@@ -272,7 +272,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/42/24e24b9a-0dc5-4630-8893-41decc62b2b9.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/premium-suv.webp',
       alt: '',
     },
     specs: {
@@ -310,7 +310,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/6/5fe87057-d96a-4052-97bd-85c7f91342ba.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/standard-sedan.webp',
       alt: '',
     },
     specs: {
@@ -349,7 +349,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/b91b0e78-817a-4074-9a59-ecd9a0a6c681.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/standard-hatchback.webp',
       alt: '',
     },
     specs: {
@@ -386,7 +386,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/43/e0ee2218-882a-4327-846a-ca5f9cea11b8.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/city-hatchback.webp',
       alt: '',
     },
     specs: {
@@ -424,7 +424,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/8b9f5ffb-d4f5-4355-99f4-39546e322d7f.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/standard-suv.webp',
       alt: '',
     },
     specs: {
@@ -462,7 +462,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/891e5afb-04b0-4f8f-93fe-18da0c8fc0b1.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/full-size-suv.webp',
       alt: '',
     },
     specs: {
@@ -499,7 +499,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/14/0152afe2-3103-4a24-a4e4-38d774bd3cb8.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/community-minivan.webp',
       alt: '',
     },
     specs: {
@@ -536,7 +536,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/19/172ba8dc-9487-4b11-b089-fcc25dcdc460.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/standard-minivan.avif',
       alt: '',
     },
     specs: {
@@ -574,7 +574,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/e826183c-1bc8-49d1-a6d3-3c893d38f142.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/premium-pickup.webp',
       alt: '',
     },
     specs: {
@@ -612,7 +612,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/15/e18e77e1-1c37-42e7-81cd-281151e51a68.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/standard-pickup.webp',
       alt: '',
     },
     specs: {
@@ -649,7 +649,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/6/bdb29162-f6a1-47de-b6af-4b361d664e2d.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/off-road-suv.webp',
       alt: '',
     },
     specs: {
@@ -688,7 +688,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/69/3e68b2c9-1fc4-4e0e-bb0e-2eda8831835a.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/turbo-sports-car.webp',
       alt: '',
     },
     specs: {
@@ -726,7 +726,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/45/b4440551-f6d5-4b8e-a1fb-a1487676533e.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/premium-minivan.webp',
       alt: '',
     },
     specs: {
@@ -764,7 +764,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/1101/79e2ecab-0c65-4bab-b951-7da0274bad79.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/velocity-sports-car.avif',
       alt: '',
     },
     specs: {
@@ -801,7 +801,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/1060/164ef37e-75bd-47c7-86fe-6b7b3d6571c7.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/racer-sports-car.webp',
       alt: '',
     },
     specs: {
@@ -839,7 +839,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/27/9228bca6-ff68-4623-92ae-d4e8a88f0542.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/urban-pickup.webp',
       alt: '',
     },
     specs: {
@@ -877,7 +877,7 @@ export const allCars = [
       },
     },
     image: {
-      src: 'https://mediaim.expedia.com/cars/69/c2b95c05-deb0-4234-824f-22ddd3aefe03.jpg?impolicy=resizecrop&ra=fit&rh=165&rw=165',
+      src: '/cars/sporty-hatchback.avif',
       alt: '',
     },
     specs: {

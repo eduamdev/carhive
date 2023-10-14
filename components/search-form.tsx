@@ -108,10 +108,11 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
-                    <button
+                    <Button
                       role="combobox"
+                      variant="unstyled"
                       className={cn(
-                        'm-0 inline-block w-full truncate p-0 text-left',
+                        'm-0 inline-block h-auto w-full truncate p-0 text-left',
                         compact ? 'text-sm' : 'text-[15px]',
                         !field.value
                           ? 'text-neutral-500'
@@ -123,7 +124,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                             (location) => location.value === field.value,
                           )?.label
                         : 'Add location'}
-                    </button>
+                    </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="p-0">

@@ -30,9 +30,10 @@ export function MapView() {
           lat: Number(searchParams.get('lat')),
           lng: Number(searchParams.get('lng')),
         };
-        map.setView(center, map.getZoom());
+        const zoom: number = Number(searchParams.get('zoom')) || map.getZoom();
+        map.setView(center, zoom);
       }
-    }, [searchParams]);
+    }, [map]);
 
     return null;
   }

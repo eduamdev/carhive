@@ -18,6 +18,8 @@ const buttonVariants = cva(
         link: 'text-neutral-900 underline-offset-4 hover:underline',
         filter:
           'relative border border-neutral-300 bg-white hover:border-black',
+        unstyled:
+          'ring-0 focus-visible:outline focus-visible:ring-0 rounded-none',
       },
       size: {
         default: 'h-10 px-4 py-2',

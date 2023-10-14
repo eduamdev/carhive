@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Icons } from '@/components/icons';
 import { ICar } from '@/types/car';
 
@@ -26,11 +27,13 @@ export function CarView({ car }: CarViewProps) {
           </div>
         </div>
         <div className="flex flex-col justify-self-end">
-          <div className="w-20 md:w-24">
-            <img
+          <div className="relative h-14 w-20 md:w-24">
+            <Image
               src={car.image.src}
               alt={car.image.alt}
-              className="h-auto w-full object-cover object-center"
+              fill={true}
+              sizes="100px"
+              className="object-contain object-center"
             />
           </div>
         </div>
