@@ -42,7 +42,8 @@ function Calendar({
         ),
         day_selected:
           'bg-neutral-900 text-neutral-50 hover:bg-neutral-900 hover:text-neutral-50 focus:bg-neutral-900 focus:text-neutral-50',
-        day_today: 'bg-neutral-100 text-neutral-900',
+        day_today:
+          'bg-neutral-100 text-neutral-900 aria-selected:text-neutral-50',
         day_outside: 'text-neutral-500 opacity-50',
         day_disabled: 'text-neutral-500 opacity-50',
         day_range_middle:

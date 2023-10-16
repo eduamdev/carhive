@@ -207,20 +207,28 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, 'PPP')
+                        format(field.value, 'LLL dd, y')
                       ) : (
-                        <span>Add date</span>
+                        <span>Pick a date</span>
                       )}
                     </button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent className="w-auto" align="start">
                   <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
                     initialFocus
+                    mode="range"
+                    defaultMonth={field.value}
+                    selected={{
+                      from: field.value,
+                      to: form.getValues('checkout'),
+                    }}
+                    onSelect={(range) => {
+                      form.setValue('checkin', range.from);
+                      form.setValue('checkout', range.to);
+                    }}
+                    numberOfMonths={2}
+                    disabled={(date) => date < new Date()}
                   />
                 </PopoverContent>
               </Popover>
@@ -266,20 +274,28 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, 'PPP')
+                        format(field.value, 'LLL dd, y')
                       ) : (
-                        <span>Add date</span>
+                        <span>Pick a date</span>
                       )}
                     </button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent className="w-auto" align="start">
                   <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) => date < new Date()}
                     initialFocus
+                    mode="range"
+                    defaultMonth={form.getValues('checkin')}
+                    selected={{
+                      from: form.getValues('checkin'),
+                      to: field.value,
+                    }}
+                    onSelect={(range) => {
+                      form.setValue('checkin', range.from);
+                      form.setValue('checkout', range.to);
+                    }}
+                    numberOfMonths={2}
+                    disabled={(date) => date < new Date()}
                   />
                 </PopoverContent>
               </Popover>
