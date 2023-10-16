@@ -86,6 +86,12 @@ export function SearchForm({ compact = false }: SearchFormProps) {
       const checkoutISOString = searchParams.get('checkout');
       form.setValue('checkout', new Date(checkoutISOString));
     }
+
+    return () => {
+      form.setValue('location', '');
+      form.setValue('checkin', undefined);
+      form.setValue('checkout', undefined);
+    };
   }, [searchParams, form]);
 
   return (
