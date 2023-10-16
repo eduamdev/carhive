@@ -10,7 +10,7 @@
       var(--slider-total-logos) * var(--slider-logo-width) * 3
     );
 
-    --site-header-height: 56px;
+    --site-header-height: 60px;
     --search-bar-height: 110px;
     --header-gap: calc(var(--site-header-height) + var(--search-bar-height));
     --cars-page-main-content-height: calc(100vh - var(--header-gap));

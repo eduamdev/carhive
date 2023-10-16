@@ -16,8 +16,8 @@ export function FiltersBadge() {
         searchParams.has(ESearchParams.MAX_PRICE)
       )
         count++;
-      if (searchParams.has(ESearchParams.CAR_TYPE)) {
-        count += searchParams.getAll(ESearchParams.CAR_TYPE).length;
+      if (searchParams.has(ESearchParams.BODY_STYLE)) {
+        count += searchParams.getAll(ESearchParams.BODY_STYLE).length;
       }
       if (searchParams.has(ESearchParams.TRANSMISSION)) {
         count += searchParams.getAll(ESearchParams.TRANSMISSION).length;

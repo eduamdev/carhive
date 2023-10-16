@@ -5,7 +5,9 @@ export function SiteHeader() {
   return (
     <header className="flex h-full items-center justify-between">
       <Link href="/">
-        <p className="text-base font-bold leading-none">GoWheels</p>
+        <p className="text-base font-bold leading-none tracking-wide">
+          CarHive
+        </p>
       </Link>
       <nav>
         <div className="flex items-center justify-center text-neutral-800">

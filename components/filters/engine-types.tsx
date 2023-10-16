@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
-import { EEngineTypes } from '@/types/car-specs';
+import { EEngineTypes } from '@/types/car';
 
 interface FiltersEngineTypesProps {
   selectedFilters: ISelectedFilters;

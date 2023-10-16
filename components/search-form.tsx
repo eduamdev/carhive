@@ -36,6 +36,8 @@ import { cn, createUrl } from '@/lib/utils';
 import { getAllLocations } from '@/lib/locations';
 
 import { ILocation } from '@/types/location';
+import { ESearchParams } from '@/types/filters';
+import { DateRange } from 'react-day-picker';
 
 const FormSchema = z.object({
   location: z.string({ required_error: 'Please select a location' }),
@@ -61,34 +63,34 @@ export function SearchForm({ compact = false }: SearchFormProps) {
 
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete('location');
-    newParams.delete('checkin');
-    newParams.delete('checkout');
+    newParams.delete(ESearchParams.LOCATION);
+    newParams.delete(ESearchParams.CHECKIN);
+    newParams.delete(ESearchParams.CHECKOUT);
 
-    newParams.set('location', location);
-    newParams.set('checkin', checkin.toISOString());
-    newParams.set('checkout', checkout.toISOString());
+    newParams.set(ESearchParams.LOCATION, location);
+    newParams.set(ESearchParams.CHECKIN, checkin.toISOString());
+    newParams.set(ESearchParams.CHECKOUT, checkout.toISOString());
 
     router.push(createUrl('/cars', newParams));
   }
 
   useEffect(() => {
-    if (searchParams.has('location')) {
-      form.setValue('location', searchParams.get('location'));
+    if (searchParams.has(ESearchParams.LOCATION)) {
+      form.setValue('location', searchParams.get(ESearchParams.LOCATION));
     }
 
-    if (searchParams.has('checkin')) {
-      const checkinISOString = searchParams.get('checkin');
+    if (searchParams.has(ESearchParams.CHECKIN)) {
+      const checkinISOString = searchParams.get(ESearchParams.CHECKIN);
       form.setValue('checkin', new Date(checkinISOString));
     }
 
-    if (searchParams.has('checkout')) {
-      const checkoutISOString = searchParams.get('checkout');
+    if (searchParams.has(ESearchParams.CHECKOUT)) {
+      const checkoutISOString = searchParams.get(ESearchParams.CHECKOUT);
       form.setValue('checkout', new Date(checkoutISOString));
     }
 
     return () => {
-      form.setValue('location', '');
+      form.setValue('location', undefined);
       form.setValue('checkin', undefined);
       form.setValue('checkout', undefined);
     };
@@ -224,9 +226,9 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       from: field.value,
                       to: form.getValues('checkout'),
                     }}
-                    onSelect={(range) => {
-                      form.setValue('checkin', range.from);
-                      form.setValue('checkout', range.to);
+                    onSelect={(range: DateRange) => {
+                      form.setValue('checkin', range?.from);
+                      form.setValue('checkout', range?.to || undefined);
                     }}
                     numberOfMonths={2}
                     disabled={(date) => date < new Date()}
@@ -291,9 +293,9 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       from: form.getValues('checkin'),
                       to: field.value,
                     }}
-                    onSelect={(range) => {
-                      form.setValue('checkin', range.from);
-                      form.setValue('checkout', range.to);
+                    onSelect={(range: DateRange) => {
+                      form.setValue('checkin', range?.from);
+                      form.setValue('checkout', range?.to || undefined);
                     }}
                     numberOfMonths={2}
                     disabled={(date) => date < new Date()}

@@ -1,12 +1,12 @@
 import { ILocation } from '@/types/location';
 
-export const citiesData: ReadonlyArray<ILocation> = [
+export const locationsData: ReadonlyArray<ILocation> = [
   {
     id: 'l8pSUvBU3dYE2SR',
     name: 'Paris, France',
     value: 'paris',
     image: {
-      src: '/cities/paris.avif',
+      src: '/locations/paris.avif',
       alt: 'Effiel Tower at Sunset',
     },
     latitude: 48.8589,
@@ -19,7 +19,7 @@ export const citiesData: ReadonlyArray<ILocation> = [
     name: 'Dubai, United Arab Emirates',
     value: 'dubai',
     image: {
-      src: '/cities/dubai.avif',
+      src: '/locations/dubai.avif',
       alt: 'an aerial view of the burj al arab in the middle of the ocean',
     },
     latitude: 25.2655,
@@ -32,7 +32,7 @@ export const citiesData: ReadonlyArray<ILocation> = [
     name: 'Cancún, México',
     value: 'cancun',
     image: {
-      src: '/cities/cancun.avif',
+      src: '/locations/cancun.avif',
       alt: 'green palm trees near body of water during daytime in Cancun, Mexico',
     },
     latitude: 21.1214,
@@ -45,7 +45,7 @@ export const citiesData: ReadonlyArray<ILocation> = [
     name: 'Rome, Italy',
     value: 'rome',
     image: {
-      src: '/cities/rome.avif',
+      src: '/locations/rome.avif',
       alt: 'an aerial view from the top of the Vatican in Rome',
     },
     latitude: 41.8988,

@@ -2,9 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { convertToKebabCase } from '@/lib/utils';
-import { ECarTypes } from '@/types/car-specs';
+import { EBodyStyles } from '@/types/car';
+import { ESearchParams } from '@/types/filters';
 
-export function PopularCarTypes() {
+export function PopularCarBodyStyles() {
   return (
     <section className="border-t pt-10">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
@@ -17,21 +18,23 @@ export function PopularCarTypes() {
                   href={{
                     pathname: '/cars',
                     query: {
-                      'car-type': convertToKebabCase(ECarTypes.HATCHBACK),
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.HATCHBACK,
+                      ),
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.HATCHBACK}
+                    {EBodyStyles.HATCHBACK}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/hatchback.avif"
+                  src="/cars/body-styles/hatchback.avif"
                   alt="hatchback"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -41,21 +44,23 @@ export function PopularCarTypes() {
                   href={{
                     pathname: '/cars',
                     query: {
-                      'car-type': convertToKebabCase(ECarTypes.MINIVAN),
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.MINIVAN,
+                      ),
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.MINIVAN}
+                    {EBodyStyles.MINIVAN}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/minivan.avif"
+                  src="/cars/body-styles/minivan.avif"
                   alt="minivan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -65,21 +70,23 @@ export function PopularCarTypes() {
                   href={{
                     pathname: '/cars',
                     query: {
-                      'car-type': convertToKebabCase(ECarTypes.PICKUP_TRUCK),
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.PICKUP_TRUCK,
+                      ),
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.PICKUP_TRUCK}
+                    {EBodyStyles.PICKUP_TRUCK}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/pickup-truck.avif"
+                  src="/cars/body-styles/pickup-truck.avif"
                   alt="pickup truck"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -89,21 +96,23 @@ export function PopularCarTypes() {
                   href={{
                     pathname: '/cars',
                     query: {
-                      'car-type': convertToKebabCase(ECarTypes.SPORTS_CAR),
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.SPORTS_CAR,
+                      ),
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.SPORTS_CAR}
+                    {EBodyStyles.SPORTS_CAR}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/sports-car.avif"
+                  src="/cars/body-styles/sports-car.avif"
                   alt="sports car"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -112,20 +121,24 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': convertToKebabCase(ECarTypes.SUV) },
+                    query: {
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.SUV,
+                      ),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.SUV}
+                    {EBodyStyles.SUV}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/suv.avif"
+                  src="/cars/body-styles/suv.avif"
                   alt="suv"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />
@@ -134,20 +147,24 @@ export function PopularCarTypes() {
                 <Link
                   href={{
                     pathname: '/cars',
-                    query: { 'car-type': convertToKebabCase(ECarTypes.SEDAN) },
+                    query: {
+                      [ESearchParams.BODY_STYLE]: convertToKebabCase(
+                        EBodyStyles.SEDAN,
+                      ),
+                    },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
                 />
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
-                    {ECarTypes.SEDAN}
+                    {EBodyStyles.SEDAN}
                   </span>
                 </div>
                 <Image
                   width={250}
                   height={144}
                   priority
-                  src="/car-types/sedan.avif"
+                  src="/cars/body-styles/sedan.avif"
                   alt="sedan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
                 />

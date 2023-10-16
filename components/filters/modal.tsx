@@ -16,7 +16,7 @@ import {
 import {
   FiltersBadge,
   FiltersPriceRange,
-  FiltersCarTypes,
+  FiltersBodyStyles,
   FiltersSeatingCapacity,
   FiltersTransmissions,
   FiltersEngineTypes,
@@ -26,7 +26,7 @@ import {
 
 import { reverseMapToEnum } from '@/lib/utils';
 import { ESearchParams, ISelectedFilters } from '@/types/filters';
-import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
+import { EEngineTypes, ETransmissions, EBodyStyles } from '@/types/car';
 import { getMaxPrice, getMinPrice } from '@/lib/cars';
 
 export function FiltersModal() {
@@ -54,9 +54,9 @@ export function FiltersModal() {
 
     const minSeats = searchParams.get(ESearchParams.MIN_SEATS) || '';
 
-    const carTypes: ECarTypes[] = searchParams
-      .getAll(ESearchParams.CAR_TYPE)
-      .map((value) => reverseMapToEnum(value)) as ECarTypes[];
+    const bodyStyles: EBodyStyles[] = searchParams
+      .getAll(ESearchParams.BODY_STYLE)
+      .map((value) => reverseMapToEnum(value)) as EBodyStyles[];
 
     const engineTypes: EEngineTypes[] = searchParams
       .getAll(ESearchParams.ENGINE_TYPE)
@@ -69,9 +69,9 @@ export function FiltersModal() {
     return {
       priceRange,
       minSeats,
-      carTypes: carTypes.length > 0 ? carTypes : [],
+      bodyStyles: bodyStyles.length > 0 ? bodyStyles : [],
       engineTypes: engineTypes.length > 0 ? engineTypes : [],
-      transmission: transmissions.length > 0 ? transmissions : [],
+      transmissions: transmissions.length > 0 ? transmissions : [],
     };
   }
 
@@ -100,7 +100,7 @@ export function FiltersModal() {
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
           />
-          <FiltersCarTypes
+          <FiltersBodyStyles
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
           />

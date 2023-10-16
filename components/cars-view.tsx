@@ -35,11 +35,11 @@ export function CarsView() {
       });
     }
 
-    if (searchParams.has(ESearchParams.CAR_TYPE)) {
+    if (searchParams.has(ESearchParams.BODY_STYLE)) {
       newFilteredCars = newFilteredCars.filter((car) =>
         searchParams
-          .getAll(ESearchParams.CAR_TYPE)
-          .includes(convertToKebabCase(car.specs.carType)),
+          .getAll(ESearchParams.BODY_STYLE)
+          .includes(convertToKebabCase(car.specs.bodyStyle)),
       );
     }
 

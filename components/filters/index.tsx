@@ -1,5 +1,5 @@
 import { FiltersBadge } from '@/components/filters/badge';
-import { FiltersCarTypes } from '@/components/filters/car-types';
+import { FiltersBodyStyles } from '@/components/filters/body-styles';
 import { FiltersEngineTypes } from '@/components/filters/engine-types';
 import { FiltersItem } from '@/components/filters/item';
 import { FiltersModal } from '@/components/filters/modal';
@@ -11,7 +11,7 @@ import { FiltersApplyButton } from '@/components/filters/apply-button';
 
 export {
   FiltersBadge,
-  FiltersCarTypes,
+  FiltersBodyStyles,
   FiltersEngineTypes,
   FiltersItem,
   FiltersModal,

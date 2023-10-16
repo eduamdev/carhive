@@ -1,5 +1,5 @@
 import { ICar } from '@/types/car';
-import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
+import { EEngineTypes, ETransmissions, EBodyStyles } from '@/types/car';
 
 export const carsData: ReadonlyArray<ICar> = [
   {
@@ -17,7 +17,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.HATCHBACK,
+      bodyStyle: EBodyStyles.HATCHBACK,
       engineType: EEngineTypes.HYBRID,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -55,7 +55,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.MINIVAN,
+      bodyStyle: EBodyStyles.MINIVAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -92,7 +92,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SUV,
+      bodyStyle: EBodyStyles.SUV,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -129,7 +129,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SEDAN,
+      bodyStyle: EBodyStyles.SEDAN,
       engineType: EEngineTypes.ELECTRIC,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -165,7 +165,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SEDAN,
+      bodyStyle: EBodyStyles.SEDAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -202,7 +202,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SEDAN,
+      bodyStyle: EBodyStyles.SEDAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -240,7 +240,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SEDAN,
+      bodyStyle: EBodyStyles.SEDAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -277,7 +277,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SUV,
+      bodyStyle: EBodyStyles.SUV,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -315,7 +315,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SEDAN,
+      bodyStyle: EBodyStyles.SEDAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
@@ -354,7 +354,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.HATCHBACK,
+      bodyStyle: EBodyStyles.HATCHBACK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
@@ -391,7 +391,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.HATCHBACK,
+      bodyStyle: EBodyStyles.HATCHBACK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -429,7 +429,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SUV,
+      bodyStyle: EBodyStyles.SUV,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
@@ -467,7 +467,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SUV,
+      bodyStyle: EBodyStyles.SUV,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -504,7 +504,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.MINIVAN,
+      bodyStyle: EBodyStyles.MINIVAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -541,7 +541,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.MINIVAN,
+      bodyStyle: EBodyStyles.MINIVAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
@@ -579,7 +579,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.PICKUP_TRUCK,
+      bodyStyle: EBodyStyles.PICKUP_TRUCK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -617,7 +617,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.PICKUP_TRUCK,
+      bodyStyle: EBodyStyles.PICKUP_TRUCK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
@@ -654,7 +654,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SUV,
+      bodyStyle: EBodyStyles.SUV,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -693,7 +693,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SPORTS_CAR,
+      bodyStyle: EBodyStyles.SPORTS_CAR,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -731,7 +731,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.MINIVAN,
+      bodyStyle: EBodyStyles.MINIVAN,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -769,7 +769,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SPORTS_CAR,
+      bodyStyle: EBodyStyles.SPORTS_CAR,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -806,7 +806,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.SPORTS_CAR,
+      bodyStyle: EBodyStyles.SPORTS_CAR,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -844,7 +844,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.PICKUP_TRUCK,
+      bodyStyle: EBodyStyles.PICKUP_TRUCK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
@@ -882,7 +882,7 @@ export const carsData: ReadonlyArray<ICar> = [
       alt: '',
     },
     specs: {
-      carType: ECarTypes.HATCHBACK,
+      bodyStyle: EBodyStyles.HATCHBACK,
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {

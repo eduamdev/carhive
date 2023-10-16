@@ -1,21 +1,21 @@
-import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
+import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
 
 export interface ISelectedFilters {
   priceRange: number[];
-  carTypes: ECarTypes[];
+  bodyStyles: EBodyStyles[];
   minSeats: string;
   engineTypes: EEngineTypes[];
-  transmission: ETransmissions[];
+  transmissions: ETransmissions[];
 }
 
 export enum ESearchParams {
-  LAT = 'lat',
-  LNG = 'lng',
-  ZOOM = 'zoom',
+  LOCATION = 'location',
+  CHECKIN = 'checkin',
+  CHECKOUT = 'checkout',
   MIN_PRICE = 'min-price',
   MAX_PRICE = 'max-price',
-  MIN_SEATS = 'min-seats',
-  CAR_TYPE = 'car-type',
+  BODY_STYLE = 'body-style',
   ENGINE_TYPE = 'engine-type',
+  MIN_SEATS = 'min-seats',
   TRANSMISSION = 'transmission',
 }

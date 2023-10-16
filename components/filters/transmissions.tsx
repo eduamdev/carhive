@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
-import { ETransmissions } from '@/types/car-specs';
+import { ETransmissions } from '@/types/car';
 
 interface FiltersTransmissionsProps {
   selectedFilters: ISelectedFilters;
@@ -23,16 +23,16 @@ export function FiltersTransmissions({
     let transmissionsSelected: ETransmissions[] = [];
 
     if (!checked || checked === 'indeterminate') {
-      transmissionsSelected = selectedFilters.transmission.filter(
+      transmissionsSelected = selectedFilters.transmissions.filter(
         (selected) => selected !== value,
       );
     } else {
-      transmissionsSelected = [...selectedFilters.transmission, value];
+      transmissionsSelected = [...selectedFilters.transmissions, value];
     }
 
     setSelectedFilters({
       ...selectedFilters,
-      transmission: transmissionsSelected,
+      transmissions: transmissionsSelected,
     });
   }
 
@@ -56,7 +56,7 @@ export function FiltersTransmissions({
                       setSelectedFilters,
                     )
                   }
-                  checked={selectedFilters.transmission.includes(value)}
+                  checked={selectedFilters.transmissions.includes(value)}
                 />
                 <div className="w-full">
                   <Label

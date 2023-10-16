@@ -28,7 +28,7 @@ export function FiltersApplyButton({
 
     newParams.delete(ESearchParams.MIN_PRICE);
     newParams.delete(ESearchParams.MAX_PRICE);
-    newParams.delete(ESearchParams.CAR_TYPE);
+    newParams.delete(ESearchParams.BODY_STYLE);
     newParams.delete(ESearchParams.MIN_SEATS);
     newParams.delete(ESearchParams.TRANSMISSION);
     newParams.delete(ESearchParams.ENGINE_TYPE);
@@ -51,9 +51,9 @@ export function FiltersApplyButton({
         selectedFilters.minSeats.toString(),
       );
 
-    if (selectedFilters.carTypes.length) {
-      selectedFilters.carTypes.forEach((value) => {
-        newParams.append(ESearchParams.CAR_TYPE, convertToKebabCase(value));
+    if (selectedFilters.bodyStyles.length) {
+      selectedFilters.bodyStyles.forEach((value) => {
+        newParams.append(ESearchParams.BODY_STYLE, convertToKebabCase(value));
       });
     }
 
@@ -63,8 +63,8 @@ export function FiltersApplyButton({
       });
     }
 
-    if (selectedFilters.transmission.length) {
-      selectedFilters.transmission.forEach((value) => {
+    if (selectedFilters.transmissions.length) {
+      selectedFilters.transmissions.forEach((value) => {
         newParams.append(ESearchParams.TRANSMISSION, convertToKebabCase(value));
       });
     }

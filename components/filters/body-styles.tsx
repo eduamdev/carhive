@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/components/icons';
 import { FiltersItem } from '@/components/filters/item';
 import { ISelectedFilters } from '@/types/filters';
-import { ECarTypes } from '@/types/car-specs';
+import { EBodyStyles } from '@/types/car';
 
-const carTypeIcons = {
+const bodyStyleIcons = {
   HATCHBACK: <Icons.hatchback className="h-8 w-8" />,
   MINIVAN: <Icons.minivan className="h-8 w-8" />,
   PICKUP_TRUCK: <Icons.pickupTruck className="h-8 w-8" />,
@@ -13,31 +13,31 @@ const carTypeIcons = {
   SEDAN: <Icons.sedan className="h-8 w-8" />,
 };
 
-interface FiltersCarTypesProps {
+interface FiltersBodyStylesProps {
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersCarTypes({
+export function FiltersBodyStyles({
   selectedFilters,
   setSelectedFilters,
-}: FiltersCarTypesProps) {
+}: FiltersBodyStylesProps) {
   function handleClick(
-    value: ECarTypes,
+    value: EBodyStyles,
     selectedFilters: ISelectedFilters,
     setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
   ) {
-    let carTypesSelected: ECarTypes[] = [];
+    let bodyStyleSelected: EBodyStyles[] = [];
 
-    if (selectedFilters.carTypes.includes(value)) {
-      carTypesSelected = selectedFilters.carTypes.filter(
+    if (selectedFilters.bodyStyles.includes(value)) {
+      bodyStyleSelected = selectedFilters.bodyStyles.filter(
         (selected) => selected !== value,
       );
     } else {
-      carTypesSelected = [...selectedFilters.carTypes, value];
+      bodyStyleSelected = [...selectedFilters.bodyStyles, value];
     }
 
-    setSelectedFilters({ ...selectedFilters, carTypes: carTypesSelected });
+    setSelectedFilters({ ...selectedFilters, bodyStyles: bodyStyleSelected });
   }
 
   return (
@@ -45,20 +45,20 @@ export function FiltersCarTypes({
       <section>
         <h3 className="pb-6 text-xl font-semibold">Car type</h3>
         <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {Object.keys(ECarTypes).map((key) => {
-            const value: ECarTypes = ECarTypes[key];
+          {Object.keys(EBodyStyles).map((key) => {
+            const value: EBodyStyles = EBodyStyles[key];
 
             return (
               <FiltersItem
                 key={key}
                 area
-                selected={selectedFilters.carTypes.includes(value)}
+                selected={selectedFilters.bodyStyles.includes(value)}
                 onClick={() =>
                   handleClick(value, selectedFilters, setSelectedFilters)
                 }
               >
                 <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-                  {carTypeIcons[key]}
+                  {bodyStyleIcons[key]}
                   <span className="text-base font-medium">{value}</span>
                 </div>
               </FiltersItem>

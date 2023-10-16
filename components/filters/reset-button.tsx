@@ -18,10 +18,10 @@ export function FiltersResetButton({
   ) {
     setSelectedFilters({
       priceRange: [minPrice, maxPrice],
-      carTypes: [],
+      bodyStyles: [],
       engineTypes: [],
       minSeats: '',
-      transmission: [],
+      transmissions: [],
     });
   }
 

@@ -8,7 +8,9 @@ export function SiteFooter() {
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-6 gap-y-10 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <p className="text-base font-bold leading-none">GoWheels</p>
+              <p className="text-base font-bold leading-none tracking-wide">
+                CarHive
+              </p>
             </Link>
           </div>
           <ul className="flex flex-col gap-2.5">
@@ -83,7 +85,7 @@ export function SiteFooter() {
             <Newsletter />
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-14 lg:mt-16">
           <p className="text-[13px] text-neutral-600 lg:text-sm">
             Design and developed by{' '}
             <a href="https://twitter.com/eduamdev">

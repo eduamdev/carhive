@@ -5,8 +5,9 @@ import { getMinPrice } from '@/lib/cars';
 import { getFeaturedLocations } from '@/lib/locations';
 import { formatCurrency } from '@/lib/utils';
 import { ILocation } from '@/types/location';
+import { ESearchParams } from '@/types/filters';
 
-export function TrendingDestinations() {
+export function TrendingPlaces() {
   const MIN_PRICE: number = getMinPrice();
   const featuredLocations: ReadonlyArray<ILocation> = getFeaturedLocations();
 
@@ -23,7 +24,7 @@ export function TrendingDestinations() {
               href={{
                 pathname: '/cars',
                 query: {
-                  location: location.value,
+                  [ESearchParams.LOCATION]: location.value,
                 },
               }}
               className="px-2 pb-4 pt-1 lg:pb-1"

@@ -7,6 +7,7 @@ import type { LatLngExpression } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getLocationByValue } from '@/lib/locations';
+import { ESearchParams } from '@/types/filters';
 
 export function MapView() {
   const searchParams = useSearchParams();
@@ -16,23 +17,19 @@ export function MapView() {
   const DEFAULT_LNG = -0.09;
   const DEFAULT_ZOOM_LEVEL = 13;
 
-  const center: LatLngExpression = {
-    lat: Number(searchParams.get('lat')) || DEFAULT_LAT,
-    lng: Number(searchParams.get('lng')) || DEFAULT_LNG,
-  };
-  const zoom: number = Number(searchParams.get('zoom')) || DEFAULT_ZOOM_LEVEL;
-
   function UpdateMapPosition() {
     const map = useMap();
 
     useEffect(() => {
-      if (searchParams.has('location')) {
-        const location = getLocationByValue(searchParams.get('location'));
+      if (searchParams.has(ESearchParams.LOCATION)) {
+        const location = getLocationByValue(
+          searchParams.get(ESearchParams.LOCATION),
+        );
         const center: LatLngExpression = {
           lat: location.latitude,
           lng: location.longitude,
         };
-        const zoom: number = Number(searchParams.get('zoom')) || map.getZoom();
+        const zoom: number = map.getZoom() || DEFAULT_ZOOM_LEVEL;
         map.setView(center, zoom);
       }
     }, [map]);
@@ -43,8 +40,8 @@ export function MapView() {
   return (
     <MapContainer
       className="h-[var(--map-container-height)]"
-      center={center}
-      zoom={zoom}
+      center={[DEFAULT_LAT, DEFAULT_LNG]}
+      zoom={DEFAULT_ZOOM_LEVEL}
       ref={mapRef}
     >
       <TileLayer

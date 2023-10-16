@@ -2,7 +2,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { addDays, differenceInDays } from 'date-fns';
-import { ECarTypes, EEngineTypes, ETransmissions } from '@/types/car-specs';
+import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -25,16 +25,16 @@ export function convertToKebabCase(inputString: string): string {
 
 export function reverseMapToEnum(
   inputString: string,
-): ECarTypes | ETransmissions | EEngineTypes | undefined {
+): EBodyStyles | ETransmissions | EEngineTypes | undefined {
   const kebabToEnumMap: {
-    [key: string]: ECarTypes | ETransmissions | EEngineTypes;
+    [key: string]: EBodyStyles | ETransmissions | EEngineTypes;
   } = {
-    suv: ECarTypes.SUV,
-    minivan: ECarTypes.MINIVAN,
-    'pickup-truck': ECarTypes.PICKUP_TRUCK,
-    'sports-car': ECarTypes.SPORTS_CAR,
-    hatchback: ECarTypes.HATCHBACK,
-    sedan: ECarTypes.SEDAN,
+    suv: EBodyStyles.SUV,
+    minivan: EBodyStyles.MINIVAN,
+    'pickup-truck': EBodyStyles.PICKUP_TRUCK,
+    'sports-car': EBodyStyles.SPORTS_CAR,
+    hatchback: EBodyStyles.HATCHBACK,
+    sedan: EBodyStyles.SEDAN,
     automatic: ETransmissions.AUTOMATIC,
     manual: ETransmissions.MANUAL,
     gas: EEngineTypes.GAS,

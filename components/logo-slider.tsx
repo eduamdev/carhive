@@ -5,32 +5,32 @@ import { Icons } from '@/components/icons';
 
 export function LogoSlider() {
   useEffect(() => {
-    const brandList = document.querySelector('ul#brandList');
-    const brands = document.querySelectorAll('ul#brandList li');
+    const logosList = document.querySelector('ul#logosList');
+    const logos = document.querySelectorAll('ul#logosList li');
 
     document.documentElement.style.setProperty(
       '--slider-total-logos',
-      brands.length.toString(),
+      logos.length.toString(),
     );
 
-    function cloneBrands(setNumber) {
+    function cloneLogos(groupNumber) {
       let i = 0;
-      brands.forEach((brand) => {
+      logos.forEach((logo) => {
         i++;
-        const clone = brand.cloneNode(true) as HTMLElement;
-        clone.id = `clone_set${setNumber}_${i}`;
-        brandList.appendChild(clone);
+        const clone = logo.cloneNode(true) as HTMLElement;
+        clone.id = `clone_group${groupNumber}_logo${i}`;
+        logosList.appendChild(clone);
       });
     }
 
-    cloneBrands(1);
-    cloneBrands(2);
+    cloneLogos(1);
+    cloneLogos(2);
 
     return () => {
-      const clones = document.querySelectorAll("li[id^='clone_']");
+      const cloneGroups = document.querySelectorAll("li[id^='clone_group']");
 
-      clones.forEach((clone) => {
-        brandList.removeChild(clone);
+      cloneGroups.forEach((clone) => {
+        logosList.removeChild(clone);
       });
     };
   }, []);
@@ -39,7 +39,7 @@ export function LogoSlider() {
     <div className="mt-16 text-center">
       <div className="relative flex w-screen items-center overflow-hidden whitespace-nowrap py-10 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64">
         <ul
-          id="brandList"
+          id="logosList"
           className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-50 grayscale"
         >
           <li className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center">
