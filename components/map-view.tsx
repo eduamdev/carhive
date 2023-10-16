@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import type { LatLngExpression } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { getLocationByValue } from '@/lib/locations';
 
 export function MapView() {
   const searchParams = useSearchParams();
@@ -25,10 +26,11 @@ export function MapView() {
     const map = useMap();
 
     useEffect(() => {
-      if (searchParams.has('lat') && searchParams.has('lng')) {
+      if (searchParams.has('location')) {
+        const location = getLocationByValue(searchParams.get('location'));
         const center: LatLngExpression = {
-          lat: Number(searchParams.get('lat')),
-          lng: Number(searchParams.get('lng')),
+          lat: location.latitude,
+          lng: location.longitude,
         };
         const zoom: number = Number(searchParams.get('zoom')) || map.getZoom();
         map.setView(center, zoom);

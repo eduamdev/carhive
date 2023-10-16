@@ -5,15 +5,15 @@ import { Label } from '@/components/ui/label';
 import { ISelectedFilters } from '@/types/filters';
 
 interface FiltersPriceRangeProps {
-  MIN_PRICE: number;
-  MAX_PRICE: number;
+  minPrice: number;
+  MaxPrice: number;
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersPriceRange({
-  MIN_PRICE,
-  MAX_PRICE,
+  minPrice,
+  MaxPrice,
   selectedFilters,
   setSelectedFilters,
 }: FiltersPriceRangeProps) {
@@ -34,13 +34,13 @@ export function FiltersPriceRange({
         <h3 className="pb-6 text-xl font-semibold">Price range</h3>
         <div className="mx-auto flex max-w-[600px] flex-col items-start justify-between gap-12 pt-2">
           <Slider
-            defaultValue={[MIN_PRICE, MAX_PRICE]}
+            defaultValue={[minPrice, MaxPrice]}
             value={selectedFilters.priceRange}
             onValueChange={(values) =>
               handleSliderChange(values, selectedFilters, setSelectedFilters)
             }
-            min={MIN_PRICE}
-            max={MAX_PRICE}
+            min={minPrice}
+            max={MaxPrice}
             step={1}
             minStepsBetweenThumbs={1}
           />

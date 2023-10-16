@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator';
 
 function SkeletonCard() {
   return (
-    <div className="h-full w-full rounded-xl shadow-sm">
+    <div className="h-full w-full rounded-xl border border-black/10 shadow-sm">
       <div className="mb-8 flex justify-between p-6">
         <Skeleton className="h-5 w-1/2" />
         <div className="flex w-1/3 gap-1.5">

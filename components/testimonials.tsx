@@ -25,7 +25,7 @@ export function Testimonials() {
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">Olivia Parker</p>
+                    <p className="text-sm font-semibold">Olivia Parker</p>
                     <p className="mt-1 text-sm text-neutral-600">
                       @oliviaparker
                     </p>
@@ -50,7 +50,7 @@ export function Testimonials() {
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">Emma Thompson</p>
+                    <p className="text-sm font-semibold">Emma Thompson</p>
                     <p className="mt-1 text-sm text-neutral-600">
                       @emmathompson
                     </p>
@@ -75,9 +75,7 @@ export function Testimonials() {
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">
-                      Sophia Rodriguez
-                    </p>
+                    <p className="text-sm font-semibold">Sophia Rodriguez</p>
                     <p className="mt-1 text-sm text-neutral-600">
                       @sophiarodriguez
                     </p>
@@ -101,7 +99,7 @@ export function Testimonials() {
                     className="h-10 w-10 rounded-full border bg-white"
                   />
                   <div>
-                    <p className="text-[15px] font-semibold">Daniel Johnson</p>
+                    <p className="text-sm font-semibold">Daniel Johnson</p>
                     <p className="mt-1 text-sm text-neutral-600">@danjohnson</p>
                   </div>
                 </figcaption>

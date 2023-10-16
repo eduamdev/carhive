@@ -1,6 +1,7 @@
+import { ICar } from '@/types/car';
 import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
 
-export const allCars = [
+export const carsData: ReadonlyArray<ICar> = [
   {
     id: 'uVKDGRbIxLWY8x7',
     slug: 'eco-hatchback',

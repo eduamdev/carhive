@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,26 +33,20 @@ import {
 import { Icons } from '@/components/icons';
 
 import { cn, createUrl } from '@/lib/utils';
+import { getAllLocations } from '@/lib/locations';
 
-const locations = [
-  { label: 'Paris, France', value: 'paris', lat: '48.8589', lng: '2.3469' },
-  {
-    label: 'Dubai, United Arab Emirates',
-    value: 'dubai',
-    lat: '25.2655',
-    lng: '55.2925',
-  },
-  { label: 'Cancún, México', value: 'cancun', lat: '21.1214', lng: '-86.8559' },
-  { label: 'Rome, Italy', value: 'rome', lat: '41.8988', lng: '12.5451' },
-] as const;
+import { ILocation } from '@/types/location';
 
-const FormSchema = z.object({
-  location: z.string({ required_error: 'Please enter a location' }),
-  lat: z.number(),
-  lng: z.number(),
-  checkin: z.date(),
-  checkout: z.date(),
-});
+const FormSchema = z
+  .object({
+    location: z.string({ required_error: 'Please select a location' }),
+    checkin: z.date(),
+    checkout: z.date(),
+  })
+  .refine((obj) => obj.checkout > obj.checkin, {
+    message: 'Choose a later check-out date',
+    path: ['checkout'],
+  });
 
 interface SearchFormProps {
   compact?: boolean;
@@ -60,36 +55,51 @@ interface SearchFormProps {
 export function SearchForm({ compact = false }: SearchFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const locations: ReadonlyArray<ILocation> = getAllLocations();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   function onSubmit(values: z.infer<typeof FormSchema>) {
-    const { lat, lng, checkin, checkout } = values;
+    const { location, checkin, checkout } = values;
 
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete('lat');
-    newParams.delete('lng');
+    newParams.delete('location');
     newParams.delete('checkin');
     newParams.delete('checkout');
 
-    newParams.set('lat', lat.toString());
-    newParams.set('lng', lng.toString());
-    newParams.set('checkin', checkin.toString());
-    newParams.set('checkout', checkout.toString());
+    newParams.set('location', location);
+    newParams.set('checkin', checkin.toISOString());
+    newParams.set('checkout', checkout.toISOString());
 
     router.push(createUrl('/cars', newParams));
   }
+
+  useEffect(() => {
+    if (searchParams.has('location')) {
+      form.setValue('location', searchParams.get('location'));
+    }
+
+    if (searchParams.has('checkin')) {
+      const checkinISOString = searchParams.get('checkin');
+      form.setValue('checkin', new Date(checkinISOString));
+    }
+
+    if (searchParams.has('checkout')) {
+      const checkoutISOString = searchParams.get('checkout');
+      form.setValue('checkout', new Date(checkoutISOString));
+    }
+  }, [searchParams, form]);
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto flex w-[860px] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
-          compact ? 'h-[58px] py-2' : 'h-[68px] py-2.5',
+          'relative mx-auto flex items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
+          compact ? 'h-[58px] w-[680px] py-2' : 'h-[68px] w-[860px] py-2.5',
         )}
       >
         <FormField
@@ -122,24 +132,22 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       {field.value
                         ? locations.find(
                             (location) => location.value === field.value,
-                          )?.label
-                        : 'Add location'}
+                          )?.name
+                        : 'Select location'}
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="p-0">
                   <Command>
-                    <CommandInput placeholder="Search city..." />
+                    <CommandInput placeholder="Search location..." />
                     <CommandEmpty>No place found.</CommandEmpty>
                     <CommandGroup>
                       {locations.map((location) => (
                         <CommandItem
-                          value={location.label}
+                          value={location.name}
                           key={location.value}
                           onSelect={() => {
                             form.setValue('location', location.value);
-                            form.setValue('lat', Number(location.lat));
-                            form.setValue('lng', Number(location.lng));
                           }}
                         >
                           <Icons.check
@@ -150,7 +158,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                                 : 'opacity-0',
                             )}
                           />
-                          {location.label}
+                          {location.name}
                         </CommandItem>
                       ))}
                     </CommandGroup>
@@ -159,8 +167,10 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[310px] overflow-hidden text-ellipsis',
-                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
+                  'absolute  overflow-hidden text-ellipsis',
+                  compact
+                    ? 'top-[60px] max-w-[220px] text-xs'
+                    : 'top-[72px] max-w-[310px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -216,8 +226,10 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[180px] overflow-hidden text-ellipsis',
-                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
+                  'absolute  overflow-hidden text-ellipsis',
+                  compact
+                    ? 'top-[60px] max-w-[135px] text-xs'
+                    : 'top-[72px] max-w-[180px] text-[13px]',
                 )}
               />
             </FormItem>
@@ -273,8 +285,10 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               </Popover>
               <FormMessage
                 className={cn(
-                  'absolute max-w-[180px] overflow-hidden text-ellipsis',
-                  compact ? 'top-[58px] text-xs' : 'top-[72px] text-[13px]',
+                  'absolute overflow-hidden text-ellipsis',
+                  compact
+                    ? 'top-[60px] max-w-[190px] text-xs'
+                    : 'top-[72px] max-w-[205px] text-[13px]',
                 )}
               />
             </FormItem>

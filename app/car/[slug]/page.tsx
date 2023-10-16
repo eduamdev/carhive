@@ -1,14 +1,14 @@
 import { CarView } from '@/components/car-view';
 import { ReserveCard } from '@/components/reserve-card';
-import { allCars } from '@/data/all-cars';
+import { getAllCars, getCarBySlug } from '@/lib/cars';
 import { ICar } from '@/types/car';
 
 export async function generateStaticParams() {
-  return allCars.map((car) => ({ slug: car.slug }));
+  return getAllCars().map((car) => ({ slug: car.slug }));
 }
 
 export default function CarPage({ params }: { params: { slug: string } }) {
-  const car: ICar = allCars.find((car) => car.slug === params.slug);
+  const car: ICar = getCarBySlug(params.slug);
 
   return (
     <div className="py-[var(--car-page-main-content-padding-y)]">

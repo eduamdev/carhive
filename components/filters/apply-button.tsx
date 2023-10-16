@@ -5,15 +5,15 @@ import { convertToKebabCase, createUrl } from '@/lib/utils';
 import { ESearchParams, ISelectedFilters } from '@/types/filters';
 
 interface FiltersApplyButtonProps {
-  MIN_PRICE: number;
-  MAX_PRICE: number;
+  minPrice: number;
+  maxPrice: number;
   selectedFilters: ISelectedFilters;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export function FiltersApplyButton({
-  MIN_PRICE,
-  MAX_PRICE,
+  minPrice,
+  maxPrice,
   selectedFilters,
   setOpen,
 }: FiltersApplyButtonProps) {
@@ -33,13 +33,13 @@ export function FiltersApplyButton({
     newParams.delete(ESearchParams.TRANSMISSION);
     newParams.delete(ESearchParams.ENGINE_TYPE);
 
-    if (selectedFilters.priceRange[0] !== MIN_PRICE)
+    if (selectedFilters.priceRange[0] !== minPrice)
       newParams.set(
         ESearchParams.MIN_PRICE,
         selectedFilters.priceRange[0].toString(),
       );
 
-    if (selectedFilters.priceRange[1] !== MAX_PRICE)
+    if (selectedFilters.priceRange[1] !== maxPrice)
       newParams.set(
         ESearchParams.MAX_PRICE,
         selectedFilters.priceRange[1].toString(),

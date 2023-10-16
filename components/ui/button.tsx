@@ -19,7 +19,7 @@ const buttonVariants = cva(
         filter:
           'relative border border-neutral-300 bg-white hover:border-black',
         unstyled:
-          'ring-0 focus-visible:outline focus-visible:ring-0 rounded-none',
+          'ring-0 focus-visible:outline focus-visible:ring-0 rounded-none font-normal',
       },
       size: {
         default: 'h-10 px-4 py-2',

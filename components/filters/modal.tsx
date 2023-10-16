@@ -27,11 +27,12 @@ import {
 import { reverseMapToEnum } from '@/lib/utils';
 import { ESearchParams, ISelectedFilters } from '@/types/filters';
 import { EEngineTypes, ETransmissions, ECarTypes } from '@/types/car-specs';
+import { getMaxPrice, getMinPrice } from '@/lib/cars';
 
 export function FiltersModal() {
   const searchParams = useSearchParams();
-  const MIN_PRICE: number = 0;
-  const MAX_PRICE: number = 5000;
+  const MIN_PRICE: number = getMinPrice();
+  const MAX_PRICE: number = getMaxPrice();
   const [open, setOpen] = useState<boolean>(false);
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilters>(
     getSelectedFilters(),
@@ -81,7 +82,7 @@ export function FiltersModal() {
           variant="outline"
           className="relative flex items-center justify-center"
         >
-          <Icons.filters className="mr-2.5 h-5 w-5" />
+          <Icons.filters className="mr-2.5 h-[22px] w-[22px]" />
           <span>Filters</span>
           <FiltersBadge />
         </Button>
@@ -94,8 +95,8 @@ export function FiltersModal() {
         </DialogHeader>
         <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-y">
           <FiltersPriceRange
-            MIN_PRICE={MIN_PRICE}
-            MAX_PRICE={MAX_PRICE}
+            minPrice={MIN_PRICE}
+            MaxPrice={MAX_PRICE}
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
           />
@@ -119,13 +120,13 @@ export function FiltersModal() {
         <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">
           <div className="flex w-full items-center justify-between gap-x-2">
             <FiltersResetButton
-              MIN_PRICE={MIN_PRICE}
-              MAX_PRICE={MAX_PRICE}
+              minPrice={MIN_PRICE}
+              maxPrice={MAX_PRICE}
               setSelectedFilters={setSelectedFilters}
             />
             <FiltersApplyButton
-              MIN_PRICE={MIN_PRICE}
-              MAX_PRICE={MAX_PRICE}
+              minPrice={MIN_PRICE}
+              maxPrice={MAX_PRICE}
               selectedFilters={selectedFilters}
               setOpen={setOpen}
             />

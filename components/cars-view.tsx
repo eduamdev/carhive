@@ -5,19 +5,15 @@ import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/car-card';
 import { FiltersModal } from '@/components/filters/modal';
 import { convertToKebabCase } from '@/lib/utils';
-import { allCars } from '@/data/all-cars';
 import { ESearchParams } from '@/types/filters';
 import { ICar } from '@/types/car';
-
-function getAllCars() {
-  return allCars;
-}
+import { getAllCars } from '@/lib/cars';
 
 export function CarsView() {
   const searchParams = useSearchParams();
 
   const getNewFilteredCars = useCallback(() => {
-    let newFilteredCars: ICar[] = getAllCars();
+    let newFilteredCars: ReadonlyArray<ICar> = getAllCars();
 
     if (searchParams.has(ESearchParams.MIN_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
@@ -96,8 +92,7 @@ export function CarsView() {
           <div>
             <h1 className="text-xl font-semibold">No exact matches</h1>
             <p className="mt-3 text-slate-700">
-              Try changing or removing some of your filters or adjusting your
-              search area.
+              Try changing or removing some of your filters.
             </p>
           </div>
         ) : (

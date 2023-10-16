@@ -3,21 +3,21 @@ import { Button } from '@/components/ui/button';
 import { ISelectedFilters } from '@/types/filters';
 
 interface FiltersResetButtonProps {
-  MIN_PRICE: number;
-  MAX_PRICE: number;
+  minPrice: number;
+  maxPrice: number;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
 export function FiltersResetButton({
-  MIN_PRICE,
-  MAX_PRICE,
+  minPrice,
+  maxPrice,
   setSelectedFilters,
 }: FiltersResetButtonProps) {
   function handleClick(
     setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
   ) {
     setSelectedFilters({
-      priceRange: [MIN_PRICE, MAX_PRICE],
+      priceRange: [minPrice, maxPrice],
       carTypes: [],
       engineTypes: [],
       minSeats: '',

@@ -15,7 +15,9 @@ export default function CarLayout({ children }: CarLayoutProps) {
         </div>
       </div>
       <main>{children}</main>
-      <SiteFooter />
+      <div className="mx-auto w-full max-w-none xl:max-w-6xl">
+        <SiteFooter />
+      </div>
     </>
   );
 }

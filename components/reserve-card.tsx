@@ -1,23 +1,41 @@
-import { ICar } from '@/types/car';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
+import { format } from 'date-fns';
+import { addDaysToDate, formatCurrency, getDaysDifference } from '@/lib/utils';
+import { getLocationByValue } from '@/lib/locations';
+import { ICar } from '@/types/car';
 
 interface ReserveCardProps {
   car: ICar;
 }
 
 export function ReserveCard({ car }: ReserveCardProps) {
-  const pickupDropoff = 'New York, USA';
-  const checkIn = '2/12/2024';
-  const checkout = '10/12/2024';
+  const searchParams = useSearchParams();
 
-  const currentPrice = car.price.perDay.discount?.amount
+  const pickupDropoff: string = searchParams.has('location')
+    ? getLocationByValue(searchParams.get('location'))?.name
+    : 'New York, USA';
+
+  const checkinDate: Date = searchParams.has('checkin')
+    ? new Date(searchParams.get('checkin'))
+    : new Date();
+  const checkoutDate: Date = searchParams.has('checkout')
+    ? new Date(searchParams.get('checkout'))
+    : addDaysToDate(new Date(), 5);
+
+  const checkin: string = format(checkinDate, 'dd/MM/yyyy');
+  const checkout: string = format(checkoutDate, 'dd/MM/yyyy');
+
+  const currentPrice: number = car.price.perDay.discount?.amount
     ? car.price.perDay.discount.amount
     : car.price.perDay.retail.amount;
 
-  const numDays = 5;
-  const taxes = 500;
-  const currency = car.price.perDay.retail.currency;
+  const numDays: number = getDaysDifference(checkinDate, checkoutDate);
+  const taxesAndFees: number = currentPrice * 0.16 * numDays;
+  const currency: string = car.price.perDay.retail.currency;
 
   return (
     <div className="hidden normal-nums md:block">
@@ -25,7 +43,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
         <div className="grid grid-cols-1 items-baseline gap-4 leading-none lg:grid-cols-2">
           <div className="flex items-baseline gap-1.5 ">
             <span className="shrink-0 text-xl font-semibold leading-none tracking-tight">
-              ${currentPrice} {currency}
+              {formatCurrency(currentPrice, currency)}
             </span>
             <span className="font-normal leading-none text-neutral-600">
               day
@@ -62,7 +80,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
               <div className="flex flex-col gap-1.5 p-2.5">
                 <div className="text-xs font-medium leading-none">Check-in</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  {checkIn}
+                  {checkin}
                 </div>
               </div>
             </div>
@@ -85,23 +103,24 @@ export function ReserveCard({ car }: ReserveCardProps) {
         <div className="mt-5">
           <div className="flex items-center justify-between">
             <div className="text-neutral-600 underline">
-              ${currentPrice} {currency} x {numDays} days
+              {formatCurrency(currentPrice, currency)} x {numDays}{' '}
+              {numDays > 1 ? 'days' : 'day'}
             </div>
             <div className="text-neutral-600">
-              ${currentPrice * numDays} {currency}
+              {formatCurrency(currentPrice * numDays, currency)}
             </div>
           </div>
           <div className="mt-3 flex items-center justify-between">
             <div className="text-neutral-600 underline">Taxes and fees</div>
             <div className="text-neutral-600">
-              ${taxes} {currency}
+              {formatCurrency(taxesAndFees, currency)}
             </div>
           </div>
           <hr className="my-6" />
           <div className="flex items-center justify-between">
-            <div className="font-semibold">Total before taxes</div>
+            <div className="font-semibold">Total after taxes</div>
             <div className="font-semibold">
-              ${currentPrice * numDays + taxes} {currency}
+              {formatCurrency(currentPrice * numDays + taxesAndFees, currency)}
             </div>
           </div>
         </div>

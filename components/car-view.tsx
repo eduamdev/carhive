@@ -43,7 +43,7 @@ export function CarView({ car }: CarViewProps) {
         <div className="flex flex-row gap-8">
           <Icons.gift className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-medium">Exclusive Deals</p>
+            <p className="font-semibold">Exclusive Deals</p>
             <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
               Unlock special discounts and exclusive offers tailored just for
               you.
@@ -53,7 +53,7 @@ export function CarView({ car }: CarViewProps) {
         <div className="flex flex-row gap-8">
           <Icons.key className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-medium">Instant Confirmation</p>
+            <p className="font-semibold">Instant Confirmation</p>
             <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
               Receive instant booking confirmations for a hassle-free
               experience.
@@ -63,7 +63,7 @@ export function CarView({ car }: CarViewProps) {
         <div className="flex flex-row gap-8">
           <Icons.calendar className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-medium">Free cancellation before Oct 4.</p>
+            <p className="font-semibold">Free cancellation before Oct 4.</p>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@ export function CarView({ car }: CarViewProps) {
         <div className="mt-6 grid grid-cols-2 gap-4">
           {car.features.map((feature) => (
             <div key={feature} className="flex flex-row items-center gap-4">
-              <Icons.check className="h-4 w-4 shrink-0" />
+              <Icons.check className="h-4 w-4 shrink-0 [stroke-width:2.5px]" />
               <p className="text-neutral-600">{feature}</p>
             </div>
           ))}

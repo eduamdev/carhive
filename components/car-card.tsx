@@ -12,7 +12,8 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
 import { ICar } from '@/types/car';
-import { cn } from '@/lib/utils';
+import { cn, createUrl, formatCurrency } from '@/lib/utils';
+import { useSearchParams } from 'next/navigation';
 
 interface CarCardProps {
   car: ICar;
@@ -30,6 +31,11 @@ export function CarCard({ car, index }: CarCardProps) {
     reviews,
     unlimitedMileage,
   } = car;
+  const searchParams = useSearchParams();
+  const newParams = new URLSearchParams(searchParams.toString());
+
+  const href = createUrl(`/car/${slug}`, newParams);
+
   return (
     <>
       <Card>
@@ -71,13 +77,13 @@ export function CarCard({ car, index }: CarCardProps) {
             </div>
           </div>
           <div className="mt-6 flex items-center justify-between gap-x-2">
-            <p className="text-[15px] text-neutral-600">{specs.transmission}</p>
+            <p className="text-sm text-neutral-600">{specs.transmission}</p>
             <Separator orientation="vertical" decorative className="h-4" />
-            <p className="text-[15px] text-neutral-600">
+            <p className="text-sm text-neutral-600">
               <span className="leading-none">{specs.engineType}</span>
             </p>
             <Separator orientation="vertical" decorative className="h-4" />
-            <p className="text-[15px] text-neutral-600">
+            <p className="text-sm text-neutral-600">
               <span className="leading-none">{specs.capacity.seats}</span> Seats
             </p>
           </div>
@@ -88,13 +94,18 @@ export function CarCard({ car, index }: CarCardProps) {
                   {price.perDay.retail.amount}
                 </span>
                 <span className="font-semibold leading-none">
-                  {price.perDay.discount.amount}{' '}
-                  {price.perDay.discount.currency}
+                  {formatCurrency(
+                    price.perDay.discount.amount,
+                    price.perDay.discount.currency,
+                  )}
                 </span>
               </>
             ) : (
               <span className=" font-semibold leading-none">
-                {price.perDay.retail.amount} {price.perDay.retail.currency}
+                {formatCurrency(
+                  price.perDay.retail.amount,
+                  price.perDay.retail.currency,
+                )}
               </span>
             )}
             <span className="ml-1.5 text-[15px] font-medium leading-none text-neutral-700">
@@ -104,7 +115,7 @@ export function CarCard({ car, index }: CarCardProps) {
         </CardContent>
         <CardFooter>
           <Button className="w-full" asChild>
-            <Link href={`/car/${slug}`}>View details</Link>
+            <Link href={href}>View details</Link>
           </Button>
         </CardFooter>
       </Card>
