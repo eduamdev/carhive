@@ -37,16 +37,11 @@ import { getAllLocations } from '@/lib/locations';
 
 import { ILocation } from '@/types/location';
 
-const FormSchema = z
-  .object({
-    location: z.string({ required_error: 'Please select a location' }),
-    checkin: z.date(),
-    checkout: z.date(),
-  })
-  .refine((obj) => obj.checkout > obj.checkin, {
-    message: 'Choose a later check-out date',
-    path: ['checkout'],
-  });
+const FormSchema = z.object({
+  location: z.string({ required_error: 'Please select a location' }),
+  checkin: z.date(),
+  checkout: z.date(),
+});
 
 interface SearchFormProps {
   compact?: boolean;
