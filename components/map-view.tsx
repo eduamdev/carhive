@@ -13,11 +13,14 @@ export function MapView() {
   const searchParams = useSearchParams();
   const mapRef = useRef();
 
-  const DEFAULT_LAT = 51.505;
-  const DEFAULT_LNG = -0.09;
+  const amsterdam = getLocationByValue('amsterdam');
+  const DEFAULT_CENTER: LatLngExpression = [
+    amsterdam.latitude,
+    amsterdam.longitude,
+  ];
   const DEFAULT_ZOOM_LEVEL = 12;
 
-  function UpdateMapPosition() {
+  function RecenterMap() {
     const map = useMap();
 
     useEffect(() => {
@@ -39,7 +42,7 @@ export function MapView() {
   return (
     <MapContainer
       className="h-[var(--map-container-height)]"
-      center={[DEFAULT_LAT, DEFAULT_LNG]}
+      center={DEFAULT_CENTER}
       zoom={DEFAULT_ZOOM_LEVEL}
       ref={mapRef}
     >
@@ -47,7 +50,7 @@ export function MapView() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <UpdateMapPosition />
+      <RecenterMap />
     </MapContainer>
   );
 }
