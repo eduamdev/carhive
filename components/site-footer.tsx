@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Newsletter } from '@/components/newsletter';
+import { Icons } from '@/components/icons';
 
 export function SiteFooter() {
   return (
@@ -7,8 +8,9 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-7xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-6 gap-y-10 md:flex md:flex-wrap">
           <div className="col-span-full">
-            <Link href="/">
-              <p className="text-base font-bold leading-none tracking-wide">
+            <Link href="/" className="flex items-center justify-center gap-x-1">
+              <Icons.logo className="inline-block h-[18px] w-[18px]" />
+              <p className="inline-block text-base font-bold leading-none tracking-wide">
                 CarHive
               </p>
             </Link>

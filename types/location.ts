@@ -2,12 +2,11 @@ export interface ILocation {
   id: string;
   name: string;
   value: string;
-  image: {
+  image?: {
     src: string;
     alt: string;
   };
   latitude: number;
   longitude: number;
-  zoomLevel: number;
   featured: boolean;
 }

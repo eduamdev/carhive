@@ -4,8 +4,9 @@ import { Icons } from '@/components/icons';
 export function SiteHeader() {
   return (
     <header className="flex h-full items-center justify-between">
-      <Link href="/">
-        <p className="text-base font-bold leading-none tracking-wide">
+      <Link href="/" className="flex items-center justify-center gap-x-1">
+        <Icons.logo className="inline-block h-[18px] w-[18px]" />
+        <p className="inline-block text-base font-bold leading-none tracking-wide">
           CarHive
         </p>
       </Link>

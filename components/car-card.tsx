@@ -65,7 +65,7 @@ export function CarCard({ car, index }: CarCardProps) {
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center">
-            <div className="relative h-20 w-3/4">
+            <div className="relative h-20 w-[70%]">
               <Image
                 src={image.src}
                 alt={image.alt}

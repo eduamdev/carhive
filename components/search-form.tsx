@@ -52,7 +52,10 @@ interface SearchFormProps {
 export function SearchForm({ compact = false }: SearchFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const locations: ReadonlyArray<ILocation> = getAllLocations();
+  const allLocations: ReadonlyArray<ILocation> = getAllLocations();
+  const locations = [...allLocations].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

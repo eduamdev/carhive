@@ -15,7 +15,7 @@ export function MapView() {
 
   const DEFAULT_LAT = 51.505;
   const DEFAULT_LNG = -0.09;
-  const DEFAULT_ZOOM_LEVEL = 13;
+  const DEFAULT_ZOOM_LEVEL = 12;
 
   function UpdateMapPosition() {
     const map = useMap();
@@ -29,8 +29,7 @@ export function MapView() {
           lat: location.latitude,
           lng: location.longitude,
         };
-        const zoom: number = map.getZoom() || DEFAULT_ZOOM_LEVEL;
-        map.setView(center, zoom);
+        map.setView(center, DEFAULT_ZOOM_LEVEL);
       }
     }, [map]);
 

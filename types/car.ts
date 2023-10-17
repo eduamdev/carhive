@@ -18,15 +18,6 @@ export enum EEngineTypes {
   ELECTRIC = 'Electric',
 }
 
-export enum ESeats {
-  TWO = '2',
-  THREE = '3',
-  FOUR = '4',
-  FIVE = '5',
-  SIX = '6',
-  SEVEN = '7',
-}
-
 export interface ICar {
   id: string;
   slug: string;
@@ -52,7 +43,7 @@ export interface ICar {
     engineType: EEngineTypes;
     transmission: ETransmissions;
     capacity: {
-      seats: string;
+      seats: number;
     };
   };
   description: string[];

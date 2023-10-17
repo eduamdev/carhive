@@ -21,7 +21,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.HYBRID,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -59,7 +59,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '7',
+        seats: 7,
       },
     },
     description: [
@@ -96,7 +96,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -133,7 +133,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.ELECTRIC,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -169,7 +169,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -206,7 +206,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -244,7 +244,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -281,7 +281,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -319,7 +319,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -358,7 +358,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -395,7 +395,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -433,7 +433,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -471,7 +471,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '7',
+        seats: 7,
       },
     },
     description: [
@@ -508,7 +508,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '7',
+        seats: 7,
       },
     },
     description: [
@@ -545,7 +545,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -583,7 +583,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -621,7 +621,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.MANUAL,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -658,7 +658,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '5',
+        seats: 5,
       },
     },
     description: [
@@ -697,7 +697,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -735,7 +735,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '7',
+        seats: 7,
       },
     },
     description: [
@@ -773,7 +773,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -810,7 +810,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -848,7 +848,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [
@@ -886,7 +886,7 @@ export const carsData: ReadonlyArray<ICar> = [
       engineType: EEngineTypes.GAS,
       transmission: ETransmissions.AUTOMATIC,
       capacity: {
-        seats: '4',
+        seats: 4,
       },
     },
     description: [

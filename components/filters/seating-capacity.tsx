@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FiltersItem } from '@/components/filters/item';
-import { ESeats } from '@/types/car';
 import { ISelectedFilters } from '@/types/filters';
 
 interface FiltersSeatingCapacityProps {
@@ -13,15 +12,17 @@ export function FiltersSeatingCapacity({
   setSelectedFilters,
 }: FiltersSeatingCapacityProps) {
   function handleClick(
-    value: string,
+    numSeat: number | undefined,
     selectedFilters: ISelectedFilters,
     setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
   ) {
     setSelectedFilters({
       ...selectedFilters,
-      minSeats: selectedFilters.minSeats === value ? '' : value,
+      minSeats: selectedFilters.minSeats === numSeat ? undefined : numSeat,
     });
   }
+
+  const seatingCapacity: ReadonlyArray<number> = [2, 3, 4, 5, 6, 7];
 
   return (
     <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
@@ -31,26 +32,24 @@ export function FiltersSeatingCapacity({
           <FiltersItem
             className="font-normal"
             selected={!selectedFilters.minSeats}
-            onClick={() => handleClick('', selectedFilters, setSelectedFilters)}
+            onClick={() =>
+              handleClick(undefined, selectedFilters, setSelectedFilters)
+            }
           >
             Any
           </FiltersItem>
-          {Object.keys(ESeats).map((key, index, array) => {
-            const value = ESeats[key];
-
-            return (
-              <FiltersItem
-                key={key}
-                className="font-normal"
-                selected={selectedFilters.minSeats === value}
-                onClick={() =>
-                  handleClick(value, selectedFilters, setSelectedFilters)
-                }
-              >
-                {index === array.length - 1 ? `${value}+` : value}
-              </FiltersItem>
-            );
-          })}
+          {seatingCapacity.map((numSeat, index, array) => (
+            <FiltersItem
+              key={numSeat}
+              className="font-normal"
+              selected={selectedFilters.minSeats === numSeat}
+              onClick={() =>
+                handleClick(numSeat, selectedFilters, setSelectedFilters)
+              }
+            >
+              {index === array.length - 1 ? `${numSeat}+` : numSeat}
+            </FiltersItem>
+          ))}
         </div>
       </section>
     </div>

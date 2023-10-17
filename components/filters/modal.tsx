@@ -52,7 +52,8 @@ export function FiltersModal() {
       Number(searchParams.get(ESearchParams.MAX_PRICE)) || MAX_PRICE;
     const priceRange: number[] = [minPrice, maxPrice];
 
-    const minSeats = searchParams.get(ESearchParams.MIN_SEATS) || '';
+    const minSeats =
+      Number(searchParams.get(ESearchParams.MIN_SEATS)) || undefined;
 
     const bodyStyles: EBodyStyles[] = searchParams
       .getAll(ESearchParams.BODY_STYLE)
