@@ -51,19 +51,23 @@ export function CarView({ car }: CarViewProps) {
           </div>
         </div>
         <div className="flex flex-row gap-8">
-          <Icons.key className="h-6 w-6 shrink-0" />
+          <Icons.map className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-semibold">Instant Confirmation</p>
+            <p className="font-semibold">Local Tips</p>
             <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
-              Receive instant booking confirmations for a hassle-free
-              experience.
+              Receive recommendations for local attractions, restaurants, and
+              scenic routes.
             </p>
           </div>
         </div>
         <div className="flex flex-row gap-8">
-          <Icons.calendar className="h-6 w-6 shrink-0" />
+          <Icons.lifebuoy className="h-6 w-6 shrink-0" />
           <div className="flex flex-col">
-            <p className="font-semibold">Free cancellation before Oct 4.</p>
+            <p className="font-semibold">24/7 Roadside Assistance</p>
+            <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
+              Travel with confidence. Our round-the-clock assistance ensures
+              you&apos;re supported anytime, anywhere.
+            </p>
           </div>
         </div>
       </div>

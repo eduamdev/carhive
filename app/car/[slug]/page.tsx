@@ -1,14 +1,52 @@
+import { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import { CarView } from '@/components/car-view';
 import { ReserveCard } from '@/components/reserve-card';
 import { getAllCars, getCarBySlug } from '@/lib/cars';
 import { ICar } from '@/types/car';
 
-export async function generateStaticParams() {
-  return getAllCars().map((car) => ({ slug: car.slug }));
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
+
+  // fetch data
+  const car: ICar = getCarBySlug(slug);
+
+  if (!car) {
+    return {};
+  }
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: car.title,
+    openGraph: {
+      images: [...previousImages],
+    },
+  };
 }
 
-export default function CarPage({ params }: { params: { slug: string } }) {
+export async function generateStaticParams() {
+  const cars = getAllCars();
+  return cars.map((car) => ({ slug: car.slug }));
+}
+
+export default function CarPage({ params }: Props) {
   const car: ICar = getCarBySlug(params.slug);
+
+  if (!car) {
+    notFound();
+  }
 
   return (
     <div className="py-[var(--car-page-main-content-padding-y)]">

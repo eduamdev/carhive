@@ -7,23 +7,24 @@ import { format } from 'date-fns';
 import { addDaysToDate, formatCurrency, getDaysDifference } from '@/lib/utils';
 import { getLocationByValue } from '@/lib/locations';
 import { ICar } from '@/types/car';
+import { ESearchParams } from '@/types/filters';
 
-interface ReserveCardProps {
+type Props = {
   car: ICar;
-}
+};
 
-export function ReserveCard({ car }: ReserveCardProps) {
+export function ReserveCard({ car }: Props) {
   const searchParams = useSearchParams();
 
-  const pickupDropoff: string = searchParams.has('location')
-    ? getLocationByValue(searchParams.get('location'))?.name
-    : 'New York, USA';
+  const pickupDropoff: string = searchParams.has(ESearchParams.LOCATION)
+    ? getLocationByValue(searchParams.get(ESearchParams.LOCATION))?.name
+    : getLocationByValue('amsterdam')?.name;
 
-  const checkinDate: Date = searchParams.has('checkin')
-    ? new Date(searchParams.get('checkin'))
+  const checkinDate: Date = searchParams.has(ESearchParams.CHECKIN)
+    ? new Date(searchParams.get(ESearchParams.CHECKIN))
     : new Date();
-  const checkoutDate: Date = searchParams.has('checkout')
-    ? new Date(searchParams.get('checkout'))
+  const checkoutDate: Date = searchParams.has(ESearchParams.CHECKOUT)
+    ? new Date(searchParams.get(ESearchParams.CHECKOUT))
     : addDaysToDate(new Date(), 5);
 
   const checkin: string = format(checkinDate, 'dd/MM/yyyy');

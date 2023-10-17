@@ -10,7 +10,7 @@ export function Features() {
         <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.sparkles className="h-6 w-6 text-neutral-500" />
+              <Icons.sparkle className="h-6 w-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Hassle-Free Booking</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -20,18 +20,18 @@ export function Features() {
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.shield className="h-6 w-6 text-neutral-500" />
+              <Icons.shieldCheck className="h-6 w-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Secure Rentals</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
-              Your safety is our priority. Enjoy worry-free journeys with our
-              thoroughly sanitized cars and reliable customer support, ensuring
-              peace of mind.
+              Your safety assured. Rigorous checks, transparent policies, and
+              comprehensive insurance. Travel worry-free with well-maintained
+              vehicles and reliable, secure rental services.
             </p>
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.navigate className="h-6 w-6 text-neutral-500" />
+              <Icons.navigationArrow className="h-6 w-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Easy Navigation</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">

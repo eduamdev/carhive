@@ -28,11 +28,14 @@ export function MapView() {
         const location = getLocationByValue(
           searchParams.get(ESearchParams.LOCATION),
         );
-        const center: LatLngExpression = {
-          lat: location.latitude,
-          lng: location.longitude,
-        };
-        map.setView(center, DEFAULT_ZOOM_LEVEL);
+
+        if (location) {
+          const center: LatLngExpression = {
+            lat: location.latitude,
+            lng: location.longitude,
+          };
+          map.setView(center, DEFAULT_ZOOM_LEVEL);
+        }
       }
     }, [map]);
 

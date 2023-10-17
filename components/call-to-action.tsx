@@ -18,8 +18,7 @@ export function CallToAction() {
               asChild
             >
               <Link href="/cars">
-                Explore Cars{' '}
-                <Icons.arrowLongRight className="ml-2 h-[18px] w-[18px]" />
+                Explore Cars <Icons.chevronForward className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 import {
   Card,
@@ -11,9 +12,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
-import { ICar } from '@/types/car';
 import { cn, createUrl, formatCurrency } from '@/lib/utils';
-import { useSearchParams } from 'next/navigation';
+
+import { ICar } from '@/types/car';
+import { ESearchParams } from '@/types/filters';
 
 interface CarCardProps {
   car: ICar;
@@ -33,6 +35,14 @@ export function CarCard({ car, index }: CarCardProps) {
   } = car;
   const searchParams = useSearchParams();
   const newParams = new URLSearchParams(searchParams.toString());
+
+  // delete search params filters
+  newParams.delete(ESearchParams.BODY_STYLE);
+  newParams.delete(ESearchParams.ENGINE_TYPE);
+  newParams.delete(ESearchParams.MAX_PRICE);
+  newParams.delete(ESearchParams.MIN_PRICE);
+  newParams.delete(ESearchParams.MIN_SEATS);
+  newParams.delete(ESearchParams.TRANSMISSION);
 
   const href = createUrl(`/car/${slug}`, newParams);
 
