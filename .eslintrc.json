@@ -1,8 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "extends": ["next/core-web-vitals", "prettier", "plugin:tailwindcss/recommended" ],
-  "plugins": ["tailwindcss"],
+  "extends": [
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["tailwindcss", "markdown"],
   "rules": {
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "error"
@@ -16,6 +20,10 @@
     {
       "files": ["*.ts", "*.tsx", "*.js"],
       "parser": "@typescript-eslint/parser"
+    },
+    {
+      "files": ["**/*.md"],
+      "processor": "markdown/markdown"
     }
   ]
 }
