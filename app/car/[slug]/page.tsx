@@ -11,10 +11,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const slug = params.slug;
 
@@ -25,14 +22,8 @@ export async function generateMetadata(
     return {};
   }
 
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
   return {
     title: car.title,
-    openGraph: {
-      images: [...previousImages],
-    },
   };
 }
 

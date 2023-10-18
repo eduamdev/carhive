@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { format } from 'date-fns';
+import { format, isAfter } from 'date-fns';
 
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
@@ -37,13 +37,17 @@ import { getAllLocations } from '@/lib/locations';
 
 import { ILocation } from '@/types/location';
 import { ESearchParams } from '@/types/filters';
-import { DateRange } from 'react-day-picker';
 
-const FormSchema = z.object({
-  location: z.string({ required_error: 'Please select a location' }),
-  checkin: z.date(),
-  checkout: z.date(),
-});
+const FormSchema = z
+  .object({
+    location: z.string({ required_error: 'Location is required' }),
+    checkin: z.date({ required_error: 'Check-in date is required' }),
+    checkout: z.date({ required_error: 'Check-out date is required' }),
+  })
+  .refine((schema) => isAfter(schema.checkout, schema.checkin), {
+    message: 'Check-out date must be later than check-in',
+    path: ['checkout'],
+  });
 
 interface SearchFormProps {
   compact?: boolean;
@@ -71,31 +75,42 @@ export function SearchForm({ compact = false }: SearchFormProps) {
     newParams.delete(ESearchParams.CHECKOUT);
 
     newParams.set(ESearchParams.LOCATION, location);
-    newParams.set(ESearchParams.CHECKIN, checkin.toISOString());
-    newParams.set(ESearchParams.CHECKOUT, checkout.toISOString());
+
+    const checkinISOString = checkin.toISOString();
+    if (checkinISOString)
+      newParams.set(ESearchParams.CHECKIN, checkinISOString);
+
+    const checkoutISOString = checkout.toISOString();
+    if (checkoutISOString)
+      newParams.set(ESearchParams.CHECKOUT, checkoutISOString);
 
     router.push(createUrl('/cars', newParams));
   }
 
   useEffect(() => {
     if (searchParams.has(ESearchParams.LOCATION)) {
-      form.setValue('location', searchParams.get(ESearchParams.LOCATION));
+      const location = searchParams.get(ESearchParams.LOCATION);
+      if (location) form.setValue('location', location);
     }
 
-    if (searchParams.has(ESearchParams.CHECKIN)) {
+    if (
+      searchParams.has(ESearchParams.CHECKIN) &&
+      searchParams.has(ESearchParams.CHECKOUT)
+    ) {
       const checkinISOString = searchParams.get(ESearchParams.CHECKIN);
-      form.setValue('checkin', new Date(checkinISOString));
-    }
-
-    if (searchParams.has(ESearchParams.CHECKOUT)) {
       const checkoutISOString = searchParams.get(ESearchParams.CHECKOUT);
-      form.setValue('checkout', new Date(checkoutISOString));
+
+      if (checkinISOString)
+        form.setValue('checkin', new Date(checkinISOString));
+
+      if (checkoutISOString)
+        form.setValue('checkout', new Date(checkoutISOString));
     }
 
     return () => {
-      form.setValue('location', undefined);
-      form.setValue('checkin', undefined);
-      form.setValue('checkout', undefined);
+      form.resetField('location');
+      form.resetField('checkin');
+      form.resetField('checkout');
     };
   }, [searchParams, form]);
 
@@ -104,218 +119,204 @@ export function SearchForm({ compact = false }: SearchFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto flex items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
-          compact ? 'h-[58px] w-[680px] py-2' : 'h-[68px] w-[860px] py-2.5',
+          'relative mx-auto grid grid-cols-[1.25fr_auto_1fr_auto_1fr_auto] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
+          compact ? 'h-[58px] w-[720px] py-2' : 'h-[68px] w-[860px] py-2.5',
         )}
       >
-        <FormField
-          control={form.control}
-          name="location"
-          render={({ field }) => (
-            <FormItem className="grid h-full w-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
-              <FormLabel
-                className={cn(
-                  'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'text-xs' : 'text-[13px]',
-                )}
-              >
-                Pick-up / Drop-off
-              </FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      role="combobox"
-                      variant="unstyled"
-                      className={cn(
-                        'm-0 inline-block h-auto w-full truncate p-0 text-left',
-                        compact ? 'text-sm' : 'text-[15px]',
-                        !field.value
-                          ? 'text-neutral-500'
-                          : 'font-semibold text-neutral-800',
-                      )}
-                    >
-                      {field.value
-                        ? locations.find(
-                            (location) => location.value === field.value,
-                          )?.name
-                        : 'Select location'}
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="p-0">
-                  <Command>
-                    <CommandInput placeholder="Search location..." />
-                    <CommandEmpty>No place found.</CommandEmpty>
-                    <CommandGroup>
-                      {locations.map((location) => (
-                        <CommandItem
-                          value={location.name}
-                          key={location.value}
-                          onSelect={() => {
-                            form.setValue('location', location.value);
-                          }}
-                        >
-                          <Icons.check
-                            className={cn(
-                              'mr-2 h-4 w-4 shrink-0',
-                              location.value === field.value
-                                ? 'opacity-100'
-                                : 'opacity-0',
-                            )}
-                          />
-                          {location.name}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage
-                className={cn(
-                  'absolute  overflow-hidden text-ellipsis',
-                  compact
-                    ? 'top-[60px] max-w-[220px] text-xs'
-                    : 'top-[72px] max-w-[310px] text-[13px]',
-                )}
-              />
-            </FormItem>
-          )}
-        />
+        <div className="relative">
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="grid h-full w-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
+                <FormLabel
+                  className={cn(
+                    'inline-block h-full w-full font-bold text-neutral-800',
+                    compact ? 'text-xs' : 'text-[13px]',
+                  )}
+                >
+                  Pick-up / Drop-off
+                </FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        role="combobox"
+                        variant="unstyled"
+                        className={cn(
+                          'm-0 inline-block h-auto w-full truncate p-0 text-left',
+                          compact ? 'text-sm' : 'text-[15px]',
+                          !field.value
+                            ? 'text-neutral-500'
+                            : 'font-semibold text-neutral-800',
+                        )}
+                      >
+                        {field.value
+                          ? locations.find(
+                              (location) => location.value === field.value,
+                            )?.name
+                          : 'Select location'}
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="p-0">
+                    <Command>
+                      <CommandInput placeholder="Search location..." />
+                      <CommandEmpty>No place found.</CommandEmpty>
+                      <CommandGroup>
+                        {locations.map((location) => (
+                          <CommandItem
+                            value={location.name}
+                            key={location.value}
+                            onSelect={() => {
+                              form.setValue('location', location.value);
+                            }}
+                          >
+                            <Icons.check
+                              className={cn(
+                                'mr-2 h-4 w-4 shrink-0',
+                                location.value === field.value
+                                  ? 'opacity-100'
+                                  : 'opacity-0',
+                              )}
+                            />
+                            {location.name}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormMessage
+                  className={cn(
+                    'absolute  max-w-[calc(100%-32px)] overflow-hidden text-ellipsis',
+                    compact ? 'top-[52px] text-xs' : 'top-[62px] text-[13px]',
+                  )}
+                />
+              </FormItem>
+            )}
+          />
+        </div>
         <Separator
           orientation="vertical"
           decorative
           className={compact ? 'h-6' : 'h-8'}
         />
-        <FormField
-          control={form.control}
-          name="checkin"
-          render={({ field }) => (
-            <FormItem className="grid h-full shrink-0 grow-0 basis-1/4 grid-cols-1 items-start justify-center px-4">
-              <FormLabel
-                className={cn(
-                  'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'text-xs' : 'text-[13px]',
-                )}
-              >
-                Check in
-              </FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <button
-                      className={cn(
-                        'm-0 inline-block w-full text-ellipsis p-0 text-left',
-                        compact ? 'text-sm' : 'text-[15px]',
-                        !field.value
-                          ? 'text-neutral-500'
-                          : 'font-semibold text-neutral-800',
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'LLL dd, y')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                    </button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto" align="start">
-                  <Calendar
-                    initialFocus
-                    mode="range"
-                    defaultMonth={field.value}
-                    selected={{
-                      from: field.value,
-                      to: form.getValues('checkout'),
-                    }}
-                    onSelect={(range: DateRange) => {
-                      form.setValue('checkin', range?.from);
-                      form.setValue('checkout', range?.to || undefined);
-                    }}
-                    numberOfMonths={2}
-                    disabled={(date) => date < new Date()}
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormMessage
-                className={cn(
-                  'absolute  overflow-hidden text-ellipsis',
-                  compact
-                    ? 'top-[60px] max-w-[135px] text-xs'
-                    : 'top-[72px] max-w-[180px] text-[13px]',
-                )}
-              />
-            </FormItem>
-          )}
-        />
+        <div className="relative">
+          <FormField
+            control={form.control}
+            name="checkin"
+            render={({ field }) => (
+              <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
+                <FormLabel
+                  className={cn(
+                    'inline-block h-full w-full font-bold text-neutral-800',
+                    compact ? 'text-xs' : 'text-[13px]',
+                  )}
+                >
+                  Check in
+                </FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="unstyled"
+                        className={cn(
+                          'm-0 inline-block h-auto w-full text-ellipsis p-0 text-left',
+                          compact ? 'text-sm' : 'text-[15px]',
+                          !field.value
+                            ? 'text-neutral-500'
+                            : 'font-semibold text-neutral-800',
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, 'LLL dd, y')
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto" align="start">
+                    <Calendar
+                      initialFocus
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => date < new Date()}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage
+                  className={cn(
+                    'absolute  max-w-[calc(100%-32px)] overflow-hidden text-ellipsis',
+                    compact ? 'top-[52px] text-xs' : 'top-[62px] text-[13px]',
+                  )}
+                />
+              </FormItem>
+            )}
+          />
+        </div>
         <Separator
           orientation="vertical"
           decorative
           className={compact ? 'h-6' : 'h-8'}
         />
-        <FormField
-          control={form.control}
-          name="checkout"
-          render={({ field }) => (
-            <FormItem className="grid h-full shrink-0 grow-0 basis-1/4 grid-cols-1 items-start justify-center px-4">
-              <FormLabel
-                className={cn(
-                  'inline-block h-full w-full font-bold text-neutral-800',
-                  compact ? 'text-xs' : 'text-[13px]',
-                )}
-              >
-                Check out
-              </FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <button
-                      className={cn(
-                        'm-0 inline-block w-full text-ellipsis p-0 text-left',
-                        compact ? 'text-sm' : 'text-[15px]',
-                        !field.value
-                          ? 'text-neutral-500'
-                          : 'font-semibold text-neutral-800',
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'LLL dd, y')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                    </button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto" align="start">
-                  <Calendar
-                    initialFocus
-                    mode="range"
-                    defaultMonth={form.getValues('checkin')}
-                    selected={{
-                      from: form.getValues('checkin'),
-                      to: field.value,
-                    }}
-                    onSelect={(range: DateRange) => {
-                      form.setValue('checkin', range?.from);
-                      form.setValue('checkout', range?.to || undefined);
-                    }}
-                    numberOfMonths={2}
-                    disabled={(date) => date < new Date()}
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormMessage
-                className={cn(
-                  'absolute overflow-hidden text-ellipsis',
-                  compact
-                    ? 'top-[60px] max-w-[190px] text-xs'
-                    : 'top-[72px] max-w-[205px] text-[13px]',
-                )}
-              />
-            </FormItem>
-          )}
-        />
+        <div className="relative">
+          <FormField
+            control={form.control}
+            name="checkout"
+            render={({ field }) => (
+              <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
+                <FormLabel
+                  className={cn(
+                    'inline-block h-full w-full font-bold text-neutral-800',
+                    compact ? 'text-xs' : 'text-[13px]',
+                  )}
+                >
+                  Check out
+                </FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="unstyled"
+                        className={cn(
+                          'm-0 inline-block h-auto w-full text-ellipsis p-0 text-left',
+                          compact ? 'text-sm' : 'text-[15px]',
+                          !field.value
+                            ? 'text-neutral-500'
+                            : 'font-semibold text-neutral-800',
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, 'LLL dd, y')
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto" align="start">
+                    <Calendar
+                      initialFocus
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => date < new Date()}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage
+                  className={cn(
+                    'absolute  max-w-[calc(100%-32px)] overflow-hidden text-ellipsis',
+                    compact ? 'top-[52px] text-xs' : 'top-[62px] text-[13px]',
+                  )}
+                />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button
           type="submit"
           size={compact ? 'icon' : 'icon-lg'}
