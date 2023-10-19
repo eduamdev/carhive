@@ -20,7 +20,7 @@ export function FiltersResetButton({
       priceRange: [minPrice, maxPrice],
       bodyStyles: [],
       engineTypes: [],
-      minSeats: '',
+      minSeats: undefined,
       transmissions: [],
     });
   }
