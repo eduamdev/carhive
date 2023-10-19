@@ -119,8 +119,8 @@ export function SearchForm({ compact = false }: SearchFormProps) {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          'relative mx-auto grid grid-cols-[1.25fr_auto_1fr_auto_1fr_auto] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-2 text-black',
-          compact ? 'h-[58px] w-[720px] py-2' : 'h-[68px] w-[860px] py-2.5',
+          'relative mx-auto grid grid-cols-[1.25fr_auto_1fr_auto_1fr_auto] items-center justify-between gap-x-2 whitespace-nowrap rounded-full border border-black/10 bg-white p-2 text-black',
+          compact ? 'h-[58px] w-[720px]' : 'h-[68px] w-[860px]',
         )}
       >
         <div className="relative">
