@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 
 import { SiteHeader } from '@/components/site-header';
 import { SearchForm } from '@/components/search-form';
+import { SearchFormFallback } from '@/components/search-form-fallback';
 import { SiteFooter } from '@/components/site-footer';
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function CarsLayout({ children }: CarsLayoutProps) {
         </div>
         <div className="h-[var(--search-bar-height)]">
           <div className="-mt-2 hidden h-full items-center justify-center lg:flex">
-            <Suspense>
+            <Suspense fallback={<SearchFormFallback />}>
               <SearchForm compact />
             </Suspense>
           </div>
