@@ -25,7 +25,7 @@ export default function CarsLayout({ children }: CarsLayoutProps) {
         </div>
         <div className="h-[var(--search-bar-height)]">
           <div className="-mt-2 hidden h-full items-center justify-center lg:flex">
-            <Suspense fallback={<SearchFormFallback />}>
+            <Suspense fallback={<SearchFormFallback compact />}>
               <SearchForm compact />
             </Suspense>
           </div>
