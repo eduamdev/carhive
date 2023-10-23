@@ -11,9 +11,9 @@ function SkeletonCard() {
           <Skeleton className="h-5 w-full" />
         </div>
       </div>
-      <div className="p-6 pt-0">
+      <div className="p-6 pt-2">
         <Skeleton className="h-20 w-full" />
-        <div className="mt-6 flex items-center justify-between gap-2">
+        <div className="mt-10 flex items-center justify-between gap-2">
           <Skeleton className=" h-4 w-1/4" />
           <Separator
             orientation="vertical"
@@ -40,8 +40,8 @@ function SkeletonCard() {
 export function CarsViewFallback() {
   return (
     <>
-      <div className="mx-5 my-4 flex items-center justify-between sm:mx-6">
-        <Skeleton className="h-4 w-16" />
+      <div className="mx-5 my-[18px] flex items-center justify-between sm:mx-6">
+        <Skeleton className="h-4 w-12" />
         <Skeleton className="h-9 w-24" />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">

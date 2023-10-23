@@ -43,7 +43,7 @@ export function FiltersBodyStyles({
   return (
     <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
       <section>
-        <h3 className="pb-6 text-xl font-semibold">Car type</h3>
+        <h3 className="pb-6 text-xl font-semibold">Body Style</h3>
         <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {Object.keys(EBodyStyles).map((key) => {
             const value: EBodyStyles = EBodyStyles[key];

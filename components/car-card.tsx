@@ -74,7 +74,7 @@ export function CarCard({ car, index }: CarCardProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center">
             <div className="relative h-20 w-[70%]">
               <Image
                 src={image.src}
@@ -86,7 +86,7 @@ export function CarCard({ car, index }: CarCardProps) {
               />
             </div>
           </div>
-          <div className="mt-6 flex items-center justify-between gap-x-2">
+          <div className="mt-8 flex items-center justify-between gap-x-2">
             <p className="text-sm text-neutral-600">{specs.transmission}</p>
             <Separator orientation="vertical" decorative className="h-4" />
             <p className="text-sm text-neutral-600">
