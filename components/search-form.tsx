@@ -142,6 +142,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                     <FormControl>
                       <Button
                         role="combobox"
+                        aria-label="select location"
                         variant="unstyled"
                         className={cn(
                           'm-0 inline-block h-auto w-full truncate p-0 text-left',
@@ -322,6 +323,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
           size={compact ? 'icon' : 'icon-lg'}
           className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
         >
+          <span className="sr-only">Search</span>
           <Icons.magnifyingGlass
             className={cn(
               '[stroke-width:3px]',

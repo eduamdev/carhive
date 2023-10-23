@@ -31,7 +31,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.HATCHBACK}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.HATCHBACK}
@@ -58,7 +60,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.MINIVAN}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.MINIVAN}
@@ -85,7 +89,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.PICKUP_TRUCK}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.PICKUP_TRUCK}
@@ -112,7 +118,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.SPORTS_CAR}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.SPORTS_CAR}
@@ -139,7 +147,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.SUV}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.SUV}
@@ -166,7 +176,9 @@ export function PopularCarBodyStyles() {
                     },
                   }}
                   className="absolute inset-0 z-20 rounded-2xl border"
-                />
+                >
+                  <span className="sr-only">{EBodyStyles.SEDAN}</span>
+                </Link>
                 <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
                   <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
                     {EBodyStyles.SEDAN}

@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { CarView } from '@/components/car-view';
@@ -24,6 +24,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: car.title,
+    description: `Experience the ultimate driving adventure with our ${
+      car.title
+    }. This exceptional vehicle combines style, power, and comfort. With seating for ${
+      car.specs.capacity.seats
+    } passengers, a ${car.specs.engineType} engine, and ${
+      car.specs.transmission
+    } transmission, it offers a smooth and thrilling ride. Whether you're planning a family trip or a solo escapade, our ${
+      car.title
+    } is the perfect choice. ${
+      car.reviews
+        ? `Rated ${car.rating} stars based on ${car.reviews} reviews.`
+        : ''
+    } Pickup and dropoff at convenient locations. Reserve your ${
+      car.title
+    } today.`,
   };
 }
 

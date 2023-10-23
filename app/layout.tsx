@@ -5,11 +5,41 @@ import './globals.css';
 
 import { fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   title: {
-    default: 'CarHive',
-    template: `%s - CarHive`,
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  authors: {
+    name: 'eduamdev',
+    url: 'https://eduardoambriz.com',
+  },
+  creator: 'eduamdev',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 600,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: '@eduamdev',
   },
 };
 
