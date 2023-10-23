@@ -5,6 +5,13 @@ import { convertToKebabCase } from '@/lib/utils';
 import { EBodyStyles } from '@/types/car';
 import { ESearchParams } from '@/types/filters';
 
+import hatchback from '/public/cars/body-styles/hatchback.avif';
+import minivan from '/public/cars/body-styles/minivan.avif';
+import pickupTruck from '/public/cars/body-styles/pickup-truck.avif';
+import sportsCar from '/public/cars/body-styles/sports-car.avif';
+import suv from '/public/cars/body-styles/suv.avif';
+import sedan from 'public/cars/body-styles/sedan.avif';
+
 export function PopularCarBodyStyles() {
   return (
     <section className="border-t pt-10">
@@ -31,12 +38,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={hatchback}
+                  alt="hatchback"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/hatchback.avif"
-                  alt="hatchback"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
@@ -57,12 +65,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={minivan}
+                  alt="minivan"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/minivan.avif"
-                  alt="minivan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
@@ -83,12 +92,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={pickupTruck}
+                  alt="pickup truck"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/pickup-truck.avif"
-                  alt="pickup truck"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
@@ -109,12 +119,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={sportsCar}
+                  alt="sports car"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/sports-car.avif"
-                  alt="sports car"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <div className="relative ml-1.5 inline-block h-36 w-[250px]">
@@ -135,12 +146,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={suv}
+                  alt="suv"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/suv.avif"
-                  alt="suv"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <div className="relative mx-1.5 inline-block h-36 w-[250px]">
@@ -161,12 +173,13 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
+                  priority
+                  src={sedan}
+                  alt="sedan"
                   width={250}
                   height={144}
-                  priority
-                  src="/cars/body-styles/sedan.avif"
-                  alt="sedan"
                   className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
+                  placeholder="blur"
                 />
               </div>
               <ScrollBar orientation="horizontal" />

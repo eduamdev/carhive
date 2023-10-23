@@ -83,6 +83,7 @@ export function CarCard({ car, index }: CarCardProps) {
                 sizes="250px"
                 className="object-contain object-center"
                 priority={index < 8 ? true : false}
+                quality={100}
               />
             </div>
           </div>

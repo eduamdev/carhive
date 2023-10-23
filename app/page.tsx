@@ -1,11 +1,13 @@
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
-import { Hero } from '@/components/hero';
-import { PopularCarBodyStyles } from '@/components/popular-car-body-styles';
-import { TrendingPlaces } from '@/components/trending-places';
-import { Features } from '@/components/features';
-import { Testimonials } from '@/components/testimonials';
-import { CallToAction } from '@/components/call-to-action';
+import {
+  CallToAction,
+  Features,
+  Hero,
+  PopularCarBodyStyles,
+  Testimonials,
+  TrendingPlaces,
+} from '@/components/home';
 
 export default function HomePage() {
   return (
