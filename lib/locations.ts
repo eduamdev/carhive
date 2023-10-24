@@ -9,6 +9,8 @@ export function getFeaturedLocations(): ReadonlyArray<ILocation> {
   return locationsData.filter((city) => city.featured).slice(0, 4);
 }
 
-export function getLocationByValue(value: string): Readonly<ILocation> {
+export function getLocationByValue(
+  value: string,
+): Readonly<ILocation> | undefined {
   return locationsData.find((city) => city.value === value);
 }

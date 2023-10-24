@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import type { LatLngExpression } from 'leaflet';
+import type { LatLngExpression, Map } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getLocationByValue } from '@/lib/locations';
@@ -11,13 +11,14 @@ import { ESearchParams } from '@/types/filters';
 
 export function MapView() {
   const searchParams = useSearchParams();
-  const mapRef = useRef();
+  const mapRef = useRef<Map | null>(null);
 
   const amsterdam = getLocationByValue('amsterdam');
   const DEFAULT_CENTER: LatLngExpression = [
-    amsterdam.latitude,
-    amsterdam.longitude,
+    amsterdam?.latitude ?? 52.3547,
+    amsterdam?.longitude ?? 4.904,
   ];
+
   const DEFAULT_ZOOM_LEVEL = 12;
 
   function RecenterMap() {
@@ -26,7 +27,7 @@ export function MapView() {
     useEffect(() => {
       if (searchParams.has(ESearchParams.LOCATION)) {
         const location = getLocationByValue(
-          searchParams.get(ESearchParams.LOCATION),
+          searchParams.get(ESearchParams.LOCATION) || '',
         );
 
         if (location) {

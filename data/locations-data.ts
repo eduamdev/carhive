@@ -6,7 +6,7 @@ export const locationsData: ReadonlyArray<ILocation> = [
     name: 'Paris, France',
     value: 'paris',
     image: {
-      src: '/locations/paris.avif',
+      src: 'https://carhive.vercel.app/locations/paris.avif',
       alt: 'Effiel Tower at Sunset',
     },
     latitude: 48.8589,
@@ -18,7 +18,7 @@ export const locationsData: ReadonlyArray<ILocation> = [
     name: 'Dubai, United Arab Emirates',
     value: 'dubai',
     image: {
-      src: '/locations/dubai.avif',
+      src: 'https://carhive.vercel.app/locations/dubai.avif',
       alt: 'an aerial view of the burj al arab in the middle of the ocean',
     },
     latitude: 25.2652,
@@ -30,7 +30,7 @@ export const locationsData: ReadonlyArray<ILocation> = [
     name: 'Cancún, México',
     value: 'cancun',
     image: {
-      src: '/locations/cancun.avif',
+      src: 'https://carhive.vercel.app/locations/cancun.avif',
       alt: 'green palm trees near body of water during daytime in Cancun, Mexico',
     },
     latitude: 21.1617,
@@ -42,7 +42,7 @@ export const locationsData: ReadonlyArray<ILocation> = [
     name: 'Rome, Italy',
     value: 'rome',
     image: {
-      src: '/locations/rome.avif',
+      src: 'https://carhive.vercel.app/locations/rome.avif',
       alt: 'an aerial view from the top of the Vatican in Rome',
     },
     latitude: 41.8931,
