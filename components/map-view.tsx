@@ -13,13 +13,16 @@ export function MapView() {
   const searchParams = useSearchParams();
   const mapRef = useRef<Map | null>(null);
 
-  const amsterdam = getLocationByValue('amsterdam');
-  const DEFAULT_CENTER: LatLngExpression = [
-    amsterdam?.latitude ?? 52.3547,
-    amsterdam?.longitude ?? 4.904,
-  ];
-
+  const DEFAULT_LOCATION = {
+    latitude: 52.3547,
+    longitude: 4.904,
+  };
   const DEFAULT_ZOOM_LEVEL = 12;
+
+  const center: LatLngExpression = [
+    DEFAULT_LOCATION.latitude,
+    DEFAULT_LOCATION.longitude,
+  ];
 
   function RecenterMap() {
     const map = useMap();
@@ -46,7 +49,7 @@ export function MapView() {
   return (
     <MapContainer
       className="h-[var(--map-container-height)]"
-      center={DEFAULT_CENTER}
+      center={center}
       zoom={DEFAULT_ZOOM_LEVEL}
       ref={mapRef}
     >

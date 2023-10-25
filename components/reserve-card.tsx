@@ -16,26 +16,32 @@ type Props = {
 export function ReserveCard({ car }: Props) {
   const searchParams = useSearchParams();
 
-  const pickupDropoff = searchParams.has(ESearchParams.LOCATION)
-    ? getLocationByValue(searchParams.get(ESearchParams.LOCATION) || '')?.name
-    : getLocationByValue('amsterdam')?.name;
+  const DEFAULT_LOCATION = {
+    value: 'amsterdam',
+    name: 'Amsterdam, Netherlands',
+  };
+  const DEFAULT_CHECKIN = new Date();
+  const DEFAULT_CHECKOUT = addDaysToDate(new Date(), 5);
 
-  const checkinDate: Date = searchParams.has(ESearchParams.CHECKIN)
-    ? new Date(searchParams.get(ESearchParams.CHECKIN) || '')
-    : new Date();
-  const checkoutDate: Date = searchParams.has(ESearchParams.CHECKOUT)
-    ? new Date(searchParams.get(ESearchParams.CHECKOUT) || '')
-    : addDaysToDate(new Date(), 5);
+  const location: string =
+    getLocationByValue(
+      searchParams.get(ESearchParams.LOCATION) || DEFAULT_LOCATION.value,
+    )?.name || DEFAULT_LOCATION.name;
 
-  const checkin: string = format(checkinDate, 'dd/MM/yyyy');
-  const checkout: string = format(checkoutDate, 'dd/MM/yyyy');
+  const checkin: Date = new Date(
+    searchParams.get(ESearchParams.CHECKIN) || DEFAULT_CHECKIN,
+  );
+
+  const checkout: Date = new Date(
+    searchParams.get(ESearchParams.CHECKOUT) || DEFAULT_CHECKOUT,
+  );
 
   const currentPrice: number = car.price.perDay.discount?.amount
     ? car.price.perDay.discount.amount
     : car.price.perDay.retail.amount;
 
-  const numDays: number = getDaysDifference(checkinDate, checkoutDate);
-  const taxesAndFees: number = currentPrice * 0.16 * numDays;
+  const numberOfDays: number = getDaysDifference(checkin, checkout);
+  const taxesAndFees: number = currentPrice * numberOfDays * 0.16;
   const currency: string = car.price.perDay.retail.currency;
 
   return (
@@ -72,16 +78,16 @@ export function ReserveCard({ car }: Props) {
                 Pick-up / Drop-off
               </div>
               <div className="text-sm leading-none text-neutral-600">
-                {pickupDropoff}
+                {location}
               </div>
             </div>
           </div>
           <div className="grid grid-cols-2">
             <div>
-              <div className="flex flex-col gap-1.5 p-2.5">
+              <div className="flex h-full flex-col items-start justify-center gap-1 p-2">
                 <div className="text-xs font-medium leading-none">Check-in</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  {checkin}
+                  {format(checkin, 'dd/MM/yyyy')}
                 </div>
               </div>
             </div>
@@ -89,7 +95,7 @@ export function ReserveCard({ car }: Props) {
               <div className="flex flex-col gap-1.5 p-2.5">
                 <div className="text-xs font-medium leading-none">Checkout</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  {checkout}
+                  {format(checkout, 'dd/MM/yyyy')}
                 </div>
               </div>
             </div>
@@ -104,11 +110,11 @@ export function ReserveCard({ car }: Props) {
         <div className="mt-5">
           <div className="flex items-center justify-between">
             <div className="text-neutral-600 underline">
-              {formatCurrency(currentPrice, currency)} x {numDays}{' '}
-              {numDays > 1 ? 'days' : 'day'}
+              {formatCurrency(currentPrice, currency)} x {numberOfDays}{' '}
+              {numberOfDays > 1 ? 'days' : 'day'}
             </div>
             <div className="text-neutral-600">
-              {formatCurrency(currentPrice * numDays, currency)}
+              {formatCurrency(currentPrice * numberOfDays, currency)}
             </div>
           </div>
           <div className="mt-3 flex items-center justify-between">
@@ -119,9 +125,12 @@ export function ReserveCard({ car }: Props) {
           </div>
           <hr className="my-6" />
           <div className="flex items-center justify-between">
-            <div className="font-semibold">Total after taxes</div>
+            <div className="font-semibold">Total (taxes included)</div>
             <div className="font-semibold">
-              {formatCurrency(currentPrice * numDays + taxesAndFees, currency)}
+              {formatCurrency(
+                currentPrice * numberOfDays + taxesAndFees,
+                currency,
+              )}
             </div>
           </div>
         </div>
