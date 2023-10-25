@@ -20,13 +20,15 @@ export function LogoSlider() {
       logos.length.toString(),
     );
 
-    function cloneLogos(groupNumber) {
-      let i = 0;
+    function cloneLogos(groupNumber: number) {
+      let index = 0;
+
       logos.forEach((logo) => {
-        i++;
+        index++;
         const clone = logo.cloneNode(true) as HTMLElement;
-        clone.id = `clone_group${groupNumber}_logo${i}`;
-        logosList.appendChild(clone);
+        clone.id = `clone_group${groupNumber}_logo${index}`;
+
+        if (logosList) logosList.appendChild(clone);
       });
     }
 
@@ -36,9 +38,10 @@ export function LogoSlider() {
     return () => {
       const cloneGroups = document.querySelectorAll("li[id^='clone_group']");
 
-      cloneGroups.forEach((clone) => {
-        logosList.removeChild(clone);
-      });
+      if (logosList)
+        cloneGroups.forEach((clone) => {
+          logosList.removeChild(clone);
+        });
     };
   }, []);
 

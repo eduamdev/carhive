@@ -4,7 +4,7 @@ import { FiltersItem } from '@/components/filters/item';
 import { ISelectedFilters } from '@/types/filters';
 import { EBodyStyles } from '@/types/car';
 
-const bodyStyleIcons = {
+const bodyStyleIcons: { [key in keyof typeof EBodyStyles]: JSX.Element } = {
   HATCHBACK: <Icons.hatchback className="h-8 w-8" />,
   MINIVAN: <Icons.minivan className="h-8 w-8" />,
   PICKUP_TRUCK: <Icons.pickupTruck className="h-8 w-8" />,
@@ -46,7 +46,7 @@ export function FiltersBodyStyles({
         <h3 className="pb-6 text-xl font-semibold">Body Style</h3>
         <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {Object.keys(EBodyStyles).map((key) => {
-            const value: EBodyStyles = EBodyStyles[key];
+            const value = EBodyStyles[key as keyof typeof EBodyStyles];
 
             return (
               <FiltersItem
@@ -58,7 +58,7 @@ export function FiltersBodyStyles({
                 }
               >
                 <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-                  {bodyStyleIcons[key]}
+                  {bodyStyleIcons[key as keyof typeof EBodyStyles]}
                   <span className="text-base font-medium">{value}</span>
                 </div>
               </FiltersItem>

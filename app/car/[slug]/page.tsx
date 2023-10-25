@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { CarView } from '@/components/car-view';
 import { ReserveCard } from '@/components/reserve-card';
 import { getAllCars, getCarBySlug } from '@/lib/cars';
-import { ICar } from '@/types/car';
 
 type Props = {
   params: { slug: string };
@@ -16,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
 
   // fetch data
-  const car: ICar = getCarBySlug(slug);
+  const car = getCarBySlug(slug);
 
   if (!car) {
     return {};
@@ -48,7 +47,7 @@ export async function generateStaticParams() {
 }
 
 export default function CarPage({ params }: Props) {
-  const car: ICar = getCarBySlug(params.slug);
+  const car = getCarBySlug(params.slug);
 
   if (!car) {
     notFound();

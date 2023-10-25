@@ -5,7 +5,7 @@ export function getAllCars(): ReadonlyArray<ICar> {
   return carsData;
 }
 
-export function getCarBySlug(slug: string): ICar {
+export function getCarBySlug(slug: string): ICar | undefined {
   return getAllCars().find((car) => car.slug === slug);
 }
 

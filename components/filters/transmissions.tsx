@@ -42,7 +42,7 @@ export function FiltersTransmissions({
         <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
         <div className="grid grid-cols-2 items-center">
           {Object.keys(ETransmissions).map((key) => {
-            const value: ETransmissions = ETransmissions[key];
+            const value = ETransmissions[key as keyof typeof ETransmissions];
 
             return (
               <div key={key} className="flex items-center py-3">

@@ -16,15 +16,15 @@ type Props = {
 export function ReserveCard({ car }: Props) {
   const searchParams = useSearchParams();
 
-  const pickupDropoff: string = searchParams.has(ESearchParams.LOCATION)
-    ? getLocationByValue(searchParams.get(ESearchParams.LOCATION))?.name
+  const pickupDropoff = searchParams.has(ESearchParams.LOCATION)
+    ? getLocationByValue(searchParams.get(ESearchParams.LOCATION) || '')?.name
     : getLocationByValue('amsterdam')?.name;
 
   const checkinDate: Date = searchParams.has(ESearchParams.CHECKIN)
-    ? new Date(searchParams.get(ESearchParams.CHECKIN))
+    ? new Date(searchParams.get(ESearchParams.CHECKIN) || '')
     : new Date();
   const checkoutDate: Date = searchParams.has(ESearchParams.CHECKOUT)
-    ? new Date(searchParams.get(ESearchParams.CHECKOUT))
+    ? new Date(searchParams.get(ESearchParams.CHECKOUT) || '')
     : addDaysToDate(new Date(), 5);
 
   const checkin: string = format(checkinDate, 'dd/MM/yyyy');

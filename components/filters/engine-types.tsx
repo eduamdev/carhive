@@ -42,7 +42,7 @@ export function FiltersEngineTypes({
         <h3 className="pb-6 text-xl font-semibold">Engine type</h3>
         <div className="grid grid-cols-2 items-center">
           {Object.keys(EEngineTypes).map((key) => {
-            const value: EEngineTypes = EEngineTypes[key];
+            const value = EEngineTypes[key as keyof typeof EEngineTypes];
 
             return (
               <div key={key} className="flex items-center py-3">

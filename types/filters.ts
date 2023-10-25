@@ -3,7 +3,7 @@ import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
 export interface ISelectedFilters {
   priceRange: number[];
   bodyStyles: EBodyStyles[];
-  minSeats: number;
+  minSeats: number | undefined;
   engineTypes: EEngineTypes[];
   transmissions: ETransmissions[];
 }
