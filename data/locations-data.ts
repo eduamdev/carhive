@@ -5,49 +5,29 @@ export const locationsData: ReadonlyArray<ILocation> = [
     id: 'l8pSUvBU3dYE2SR',
     name: 'Paris, France',
     value: 'paris',
-    image: {
-      src: 'https://carhive.vercel.app/locations/paris.avif',
-      alt: 'Effiel Tower at Sunset',
-    },
     latitude: 48.8589,
     longitude: 2.3469,
-    featured: true,
   },
   {
     id: 'RY5NJeedLAiDTgn',
     name: 'Dubai, United Arab Emirates',
     value: 'dubai',
-    image: {
-      src: 'https://carhive.vercel.app/locations/dubai.avif',
-      alt: 'an aerial view of the burj al arab in the middle of the ocean',
-    },
     latitude: 25.2652,
     longitude: 55.2928,
-    featured: true,
   },
   {
     id: 'i7C6QuEyHPwDosK',
     name: 'Cancún, México',
     value: 'cancun',
-    image: {
-      src: 'https://carhive.vercel.app/locations/cancun.avif',
-      alt: 'green palm trees near body of water during daytime in Cancun, Mexico',
-    },
     latitude: 21.1617,
     longitude: -86.851,
-    featured: true,
   },
   {
     id: 'taJlg97ubXQSYER',
     name: 'Rome, Italy',
     value: 'rome',
-    image: {
-      src: 'https://carhive.vercel.app/locations/rome.avif',
-      alt: 'an aerial view from the top of the Vatican in Rome',
-    },
     latitude: 41.8931,
     longitude: 12.4832,
-    featured: true,
   },
   {
     id: '_KYhleHluaNla19',
@@ -55,7 +35,6 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'new-york',
     latitude: 40.6975,
     longitude: -73.9795,
-    featured: false,
   },
   {
     id: '6yRhVc5y70m1856',
@@ -63,7 +42,6 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'tokyo',
     latitude: 35.6841,
     longitude: 139.7742,
-    featured: false,
   },
   {
     id: 'CWQ_XWtbHwTIJct',
@@ -71,7 +49,6 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'amsterdam',
     latitude: 52.3547,
     longitude: 4.904,
-    featured: false,
   },
   {
     id: '2N5cni8cCGvx4aI',
@@ -79,7 +56,6 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'sydney',
     latitude: -33.8693,
     longitude: 151.209,
-    featured: false,
   },
   {
     id: 'VSpF6wim5sdMyda',
@@ -87,7 +63,6 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'rio',
     latitude: -22.9148,
     longitude: -43.4075,
-    featured: false,
   },
   {
     id: '0iyR5pMfW873As9',
@@ -95,6 +70,5 @@ export const locationsData: ReadonlyArray<ILocation> = [
     value: 'barcelona',
     latitude: 41.3925,
     longitude: 2.1404,
-    featured: false,
   },
 ];

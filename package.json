@@ -2,7 +2,6 @@
   "name": "carhive",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
-    "@plaiceholder/next": "^3.0.0",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -30,7 +28,6 @@
     "eslint": "^8.49.0",
     "leaflet": "^1.9.4",
     "next": "^13.4.19",
-    "plaiceholder": "^3.0.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.8.2",
     "react-dom": "^18.2.0",

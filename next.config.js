@@ -1,6 +1,3 @@
-// @ts-check
-import withPlaiceholder from '@plaiceholder/next';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -10,4 +7,4 @@ const nextConfig = {
   },
 };
 
-export default withPlaiceholder(nextConfig);
+module.exports = nextConfig;
