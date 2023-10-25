@@ -98,7 +98,6 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
-                  priority
                   src={pickupTruck}
                   alt="pickup truck"
                   width={250}
@@ -127,7 +126,6 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
-                  priority
                   src={sportsCar}
                   alt="sports car"
                   width={250}
@@ -156,7 +154,6 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
-                  priority
                   src={suv}
                   alt="suv"
                   width={250}
@@ -185,7 +182,6 @@ export function PopularCarBodyStyles() {
                   </span>
                 </div>
                 <Image
-                  priority
                   src={sedan}
                   alt="sedan"
                   width={250}
