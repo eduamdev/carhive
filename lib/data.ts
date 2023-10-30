@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { Testimonial } from './definitions';
+import { Testimonial, Location } from './definitions';
 
 export async function fetchTestimonials() {
   try {
@@ -13,5 +13,36 @@ export async function fetchTestimonials() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch testimonials data.');
+  }
+}
+
+export async function fetchLocations() {
+  try {
+    console.log('Fetching locations data...');
+
+    const data = await sql<Location>`SELECT * FROM locations`;
+
+    console.log('Data fetch complete.');
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch locations data.');
+  }
+}
+
+export async function fetchFeaturedLocations() {
+  try {
+    console.log('Fetching featured locations data...');
+
+    const data =
+      await sql<Location>`SELECT * FROM locations WHERE featured = true`;
+
+    console.log('Data fetch complete.');
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch featured locations data.');
   }
 }

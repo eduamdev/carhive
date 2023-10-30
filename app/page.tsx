@@ -6,7 +6,7 @@ import {
   Hero,
   PopularCarBodyStyles,
   Testimonials,
-  TrendingPlaces,
+  FeaturedLocations,
 } from '@/components/home';
 
 export default function HomePage() {
@@ -20,7 +20,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <PopularCarBodyStyles />
-        <TrendingPlaces />
+        <FeaturedLocations />
         <Features />
         <Testimonials />
         <CallToAction />
