@@ -4,19 +4,19 @@ import { Button } from '@/components/ui/button';
 import { convertToKebabCase, createUrl } from '@/lib/utils';
 import { ESearchParams, ISelectedFilters } from '@/types/filters';
 
-interface FiltersApplyButtonProps {
+interface ApplyFiltersProps {
   minPrice: number;
   maxPrice: number;
   selectedFilters: ISelectedFilters;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export function FiltersApplyButton({
+export function ApplyFilters({
   minPrice,
   maxPrice,
   selectedFilters,
   setOpen,
-}: FiltersApplyButtonProps) {
+}: ApplyFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 

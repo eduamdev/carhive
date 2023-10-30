@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { CarView } from '@/components/car-view';
-import { ReserveCard } from '@/components/reserve-card';
+import { CarView } from '@/components/car/car-view';
+import { ReserveCard } from '@/components/car/reserve-card';
 import { getAllCars, getCarBySlug } from '@/lib/cars';
 
 type Props = {

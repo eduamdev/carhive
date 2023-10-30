@@ -5,15 +5,15 @@ import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
 import { EEngineTypes } from '@/types/car';
 
-interface FiltersEngineTypesProps {
+interface EngineTypeFiltersProps {
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersEngineTypes({
+export function EngineTypeFilters({
   selectedFilters,
   setSelectedFilters,
-}: FiltersEngineTypesProps) {
+}: EngineTypeFiltersProps) {
   function handleCheckedChange(
     checked: CheckedState,
     value: EEngineTypes,

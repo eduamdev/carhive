@@ -4,19 +4,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ISelectedFilters } from '@/types/filters';
 
-interface FiltersPriceRangeProps {
+interface PriceRangeFiltersProps {
   minPrice: number;
   MaxPrice: number;
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersPriceRange({
+export function PriceRangeFilters({
   minPrice,
   MaxPrice,
   selectedFilters,
   setSelectedFilters,
-}: FiltersPriceRangeProps) {
+}: PriceRangeFiltersProps) {
   function handleSliderChange(
     priceRange: number[],
     selectedFilters: ISelectedFilters,

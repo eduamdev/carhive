@@ -1,35 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
-  FiltersBadge,
-  FiltersPriceRange,
-  FiltersBodyStyles,
-  FiltersSeatingCapacity,
-  FiltersTransmissions,
-  FiltersEngineTypes,
-  FiltersResetButton,
-  FiltersApplyButton,
-} from '@/components/filters';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 import { reverseMapToEnum } from '@/lib/utils';
 import { ESearchParams, ISelectedFilters } from '@/types/filters';
 import { EEngineTypes, ETransmissions, EBodyStyles } from '@/types/car';
 import { getMaxPrice, getMinPrice } from '@/lib/cars';
+import { FiltersModal } from './filters-modal';
 
-export function FiltersModal() {
+function Badge({ count }: { count?: number }) {
+  if (!count) return null;
+
+  return (
+    <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-black p-2 text-[10px] font-extrabold leading-none text-white">
+      {count}
+    </span>
+  );
+}
+
+export function FiltersButton() {
   const searchParams = useSearchParams();
   const MIN_PRICE: number = getMinPrice();
   const MAX_PRICE: number = getMaxPrice();
@@ -37,6 +31,7 @@ export function FiltersModal() {
   const [selectedFilters, setSelectedFilters] = useState<ISelectedFilters>(
     getSelectedFilters(),
   );
+  const [count, setCount] = useState<number>(0);
 
   function handleOpenChange() {
     if (!open) {
@@ -76,6 +71,36 @@ export function FiltersModal() {
     };
   }
 
+  useEffect(() => {
+    function getSelectedFiltersCount() {
+      let count = 0;
+
+      if (searchParams.has(ESearchParams.MIN_SEATS)) count++;
+      if (
+        searchParams.has(ESearchParams.MIN_PRICE) ||
+        searchParams.has(ESearchParams.MAX_PRICE)
+      )
+        count++;
+      if (searchParams.has(ESearchParams.BODY_STYLE)) {
+        count += searchParams.getAll(ESearchParams.BODY_STYLE).length;
+      }
+      if (searchParams.has(ESearchParams.TRANSMISSION)) {
+        count += searchParams.getAll(ESearchParams.TRANSMISSION).length;
+      }
+      if (searchParams.has(ESearchParams.ENGINE_TYPE)) {
+        count += searchParams.getAll(ESearchParams.ENGINE_TYPE).length;
+      }
+
+      return count;
+    }
+
+    setCount(getSelectedFiltersCount());
+
+    return () => {
+      setCount(0);
+    };
+  }, [searchParams]);
+
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
@@ -85,54 +110,17 @@ export function FiltersModal() {
         >
           <Icons.filters className="mr-2.5 h-[22px] w-[22px]" />
           <span>Filters</span>
-          <FiltersBadge />
+          <Badge count={count} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[var(--modal-filters-max-width)] gap-0 !rounded-xl p-0">
-        <DialogHeader className="flex min-h-[var(--modal-filters-header-height)] items-center justify-center px-6">
-          <DialogTitle className="text-center text-base tracking-normal">
-            Filters
-          </DialogTitle>
-        </DialogHeader>
-        <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-y">
-          <FiltersPriceRange
-            minPrice={MIN_PRICE}
-            MaxPrice={MAX_PRICE}
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <FiltersBodyStyles
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <FiltersEngineTypes
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <FiltersSeatingCapacity
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <FiltersTransmissions
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-        </div>
-        <DialogFooter className="flex min-h-[var(--modal-filters-footer-height)] items-center justify-center px-6">
-          <div className="flex w-full items-center justify-between gap-x-2">
-            <FiltersResetButton
-              minPrice={MIN_PRICE}
-              maxPrice={MAX_PRICE}
-              setSelectedFilters={setSelectedFilters}
-            />
-            <FiltersApplyButton
-              minPrice={MIN_PRICE}
-              maxPrice={MAX_PRICE}
-              selectedFilters={selectedFilters}
-              setOpen={setOpen}
-            />
-          </div>
-        </DialogFooter>
+        <FiltersModal
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+          setOpen={setOpen}
+          minPrice={MIN_PRICE}
+          maxPrice={MAX_PRICE}
+        />
       </DialogContent>
     </Dialog>
   );

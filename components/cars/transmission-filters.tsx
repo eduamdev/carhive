@@ -5,15 +5,15 @@ import { CheckedState } from '@radix-ui/react-checkbox';
 import { ISelectedFilters } from '@/types/filters';
 import { ETransmissions } from '@/types/car';
 
-interface FiltersTransmissionsProps {
+interface TransmissionFiltersProps {
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersTransmissions({
+export function TransmissionFilters({
   selectedFilters,
   setSelectedFilters,
-}: FiltersTransmissionsProps) {
+}: TransmissionFiltersProps) {
   function handleCheckedChange(
     checked: CheckedState,
     value: ETransmissions,

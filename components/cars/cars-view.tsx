@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { CarCard } from '@/components/car-card';
-import { FiltersModal } from '@/components/filters/modal';
+import { CarCard } from '@/components/cars/car-card';
+import { FiltersButton } from '@/components/cars/filters-button';
 import { convertToKebabCase } from '@/lib/utils';
 import { ESearchParams } from '@/types/filters';
 import { ICar } from '@/types/car';
@@ -85,7 +85,7 @@ export function CarsView() {
               ? `${filteredCars.length} cars`
               : `${filteredCars.length} car`)}
         </p>
-        <FiltersModal />
+        <FiltersButton />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">
         {!filteredCars.length ? (

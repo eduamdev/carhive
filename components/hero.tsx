@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { LogoSlider } from '@/components/home';
+import { LogoSlider } from '@/components/logo-slider';
 import { SearchForm } from '@/components/search-form';
 import { SearchFormSkeleton } from '@/components/skeletons';
 import { Icons } from '@/components/icons';

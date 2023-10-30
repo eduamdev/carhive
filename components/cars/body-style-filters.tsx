@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/components/icons';
-import { FiltersItem } from '@/components/filters/item';
+import { Filter } from '@/components/cars/filter';
 import { ISelectedFilters } from '@/types/filters';
 import { EBodyStyles } from '@/types/car';
 
@@ -13,15 +13,15 @@ const bodyStyleIcons: { [key in keyof typeof EBodyStyles]: JSX.Element } = {
   SEDAN: <Icons.sedan className="h-8 w-8" />,
 };
 
-interface FiltersBodyStylesProps {
+interface BodyStyleFiltersProps {
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersBodyStyles({
+export function BodyStyleFilters({
   selectedFilters,
   setSelectedFilters,
-}: FiltersBodyStylesProps) {
+}: BodyStyleFiltersProps) {
   function handleClick(
     value: EBodyStyles,
     selectedFilters: ISelectedFilters,
@@ -49,7 +49,7 @@ export function FiltersBodyStyles({
             const value = EBodyStyles[key as keyof typeof EBodyStyles];
 
             return (
-              <FiltersItem
+              <Filter
                 key={key}
                 area
                 selected={selectedFilters.bodyStyles.includes(value)}
@@ -61,7 +61,7 @@ export function FiltersBodyStyles({
                   {bodyStyleIcons[key as keyof typeof EBodyStyles]}
                   <span className="text-base font-medium">{value}</span>
                 </div>
-              </FiltersItem>
+              </Filter>
             );
           })}
         </div>

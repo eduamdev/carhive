@@ -2,17 +2,17 @@ import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@/components/ui/button';
 import { ISelectedFilters } from '@/types/filters';
 
-interface FiltersResetButtonProps {
+interface ResetFiltersProps {
   minPrice: number;
   maxPrice: number;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersResetButton({
+export function ResetFilters({
   minPrice,
   maxPrice,
   setSelectedFilters,
-}: FiltersResetButtonProps) {
+}: ResetFiltersProps) {
   function handleClick(
     setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
   ) {

@@ -1,13 +1,11 @@
-import { SiteHeader } from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
-import {
-  CallToAction,
-  Features,
-  Hero,
-  PopularCarBodyStyles,
-  Testimonials,
-  FeaturedLocations,
-} from '@/components/home';
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { Hero } from '@/components/hero';
+import { PopularCarBodyStyles } from '@/components/popular-car-body-styles';
+import { FeaturedLocations } from '@/components/featured-locations';
+import { Features } from '@/components/features';
+import { Testimonials } from '@/components/testimonials';
+import { CallToAction } from '@/components/call-to-action';
 
 export default function HomePage() {
   return (

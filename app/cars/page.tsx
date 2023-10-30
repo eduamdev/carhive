@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { CarsView } from '@/components/cars-view';
+import { CarsView } from '@/components/cars/cars-view';
 import { CarsViewSkeleton, MapSkeleton } from '@/components/skeletons';
 
 const MapView = dynamic(
   async () => {
-    const { MapView: DynamicMap } = await import('@/components/map-view');
+    const { MapView: DynamicMap } = await import('@/components/cars/map-view');
     return { default: DynamicMap };
   },
   {

@@ -1,16 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
-import { FiltersItem } from '@/components/filters/item';
+import { Filter } from '@/components/cars/filter';
 import { ISelectedFilters } from '@/types/filters';
 
-interface FiltersSeatingCapacityProps {
+interface SeatingCapacityFiltersProps {
   selectedFilters: ISelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
 }
 
-export function FiltersSeatingCapacity({
+export function SeatingCapacityFilters({
   selectedFilters,
   setSelectedFilters,
-}: FiltersSeatingCapacityProps) {
+}: SeatingCapacityFiltersProps) {
   function handleClick(
     numSeat: number | undefined,
     selectedFilters: ISelectedFilters,
@@ -29,7 +29,7 @@ export function FiltersSeatingCapacity({
       <section>
         <h3 className="pb-6 text-xl font-semibold">Seating capacity</h3>
         <div className="mb-2 flex flex-row flex-wrap items-center gap-3">
-          <FiltersItem
+          <Filter
             className="font-normal"
             selected={!selectedFilters.minSeats}
             onClick={() =>
@@ -37,9 +37,9 @@ export function FiltersSeatingCapacity({
             }
           >
             Any
-          </FiltersItem>
+          </Filter>
           {seatingCapacity.map((numSeat, index, array) => (
-            <FiltersItem
+            <Filter
               key={numSeat}
               className="font-normal"
               selected={selectedFilters.minSeats === numSeat}
@@ -48,7 +48,7 @@ export function FiltersSeatingCapacity({
               }
             >
               {index === array.length - 1 ? `${numSeat}+` : numSeat}
-            </FiltersItem>
+            </Filter>
           ))}
         </div>
       </section>

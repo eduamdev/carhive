@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Newsletter } from '@/components/newsletter';
+import { Newsletter } from '@/components/layout/newsletter';
 import { Icons } from '@/components/icons';
 import { siteConfig } from '@/config/site';
 

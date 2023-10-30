@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import { SiteHeader } from '@/components/site-header';
+import { SiteHeader } from '@/components/layout/site-header';
 import { SearchForm } from '@/components/search-form';
 import { SearchFormSkeleton } from '@/components/skeletons';
 
