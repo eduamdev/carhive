@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { LogoSlider } from '@/components/home';
 import { SearchForm } from '@/components/search-form';
-import { SearchFormFallback } from '@/components/search-form-fallback';
+import { SearchFormSkeleton } from '@/components/skeletons';
 import { Icons } from '@/components/icons';
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
         </div>
       </div>
       <div className="mt-5 hidden md:block">
-        <Suspense fallback={<SearchFormFallback />}>
+        <Suspense fallback={<SearchFormSkeleton />}>
           <SearchForm />
         </Suspense>
       </div>

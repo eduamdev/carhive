@@ -1,8 +1,7 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { CarsView } from '@/components/cars-view';
-import { CarsViewFallback } from '@/components/cars-view-fallback';
-import { MapViewFallback } from '@/components/map-view-fallback';
+import { CarsViewSkeleton, MapSkeleton } from '@/components/skeletons';
 
 const MapView = dynamic(
   async () => {
@@ -10,7 +9,7 @@ const MapView = dynamic(
     return { default: DynamicMap };
   },
   {
-    loading: () => <MapViewFallback />,
+    loading: () => <MapSkeleton />,
     ssr: false,
   },
 );
@@ -19,7 +18,7 @@ export default async function CarsPage() {
   return (
     <div className="flex">
       <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
-        <Suspense fallback={<CarsViewFallback />}>
+        <Suspense fallback={<CarsViewSkeleton />}>
           <CarsView />
         </Suspense>
       </div>

@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import { SiteHeader } from '@/components/site-header';
 import { SearchForm } from '@/components/search-form';
-import { SearchFormFallback } from '@/components/search-form-fallback';
+import { SearchFormSkeleton } from '@/components/skeletons';
 
 export function CarsHeader() {
   return (
@@ -15,7 +15,7 @@ export function CarsHeader() {
       </div>
       <div className="h-[var(--search-bar-height)]">
         <div className="-mt-8 hidden h-full items-center justify-center lg:flex">
-          <Suspense fallback={<SearchFormFallback compact />}>
+          <Suspense fallback={<SearchFormSkeleton compact />}>
             <SearchForm compact />
           </Suspense>
         </div>
