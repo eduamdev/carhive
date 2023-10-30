@@ -1,46 +1,27 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import { format } from 'date-fns';
-import { addDaysToDate, formatCurrency, getDaysDifference } from '@/lib/utils';
-import { getLocationByValue } from '@/lib/locations';
+import { differenceInDays, format } from 'date-fns';
+import { formatCurrency } from '@/lib/utils';
 import { ICar } from '@/types/car';
-import { ESearchParams } from '@/types/filters';
 
-type Props = {
+interface ReserveCardProps {
   car: ICar;
-};
+  location: string;
+  checkin: Date;
+  checkout: Date;
+}
 
-export function ReserveCard({ car }: Props) {
-  const searchParams = useSearchParams();
-
-  const DEFAULT_LOCATION = {
-    value: 'amsterdam',
-    name: 'Amsterdam, Netherlands',
-  };
-  const DEFAULT_CHECKIN = new Date();
-  const DEFAULT_CHECKOUT = addDaysToDate(new Date(), 5);
-
-  const location: string =
-    getLocationByValue(
-      searchParams.get(ESearchParams.LOCATION) || DEFAULT_LOCATION.value,
-    )?.name || DEFAULT_LOCATION.name;
-
-  const checkin: Date = new Date(
-    searchParams.get(ESearchParams.CHECKIN) || DEFAULT_CHECKIN,
-  );
-
-  const checkout: Date = new Date(
-    searchParams.get(ESearchParams.CHECKOUT) || DEFAULT_CHECKOUT,
-  );
-
+export function ReserveCard({
+  car,
+  location,
+  checkin,
+  checkout,
+}: ReserveCardProps) {
   const currentPrice: number = car.price.perDay.discount?.amount
     ? car.price.perDay.discount.amount
     : car.price.perDay.retail.amount;
 
-  const numberOfDays: number = getDaysDifference(checkin, checkout);
+  const numberOfDays: number = differenceInDays(checkout, checkin);
   const taxesAndFees: number = currentPrice * numberOfDays * 0.16;
   const currency: string = car.price.perDay.retail.currency;
 

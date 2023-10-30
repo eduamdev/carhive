@@ -1,7 +1,6 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { addDays, differenceInDays } from 'date-fns';
 import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
 
 export function cn(...inputs: ClassValue[]) {
@@ -64,15 +63,4 @@ export function formatCurrency(
     amount,
   );
   return formattedAmount;
-}
-
-export function addDaysToDate(
-  inputDate: Date,
-  numberOfDaysToAdd: number,
-): Date {
-  return addDays(inputDate, numberOfDaysToAdd);
-}
-
-export function getDaysDifference(startDate: Date, endDate: Date): number {
-  return differenceInDays(endDate, startDate);
 }

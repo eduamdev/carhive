@@ -6,10 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import type { LatLngExpression, Map } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { getLocationByValue } from '@/lib/locations';
 import { ESearchParams } from '@/types/filters';
+import { Location } from '@/lib/definitions';
 
-export function MapView() {
+export function MapView({ locations }: { locations: Location[] }) {
   const searchParams = useSearchParams();
   const mapRef = useRef<Map | null>(null);
 
@@ -29,17 +29,20 @@ export function MapView() {
 
     useEffect(() => {
       if (searchParams.has(ESearchParams.LOCATION)) {
-        const location = getLocationByValue(
-          searchParams.get(ESearchParams.LOCATION) || '',
+        const newLocation = locations.find(
+          (location) =>
+            location.value === searchParams.get(ESearchParams.LOCATION),
         );
 
-        if (location) {
-          const center: LatLngExpression = {
-            lat: location.latitude,
-            lng: location.longitude,
-          };
-          map.setView(center, DEFAULT_ZOOM_LEVEL);
-        }
+        if (!newLocation)
+          throw new Error('Could not find the requested location');
+
+        const newCenter: LatLngExpression = {
+          lat: Number(newLocation?.latitude),
+          lng: Number(newLocation?.longitude),
+        };
+
+        map.setView(newCenter, DEFAULT_ZOOM_LEVEL);
       }
     }, [map]);
 

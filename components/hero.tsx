@@ -3,8 +3,11 @@ import { LogoSlider } from '@/components/logo-slider';
 import { SearchForm } from '@/components/search-form';
 import { SearchFormSkeleton } from '@/components/skeletons';
 import { Icons } from '@/components/icons';
+import { fetchLocations } from '@/lib/data';
 
-export function Hero() {
+export async function Hero() {
+  const locations = await fetchLocations();
+
   return (
     <section className="bg-gradient-to-b from-white via-neutral-50 to-neutral-50 pt-12">
       <h1 className="text-center text-3xl font-extrabold">Find your car</h1>
@@ -26,7 +29,7 @@ export function Hero() {
       </div>
       <div className="mt-5 hidden md:block">
         <Suspense fallback={<SearchFormSkeleton />}>
-          <SearchForm />
+          <SearchForm locations={locations} />
         </Suspense>
       </div>
       <LogoSlider />

@@ -149,7 +149,7 @@ async function seedLocations() {
       CREATE TABLE IF NOT EXISTS locations (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        value VARCHAR(255) NOT NULL,
+        value VARCHAR(255) NOT NULL UNIQUE,
         latitude VARCHAR(255) NOT NULL,
         longitude VARCHAR(255) NOT NULL,
         image_url VARCHAR(255) NOT NULL,

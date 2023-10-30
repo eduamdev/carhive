@@ -20,7 +20,7 @@ export async function fetchLocations() {
   try {
     console.log('Fetching locations data...');
 
-    const data = await sql<Location>`SELECT * FROM locations`;
+    const data = await sql<Location>`SELECT * FROM locations ORDER BY name ASC`;
 
     console.log('Data fetch complete.');
 
@@ -44,5 +44,19 @@ export async function fetchFeaturedLocations() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch featured locations data.');
+  }
+}
+
+export async function fetchLocationByValue(value: string) {
+  try {
+    const data =
+      await sql<Location>`SELECT * FROM locations WHERE value = ${value};`;
+
+    const location = data.rows[0];
+
+    console.log(location);
+    return location;
+  } catch (error) {
+    console.error('Database Error:', error);
   }
 }

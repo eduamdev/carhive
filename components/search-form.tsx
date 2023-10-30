@@ -33,9 +33,8 @@ import {
 import { Icons } from '@/components/icons';
 
 import { cn, createUrl } from '@/lib/utils';
-import { getAllLocations } from '@/lib/locations';
+import { Location } from '@/lib/definitions';
 
-import { ILocation } from '@/types/location';
 import { ESearchParams } from '@/types/filters';
 
 const FormSchema = z
@@ -50,16 +49,13 @@ const FormSchema = z
   });
 
 interface SearchFormProps {
+  locations: Location[];
   compact?: boolean;
 }
 
-export function SearchForm({ compact = false }: SearchFormProps) {
-  const router = useRouter();
+export function SearchForm({ locations, compact = false }: SearchFormProps) {
+  const { push } = useRouter();
   const searchParams = useSearchParams();
-  const allLocations: ReadonlyArray<ILocation> = getAllLocations();
-  const locations = [...allLocations].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -84,7 +80,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
     if (checkoutISOString)
       newParams.set(ESearchParams.CHECKOUT, checkoutISOString);
 
-    router.push(createUrl('/cars', newParams));
+    push(createUrl('/cars', newParams));
   }
 
   useEffect(() => {
