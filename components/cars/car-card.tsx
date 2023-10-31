@@ -14,8 +14,7 @@ import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
 import { cn, createUrl, formatCurrency } from '@/lib/utils';
 
-import { Car } from '@/lib/definitions';
-import { ESearchParams } from '@/types/filters';
+import { Car, SearchParams } from '@/lib/definitions';
 
 interface CarCardProps {
   car: Car;
@@ -42,12 +41,12 @@ export function CarCard({ car, index }: CarCardProps) {
   const newParams = new URLSearchParams(searchParams.toString());
 
   // delete search params filters
-  newParams.delete(ESearchParams.BODY_STYLE);
-  newParams.delete(ESearchParams.ENGINE_TYPE);
-  newParams.delete(ESearchParams.MAX_PRICE);
-  newParams.delete(ESearchParams.MIN_PRICE);
-  newParams.delete(ESearchParams.MIN_SEATS);
-  newParams.delete(ESearchParams.TRANSMISSION);
+  newParams.delete(SearchParams.BODY_STYLE);
+  newParams.delete(SearchParams.ENGINE_TYPE);
+  newParams.delete(SearchParams.MAX_PRICE);
+  newParams.delete(SearchParams.MIN_PRICE);
+  newParams.delete(SearchParams.MIN_SEATS);
+  newParams.delete(SearchParams.TRANSMISSION);
 
   const linkHref = createUrl(`/car/${slug}`, newParams);
 

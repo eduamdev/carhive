@@ -1,8 +1,8 @@
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/lib/definitions';
 
 interface PriceRangeFiltersProps {
   minPrice: number;

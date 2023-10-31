@@ -6,8 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import type { LatLngExpression, Map } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { ESearchParams } from '@/types/filters';
-import { Location } from '@/lib/definitions';
+import { Location, SearchParams } from '@/lib/definitions';
 
 export function MapView({ locations }: { locations: Location[] }) {
   const searchParams = useSearchParams();
@@ -28,10 +27,10 @@ export function MapView({ locations }: { locations: Location[] }) {
     const map = useMap();
 
     useEffect(() => {
-      if (searchParams.has(ESearchParams.LOCATION)) {
+      if (searchParams.has(SearchParams.LOCATION)) {
         const newLocation = locations.find(
           (location) =>
-            location.value === searchParams.get(ESearchParams.LOCATION),
+            location.value === searchParams.get(SearchParams.LOCATION),
         );
 
         if (!newLocation)

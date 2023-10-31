@@ -2,7 +2,15 @@ import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { SelectedFilters, ETransmissions } from '@/types/filters';
+import { SelectedFilters, Transmission } from '@/lib/definitions';
+
+const transmissions = [
+  {
+    slug: Transmission.AUTOMATIC,
+    name: 'Automatic',
+  },
+  { slug: Transmission.MANUAL, name: 'Manual' },
+];
 
 interface TransmissionFiltersProps {
   selectedFilters: SelectedFilters;
@@ -15,18 +23,18 @@ export function TransmissionFilters({
 }: TransmissionFiltersProps) {
   function handleCheckedChange(
     checked: CheckedState,
-    value: ETransmissions,
+    transmission: Transmission,
     selectedFilters: SelectedFilters,
     setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
-    let transmissionsSelected: ETransmissions[] = [];
+    let transmissionsSelected: Transmission[] = [];
 
     if (!checked || checked === 'indeterminate') {
       transmissionsSelected = selectedFilters.transmissions.filter(
-        (selected) => selected !== value,
+        (selected) => selected !== transmission,
       );
     } else {
-      transmissionsSelected = [...selectedFilters.transmissions, value];
+      transmissionsSelected = [...selectedFilters.transmissions, transmission];
     }
 
     setSelectedFilters({
@@ -40,34 +48,30 @@ export function TransmissionFilters({
       <section>
         <h3 className="pb-6 text-xl font-semibold">Transmission</h3>
         <div className="grid grid-cols-2 items-center">
-          {Object.keys(ETransmissions).map((key) => {
-            const value = ETransmissions[key as keyof typeof ETransmissions];
-
-            return (
-              <div key={key} className="flex items-center py-3">
-                <Checkbox
-                  id={key}
-                  onCheckedChange={(checked) =>
-                    handleCheckedChange(
-                      checked,
-                      value,
-                      selectedFilters,
-                      setSelectedFilters,
-                    )
-                  }
-                  checked={selectedFilters.transmissions.includes(value)}
-                />
-                <div className="w-full">
-                  <Label
-                    htmlFor={key}
-                    className="block cursor-pointer pl-4 text-base font-normal"
-                  >
-                    {value}
-                  </Label>
-                </div>
+          {transmissions.map(({ slug, name }) => (
+            <div key={slug} className="flex items-center py-3">
+              <Checkbox
+                id={slug}
+                onCheckedChange={(checked) =>
+                  handleCheckedChange(
+                    checked,
+                    slug,
+                    selectedFilters,
+                    setSelectedFilters,
+                  )
+                }
+                checked={selectedFilters.transmissions.includes(slug)}
+              />
+              <div className="w-full">
+                <Label
+                  htmlFor={slug}
+                  className="block cursor-pointer pl-4 text-base font-normal"
+                >
+                  {name}
+                </Label>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
     </div>

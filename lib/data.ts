@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { Testimonial, Location, Car } from './definitions';
+import { Testimonial, Location, Car } from '@/lib/definitions';
 
 export async function fetchTestimonials() {
   try {

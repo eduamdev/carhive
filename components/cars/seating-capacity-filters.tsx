@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Filter } from '@/components/cars/filter';
-import { SelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/lib/definitions';
 
 interface SeatingCapacityFiltersProps {
   selectedFilters: SelectedFilters;

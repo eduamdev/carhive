@@ -33,9 +33,7 @@ import {
 import { Icons } from '@/components/icons';
 
 import { cn, createUrl } from '@/lib/utils';
-import { Location } from '@/lib/definitions';
-
-import { ESearchParams } from '@/types/filters';
+import { Location, SearchParams } from '@/lib/definitions';
 
 const FormSchema = z
   .object({
@@ -66,35 +64,34 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
 
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete(ESearchParams.LOCATION);
-    newParams.delete(ESearchParams.CHECKIN);
-    newParams.delete(ESearchParams.CHECKOUT);
+    newParams.delete(SearchParams.LOCATION);
+    newParams.delete(SearchParams.CHECKIN);
+    newParams.delete(SearchParams.CHECKOUT);
 
-    newParams.set(ESearchParams.LOCATION, location);
+    newParams.set(SearchParams.LOCATION, location);
 
     const checkinISOString = checkin.toISOString();
-    if (checkinISOString)
-      newParams.set(ESearchParams.CHECKIN, checkinISOString);
+    if (checkinISOString) newParams.set(SearchParams.CHECKIN, checkinISOString);
 
     const checkoutISOString = checkout.toISOString();
     if (checkoutISOString)
-      newParams.set(ESearchParams.CHECKOUT, checkoutISOString);
+      newParams.set(SearchParams.CHECKOUT, checkoutISOString);
 
     push(createUrl('/cars', newParams));
   }
 
   useEffect(() => {
-    if (searchParams.has(ESearchParams.LOCATION)) {
-      const location = searchParams.get(ESearchParams.LOCATION);
+    if (searchParams.has(SearchParams.LOCATION)) {
+      const location = searchParams.get(SearchParams.LOCATION);
       if (location) form.setValue('location', location);
     }
 
     if (
-      searchParams.has(ESearchParams.CHECKIN) &&
-      searchParams.has(ESearchParams.CHECKOUT)
+      searchParams.has(SearchParams.CHECKIN) &&
+      searchParams.has(SearchParams.CHECKOUT)
     ) {
-      const checkinISOString = searchParams.get(ESearchParams.CHECKIN);
-      const checkoutISOString = searchParams.get(ESearchParams.CHECKOUT);
+      const checkinISOString = searchParams.get(SearchParams.CHECKIN);
+      const checkoutISOString = searchParams.get(SearchParams.CHECKOUT);
 
       if (checkinISOString)
         form.setValue('checkin', new Date(checkinISOString));

@@ -7,15 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
-import { reverseMapToEnum } from '@/lib/utils';
+import { FiltersModal } from '@/components/cars/filters-modal';
 import {
-  ESearchParams,
+  BodyStyle,
+  EngineType,
+  Transmission,
   SelectedFilters,
-  EEngineTypes,
-  ETransmissions,
-  EBodyStyles,
-} from '@/types/filters';
-import { FiltersModal } from './filters-modal';
+  SearchParams,
+} from '@/lib/definitions';
 
 function Badge({ count }: { count?: number }) {
   if (!count) return null;
@@ -49,24 +48,19 @@ export function FiltersButton({ minPrice, maxPrice }: FiltersButtonProps) {
 
   function fetchSelectedFilters() {
     const selectedMinPrice =
-      Number(searchParams.get(ESearchParams.MIN_PRICE)) || minPrice;
+      Number(searchParams.get(SearchParams.MIN_PRICE)) || minPrice;
     const selectedMaxPrice =
-      Number(searchParams.get(ESearchParams.MAX_PRICE)) || maxPrice;
-
-    const seats =
-      Number(searchParams.get(ESearchParams.MIN_SEATS)) || undefined;
-
-    const bodyStyles: EBodyStyles[] = searchParams
-      .getAll(ESearchParams.BODY_STYLE)
-      .map((value) => reverseMapToEnum(value)) as EBodyStyles[];
-
-    const engineTypes: EEngineTypes[] = searchParams
-      .getAll(ESearchParams.ENGINE_TYPE)
-      .map((value) => reverseMapToEnum(value)) as EEngineTypes[];
-
-    const transmissions: ETransmissions[] = searchParams
-      .getAll(ESearchParams.TRANSMISSION)
-      .map((value) => reverseMapToEnum(value)) as ETransmissions[];
+      Number(searchParams.get(SearchParams.MAX_PRICE)) || maxPrice;
+    const seats = Number(searchParams.get(SearchParams.MIN_SEATS)) || undefined;
+    const bodyStyles = searchParams.getAll(
+      SearchParams.BODY_STYLE,
+    ) as BodyStyle[];
+    const engineTypes = searchParams.getAll(
+      SearchParams.ENGINE_TYPE,
+    ) as EngineType[];
+    const transmissions = searchParams.getAll(
+      SearchParams.TRANSMISSION,
+    ) as Transmission[];
 
     return {
       minPrice: selectedMinPrice,
@@ -82,20 +76,20 @@ export function FiltersButton({ minPrice, maxPrice }: FiltersButtonProps) {
     function getSelectedFiltersCount() {
       let count = 0;
 
-      if (searchParams.has(ESearchParams.MIN_SEATS)) count++;
+      if (searchParams.has(SearchParams.MIN_SEATS)) count++;
       if (
-        searchParams.has(ESearchParams.MIN_PRICE) ||
-        searchParams.has(ESearchParams.MAX_PRICE)
+        searchParams.has(SearchParams.MIN_PRICE) ||
+        searchParams.has(SearchParams.MAX_PRICE)
       )
         count++;
-      if (searchParams.has(ESearchParams.BODY_STYLE)) {
-        count += searchParams.getAll(ESearchParams.BODY_STYLE).length;
+      if (searchParams.has(SearchParams.BODY_STYLE)) {
+        count += searchParams.getAll(SearchParams.BODY_STYLE).length;
       }
-      if (searchParams.has(ESearchParams.TRANSMISSION)) {
-        count += searchParams.getAll(ESearchParams.TRANSMISSION).length;
+      if (searchParams.has(SearchParams.TRANSMISSION)) {
+        count += searchParams.getAll(SearchParams.TRANSMISSION).length;
       }
-      if (searchParams.has(ESearchParams.ENGINE_TYPE)) {
-        count += searchParams.getAll(ESearchParams.ENGINE_TYPE).length;
+      if (searchParams.has(SearchParams.ENGINE_TYPE)) {
+        count += searchParams.getAll(SearchParams.ENGINE_TYPE).length;
       }
 
       return count;

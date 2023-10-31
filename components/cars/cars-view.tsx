@@ -4,9 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/cars/car-card';
 import { FiltersButton } from '@/components/cars/filters-button';
-import { convertToKebabCase } from '@/lib/utils';
-import { Car } from '@/lib/definitions';
-import { ESearchParams } from '@/types/filters';
+import { Car, SearchParams } from '@/lib/definitions';
 
 interface CarsViewProps {
   cars: Car[];
@@ -18,55 +16,53 @@ export function CarsView({ cars }: CarsViewProps) {
   const getNewFilteredCars = useCallback(() => {
     let newFilteredCars = cars;
 
-    if (searchParams.has(ESearchParams.MIN_PRICE)) {
+    if (searchParams.has(SearchParams.MIN_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
           car.discount_price_amount || car.retail_price_amount;
-        return (
-          currentPrice >= Number(searchParams.get(ESearchParams.MIN_PRICE))
-        );
+        return currentPrice >= Number(searchParams.get(SearchParams.MIN_PRICE));
       });
     }
 
-    if (searchParams.has(ESearchParams.MAX_PRICE)) {
+    if (searchParams.has(SearchParams.MAX_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
           car.discount_price_amount || car.retail_price_amount;
-        return (
-          currentPrice <= Number(searchParams.get(ESearchParams.MAX_PRICE))
-        );
+        return currentPrice <= Number(searchParams.get(SearchParams.MAX_PRICE));
       });
     }
 
-    if (searchParams.has(ESearchParams.BODY_STYLE)) {
-      newFilteredCars = newFilteredCars.filter((car) =>
-        searchParams
-          .getAll(ESearchParams.BODY_STYLE)
-          .includes(convertToKebabCase(car.body_style)),
-      );
-    }
-
-    if (searchParams.has(ESearchParams.TRANSMISSION)) {
-      newFilteredCars = newFilteredCars.filter((car) =>
-        searchParams
-          .getAll(ESearchParams.TRANSMISSION)
-          .includes(convertToKebabCase(car.transmission)),
-      );
-    }
-
-    if (searchParams.has(ESearchParams.ENGINE_TYPE)) {
-      newFilteredCars = newFilteredCars.filter((car) =>
-        searchParams
-          .getAll(ESearchParams.ENGINE_TYPE)
-          .includes(convertToKebabCase(car.engine_type)),
-      );
-    }
-
-    if (searchParams.has(ESearchParams.MIN_SEATS)) {
+    if (searchParams.has(SearchParams.BODY_STYLE)) {
       newFilteredCars = newFilteredCars.filter(
         (car) =>
-          Number(car.seats) >=
-          Number(searchParams.get(ESearchParams.MIN_SEATS)),
+          searchParams
+            .getAll(SearchParams.BODY_STYLE)
+            .includes(car.body_style.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
+      );
+    }
+
+    if (searchParams.has(SearchParams.TRANSMISSION)) {
+      newFilteredCars = newFilteredCars.filter(
+        (car) =>
+          searchParams
+            .getAll(SearchParams.TRANSMISSION)
+            .includes(car.transmission.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
+      );
+    }
+
+    if (searchParams.has(SearchParams.ENGINE_TYPE)) {
+      newFilteredCars = newFilteredCars.filter(
+        (car) =>
+          searchParams
+            .getAll(SearchParams.ENGINE_TYPE)
+            .includes(car.engine_type.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
+      );
+    }
+
+    if (searchParams.has(SearchParams.MIN_SEATS)) {
+      newFilteredCars = newFilteredCars.filter(
+        (car) =>
+          Number(car.seats) >= Number(searchParams.get(SearchParams.MIN_SEATS)),
       );
     }
 

@@ -1,16 +1,28 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/components/icons';
 import { Filter } from '@/components/cars/filter';
-import { EBodyStyles, SelectedFilters } from '@/types/filters';
+import { BodyStyle, SelectedFilters } from '@/lib/definitions';
 
-const bodyStyleIcons: { [key in keyof typeof EBodyStyles]: JSX.Element } = {
-  HATCHBACK: <Icons.hatchback className="h-8 w-8" />,
-  MINIVAN: <Icons.minivan className="h-8 w-8" />,
-  PICKUP_TRUCK: <Icons.pickupTruck className="h-8 w-8" />,
-  SPORTS_CAR: <Icons.sportsCar className="h-8 w-8" />,
-  SUV: <Icons.suv className="h-8 w-8" />,
-  SEDAN: <Icons.sedan className="h-8 w-8" />,
-};
+export const bodyStyles = [
+  {
+    slug: BodyStyle.HATCHBACK,
+    name: 'Hatchback',
+    icon: Icons.hatchback,
+  },
+  { slug: BodyStyle.MINIVAN, name: 'Minivan', icon: Icons.minivan },
+  {
+    slug: BodyStyle.PICKUP_TRUCK,
+    name: 'Pickup Truck',
+    icon: Icons.pickupTruck,
+  },
+  {
+    slug: BodyStyle.SPORTS_CAR,
+    name: 'Sports Car',
+    icon: Icons.sportsCar,
+  },
+  { slug: BodyStyle.SUV, name: 'SUV', icon: Icons.suv },
+  { slug: BodyStyle.SEDAN, name: 'Sedan', icon: Icons.sedan },
+];
 
 interface BodyStyleFiltersProps {
   selectedFilters: SelectedFilters;
@@ -22,21 +34,21 @@ export function BodyStyleFilters({
   setSelectedFilters,
 }: BodyStyleFiltersProps) {
   function handleClick(
-    value: EBodyStyles,
+    bodyStyle: BodyStyle,
     selectedFilters: SelectedFilters,
     setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
-    let bodyStyleSelected: EBodyStyles[] = [];
+    let bodyStylesSelected: BodyStyle[] = [];
 
-    if (selectedFilters.bodyStyles.includes(value)) {
-      bodyStyleSelected = selectedFilters.bodyStyles.filter(
-        (selected) => selected !== value,
+    if (selectedFilters.bodyStyles.includes(bodyStyle)) {
+      bodyStylesSelected = selectedFilters.bodyStyles.filter(
+        (selected) => selected !== bodyStyle,
       );
     } else {
-      bodyStyleSelected = [...selectedFilters.bodyStyles, value];
+      bodyStylesSelected = [...selectedFilters.bodyStyles, bodyStyle];
     }
 
-    setSelectedFilters({ ...selectedFilters, bodyStyles: bodyStyleSelected });
+    setSelectedFilters({ ...selectedFilters, bodyStyles: bodyStylesSelected });
   }
 
   return (
@@ -44,21 +56,21 @@ export function BodyStyleFilters({
       <section>
         <h3 className="pb-6 text-xl font-semibold">Body Style</h3>
         <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {Object.keys(EBodyStyles).map((key) => {
-            const value = EBodyStyles[key as keyof typeof EBodyStyles];
+          {bodyStyles.map(({ icon, slug, name }) => {
+            const Icon = icon;
 
             return (
               <Filter
-                key={key}
+                key={slug}
                 area
-                selected={selectedFilters.bodyStyles.includes(value)}
+                selected={selectedFilters.bodyStyles.includes(slug)}
                 onClick={() =>
-                  handleClick(value, selectedFilters, setSelectedFilters)
+                  handleClick(slug, selectedFilters, setSelectedFilters)
                 }
               >
                 <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-                  {bodyStyleIcons[key as keyof typeof EBodyStyles]}
-                  <span className="text-base font-medium">{value}</span>
+                  {Icon ? <Icon className="h-8 w-8" /> : null}
+                  <span className="text-base font-medium">{name}</span>
                 </div>
               </Filter>
             );

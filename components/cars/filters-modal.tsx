@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SelectedFilters } from '@/types/filters';
 import {
   DialogFooter,
   DialogHeader,
@@ -12,6 +11,7 @@ import { SeatingCapacityFilters } from '@/components/cars/seating-capacity-filte
 import { TransmissionFilters } from '@/components/cars/transmission-filters';
 import { ResetFilters } from '@/components/cars/reset-filters';
 import { ApplyFilters } from '@/components/cars/apply-filters';
+import { SelectedFilters } from '@/lib/definitions';
 
 interface FiltersModalProps {
   selectedFilters: SelectedFilters;

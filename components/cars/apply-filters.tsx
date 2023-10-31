@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { convertToKebabCase, createUrl } from '@/lib/utils';
-import { ESearchParams, SelectedFilters } from '@/types/filters';
+import { createUrl } from '@/lib/utils';
+import { SelectedFilters, SearchParams } from '@/lib/definitions';
 
 interface ApplyFiltersProps {
   minPrice: number;
@@ -17,7 +17,7 @@ export function ApplyFilters({
   selectedFilters,
   setOpen,
 }: ApplyFiltersProps) {
-  const router = useRouter();
+  const { push } = useRouter();
   const searchParams = useSearchParams();
 
   function onClick(
@@ -26,47 +26,47 @@ export function ApplyFilters({
   ) {
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete(ESearchParams.MIN_PRICE);
-    newParams.delete(ESearchParams.MAX_PRICE);
-    newParams.delete(ESearchParams.BODY_STYLE);
-    newParams.delete(ESearchParams.MIN_SEATS);
-    newParams.delete(ESearchParams.TRANSMISSION);
-    newParams.delete(ESearchParams.ENGINE_TYPE);
+    newParams.delete(SearchParams.MIN_PRICE);
+    newParams.delete(SearchParams.MAX_PRICE);
+    newParams.delete(SearchParams.BODY_STYLE);
+    newParams.delete(SearchParams.MIN_SEATS);
+    newParams.delete(SearchParams.TRANSMISSION);
+    newParams.delete(SearchParams.ENGINE_TYPE);
 
     if (selectedFilters.minPrice !== minPrice)
       newParams.set(
-        ESearchParams.MIN_PRICE,
+        SearchParams.MIN_PRICE,
         selectedFilters.minPrice.toString(),
       );
 
     if (selectedFilters.maxPrice !== maxPrice)
       newParams.set(
-        ESearchParams.MAX_PRICE,
+        SearchParams.MAX_PRICE,
         selectedFilters.maxPrice.toString(),
       );
 
     if (selectedFilters.seats)
-      newParams.set(ESearchParams.MIN_SEATS, selectedFilters.seats.toString());
+      newParams.set(SearchParams.MIN_SEATS, selectedFilters.seats.toString());
 
     if (selectedFilters.bodyStyles.length) {
-      selectedFilters.bodyStyles.forEach((value) => {
-        newParams.append(ESearchParams.BODY_STYLE, convertToKebabCase(value));
+      selectedFilters.bodyStyles.forEach((bodyStyle) => {
+        newParams.append(SearchParams.BODY_STYLE, bodyStyle);
       });
     }
 
     if (selectedFilters.engineTypes.length) {
-      selectedFilters.engineTypes.forEach((value) => {
-        newParams.append(ESearchParams.ENGINE_TYPE, convertToKebabCase(value));
+      selectedFilters.engineTypes.forEach((engineType) => {
+        newParams.append(SearchParams.ENGINE_TYPE, engineType);
       });
     }
 
     if (selectedFilters.transmissions.length) {
-      selectedFilters.transmissions.forEach((value) => {
-        newParams.append(ESearchParams.TRANSMISSION, convertToKebabCase(value));
+      selectedFilters.transmissions.forEach((transmission) => {
+        newParams.append(SearchParams.TRANSMISSION, transmission);
       });
     }
 
-    router.push(createUrl('/cars', newParams));
+    push(createUrl('/cars', newParams));
     setOpen(false);
   }
 
