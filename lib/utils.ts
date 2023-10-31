@@ -1,7 +1,7 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
+import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/filters';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

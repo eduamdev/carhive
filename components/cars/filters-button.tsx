@@ -8,9 +8,13 @@ import { Icons } from '@/components/icons';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 import { reverseMapToEnum } from '@/lib/utils';
-import { ESearchParams, ISelectedFilters } from '@/types/filters';
-import { EEngineTypes, ETransmissions, EBodyStyles } from '@/types/car';
-import { getMaxPrice, getMinPrice } from '@/lib/cars';
+import {
+  ESearchParams,
+  SelectedFilters,
+  EEngineTypes,
+  ETransmissions,
+  EBodyStyles,
+} from '@/types/filters';
 import { FiltersModal } from './filters-modal';
 
 function Badge({ count }: { count?: number }) {
@@ -23,31 +27,33 @@ function Badge({ count }: { count?: number }) {
   );
 }
 
-export function FiltersButton() {
+interface FiltersButtonProps {
+  minPrice: number;
+  maxPrice: number;
+}
+
+export function FiltersButton({ minPrice, maxPrice }: FiltersButtonProps) {
   const searchParams = useSearchParams();
-  const MIN_PRICE: number = getMinPrice();
-  const MAX_PRICE: number = getMaxPrice();
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedFilters, setSelectedFilters] = useState<ISelectedFilters>(
-    getSelectedFilters(),
+  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
+    fetchSelectedFilters(),
   );
   const [count, setCount] = useState<number>(0);
 
   function handleOpenChange() {
     if (!open) {
-      setSelectedFilters(getSelectedFilters());
+      setSelectedFilters(fetchSelectedFilters());
     }
     setOpen(!open);
   }
 
-  function getSelectedFilters(): ISelectedFilters {
-    const minPrice =
-      Number(searchParams.get(ESearchParams.MIN_PRICE)) || MIN_PRICE;
-    const maxPrice =
-      Number(searchParams.get(ESearchParams.MAX_PRICE)) || MAX_PRICE;
-    const priceRange: number[] = [minPrice, maxPrice];
+  function fetchSelectedFilters() {
+    const selectedMinPrice =
+      Number(searchParams.get(ESearchParams.MIN_PRICE)) || minPrice;
+    const selectedMaxPrice =
+      Number(searchParams.get(ESearchParams.MAX_PRICE)) || maxPrice;
 
-    const minSeats =
+    const seats =
       Number(searchParams.get(ESearchParams.MIN_SEATS)) || undefined;
 
     const bodyStyles: EBodyStyles[] = searchParams
@@ -63,8 +69,9 @@ export function FiltersButton() {
       .map((value) => reverseMapToEnum(value)) as ETransmissions[];
 
     return {
-      priceRange,
-      minSeats,
+      minPrice: selectedMinPrice,
+      maxPrice: selectedMaxPrice,
+      seats,
       bodyStyles: bodyStyles.length > 0 ? bodyStyles : [],
       engineTypes: engineTypes.length > 0 ? engineTypes : [],
       transmissions: transmissions.length > 0 ? transmissions : [],
@@ -118,8 +125,8 @@ export function FiltersButton() {
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
           setOpen={setOpen}
-          minPrice={MIN_PRICE}
-          maxPrice={MAX_PRICE}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
         />
       </DialogContent>
     </Dialog>

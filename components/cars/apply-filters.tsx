@@ -2,12 +2,12 @@ import { Dispatch, SetStateAction } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { convertToKebabCase, createUrl } from '@/lib/utils';
-import { ESearchParams, ISelectedFilters } from '@/types/filters';
+import { ESearchParams, SelectedFilters } from '@/types/filters';
 
 interface ApplyFiltersProps {
   minPrice: number;
   maxPrice: number;
-  selectedFilters: ISelectedFilters;
+  selectedFilters: SelectedFilters;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -21,7 +21,7 @@ export function ApplyFilters({
   const searchParams = useSearchParams();
 
   function onClick(
-    selectedFilters: ISelectedFilters,
+    selectedFilters: SelectedFilters,
     setOpen: Dispatch<SetStateAction<boolean>>,
   ) {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -33,23 +33,20 @@ export function ApplyFilters({
     newParams.delete(ESearchParams.TRANSMISSION);
     newParams.delete(ESearchParams.ENGINE_TYPE);
 
-    if (selectedFilters.priceRange[0] !== minPrice)
+    if (selectedFilters.minPrice !== minPrice)
       newParams.set(
         ESearchParams.MIN_PRICE,
-        selectedFilters.priceRange[0].toString(),
+        selectedFilters.minPrice.toString(),
       );
 
-    if (selectedFilters.priceRange[1] !== maxPrice)
+    if (selectedFilters.maxPrice !== maxPrice)
       newParams.set(
         ESearchParams.MAX_PRICE,
-        selectedFilters.priceRange[1].toString(),
+        selectedFilters.maxPrice.toString(),
       );
 
-    if (selectedFilters.minSeats)
-      newParams.set(
-        ESearchParams.MIN_SEATS,
-        selectedFilters.minSeats.toString(),
-      );
+    if (selectedFilters.seats)
+      newParams.set(ESearchParams.MIN_SEATS, selectedFilters.seats.toString());
 
     if (selectedFilters.bodyStyles.length) {
       selectedFilters.bodyStyles.forEach((value) => {

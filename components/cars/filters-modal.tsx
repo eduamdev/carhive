@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ISelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/types/filters';
 import {
   DialogFooter,
   DialogHeader,
@@ -14,8 +14,8 @@ import { ResetFilters } from '@/components/cars/reset-filters';
 import { ApplyFilters } from '@/components/cars/apply-filters';
 
 interface FiltersModalProps {
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
   setOpen: Dispatch<SetStateAction<boolean>>;
   minPrice: number;
   maxPrice: number;
@@ -38,7 +38,7 @@ export function FiltersModal({
       <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-y">
         <PriceRangeFilters
           minPrice={minPrice}
-          MaxPrice={maxPrice}
+          maxPrice={maxPrice}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />

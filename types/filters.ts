@@ -1,11 +1,21 @@
-import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
+export enum EBodyStyles {
+  SUV = 'SUV',
+  MINIVAN = 'Minivan',
+  PICKUP_TRUCK = 'Pickup Truck',
+  SPORTS_CAR = 'Sports Car',
+  HATCHBACK = 'Hatchback',
+  SEDAN = 'Sedan',
+}
 
-export interface ISelectedFilters {
-  priceRange: number[];
-  bodyStyles: EBodyStyles[];
-  minSeats: number | undefined;
-  engineTypes: EEngineTypes[];
-  transmissions: ETransmissions[];
+export enum ETransmissions {
+  AUTOMATIC = 'Automatic',
+  MANUAL = 'Manual',
+}
+
+export enum EEngineTypes {
+  GAS = 'Gas',
+  HYBRID = 'Hybrid',
+  ELECTRIC = 'Electric',
 }
 
 export enum ESearchParams {
@@ -18,4 +28,13 @@ export enum ESearchParams {
   ENGINE_TYPE = 'engine-type',
   MIN_SEATS = 'min-seats',
   TRANSMISSION = 'transmission',
+}
+
+export interface SelectedFilters {
+  minPrice: number;
+  maxPrice: number;
+  bodyStyles: EBodyStyles[];
+  engineTypes: EEngineTypes[];
+  transmissions: ETransmissions[];
+  seats: number | undefined;
 }

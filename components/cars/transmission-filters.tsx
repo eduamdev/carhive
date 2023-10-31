@@ -2,12 +2,11 @@ import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { ISelectedFilters } from '@/types/filters';
-import { ETransmissions } from '@/types/car';
+import { SelectedFilters, ETransmissions } from '@/types/filters';
 
 interface TransmissionFiltersProps {
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function TransmissionFilters({
@@ -17,8 +16,8 @@ export function TransmissionFilters({
   function handleCheckedChange(
     checked: CheckedState,
     value: ETransmissions,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     let transmissionsSelected: ETransmissions[] = [];
 

@@ -2,29 +2,30 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ISelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/types/filters';
 
 interface PriceRangeFiltersProps {
   minPrice: number;
-  MaxPrice: number;
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  maxPrice: number;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function PriceRangeFilters({
-  minPrice,
-  MaxPrice,
+  minPrice: MIN_PRICE,
+  maxPrice: MAX_PRICE,
   selectedFilters,
   setSelectedFilters,
 }: PriceRangeFiltersProps) {
   function handleSliderChange(
     priceRange: number[],
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     setSelectedFilters({
       ...selectedFilters,
-      priceRange,
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1],
     });
   }
 
@@ -34,13 +35,13 @@ export function PriceRangeFilters({
         <h3 className="pb-6 text-xl font-semibold">Price range</h3>
         <div className="mx-auto flex max-w-[600px] flex-col items-start justify-between gap-12 pt-2">
           <Slider
-            defaultValue={[minPrice, MaxPrice]}
-            value={selectedFilters.priceRange}
+            defaultValue={[MIN_PRICE, MAX_PRICE]}
+            value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
             onValueChange={(values) =>
               handleSliderChange(values, selectedFilters, setSelectedFilters)
             }
-            min={minPrice}
-            max={MaxPrice}
+            min={MIN_PRICE}
+            max={MAX_PRICE}
             step={1}
             minStepsBetweenThumbs={1}
           />
@@ -58,7 +59,7 @@ export function PriceRangeFilters({
                 id="price_filter_min"
                 type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
-                value={selectedFilters.priceRange[0]}
+                value={selectedFilters.minPrice}
                 readOnly
               />
             </div>
@@ -75,7 +76,7 @@ export function PriceRangeFilters({
                 id="price_filter_max"
                 type="text"
                 className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
-                value={selectedFilters.priceRange[1]}
+                value={selectedFilters.maxPrice}
                 readOnly
               />
             </div>

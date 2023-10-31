@@ -3,9 +3,8 @@ import { notFound } from 'next/navigation';
 
 import { CarView } from '@/components/car/car-view';
 import { ReserveCard } from '@/components/car/reserve-card';
-import { getAllCars, getCarBySlug } from '@/lib/cars';
+import { fetchCarBySlug, fetchCars, fetchLocationByValue } from '@/lib/data';
 import { addDays } from 'date-fns';
-import { fetchLocationByValue } from '@/lib/data';
 
 interface CarPageProps {
   params: { slug: string };
@@ -23,39 +22,25 @@ export async function generateMetadata({
   const slug = params.slug;
 
   // fetch data
-  const car = getCarBySlug(slug);
+  const car = await fetchCarBySlug(slug);
 
   if (!car) {
     return {};
   }
 
   return {
-    title: car.title,
-    description: `Experience the ultimate driving adventure with our ${
-      car.title
-    }. This exceptional vehicle combines style, power, and comfort. With seating for ${
-      car.specs.capacity.seats
-    } passengers, a ${car.specs.engineType} engine, and ${
-      car.specs.transmission
-    } transmission, it offers a smooth and thrilling ride. Whether you're planning a family trip or a solo escapade, our ${
-      car.title
-    } is the perfect choice. ${
-      car.reviews
-        ? `Rated ${car.rating} stars based on ${car.reviews} reviews.`
-        : ''
-    } Pickup and dropoff at convenient locations. Reserve your ${
-      car.title
-    } today.`,
+    title: car.name,
+    description: car.descriptions[0],
   };
 }
 
 export async function generateStaticParams() {
-  const cars = getAllCars();
+  const cars = await fetchCars();
   return cars.map((car) => ({ slug: car.slug }));
 }
 
 export default async function CarPage({ params, searchParams }: CarPageProps) {
-  const car = getCarBySlug(params.slug);
+  const car = await fetchCarBySlug(params.slug);
 
   if (!car) {
     notFound();

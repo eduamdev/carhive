@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@/components/ui/button';
-import { ISelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/types/filters';
 
 interface ResetFiltersProps {
   minPrice: number;
   maxPrice: number;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function ResetFilters({
@@ -14,13 +14,14 @@ export function ResetFilters({
   setSelectedFilters,
 }: ResetFiltersProps) {
   function handleClick(
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     setSelectedFilters({
-      priceRange: [minPrice, maxPrice],
+      minPrice,
+      maxPrice,
       bodyStyles: [],
       engineTypes: [],
-      minSeats: undefined,
+      seats: undefined,
       transmissions: [],
     });
   }

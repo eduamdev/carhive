@@ -14,24 +14,29 @@ import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
 import { cn, createUrl, formatCurrency } from '@/lib/utils';
 
-import { ICar } from '@/types/car';
+import { Car } from '@/lib/definitions';
 import { ESearchParams } from '@/types/filters';
 
 interface CarCardProps {
-  car: ICar;
+  car: Car;
   index: number;
 }
 
 export function CarCard({ car, index }: CarCardProps) {
   const {
     slug,
-    title,
-    image,
-    specs,
-    price,
+    name,
+    image_url,
+    transmission,
+    engine_type,
+    seats,
+    discount_price_amount,
+    retail_price_amount,
+    discount_price_currency,
+    retail_price_currency,
     rating,
     reviews,
-    unlimitedMileage,
+    unlimited_mileage,
   } = car;
   const searchParams = useSearchParams();
   const newParams = new URLSearchParams(searchParams.toString());
@@ -44,7 +49,7 @@ export function CarCard({ car, index }: CarCardProps) {
   newParams.delete(ESearchParams.MIN_SEATS);
   newParams.delete(ESearchParams.TRANSMISSION);
 
-  const href = createUrl(`/car/${slug}`, newParams);
+  const linkHref = createUrl(`/car/${slug}`, newParams);
 
   return (
     <>
@@ -52,13 +57,13 @@ export function CarCard({ car, index }: CarCardProps) {
         <CardHeader>
           <div className="flex items-baseline justify-between gap-x-2 whitespace-nowrap">
             <CardTitle className="inline-block max-w-full overflow-hidden text-ellipsis text-left text-[15px] font-semibold">
-              {title}
+              {name}
             </CardTitle>
             <div className="text-right">
               <div className="flex items-baseline gap-1">
                 <Icons.star className="h-[14px] w-[14px] self-center" />
                 <span className="text-sm font-medium leading-none text-neutral-600">
-                  {rating} {reviews && `(${reviews})`}
+                  {rating} {reviews > 0 && `(${reviews})`}
                 </span>
               </div>
             </div>
@@ -66,7 +71,7 @@ export function CarCard({ car, index }: CarCardProps) {
           <div
             className={cn(
               'flex items-center justify-start text-[13px] leading-none text-neutral-600',
-              !unlimitedMileage && 'invisible',
+              !unlimited_mileage && 'invisible',
             )}
           >
             <Icons.speedometer className="mr-1.5 inline-block h-4 w-4" />
@@ -77,8 +82,8 @@ export function CarCard({ car, index }: CarCardProps) {
           <div className="mt-4 flex items-center justify-center">
             <div className="relative h-20 w-[70%]">
               <Image
-                src={image.src}
-                alt={image.alt}
+                src={image_url}
+                alt={name}
                 fill={true}
                 sizes="250px"
                 className="object-contain object-center"
@@ -88,35 +93,32 @@ export function CarCard({ car, index }: CarCardProps) {
             </div>
           </div>
           <div className="mt-8 flex items-center justify-between gap-x-2">
-            <p className="text-sm text-neutral-600">{specs.transmission}</p>
+            <p className="text-sm text-neutral-600">{transmission}</p>
             <Separator orientation="vertical" decorative className="h-4" />
             <p className="text-sm text-neutral-600">
-              <span className="leading-none">{specs.engineType}</span>
+              <span className="leading-none">{engine_type}</span>
             </p>
             <Separator orientation="vertical" decorative className="h-4" />
             <p className="text-sm text-neutral-600">
-              <span className="leading-none">{specs.capacity.seats}</span> Seats
+              <span className="leading-none">{seats}</span> Seats
             </p>
           </div>
           <div className="mt-3 text-base">
-            {price.perDay.discount?.amount ? (
+            {discount_price_amount ? (
               <>
                 <span className="mr-1.5 leading-none text-neutral-500 line-through">
-                  {price.perDay.retail.amount}
+                  {retail_price_amount}
                 </span>
                 <span className="font-semibold leading-none">
                   {formatCurrency(
-                    price.perDay.discount.amount,
-                    price.perDay.discount.currency,
+                    discount_price_amount,
+                    discount_price_currency,
                   )}
                 </span>
               </>
             ) : (
               <span className=" font-semibold leading-none">
-                {formatCurrency(
-                  price.perDay.retail.amount,
-                  price.perDay.retail.currency,
-                )}
+                {formatCurrency(retail_price_amount, retail_price_currency)}
               </span>
             )}
             <span className="ml-1.5 text-[15px] font-medium leading-none text-neutral-700">
@@ -126,7 +128,7 @@ export function CarCard({ car, index }: CarCardProps) {
         </CardContent>
         <CardFooter>
           <Button className="w-full" asChild>
-            <Link href={href}>View details</Link>
+            <Link href={linkHref}>View details</Link>
           </Button>
         </CardFooter>
       </Card>

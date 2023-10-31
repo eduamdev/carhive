@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { Testimonial, Location } from './definitions';
+import { Testimonial, Location, Car } from './definitions';
 
 export async function fetchTestimonials() {
   try {
@@ -56,6 +56,53 @@ export async function fetchLocationByValue(value: string) {
 
     console.log(location);
     return location;
+  } catch (error) {
+    console.error('Database Error:', error);
+  }
+}
+
+export async function fetchCars() {
+  try {
+    console.log('Fetching cars data...');
+
+    const data = await sql<Car>`SELECT * FROM cars`;
+
+    console.log('Data fetch complete.');
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch cars data.');
+  }
+}
+
+export async function fetchCarBySlug(slug: string) {
+  try {
+    const data = await sql<Car>`SELECT * FROM cars WHERE slug = ${slug};`;
+
+    const car = data.rows[0];
+
+    console.log(car);
+    return car;
+  } catch (error) {
+    console.error('Database Error:', error);
+  }
+}
+
+export async function fetchMinPriceFromCars() {
+  try {
+    const data = await sql<{ min_price: number }>`
+      SELECT 
+        MIN(COALESCE(discount_price_amount, retail_price_amount)) AS min_price
+      FROM cars;
+    `;
+
+    const result = {
+      min_price: data.rows[0].min_price,
+    };
+
+    console.log(result);
+    return result;
   } catch (error) {
     console.error('Database Error:', error);
   }

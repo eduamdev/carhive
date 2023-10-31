@@ -2,8 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { convertToKebabCase } from '@/lib/utils';
-import { EBodyStyles } from '@/types/car';
-import { ESearchParams } from '@/types/filters';
+import { ESearchParams, EBodyStyles } from '@/types/filters';
 
 import hatchback from '/public/cars/body-styles/hatchback.avif';
 import minivan from '/public/cars/body-styles/minivan.avif';

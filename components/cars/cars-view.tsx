@@ -5,20 +5,23 @@ import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/cars/car-card';
 import { FiltersButton } from '@/components/cars/filters-button';
 import { convertToKebabCase } from '@/lib/utils';
+import { Car } from '@/lib/definitions';
 import { ESearchParams } from '@/types/filters';
-import { ICar } from '@/types/car';
-import { getAllCars } from '@/lib/cars';
 
-export function CarsView() {
+interface CarsViewProps {
+  cars: Car[];
+}
+
+export function CarsView({ cars }: CarsViewProps) {
   const searchParams = useSearchParams();
 
   const getNewFilteredCars = useCallback(() => {
-    let newFilteredCars: ReadonlyArray<ICar> = getAllCars();
+    let newFilteredCars = cars;
 
     if (searchParams.has(ESearchParams.MIN_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
-          car.price.perDay.discount?.amount || car.price.perDay.retail.amount;
+          car.discount_price_amount || car.retail_price_amount;
         return (
           currentPrice >= Number(searchParams.get(ESearchParams.MIN_PRICE))
         );
@@ -28,7 +31,7 @@ export function CarsView() {
     if (searchParams.has(ESearchParams.MAX_PRICE)) {
       newFilteredCars = newFilteredCars.filter((car) => {
         const currentPrice =
-          car.price.perDay.discount?.amount || car.price.perDay.retail.amount;
+          car.discount_price_amount || car.retail_price_amount;
         return (
           currentPrice <= Number(searchParams.get(ESearchParams.MAX_PRICE))
         );
@@ -39,7 +42,7 @@ export function CarsView() {
       newFilteredCars = newFilteredCars.filter((car) =>
         searchParams
           .getAll(ESearchParams.BODY_STYLE)
-          .includes(convertToKebabCase(car.specs.bodyStyle)),
+          .includes(convertToKebabCase(car.body_style)),
       );
     }
 
@@ -47,7 +50,7 @@ export function CarsView() {
       newFilteredCars = newFilteredCars.filter((car) =>
         searchParams
           .getAll(ESearchParams.TRANSMISSION)
-          .includes(convertToKebabCase(car.specs.transmission)),
+          .includes(convertToKebabCase(car.transmission)),
       );
     }
 
@@ -55,26 +58,33 @@ export function CarsView() {
       newFilteredCars = newFilteredCars.filter((car) =>
         searchParams
           .getAll(ESearchParams.ENGINE_TYPE)
-          .includes(convertToKebabCase(car.specs.engineType)),
+          .includes(convertToKebabCase(car.engine_type)),
       );
     }
 
     if (searchParams.has(ESearchParams.MIN_SEATS)) {
       newFilteredCars = newFilteredCars.filter(
         (car) =>
-          Number(car.specs.capacity.seats) >=
+          Number(car.seats) >=
           Number(searchParams.get(ESearchParams.MIN_SEATS)),
       );
     }
 
     return newFilteredCars;
-  }, [searchParams]);
+  }, [cars, searchParams]);
 
   const [filteredCars, setFilteredCars] = useState(getNewFilteredCars());
 
   useEffect(() => {
     setFilteredCars(getNewFilteredCars());
   }, [getNewFilteredCars, searchParams]);
+
+  const carPrices = cars.map((car) => {
+    return Number(car.discount_price_amount || car.retail_price_amount);
+  });
+
+  const minPrice = Math.min(...carPrices);
+  const maxPrice = Math.max(...carPrices);
 
   return (
     <>
@@ -85,7 +95,7 @@ export function CarsView() {
               ? `${filteredCars.length} cars`
               : `${filteredCars.length} car`)}
         </p>
-        <FiltersButton />
+        <FiltersButton minPrice={minPrice} maxPrice={maxPrice} />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">
         {!filteredCars.length ? (

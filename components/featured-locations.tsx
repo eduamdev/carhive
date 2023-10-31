@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { getMinPrice } from '@/lib/cars';
 import { formatCurrency } from '@/lib/utils';
-import { fetchFeaturedLocations } from '@/lib/data';
+import { fetchFeaturedLocations, fetchMinPriceFromCars } from '@/lib/data';
 import { ESearchParams } from '@/types/filters';
 
 export async function FeaturedLocations() {
   const featuredLocations = await fetchFeaturedLocations();
-  const MIN_PRICE: number = getMinPrice();
+  const minPrice = (await fetchMinPriceFromCars())?.min_price || 0;
 
   return (
     <section className="pt-10">
@@ -43,7 +42,7 @@ export async function FeaturedLocations() {
               <div className="mt-3">
                 <h3 className="text-[15px] font-semibold">{location.name}</h3>
                 <p className="mt-1 text-sm text-neutral-600">
-                  Cars from {formatCurrency(MIN_PRICE, 'MXN')}+
+                  Cars from {formatCurrency(minPrice, 'MXN')}+
                 </p>
               </div>
             </Link>

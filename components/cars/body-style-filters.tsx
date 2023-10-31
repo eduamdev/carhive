@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/components/icons';
 import { Filter } from '@/components/cars/filter';
-import { ISelectedFilters } from '@/types/filters';
-import { EBodyStyles } from '@/types/car';
+import { EBodyStyles, SelectedFilters } from '@/types/filters';
 
 const bodyStyleIcons: { [key in keyof typeof EBodyStyles]: JSX.Element } = {
   HATCHBACK: <Icons.hatchback className="h-8 w-8" />,
@@ -14,8 +13,8 @@ const bodyStyleIcons: { [key in keyof typeof EBodyStyles]: JSX.Element } = {
 };
 
 interface BodyStyleFiltersProps {
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function BodyStyleFilters({
@@ -24,8 +23,8 @@ export function BodyStyleFilters({
 }: BodyStyleFiltersProps) {
   function handleClick(
     value: EBodyStyles,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     let bodyStyleSelected: EBodyStyles[] = [];
 

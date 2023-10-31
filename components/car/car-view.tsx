@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Icons } from '@/components/icons';
-import { ICar } from '@/types/car';
+import { Car } from '@/lib/definitions';
 
 interface CarViewProps {
-  car: ICar;
+  car: Car;
 }
 
 export function CarView({ car }: CarViewProps) {
@@ -11,14 +11,14 @@ export function CarView({ car }: CarViewProps) {
     <div className="p-6 px-0 pb-0 md:pb-0 md:pr-6">
       <div className="grid grid-cols-[1fr_auto] justify-between">
         <div className="flex flex-col">
-          <h1 className="text-xl font-bold">{car.title}</h1>
+          <h1 className="text-xl font-bold">{car.name}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[13px] text-neutral-800 lg:text-base">
-            <span>{car.specs.capacity.seats} seats</span>
+            <span>{car.seats} seats</span>
             <span>·</span>
-            <span>{car.specs.engineType}</span>
+            <span>{car.engine_type}</span>
             <span>·</span>
-            <span>{car.specs.transmission}</span>
-            {car.unlimitedMileage && (
+            <span>{car.transmission}</span>
+            {car.unlimited_mileage && (
               <>
                 <span>·</span>
                 <span>Unlimited mileage</span>
@@ -29,8 +29,8 @@ export function CarView({ car }: CarViewProps) {
         <div className="flex flex-col justify-self-end">
           <div className="relative h-14 w-20 md:w-24">
             <Image
-              src={car.image.src}
-              alt={car.image.alt}
+              src={car.image_url}
+              alt={car.name}
               fill={true}
               sizes="100px"
               className="object-contain object-center"
@@ -73,7 +73,7 @@ export function CarView({ car }: CarViewProps) {
       </div>
       <hr className="my-6" />
       <div className="mt-10 space-y-6">
-        {car.description.map((paragraph) => (
+        {car.descriptions.map((paragraph) => (
           <p key={paragraph} className="text-neutral-600">
             {paragraph}
           </p>

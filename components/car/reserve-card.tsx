@@ -2,10 +2,10 @@ import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { differenceInDays, format } from 'date-fns';
 import { formatCurrency } from '@/lib/utils';
-import { ICar } from '@/types/car';
+import { Car } from '@/lib/definitions';
 
 interface ReserveCardProps {
-  car: ICar;
+  car: Car;
   location: string;
   checkin: Date;
   checkout: Date;
@@ -17,13 +17,13 @@ export function ReserveCard({
   checkin,
   checkout,
 }: ReserveCardProps) {
-  const currentPrice: number = car.price.perDay.discount?.amount
-    ? car.price.perDay.discount.amount
-    : car.price.perDay.retail.amount;
+  const currentPrice: number =
+    car.discount_price_amount || car.retail_price_amount;
+  const currency: string =
+    car.discount_price_currency || car.retail_price_currency;
 
   const numberOfDays: number = differenceInDays(checkout, checkin);
   const taxesAndFees: number = currentPrice * numberOfDays * 0.16;
-  const currency: string = car.price.perDay.retail.currency;
 
   return (
     <div className="hidden normal-nums md:block">
@@ -42,7 +42,7 @@ export function ReserveCard({
             <span className="text-sm font-medium leading-none">
               {car.rating}
             </span>
-            {car.reviews && (
+            {car.reviews > 0 && (
               <>
                 <span>·</span>
                 <span className="text-sm leading-none text-neutral-600">

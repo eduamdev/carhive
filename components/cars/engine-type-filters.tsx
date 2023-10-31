@@ -2,12 +2,11 @@ import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { ISelectedFilters } from '@/types/filters';
-import { EEngineTypes } from '@/types/car';
+import { SelectedFilters, EEngineTypes } from '@/types/filters';
 
 interface EngineTypeFiltersProps {
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function EngineTypeFilters({
@@ -17,8 +16,8 @@ export function EngineTypeFilters({
   function handleCheckedChange(
     checked: CheckedState,
     value: EEngineTypes,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     let engineTypesSelected: EEngineTypes[] = [];
 

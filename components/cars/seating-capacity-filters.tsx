@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Filter } from '@/components/cars/filter';
-import { ISelectedFilters } from '@/types/filters';
+import { SelectedFilters } from '@/types/filters';
 
 interface SeatingCapacityFiltersProps {
-  selectedFilters: ISelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>;
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
 export function SeatingCapacityFilters({
@@ -12,13 +12,13 @@ export function SeatingCapacityFilters({
   setSelectedFilters,
 }: SeatingCapacityFiltersProps) {
   function handleClick(
-    numSeat: number | undefined,
-    selectedFilters: ISelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<ISelectedFilters>>,
+    seats: number | undefined,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
   ) {
     setSelectedFilters({
       ...selectedFilters,
-      minSeats: selectedFilters.minSeats === numSeat ? undefined : numSeat,
+      seats: selectedFilters.seats === seats ? undefined : seats,
     });
   }
 
@@ -31,23 +31,23 @@ export function SeatingCapacityFilters({
         <div className="mb-2 flex flex-row flex-wrap items-center gap-3">
           <Filter
             className="font-normal"
-            selected={!selectedFilters.minSeats}
+            selected={!selectedFilters.seats}
             onClick={() =>
               handleClick(undefined, selectedFilters, setSelectedFilters)
             }
           >
             Any
           </Filter>
-          {seatingCapacity.map((numSeat, index, array) => (
+          {seatingCapacity.map((seats, index, array) => (
             <Filter
-              key={numSeat}
+              key={seats}
               className="font-normal"
-              selected={selectedFilters.minSeats === numSeat}
+              selected={selectedFilters.seats === seats}
               onClick={() =>
-                handleClick(numSeat, selectedFilters, setSelectedFilters)
+                handleClick(seats, selectedFilters, setSelectedFilters)
               }
             >
-              {index === array.length - 1 ? `${numSeat}+` : numSeat}
+              {index === array.length - 1 ? `${seats}+` : seats}
             </Filter>
           ))}
         </div>
