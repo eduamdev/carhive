@@ -3,6 +3,7 @@ const { sql } = require('@vercel/postgres');
 const {
   testimonials,
   users,
+  newsletter,
   cars,
   locations,
   reservations,
@@ -44,6 +45,44 @@ async function seedUsers() {
     };
   } catch (error) {
     console.error('Error seeding users:', error);
+    throw error;
+  }
+}
+
+async function seedNewsletter() {
+  try {
+    await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+    // Create the "newsletter" table if it doesn't exist
+    const createTable = await sql`
+      CREATE TABLE IF NOT EXISTS newsletter (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        email VARCHAR(255) NOT NULL,
+        created_at DATE NOT NULL
+      );
+    `;
+
+    console.log(`Created "newsletter" table`);
+
+    // Insert data into the "newsletter" table
+    const insertedNewsletter = await Promise.all(
+      newsletter.map(
+        (newsletter) => sql`
+        INSERT INTO newsletter (id, email, created_at)
+        VALUES (${newsletter.id}, ${newsletter.email}, ${newsletter.created_at})
+        ON CONFLICT (id) DO NOTHING;
+      `,
+      ),
+    );
+
+    console.log(`Seeded ${insertedNewsletter.length} newsletter`);
+
+    return {
+      createTable,
+      newsletter: insertedNewsletter,
+    };
+  } catch (error) {
+    console.error('Error seeding newsletter:', error);
     throw error;
   }
 }
@@ -194,7 +233,7 @@ async function seedReservations() {
         location_id UUID NOT NULL,
         checkin DATE NOT NULL,
         checkout DATE NOT NULL,
-        createdAt DATE NOT NULL
+        created_at DATE NOT NULL
       );
     `;
 
@@ -204,8 +243,8 @@ async function seedReservations() {
     const insertedReservations = await Promise.all(
       reservations.map(
         (reservation) => sql`
-        INSERT INTO reservations (id, car_id, user_id, location_id, checkin, checkout, createdAt)
-        VALUES (${reservation.id}, ${reservation.car_id}, ${reservation.user_id}, ${reservation.location_id}, ${reservation.checkin}, ${reservation.checkout}, ${reservation.createdAt})
+        INSERT INTO reservations (id, car_id, user_id, location_id, checkin, checkout, created_at)
+        VALUES (${reservation.id}, ${reservation.car_id}, ${reservation.user_id}, ${reservation.location_id}, ${reservation.checkin}, ${reservation.checkout}, ${reservation.created_at})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),
@@ -229,4 +268,5 @@ async function seedReservations() {
   await seedCars();
   await seedLocations();
   await seedReservations();
+  await seedNewsletter();
 })();

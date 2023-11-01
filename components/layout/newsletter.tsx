@@ -1,68 +1,70 @@
 'use client';
 
+import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/components/ui/use-toast';
+import { subscribeNewsletter } from '@/lib/actions';
+import { cn } from '@/lib/utils';
+import { Icons } from '../icons';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-const newsletterSchema = z.object({
-  newsletter: z.string().email(),
-});
-
-export function Newsletter() {
-  const { toast } = useToast();
-
-  const form = useForm<z.infer<typeof newsletterSchema>>({
-    resolver: zodResolver(newsletterSchema),
-  });
-
-  function onSubmit(values: z.infer<typeof newsletterSchema>) {
-    toast({
-      title: '✅ Thanks for subscribing!',
-    });
-  }
+function SubmitButton() {
+  const { pending } = useFormStatus();
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="newsletter"
-          render={({ field }) => (
-            <FormItem>
-              <div className="relative">
-                <FormControl>
-                  <Input
-                    placeholder="you@domain.com"
-                    type="email"
-                    className="w-full text-ellipsis rounded-md border bg-neutral-50 px-3.5 py-2 pr-24 text-sm"
-                    {...field}
-                  />
-                </FormControl>
-                <Button
-                  type="submit"
-                  variant="outline"
-                  size="xs"
-                  className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md text-xs text-neutral-600"
-                >
-                  Subscribe
-                </Button>
-              </div>
-              <FormMessage className="mt-1 text-[13px]" />
-            </FormItem>
-          )}
+    <Button
+      type="submit"
+      variant="outline"
+      size="xs"
+      className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md text-xs text-neutral-600"
+      aria-disabled={pending}
+    >
+      Subscribe
+    </Button>
+  );
+}
+
+export function Newsletter() {
+  const initialState = {
+    errors: [],
+    message: null,
+    subscribed: false,
+  };
+
+  const [state, formAction] = useFormState(subscribeNewsletter, initialState);
+
+  return (
+    <form action={formAction}>
+      <div className={cn('relative', state?.subscribed && 'hidden')}>
+        <Input
+          name="email"
+          placeholder="you@domain.com"
+          type="email"
+          className="w-full text-ellipsis rounded-md border bg-neutral-50 px-3.5 py-2 pr-24 text-sm"
+          defaultValue=""
+          required
+          aria-describedby="email-validation"
         />
-      </form>
-    </Form>
+        <SubmitButton />
+      </div>
+      <div id="email-validation" aria-live="polite">
+        {state?.errors?.map((error: string) => (
+          <p key={error} className="mt-2 text-sm text-red-500">
+            {error}
+          </p>
+        ))}
+        {state?.message && (
+          <p className="mt-2 text-sm text-red-500">{state.message}</p>
+        )}
+        {state?.subscribed && (
+          <p className="mt-2 flex flex-row items-center gap-1.5 text-sm text-neutral-600">
+            <Icons.checkCircle
+              className="h-5 w-5 shrink-0 text-green-600"
+              aria-hidden="true"
+            />
+            Thanks for subscribing!
+          </p>
+        )}
+      </div>
+    </form>
   );
 }

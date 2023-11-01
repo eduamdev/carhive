@@ -16,8 +16,7 @@ const MapView = dynamic(
 );
 
 export default async function CarsPage() {
-  const locations = await fetchLocations();
-  const cars = await fetchCars();
+  const [locations, cars] = await Promise.all([fetchLocations(), fetchCars()]);
 
   return (
     <div className="flex">

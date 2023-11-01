@@ -35,6 +35,12 @@ export type Car = {
   discount_price_currency?: string;
 };
 
+export type Newsletter = {
+  id: string;
+  email: string;
+  created_at: string;
+};
+
 export enum BodyStyle {
   SUV = 'suv',
   MINIVAN = 'minivan',
