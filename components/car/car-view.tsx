@@ -32,8 +32,9 @@ export function CarView({ car }: CarViewProps) {
               src={car.image_url}
               alt={car.name}
               fill={true}
-              sizes="100px"
+              sizes="(max-width: 949px) 80px, 96px"
               className="object-contain object-center"
+              priority
             />
           </div>
         </div>

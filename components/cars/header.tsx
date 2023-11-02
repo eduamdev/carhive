@@ -15,7 +15,7 @@ export async function CarsHeader() {
         </div>
       </div>
       <div className="h-[var(--search-bar-height)]">
-        <div className="-mt-8 hidden h-full items-center justify-center lg:flex">
+        <div className="-mt-9 hidden h-full items-center justify-center lg:flex">
           <Suspense fallback={<SearchFormSkeleton compact />}>
             <SearchForm locations={locations} compact />
           </Suspense>

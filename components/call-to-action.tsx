@@ -24,7 +24,8 @@ export function CallToAction() {
               href="/cars"
               className="flex items-center justify-center gap-x-3"
             >
-              Explore Cars <Icons.chevronForward className="h-3 w-3" />
+              Explore Cars{' '}
+              <Icons.chevronForward className="h-[14px] w-[14px]" />
             </Link>
           </Button>
         </div>
