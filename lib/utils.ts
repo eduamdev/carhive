@@ -24,3 +24,10 @@ export const formatCurrency = (amount: number, currency: string = 'USD') => {
     maximumFractionDigits: 0,
   });
 };
+
+export function convertToKebabCase(inputString: string): string {
+  return inputString
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/([a-z])([A-Z])/g, '$1-$2') // Convert camelCase to kebab-case
+    .toLowerCase(); // Convert the whole string to lowercase
+}

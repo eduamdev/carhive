@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 
 import {
   Card,
@@ -19,9 +18,14 @@ import { Car, SearchParams } from '@/lib/definitions';
 interface CarCardProps {
   car: Car;
   index: number;
+  searchParams: {
+    [SearchParams.LOCATION]?: string;
+    [SearchParams.CHECKIN]?: string;
+    [SearchParams.CHECKOUT]?: string;
+  };
 }
 
-export function CarCard({ car, index }: CarCardProps) {
+export function CarCard({ car, index, searchParams }: CarCardProps) {
   const {
     slug,
     name,
@@ -37,16 +41,12 @@ export function CarCard({ car, index }: CarCardProps) {
     reviews,
     unlimited_mileage,
   } = car;
-  const searchParams = useSearchParams();
-  const newParams = new URLSearchParams(searchParams.toString());
 
-  // delete filters
-  newParams.delete(SearchParams.BODY_STYLE);
-  newParams.delete(SearchParams.ENGINE_TYPE);
-  newParams.delete(SearchParams.MAX_PRICE);
-  newParams.delete(SearchParams.MIN_PRICE);
-  newParams.delete(SearchParams.MIN_SEATS);
-  newParams.delete(SearchParams.TRANSMISSION);
+  const newParams = new URLSearchParams();
+  const { location, checkin, checkout } = searchParams;
+  if (location) newParams.set(SearchParams.LOCATION, location);
+  if (checkin) newParams.set(SearchParams.CHECKIN, checkin);
+  if (checkout) newParams.set(SearchParams.CHECKOUT, checkout);
 
   const linkHref = createUrl(`/car/${slug}`, newParams);
 

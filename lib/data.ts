@@ -89,7 +89,7 @@ export async function fetchCarBySlug(slug: string) {
   }
 }
 
-export async function fetchMinPriceFromCars() {
+export async function getMinPriceFromCars() {
   try {
     const data = await sql<{ min_price: number }>`
       SELECT 
@@ -97,12 +97,10 @@ export async function fetchMinPriceFromCars() {
       FROM cars;
     `;
 
-    const result = {
-      min_price: data.rows[0].min_price,
-    };
+    const minPrice = data.rows[0].min_price;
 
-    console.log(result);
-    return result;
+    console.log(minPrice);
+    return minPrice;
   } catch (error) {
     console.error('Database Error:', error);
   }

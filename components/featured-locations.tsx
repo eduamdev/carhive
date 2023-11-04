@@ -8,7 +8,7 @@ import dubai from '/public/locations/dubai.avif';
 import cancun from '/public/locations/cancun.avif';
 import rome from '/public/locations/rome.avif';
 
-import { fetchFeaturedLocations, fetchMinPriceFromCars } from '@/lib/data';
+import { fetchFeaturedLocations, getMinPriceFromCars } from '@/lib/data';
 import { formatCurrency } from '@/lib/utils';
 import { SearchParams } from '@/lib/definitions';
 
@@ -20,8 +20,11 @@ const imageMap: { [key: string]: StaticImageData } = {
 };
 
 export async function FeaturedLocations() {
-  const featuredLocations = await fetchFeaturedLocations();
-  const minPrice = (await fetchMinPriceFromCars())?.min_price;
+  const currency = 'MXN';
+  const [featuredLocations, minPrice] = await Promise.all([
+    fetchFeaturedLocations(),
+    getMinPriceFromCars(),
+  ]);
 
   return (
     <section className="pt-10">
@@ -64,7 +67,7 @@ export async function FeaturedLocations() {
                   <h3 className="text-[15px] font-semibold">{name}</h3>
                   {minPrice && (
                     <p className="mt-1 text-sm text-neutral-600">
-                      Cars from {formatCurrency(minPrice, 'MXN')}+
+                      Cars from {formatCurrency(minPrice, currency)}+
                     </p>
                   )}
                 </div>

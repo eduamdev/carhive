@@ -3,22 +3,18 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import type { LatLngExpression, Map } from 'leaflet';
+import type { LatLngExpression, Map as LeafletMap } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Location, SearchParams } from '@/lib/definitions';
 
-export function MapView({ locations }: { locations: Location[] }) {
+export function Map({ locations }: { locations: Location[] }) {
   const searchParams = useSearchParams();
-  const mapRef = useRef<Map | null>(null);
+  const mapRef = useRef<LeafletMap | null>(null);
 
-  const DEFAULT_ZOOM_LEVEL = 12;
-  const center: LatLngExpression = [
-    locations[6].latitude,
-    locations[6].longitude,
-  ];
+  const DEFAULT_ZOOM_LEVEL = 2;
 
-  function RecenterMap() {
+  function Recenter() {
     const map = useMap();
 
     useEffect(() => {
@@ -31,12 +27,12 @@ export function MapView({ locations }: { locations: Location[] }) {
         if (!newLocation)
           throw new Error('Could not find the requested location');
 
-        const newCenter: LatLngExpression = {
+        const center: LatLngExpression = {
           lat: Number(newLocation?.latitude),
           lng: Number(newLocation?.longitude),
         };
 
-        map.setView(newCenter, DEFAULT_ZOOM_LEVEL);
+        map.setView(center, 12);
       }
     }, [map]);
 
@@ -46,7 +42,7 @@ export function MapView({ locations }: { locations: Location[] }) {
   return (
     <MapContainer
       className="h-[var(--map-container-height)]"
-      center={center}
+      center={[0, 0]}
       zoom={DEFAULT_ZOOM_LEVEL}
       ref={mapRef}
     >
@@ -54,7 +50,7 @@ export function MapView({ locations }: { locations: Location[] }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <RecenterMap />
+      <Recenter />
     </MapContainer>
   );
 }

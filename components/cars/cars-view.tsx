@@ -1,86 +1,73 @@
-'use client';
-
-import { useCallback, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/cars/car-card';
 import { FiltersModal } from '@/components/cars/filters-modal';
-import { Car, SearchParams } from '@/lib/definitions';
+import { fetchCars } from '@/lib/data';
+import { convertToKebabCase } from '@/lib/utils';
+import { SearchParams } from '@/lib/definitions';
 
 interface CarsViewProps {
-  cars: Car[];
+  searchParams: {
+    [SearchParams.LOCATION]?: string;
+    [SearchParams.CHECKIN]?: string;
+    [SearchParams.CHECKOUT]?: string;
+    [SearchParams.MIN_PRICE]?: string;
+    [SearchParams.MAX_PRICE]?: string;
+    [SearchParams.BODY_STYLE]?: string[];
+    [SearchParams.ENGINE_TYPE]?: string[];
+    [SearchParams.MIN_SEATS]?: string;
+    [SearchParams.TRANSMISSION]?: string[];
+  };
 }
 
-export function CarsView({ cars }: CarsViewProps) {
-  const searchParams = useSearchParams();
-
-  const getNewFilteredCars = useCallback(() => {
-    let newFilteredCars = cars;
-
-    if (searchParams.has(SearchParams.MIN_PRICE)) {
-      newFilteredCars = newFilteredCars.filter((car) => {
-        const currentPrice =
-          car.discount_price_amount || car.retail_price_amount;
-        return currentPrice >= Number(searchParams.get(SearchParams.MIN_PRICE));
-      });
-    }
-
-    if (searchParams.has(SearchParams.MAX_PRICE)) {
-      newFilteredCars = newFilteredCars.filter((car) => {
-        const currentPrice =
-          car.discount_price_amount || car.retail_price_amount;
-        return currentPrice <= Number(searchParams.get(SearchParams.MAX_PRICE));
-      });
-    }
-
-    if (searchParams.has(SearchParams.BODY_STYLE)) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) =>
-          searchParams
-            .getAll(SearchParams.BODY_STYLE)
-            .includes(car.body_style.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
-      );
-    }
-
-    if (searchParams.has(SearchParams.TRANSMISSION)) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) =>
-          searchParams
-            .getAll(SearchParams.TRANSMISSION)
-            .includes(car.transmission.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
-      );
-    }
-
-    if (searchParams.has(SearchParams.ENGINE_TYPE)) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) =>
-          searchParams
-            .getAll(SearchParams.ENGINE_TYPE)
-            .includes(car.engine_type.replace(/[\s_]+/g, '-').toLowerCase()), // Replace spaces and underscores with dashes, then convert to lowercase
-      );
-    }
-
-    if (searchParams.has(SearchParams.MIN_SEATS)) {
-      newFilteredCars = newFilteredCars.filter(
-        (car) =>
-          Number(car.seats) >= Number(searchParams.get(SearchParams.MIN_SEATS)),
-      );
-    }
-
-    return newFilteredCars;
-  }, [cars, searchParams]);
-
-  const [filteredCars, setFilteredCars] = useState(getNewFilteredCars());
-
-  useEffect(() => {
-    setFilteredCars(getNewFilteredCars());
-  }, [getNewFilteredCars, searchParams]);
-
+export async function CarsView({ searchParams }: CarsViewProps) {
+  const cars = await fetchCars();
   const carPrices = cars.map((car) => {
     return Number(car.discount_price_amount || car.retail_price_amount);
   });
 
   const MIN_PRICE = Math.min(...carPrices);
   const MAX_PRICE = Math.max(...carPrices);
+
+  let filteredCars = cars;
+
+  const {
+    [SearchParams.MIN_PRICE]: minPrice,
+    [SearchParams.MAX_PRICE]: maxPrice,
+    [SearchParams.BODY_STYLE]: bodyStyles,
+    [SearchParams.ENGINE_TYPE]: engineTypes,
+    [SearchParams.TRANSMISSION]: transmissions,
+    [SearchParams.MIN_SEATS]: minSeats,
+  } = searchParams;
+
+  if (minPrice) {
+    filteredCars = filteredCars.filter((car) => {
+      const currentPrice = car.discount_price_amount || car.retail_price_amount;
+      return currentPrice >= Number(minPrice);
+    });
+  }
+  if (maxPrice) {
+    filteredCars = filteredCars.filter((car) => {
+      const currentPrice = car.discount_price_amount || car.retail_price_amount;
+      return currentPrice <= Number(maxPrice);
+    });
+  }
+  if (bodyStyles) {
+    filteredCars = filteredCars.filter((car) =>
+      bodyStyles.includes(convertToKebabCase(car.body_style)),
+    );
+  }
+  if (engineTypes) {
+    filteredCars = filteredCars.filter((car) =>
+      engineTypes.includes(convertToKebabCase(car.engine_type)),
+    );
+  }
+  if (transmissions) {
+    filteredCars = filteredCars.filter((car) =>
+      transmissions.includes(convertToKebabCase(car.transmission)),
+    );
+  }
+  if (minSeats) {
+    filteredCars = filteredCars.filter((car) => car.seats >= Number(minSeats));
+  }
 
   return (
     <>
@@ -104,7 +91,12 @@ export function CarsView({ cars }: CarsViewProps) {
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
             {filteredCars.map((car, index) => (
-              <CarCard key={car.id} index={index} car={car} />
+              <CarCard
+                key={car.id}
+                index={index}
+                car={car}
+                searchParams={searchParams}
+              />
             ))}
           </div>
         )}
