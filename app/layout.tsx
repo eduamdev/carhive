@@ -41,6 +41,19 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: '@eduamdev',
   },
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        sizes: '32x32',
+      },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-icon.png', type: 'image/png' }],
+  },
+  manifest: `${siteConfig.url}/manifest.webmanifest`,
 };
 
 interface RootLayoutProps {
