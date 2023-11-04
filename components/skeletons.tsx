@@ -1,6 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';
 import { LoadingDots } from '@/components/loading-dots';
+import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 export function CarCardSkeleton() {
@@ -121,7 +122,34 @@ export function SearchFormSkeleton({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function CarViewSkeleton() {
+export function SearchHeroSkeleton() {
+  return (
+    <>
+      <h1 className="text-center text-3xl font-extrabold">Find your car</h1>
+      <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 items-center justify-center gap-4 md:flex md:flex-row md:gap-12">
+        <div className="flex items-center justify-center gap-1.5">
+          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <span className="text-sm text-neutral-900">No hidden fees.</span>
+        </div>
+        <div className="flex items-center justify-center gap-1.5">
+          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <span className="text-sm text-neutral-900">Transparent pricing.</span>
+        </div>
+        <div className="flex items-center justify-center gap-1.5">
+          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <span className="text-sm text-neutral-900">
+            Flexible cancellations.
+          </span>
+        </div>
+      </div>
+      <div className="mt-5 hidden md:block">
+        <SearchFormSkeleton />
+      </div>
+    </>
+  );
+}
+
+export function CarOverviewSkeleton() {
   return (
     <div className="p-6 px-0 pb-0 md:pb-0 md:pr-6">
       <div className="grid grid-cols-[1fr_auto] justify-between">
@@ -207,7 +235,7 @@ export function CarViewSkeleton() {
   );
 }
 
-export function ReserveCardSkeleton() {
+export function CarBookingSidebarSkeleton() {
   return (
     <div className="hidden normal-nums md:block">
       <div className="sticky top-[calc(var(--site-header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">

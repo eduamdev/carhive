@@ -12,15 +12,10 @@ export function MapView({ locations }: { locations: Location[] }) {
   const searchParams = useSearchParams();
   const mapRef = useRef<Map | null>(null);
 
-  const DEFAULT_LOCATION = {
-    latitude: 52.3547,
-    longitude: 4.904,
-  };
   const DEFAULT_ZOOM_LEVEL = 12;
-
   const center: LatLngExpression = [
-    DEFAULT_LOCATION.latitude,
-    DEFAULT_LOCATION.longitude,
+    locations[6].latitude,
+    locations[6].longitude,
   ];
 
   function RecenterMap() {

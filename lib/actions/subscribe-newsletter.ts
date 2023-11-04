@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 
 const NewsletterSchema = z.object({
-  id: z.string(),
+  id: z.string().uuid(),
   email: z.string().email({
     message: 'Invalid email address',
   }),
@@ -28,12 +28,12 @@ export async function subscribeNewsletter(prevState: any, formData: FormData) {
 
   // Prepare data for insertion into the database
   const { email } = validatedField.data;
-  const date = new Date().toISOString().split('T')[0];
+  const createdAt = new Date().toISOString().split('T')[0];
 
   try {
     await sql`
       INSERT INTO newsletter (email, created_at)
-      VALUES (${email}, ${date})
+      VALUES (${email}, ${createdAt})
     `;
     return { subscribed: true };
   } catch (error) {

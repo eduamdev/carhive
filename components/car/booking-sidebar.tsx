@@ -1,28 +1,43 @@
-import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import { differenceInDays, format } from 'date-fns';
+import { addDays, differenceInDays, format } from 'date-fns';
 import { formatCurrency } from '@/lib/utils';
 import { Car } from '@/lib/definitions';
+import { Button } from '@/components/ui/button';
+import { fetchLocationByValue } from '@/lib/data';
+import { locations } from '@/lib/placeholder-data';
 
-interface ReserveCardProps {
+interface BookingSidebarProps {
   car: Car;
-  location: string;
-  checkin: Date;
-  checkout: Date;
+  location?: string;
+  checkin?: string;
+  checkout?: string;
 }
 
-export function ReserveCard({
+export async function BookingSidebar({
   car,
   location,
   checkin,
   checkout,
-}: ReserveCardProps) {
+}: BookingSidebarProps) {
+  const defaults = {
+    LOCATION_NAME: locations[6].name,
+    CHECKIN: addDays(new Date(), 7),
+    CHECKOUT: addDays(new Date(), 14),
+  };
+
+  const locationName =
+    (location && (await fetchLocationByValue(location))?.name) ||
+    defaults.LOCATION_NAME;
+
+  const checkIn = (checkin && new Date(checkin)) || defaults.CHECKIN;
+  const checkOut = (checkout && new Date(checkout)) || defaults.CHECKOUT;
+
   const currentPrice: number =
     car.discount_price_amount || car.retail_price_amount;
   const currency: string =
     car.discount_price_currency || car.retail_price_currency;
 
-  const numberOfDays: number = differenceInDays(checkout, checkin);
+  const numberOfDays: number = differenceInDays(checkOut, checkIn);
   const taxesAndFees: number = currentPrice * numberOfDays * 0.16;
 
   return (
@@ -59,7 +74,7 @@ export function ReserveCard({
                 Pick-up / Drop-off
               </div>
               <div className="text-sm leading-none text-neutral-600">
-                {location}
+                {locationName}
               </div>
             </div>
           </div>
@@ -68,7 +83,7 @@ export function ReserveCard({
               <div className="flex h-full flex-col items-start justify-center gap-1 p-2">
                 <div className="text-xs font-medium leading-none">Check-in</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  {format(checkin, 'dd/MM/yyyy')}
+                  {format(checkIn, 'dd/MM/yyyy')}
                 </div>
               </div>
             </div>
@@ -76,7 +91,7 @@ export function ReserveCard({
               <div className="flex flex-col gap-1.5 p-2.5">
                 <div className="text-xs font-medium leading-none">Checkout</div>
                 <div className="text-sm leading-none text-neutral-600">
-                  {format(checkout, 'dd/MM/yyyy')}
+                  {format(checkOut, 'dd/MM/yyyy')}
                 </div>
               </div>
             </div>

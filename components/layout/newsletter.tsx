@@ -1,70 +1,15 @@
-'use client';
-
-import { useFormState, useFormStatus } from 'react-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { subscribeNewsletter } from '@/lib/actions';
-import { cn } from '@/lib/utils';
-import { Icons } from '../icons';
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button
-      type="submit"
-      variant="outline"
-      size="xs"
-      className="absolute right-1 top-1/2 -translate-y-1/2 rounded-md text-xs text-neutral-600"
-      aria-disabled={pending}
-    >
-      Subscribe
-    </Button>
-  );
-}
+import { SubscribeNewsletterForm } from '@/components/layout/subscribe-newsletter-form';
 
 export function Newsletter() {
-  const initialState = {
-    errors: [],
-    message: null,
-    subscribed: false,
-  };
-
-  const [state, formAction] = useFormState(subscribeNewsletter, initialState);
-
   return (
-    <form action={formAction}>
-      <div className={cn('relative', state?.subscribed && 'hidden')}>
-        <Input
-          name="email"
-          placeholder="you@domain.com"
-          type="email"
-          className="w-full text-ellipsis rounded-md border bg-neutral-50 px-3.5 py-2 pr-24 text-sm"
-          defaultValue=""
-          required
-          aria-describedby="email-validation"
-        />
-        <SubmitButton />
-      </div>
-      <div id="email-validation" aria-live="polite">
-        {state?.errors?.map((error: string) => (
-          <p key={error} className="mt-2 text-sm text-red-500">
-            {error}
-          </p>
-        ))}
-        {state?.message && (
-          <p className="mt-2 text-sm text-red-500">{state.message}</p>
-        )}
-        {state?.subscribed && (
-          <p className="mt-2 flex flex-row items-center gap-1.5 text-sm text-neutral-600">
-            <Icons.checkCircle
-              className="h-5 w-5 shrink-0 text-green-600"
-              aria-hidden="true"
-            />
-            Thanks for subscribing!
-          </p>
-        )}
-      </div>
-    </form>
+    <div className="col-span-full flex w-full flex-col gap-2 lg:max-w-[240px]">
+      <h3 className="mb-1.5 text-sm font-medium text-neutral-800 lg:text-sm">
+        Subscribe to our newsletter
+      </h3>
+      <p className="mb-1.5 text-[13px] leading-6 text-neutral-600 lg:text-sm">
+        Join Our Community! Get exclusive travel offers and insider tips.
+      </p>
+      <SubscribeNewsletterForm />
+    </div>
   );
 }

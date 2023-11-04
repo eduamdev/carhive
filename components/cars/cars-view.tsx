@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CarCard } from '@/components/cars/car-card';
-import { FiltersButton } from '@/components/cars/filters-button';
+import { FiltersModal } from '@/components/cars/filters-modal';
 import { Car, SearchParams } from '@/lib/definitions';
 
 interface CarsViewProps {
@@ -79,8 +79,8 @@ export function CarsView({ cars }: CarsViewProps) {
     return Number(car.discount_price_amount || car.retail_price_amount);
   });
 
-  const minPrice = Math.min(...carPrices);
-  const maxPrice = Math.max(...carPrices);
+  const MIN_PRICE = Math.min(...carPrices);
+  const MAX_PRICE = Math.max(...carPrices);
 
   return (
     <>
@@ -91,7 +91,7 @@ export function CarsView({ cars }: CarsViewProps) {
               ? `${filteredCars.length} cars`
               : `${filteredCars.length} car`)}
         </p>
-        <FiltersButton minPrice={minPrice} maxPrice={maxPrice} />
+        <FiltersModal minPrice={MIN_PRICE} maxPrice={MAX_PRICE} />
       </div>
       <div className="mx-5 mb-12 sm:mx-6">
         {!filteredCars.length ? (
