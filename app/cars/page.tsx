@@ -3,6 +3,7 @@ import { CarsView } from '@/components/cars/cars-view';
 import { MapContainer } from '@/components/cars/map-container';
 import { CarsViewSkeleton } from '@/components/skeletons';
 import { SearchParams } from '@/lib/definitions';
+
 interface CarsPageProps {
   searchParams: {
     [SearchParams.LOCATION]?: string;
