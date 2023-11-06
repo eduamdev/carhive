@@ -1,20 +1,24 @@
 import { ReservationForm } from '@/components/car/reservation-form';
 import { Icons } from '@/components/icons';
 import { formatCurrency } from '@/lib/utils';
-import { Car } from '@/db/definitions';
-import { fetchLocations } from '@/db/queries';
+import { fetchCarBySlug, fetchLocations } from '@/db/queries';
 
 interface ReservationSidebarProps {
-  car: Car;
+  slug: string;
 }
 
-export async function ReservationSidebar({ car }: ReservationSidebarProps) {
-  const locations = await fetchLocations();
+export async function ReservationSidebar({ slug }: ReservationSidebarProps) {
+  const [car, locations] = await Promise.all([
+    fetchCarBySlug(slug),
+    fetchLocations(),
+  ]);
 
-  const pricePerDay: number =
-    car.discounted_price_per_day || car.retail_price_per_day;
-  const currency: string =
-    car.discounted_price_currency || car.retail_price_currency;
+  if (!car) {
+    return null;
+  }
+
+  const pricePerDay = car.discounted_price_per_day || car.retail_price_per_day;
+  const currency = car.discounted_price_currency || car.retail_price_currency;
 
   return (
     <div className="hidden normal-nums md:block">

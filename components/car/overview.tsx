@@ -1,12 +1,18 @@
 import Image from 'next/image';
 import { Icons } from '@/components/icons';
-import { Car } from '@/db/definitions';
+import { fetchCarBySlug } from '@/db/queries';
 
 interface CarOverviewProps {
-  car: Car;
+  slug: string;
 }
 
-export function CarOverview({ car }: CarOverviewProps) {
+export async function CarOverview({ slug }: CarOverviewProps) {
+  const car = await fetchCarBySlug(slug);
+
+  if (!car) {
+    return null;
+  }
+
   return (
     <div className="p-6 px-0 pb-0 md:pb-0 md:pr-6">
       <div className="grid grid-cols-[1fr_auto] justify-between">

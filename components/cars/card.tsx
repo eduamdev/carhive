@@ -9,17 +9,22 @@ import {
 import { ViewCarDetails } from '@/components/cars/view-car-details';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
+import { fetchCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/lib/utils';
-import { Car } from '@/db/definitions';
 
 interface CarCardProps {
   index: number;
-  car: Car;
+  slug: string;
 }
 
-export function CarCard({ index, car }: CarCardProps) {
+export async function CarCard({ index, slug }: CarCardProps) {
+  const car = await fetchCarBySlug(slug);
+
+  if (!car) {
+    return null;
+  }
+
   const {
-    slug,
     name,
     image_url,
     transmission,

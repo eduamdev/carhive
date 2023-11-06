@@ -92,8 +92,8 @@ export async function CarCatalog({ searchParams }: CarCatalogProps) {
           </div>
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
-            {filteredCars.map((car, index) => (
-              <CarCard key={car.id} index={index} car={car} />
+            {filteredCars.map(({ id, slug }, index) => (
+              <CarCard key={id} index={index} slug={slug} />
             ))}
           </div>
         )}
