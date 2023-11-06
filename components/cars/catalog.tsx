@@ -21,7 +21,7 @@ interface CarCatalogProps {
 export async function CarCatalog({ searchParams }: CarCatalogProps) {
   const cars = await fetchCars();
   const carPrices = cars.map((car) => {
-    return Number(car.discounted_price_per_day || car.retail_price_per_day);
+    return car.discounted_price_per_day || car.retail_price_per_day;
   });
 
   const MIN_PRICE = Math.min(...carPrices);
