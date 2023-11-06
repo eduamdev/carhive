@@ -55,7 +55,7 @@ export function CarCardsSkeleton() {
   );
 }
 
-export function CarsViewSkeleton() {
+export function CarCatalogSkeleton() {
   return (
     <>
       <div className="mx-5 my-[18px] flex items-center justify-between sm:mx-6">
@@ -235,7 +235,7 @@ export function CarOverviewSkeleton() {
   );
 }
 
-export function CarBookingSidebarSkeleton() {
+export function ReservationSidebarSkeleton() {
   return (
     <div className="hidden normal-nums md:block">
       <div className="sticky top-[calc(var(--site-header-height)+24px)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">

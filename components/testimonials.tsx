@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { fetchTestimonials } from '@/lib/data';
+import { fetchTestimonials } from '@/db/queries';
 
 export async function Testimonials() {
   const testimonials = await fetchTestimonials();

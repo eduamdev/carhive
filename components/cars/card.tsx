@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import Image from 'next/image';
-
 import {
   Card,
   CardContent,
@@ -8,24 +6,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ViewCarDetails } from '@/components/cars/view-car-details';
 import { Separator } from '@/components/ui/separator';
 import { Icons } from '@/components/icons';
-import { cn, createUrl, formatCurrency } from '@/lib/utils';
-
-import { Car, SearchParams } from '@/lib/definitions';
+import { cn, formatCurrency } from '@/lib/utils';
+import { Car } from '@/db/definitions';
 
 interface CarCardProps {
-  car: Car;
   index: number;
-  searchParams: {
-    [SearchParams.LOCATION]?: string;
-    [SearchParams.CHECKIN]?: string;
-    [SearchParams.CHECKOUT]?: string;
-  };
+  car: Car;
 }
 
-export function CarCard({ car, index, searchParams }: CarCardProps) {
+export function CarCard({ index, car }: CarCardProps) {
   const {
     slug,
     name,
@@ -33,22 +25,14 @@ export function CarCard({ car, index, searchParams }: CarCardProps) {
     transmission,
     engine_type,
     seats,
-    discount_price_amount,
-    retail_price_amount,
-    discount_price_currency,
+    discounted_price_per_day,
+    retail_price_per_day,
+    discounted_price_currency,
     retail_price_currency,
     rating,
     reviews,
     unlimited_mileage,
   } = car;
-
-  const newParams = new URLSearchParams();
-  const { location, checkin, checkout } = searchParams;
-  if (location) newParams.set(SearchParams.LOCATION, location);
-  if (checkin) newParams.set(SearchParams.CHECKIN, checkin);
-  if (checkout) newParams.set(SearchParams.CHECKOUT, checkout);
-
-  const linkHref = createUrl(`/car/${slug}`, newParams);
 
   return (
     <Card>
@@ -85,7 +69,7 @@ export function CarCard({ car, index, searchParams }: CarCardProps) {
               fill={true}
               sizes="250px"
               className="object-contain object-center"
-              priority={index < 8 ? true : false}
+              priority={index < 8}
               quality={100}
             />
           </div>
@@ -102,18 +86,21 @@ export function CarCard({ car, index, searchParams }: CarCardProps) {
           </p>
         </div>
         <div className="mt-3 text-base">
-          {discount_price_amount ? (
+          {discounted_price_per_day ? (
             <>
               <span className="mr-1.5 leading-none text-neutral-500 line-through">
-                {retail_price_amount}
+                {retail_price_per_day}
               </span>
               <span className="font-semibold leading-none">
-                {formatCurrency(discount_price_amount, discount_price_currency)}
+                {formatCurrency(
+                  discounted_price_per_day,
+                  discounted_price_currency,
+                )}
               </span>
             </>
           ) : (
             <span className=" font-semibold leading-none">
-              {formatCurrency(retail_price_amount, retail_price_currency)}
+              {formatCurrency(retail_price_per_day, retail_price_currency)}
             </span>
           )}
           <span className="ml-1.5 text-[15px] font-medium leading-none text-neutral-700">
@@ -122,9 +109,7 @@ export function CarCard({ car, index, searchParams }: CarCardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" asChild>
-          <Link href={linkHref}>View details</Link>
-        </Button>
+        <ViewCarDetails slug={slug} />
       </CardFooter>
     </Card>
   );

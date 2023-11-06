@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { MapSkeleton } from '@/components/skeletons';
-import { fetchLocations } from '@/lib/data';
+import { fetchLocations } from '@/db/queries';
 
 const DynamicMap = dynamic(
   async () => {

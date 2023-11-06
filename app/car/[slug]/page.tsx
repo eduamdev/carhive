@@ -1,17 +1,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { Overview } from '@/components/car/overview';
-import { BookingSidebar } from '@/components/car/booking-sidebar';
-import { fetchCarBySlug, fetchCars } from '@/lib/data';
+import { CarOverview } from '@/components/car/overview';
+import { ReservationSidebar } from '@/components/car/reservation-sidebar';
+import { fetchCarBySlug, fetchCars } from '@/db/queries';
 
 interface CarPageProps {
   params: { slug: string };
-  searchParams: {
-    location?: string;
-    checkin?: string;
-    checkout?: string;
-  };
 }
 
 export async function generateMetadata({
@@ -38,7 +33,7 @@ export async function generateStaticParams() {
   return cars.map((car) => ({ slug: car.slug }));
 }
 
-export default async function CarPage({ params, searchParams }: CarPageProps) {
+export default async function CarPage({ params }: CarPageProps) {
   const car = await fetchCarBySlug(params.slug);
 
   if (!car) {
@@ -49,13 +44,8 @@ export default async function CarPage({ params, searchParams }: CarPageProps) {
     <div className="py-[var(--car-page-main-content-padding-y)]">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
         <div className="grid w-full grid-cols-1 gap-24 md:grid-cols-[1fr_var(--card-reserve-width)]">
-          <Overview car={car} />
-          <BookingSidebar
-            car={car}
-            location={searchParams.location}
-            checkin={searchParams.checkin}
-            checkout={searchParams.checkout}
-          />
+          <CarOverview car={car} />
+          <ReservationSidebar car={car} />
         </div>
       </div>
     </div>

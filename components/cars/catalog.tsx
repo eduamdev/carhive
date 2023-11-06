@@ -1,10 +1,10 @@
-import { CarCard } from '@/components/cars/car-card';
-import { FiltersModal } from '@/components/cars/filters-modal';
-import { fetchCars } from '@/lib/data';
-import { convertToKebabCase } from '@/lib/utils';
-import { SearchParams } from '@/lib/definitions';
+import { CarCard } from '@/components/cars/card';
+import { FiltersModal } from '@/components/cars/modal';
+import { fetchCars } from '@/db/queries';
+import { slugify } from '@/lib/utils';
+import { SearchParams } from '@/lib/types';
 
-interface CarsViewProps {
+interface CarCatalogProps {
   searchParams: {
     [SearchParams.LOCATION]?: string;
     [SearchParams.CHECKIN]?: string;
@@ -18,10 +18,10 @@ interface CarsViewProps {
   };
 }
 
-export async function CarsView({ searchParams }: CarsViewProps) {
+export async function CarCatalog({ searchParams }: CarCatalogProps) {
   const cars = await fetchCars();
   const carPrices = cars.map((car) => {
-    return Number(car.discount_price_amount || car.retail_price_amount);
+    return Number(car.discounted_price_per_day || car.retail_price_per_day);
   });
 
   const MIN_PRICE = Math.min(...carPrices);
@@ -40,29 +40,31 @@ export async function CarsView({ searchParams }: CarsViewProps) {
 
   if (minPrice) {
     filteredCars = filteredCars.filter((car) => {
-      const currentPrice = car.discount_price_amount || car.retail_price_amount;
+      const currentPrice =
+        car.discounted_price_per_day || car.retail_price_per_day;
       return currentPrice >= Number(minPrice);
     });
   }
   if (maxPrice) {
     filteredCars = filteredCars.filter((car) => {
-      const currentPrice = car.discount_price_amount || car.retail_price_amount;
+      const currentPrice =
+        car.discounted_price_per_day || car.retail_price_per_day;
       return currentPrice <= Number(maxPrice);
     });
   }
   if (bodyStyles) {
     filteredCars = filteredCars.filter((car) =>
-      bodyStyles.includes(convertToKebabCase(car.body_style)),
+      bodyStyles.includes(slugify(car.body_style)),
     );
   }
   if (engineTypes) {
     filteredCars = filteredCars.filter((car) =>
-      engineTypes.includes(convertToKebabCase(car.engine_type)),
+      engineTypes.includes(slugify(car.engine_type)),
     );
   }
   if (transmissions) {
     filteredCars = filteredCars.filter((car) =>
-      transmissions.includes(convertToKebabCase(car.transmission)),
+      transmissions.includes(slugify(car.transmission)),
     );
   }
   if (minSeats) {
@@ -91,12 +93,7 @@ export async function CarsView({ searchParams }: CarsViewProps) {
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
             {filteredCars.map((car, index) => (
-              <CarCard
-                key={car.id}
-                index={index}
-                car={car}
-                searchParams={searchParams}
-              />
+              <CarCard key={car.id} index={index} car={car} />
             ))}
           </div>
         )}

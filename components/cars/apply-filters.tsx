@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { createUrl } from '@/lib/utils';
-import { SelectedFilters, SearchParams } from '@/lib/definitions';
+import { SelectedFilters, SearchParams } from '@/lib/types';
 
 interface ApplyFiltersProps {
   minPrice: number;

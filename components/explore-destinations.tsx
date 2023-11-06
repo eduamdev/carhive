@@ -8,9 +8,9 @@ import dubai from '/public/locations/dubai.avif';
 import cancun from '/public/locations/cancun.avif';
 import rome from '/public/locations/rome.avif';
 
-import { fetchFeaturedLocations, getMinPriceFromCars } from '@/lib/data';
+import { fetchFeaturedLocations, getMinPriceFromCars } from '@/db/queries';
 import { formatCurrency } from '@/lib/utils';
-import { SearchParams } from '@/lib/definitions';
+import { SearchParams } from '@/lib/types';
 
 const imageMap: { [key: string]: StaticImageData } = {
   paris: paris,
@@ -19,7 +19,7 @@ const imageMap: { [key: string]: StaticImageData } = {
   rome: rome,
 };
 
-export async function FeaturedLocations() {
+export async function ExploreDestinations() {
   const currency = 'MXN';
   const [featuredLocations, minPrice] = await Promise.all([
     fetchFeaturedLocations(),

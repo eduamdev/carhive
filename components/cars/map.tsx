@@ -6,7 +6,8 @@ import { useSearchParams } from 'next/navigation';
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Location, SearchParams } from '@/lib/definitions';
+import { SearchParams } from '@/lib/types';
+import { Location } from '@/db/definitions';
 
 export function Map({ locations }: { locations: Location[] }) {
   const searchParams = useSearchParams();

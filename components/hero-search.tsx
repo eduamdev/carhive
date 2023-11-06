@@ -1,8 +1,8 @@
 import { SearchForm } from '@/components/search-form';
 import { Icons } from '@/components/icons';
-import { fetchLocations } from '@/lib/data';
+import { fetchLocations } from '@/db/queries';
 
-export async function SearchHero() {
+export async function HeroSearch() {
   const locations = await fetchLocations();
 
   return (

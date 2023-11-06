@@ -11,11 +11,14 @@ const NewsletterSchema = z.object({
   created_at: z.string(),
 });
 
-const SubscribeNewsletter = NewsletterSchema.pick({ email: true });
+const SubscribeToNewsletter = NewsletterSchema.pick({ email: true });
 
-export async function subscribeNewsletter(prevState: any, formData: FormData) {
+export async function subscribeToNewsletter(
+  prevState: any,
+  formData: FormData,
+) {
   // Validate form using Zod
-  const validatedField = SubscribeNewsletter.safeParse({
+  const validatedField = SubscribeToNewsletter.safeParse({
     email: formData.get('email'),
   });
 
@@ -32,7 +35,7 @@ export async function subscribeNewsletter(prevState: any, formData: FormData) {
 
   try {
     await sql`
-      INSERT INTO newsletter (email, created_at)
+      INSERT INTO newsletter_subscribers (email, created_at)
       VALUES (${email}, ${createdAt})
     `;
     return { subscribed: true };

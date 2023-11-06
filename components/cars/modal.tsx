@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,23 +11,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { PriceRangeFilters } from '@/components/cars/price-range-filters';
-import { BodyStyleFilters } from '@/components/cars/body-style-filters';
-import { EngineTypeFilters } from '@/components/cars/engine-type-filters';
-import { SeatingCapacityFilters } from '@/components/cars/seating-capacity-filters';
-import { TransmissionFilters } from '@/components/cars/transmission-filters';
+import { Filters } from '@/components/cars/filters';
+import { Icons } from '@/components/icons';
+import { CounterBadge } from '@/components/counter-badge';
 import { ResetFilters } from '@/components/cars/reset-filters';
 import { ApplyFilters } from '@/components/cars/apply-filters';
-import { Badge } from '@/components/badge';
-import { Icons } from '@/components/icons';
 import {
   BodyStyle,
   EngineType,
   SearchParams,
   SelectedFilters,
   Transmission,
-} from '@/lib/definitions';
+} from '@/lib/types';
 
 interface FiltersModalProps {
   minPrice: number;
@@ -109,11 +105,11 @@ export function FiltersModal({ minPrice, maxPrice }: FiltersModalProps) {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="relative flex items-center justify-center"
+          className="relative flex items-center justify-center gap-x-2.5"
         >
-          <Icons.filters className="mr-2.5 h-[22px] w-[22px]" />
+          <Icons.filters className="h-[22px] w-[22px]" />
           <span>Filters</span>
-          <Badge count={count} />
+          <CounterBadge count={count} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[var(--modal-filters-max-width)] gap-0 !rounded-xl p-0">
@@ -123,25 +119,9 @@ export function FiltersModal({ minPrice, maxPrice }: FiltersModalProps) {
           </DialogTitle>
         </DialogHeader>
         <div className="h-full max-h-[var(--modal-filters-content-max-height)] overflow-y-auto border-y">
-          <PriceRangeFilters
+          <Filters
             minPrice={minPrice}
             maxPrice={maxPrice}
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <BodyStyleFilters
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <EngineTypeFilters
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <SeatingCapacityFilters
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
-          <TransmissionFilters
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
           />

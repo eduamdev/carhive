@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SearchForm } from '@/components/search-form';
 import { SearchFormSkeleton } from '@/components/skeletons';
-import { fetchLocations } from '@/lib/data';
+import { fetchLocations } from '@/db/queries';
 
 export async function CarsHeader() {
   const locations = await fetchLocations();

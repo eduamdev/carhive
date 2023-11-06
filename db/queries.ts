@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { Testimonial, Location, Car } from '@/lib/definitions';
+import { Testimonial, Location, Car } from '@/db/definitions';
 
 export async function fetchTestimonials() {
   try {
@@ -93,7 +93,7 @@ export async function getMinPriceFromCars() {
   try {
     const data = await sql<{ min_price: number }>`
       SELECT 
-        MIN(COALESCE(discount_price_amount, retail_price_amount)) AS min_price
+        MIN(COALESCE(discounted_price_per_day, retail_price_per_day)) AS min_price
       FROM cars;
     `;
 

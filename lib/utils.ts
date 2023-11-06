@@ -25,9 +25,12 @@ export const formatCurrency = (amount: number, currency: string = 'USD') => {
   });
 };
 
-export function convertToKebabCase(inputString: string): string {
-  return inputString
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/([a-z])([A-Z])/g, '$1-$2') // Convert camelCase to kebab-case
-    .toLowerCase(); // Convert the whole string to lowercase
+export function slugify(str: string) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim leading/trailing white space
+  str = str.toLowerCase(); // convert string to lowercase
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove any non-alphanumeric characters
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-'); // remove consecutive hyphens
+  return str;
 }

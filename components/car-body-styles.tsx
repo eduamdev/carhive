@@ -10,8 +10,8 @@ import sportsCar from '/public/cars/body-styles/sports-car.avif';
 import suv from '/public/cars/body-styles/suv.avif';
 import sedan from '/public/cars/body-styles/sedan.avif';
 
-import { bodyStyles } from '@/components/cars/body-style-filters';
-import { SearchParams } from '@/lib/definitions';
+import { bodyStyles } from '@/components/cars/filters';
+import { SearchParams } from '@/lib/types';
 
 const imageMap = {
   hatchback: hatchback,
@@ -22,7 +22,7 @@ const imageMap = {
   sedan: sedan,
 };
 
-export function PopularCarBodyStyles() {
+export function CarBodyStyles() {
   return (
     <section className="border-t pt-10">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">

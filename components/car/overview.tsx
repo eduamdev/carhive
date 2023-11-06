@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { Icons } from '@/components/icons';
-import { Car } from '@/lib/definitions';
+import { Car } from '@/db/definitions';
 
-interface OverviewProps {
+interface CarOverviewProps {
   car: Car;
 }
 
-export function Overview({ car }: OverviewProps) {
+export function CarOverview({ car }: CarOverviewProps) {
   return (
     <div className="p-6 px-0 pb-0 md:pb-0 md:pr-6">
       <div className="grid grid-cols-[1fr_auto] justify-between">

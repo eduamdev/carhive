@@ -1,4 +1,4 @@
-export function Badge({ count }: { count?: number }) {
+export function CounterBadge({ count }: { count?: number }) {
   if (!count) return null;
 
   return (

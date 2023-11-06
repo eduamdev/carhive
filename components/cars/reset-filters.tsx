@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Button } from '@/components/ui/button';
-import { SelectedFilters } from '@/lib/definitions';
+import { SelectedFilters } from '@/lib/types';
 
 interface ResetFiltersProps {
   minPrice: number;

@@ -4,7 +4,7 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Icons } from '@/components/icons';
-import { subscribeNewsletter } from '@/lib/actions/subscribe-newsletter';
+import { subscribeToNewsletter } from '@/db/actions';
 import { cn } from '@/lib/utils';
 
 function SubmitButton() {
@@ -24,14 +24,14 @@ function SubmitButton() {
   );
 }
 
-export function SubscribeNewsletterForm() {
+export function SubscribeForm() {
   const initialState = {
     errors: [],
     message: null,
     subscribed: false,
   };
 
-  const [state, formAction] = useFormState(subscribeNewsletter, initialState);
+  const [state, formAction] = useFormState(subscribeToNewsletter, initialState);
 
   return (
     <form action={formAction}>

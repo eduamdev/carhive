@@ -1,4 +1,4 @@
-import { SubscribeNewsletterForm } from '@/components/layout/subscribe-newsletter-form';
+import { SubscribeForm } from '@/components/layout/subscribe-form';
 
 export function Newsletter() {
   return (
@@ -9,7 +9,7 @@ export function Newsletter() {
       <p className="mb-1.5 text-[13px] leading-6 text-neutral-600 lg:text-sm">
         Join Our Community! Get exclusive travel offers and insider tips.
       </p>
-      <SubscribeNewsletterForm />
+      <SubscribeForm />
     </div>
   );
 }
