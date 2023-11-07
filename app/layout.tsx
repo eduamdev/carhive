@@ -4,20 +4,21 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
 import { fontSans } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
+import { absoluteUrl, cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(absoluteUrl('/')),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   authors: {
-    name: 'eduamdev',
-    url: 'https://eduardoambriz.com',
+    name: siteConfig.author.name,
+    url: siteConfig.author.url,
   },
-  creator: 'eduamdev',
+  creator: siteConfig.author.name,
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@eduamdev',
+    creator: `@${siteConfig.author.name}`,
   },
   icons: {
     icon: [
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/apple-icon.png', type: 'image/png' }],
   },
-  manifest: `${siteConfig.url}/manifest.webmanifest`,
+  manifest: siteConfig.manifest,
 };
 
 interface RootLayoutProps {

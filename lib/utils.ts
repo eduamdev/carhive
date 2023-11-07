@@ -34,3 +34,17 @@ export function slugify(str: string) {
     .replace(/-+/g, '-'); // remove consecutive hyphens
   return str;
 }
+
+export function absoluteUrl(path: string) {
+  switch (process.env.NEXT_PUBLIC_VERCEL_ENV) {
+    case 'production':
+      return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${path}`;
+
+    case 'preview':
+      return `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}${path}`;
+
+    default:
+      // development
+      return `http://localhost:${process.env.PORT ?? 3000}${path}`;
+  }
+}
