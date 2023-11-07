@@ -1,6 +1,7 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { siteConfig } from '@/config/site';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -38,7 +39,7 @@ export function slugify(str: string) {
 export function absoluteUrl(path: string) {
   switch (process.env.NEXT_PUBLIC_VERCEL_ENV) {
     case 'production':
-      return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${path}`;
+      return `${siteConfig.url}${path}`;
 
     case 'preview':
       return `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}${path}`;

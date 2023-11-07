@@ -6,9 +6,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'carhive.vercel.app'
-      }
-    ]
+        hostname: 'carhive.eduam.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: 'carhive.vercel.app',
+      },
+    ],
   },
 };
 
