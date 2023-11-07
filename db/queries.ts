@@ -54,7 +54,7 @@ export async function fetchLocationByValue(value: string) {
 
     const location = data.rows[0];
 
-    console.log(location);
+    // console.log(location);
     return location;
   } catch (error) {
     console.error('Database Error:', error);
@@ -82,7 +82,7 @@ export async function fetchCarBySlug(slug: string) {
 
     const car = data.rows[0];
 
-    console.log(car);
+    // console.log(car);
     return car;
   } catch (error) {
     console.error('Database Error:', error);
@@ -97,10 +97,7 @@ export async function getMinPriceFromCars() {
       FROM cars;
     `;
 
-    const minPrice = data.rows[0].min_price;
-
-    console.log(minPrice);
-    return minPrice;
+    return data.rows[0].min_price;
   } catch (error) {
     console.error('Database Error:', error);
   }
