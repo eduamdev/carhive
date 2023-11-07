@@ -1,13 +1,11 @@
-import { SiteHeader } from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
-import {
-  CallToAction,
-  Features,
-  Hero,
-  PopularCarBodyStyles,
-  Testimonials,
-  TrendingPlaces,
-} from '@/components/home';
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { Hero } from '@/components/hero';
+import { CarBodyStyles } from '@/components/car-body-styles';
+import { ExploreDestinations } from '@/components/explore-destinations';
+import { Features } from '@/components/features';
+import { Testimonials } from '@/components/testimonials';
+import { ExploreCars } from '@/components/explore-cars';
 
 export default function HomePage() {
   return (
@@ -19,11 +17,11 @@ export default function HomePage() {
       </div>
       <main>
         <Hero />
-        <PopularCarBodyStyles />
-        <TrendingPlaces />
+        <CarBodyStyles />
+        <ExploreDestinations />
         <Features />
         <Testimonials />
-        <CallToAction />
+        <ExploreCars />
       </main>
       <SiteFooter />
     </>

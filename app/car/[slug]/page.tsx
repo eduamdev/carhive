@@ -1,64 +1,53 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { CarView } from '@/components/car-view';
-import { ReserveCard } from '@/components/reserve-card';
-import { getAllCars, getCarBySlug } from '@/lib/cars';
+import { CarOverview } from '@/components/car/overview';
+import { ReservationSidebar } from '@/components/car/reservation-sidebar';
+import { fetchCarBySlug, fetchCars } from '@/db/queries';
 
-type Props = {
+interface CarPageProps {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CarPageProps): Promise<Metadata> {
   // read route params
   const slug = params.slug;
 
   // fetch data
-  const car = getCarBySlug(slug);
+  const car = await fetchCarBySlug(slug);
 
   if (!car) {
     return {};
   }
 
   return {
-    title: car.title,
-    description: `Experience the ultimate driving adventure with our ${
-      car.title
-    }. This exceptional vehicle combines style, power, and comfort. With seating for ${
-      car.specs.capacity.seats
-    } passengers, a ${car.specs.engineType} engine, and ${
-      car.specs.transmission
-    } transmission, it offers a smooth and thrilling ride. Whether you're planning a family trip or a solo escapade, our ${
-      car.title
-    } is the perfect choice. ${
-      car.reviews
-        ? `Rated ${car.rating} stars based on ${car.reviews} reviews.`
-        : ''
-    } Pickup and dropoff at convenient locations. Reserve your ${
-      car.title
-    } today.`,
+    title: car.name,
+    description: car.descriptions[0],
   };
 }
 
 export async function generateStaticParams() {
-  const cars = getAllCars();
+  const cars = await fetchCars();
   return cars.map((car) => ({ slug: car.slug }));
 }
 
-export default function CarPage({ params }: Props) {
-  const car = getCarBySlug(params.slug);
+export default async function CarPage({ params }: CarPageProps) {
+  const car = await fetchCarBySlug(params.slug);
 
   if (!car) {
     notFound();
   }
 
+  const { slug } = car;
+
   return (
     <div className="py-[var(--car-page-main-content-padding-y)]">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
         <div className="grid w-full grid-cols-1 gap-24 md:grid-cols-[1fr_var(--card-reserve-width)]">
-          <CarView car={car} />
-          <ReserveCard car={car} />
+          <CarOverview slug={slug} />
+          <ReservationSidebar slug={slug} />
         </div>
       </div>
     </div>

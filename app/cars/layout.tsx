@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { SiteFooter } from '@/components/site-footer';
-import { CarsHeader } from './header';
+import { CarsHeader } from '@/components/cars/header';
+import { SiteFooter } from '@/components/layout/site-footer';
 
 export const metadata: Metadata = {
   title: 'Cars',

@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { format, isAfter } from 'date-fns';
+import { addDays, format, isAfter } from 'date-fns';
 
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from '@/components/ui/button';
@@ -33,33 +33,28 @@ import {
 import { Icons } from '@/components/icons';
 
 import { cn, createUrl } from '@/lib/utils';
-import { getAllLocations } from '@/lib/locations';
-
-import { ILocation } from '@/types/location';
-import { ESearchParams } from '@/types/filters';
+import { Location } from '@/db/definitions';
+import { SearchParams } from '@/lib/types';
 
 const FormSchema = z
   .object({
     location: z.string({ required_error: 'Location is required' }),
-    checkin: z.date({ required_error: 'Check-in date is required' }),
-    checkout: z.date({ required_error: 'Check-out date is required' }),
+    checkin: z.date({ required_error: 'Check in is required' }),
+    checkout: z.date({ required_error: 'Check out is required' }),
   })
   .refine((schema) => isAfter(schema.checkout, schema.checkin), {
-    message: 'Check-out date must be later than check-in',
+    message: 'Check out must be after check in',
     path: ['checkout'],
   });
 
 interface SearchFormProps {
+  locations: Location[];
   compact?: boolean;
 }
 
-export function SearchForm({ compact = false }: SearchFormProps) {
-  const router = useRouter();
+export function SearchForm({ locations, compact = false }: SearchFormProps) {
+  const { push } = useRouter();
   const searchParams = useSearchParams();
-  const allLocations: ReadonlyArray<ILocation> = getAllLocations();
-  const locations = [...allLocations].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -70,42 +65,30 @@ export function SearchForm({ compact = false }: SearchFormProps) {
 
     const newParams = new URLSearchParams(searchParams.toString());
 
-    newParams.delete(ESearchParams.LOCATION);
-    newParams.delete(ESearchParams.CHECKIN);
-    newParams.delete(ESearchParams.CHECKOUT);
+    newParams.delete(SearchParams.LOCATION);
+    newParams.delete(SearchParams.CHECKIN);
+    newParams.delete(SearchParams.CHECKOUT);
 
-    newParams.set(ESearchParams.LOCATION, location);
+    newParams.set(SearchParams.LOCATION, location);
 
     const checkinISOString = checkin.toISOString();
-    if (checkinISOString)
-      newParams.set(ESearchParams.CHECKIN, checkinISOString);
+    if (checkinISOString) newParams.set(SearchParams.CHECKIN, checkinISOString);
 
     const checkoutISOString = checkout.toISOString();
     if (checkoutISOString)
-      newParams.set(ESearchParams.CHECKOUT, checkoutISOString);
+      newParams.set(SearchParams.CHECKOUT, checkoutISOString);
 
-    router.push(createUrl('/cars', newParams));
+    push(createUrl('/cars', newParams));
   }
 
   useEffect(() => {
-    if (searchParams.has(ESearchParams.LOCATION)) {
-      const location = searchParams.get(ESearchParams.LOCATION);
-      if (location) form.setValue('location', location);
-    }
+    const location = searchParams.get(SearchParams.LOCATION);
+    const checkin = searchParams.get(SearchParams.CHECKIN);
+    const checkout = searchParams.get(SearchParams.CHECKOUT);
 
-    if (
-      searchParams.has(ESearchParams.CHECKIN) &&
-      searchParams.has(ESearchParams.CHECKOUT)
-    ) {
-      const checkinISOString = searchParams.get(ESearchParams.CHECKIN);
-      const checkoutISOString = searchParams.get(ESearchParams.CHECKOUT);
-
-      if (checkinISOString)
-        form.setValue('checkin', new Date(checkinISOString));
-
-      if (checkoutISOString)
-        form.setValue('checkout', new Date(checkoutISOString));
-    }
+    if (location) form.setValue('location', location);
+    if (checkin) form.setValue('checkin', new Date(checkin));
+    if (checkout) form.setValue('checkout', new Date(checkout));
 
     return () => {
       form.resetField('location');
@@ -131,7 +114,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               <FormItem className="grid h-full w-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold text-neutral-800',
+                    'inline-block h-full w-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -211,7 +194,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold text-neutral-800',
+                    'inline-block h-full w-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -244,7 +227,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={(date) => date < new Date()}
+                      disabled={(date) => date <= new Date()}
                     />
                   </PopoverContent>
                 </Popover>
@@ -271,7 +254,7 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold text-neutral-800',
+                    'inline-block h-full w-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -304,13 +287,13 @@ export function SearchForm({ compact = false }: SearchFormProps) {
                       mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={(date) => date < new Date()}
+                      disabled={(date) => date <= addDays(new Date(), 1)}
                     />
                   </PopoverContent>
                 </Popover>
                 <FormMessage
                   className={cn(
-                    'absolute  max-w-[calc(100%-32px)] overflow-hidden text-ellipsis',
+                    'absolute  max-w-[calc(100%+32px)] overflow-hidden text-ellipsis',
                     compact ? 'top-[52px] text-xs' : 'top-[62px] text-[13px]',
                   )}
                 />

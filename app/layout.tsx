@@ -4,20 +4,21 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 
 import { fontSans } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
+import { absoluteUrl, cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(absoluteUrl('/')),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   authors: {
-    name: 'eduamdev',
-    url: 'https://eduardoambriz.com',
+    name: siteConfig.author.name,
+    url: siteConfig.author.url,
   },
-  creator: 'eduamdev',
+  creator: siteConfig.author.name,
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
       {
         url: siteConfig.ogImage,
         width: 1200,
-        height: 600,
+        height: 630,
         alt: siteConfig.name,
       },
     ],
@@ -39,8 +40,21 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@eduamdev',
+    creator: `@${siteConfig.author.name}`,
   },
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        sizes: '32x32',
+      },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-icon.png', type: 'image/png' }],
+  },
+  manifest: siteConfig.manifest,
 };
 
 interface RootLayoutProps {

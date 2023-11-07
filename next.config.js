@@ -3,7 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['carhive.vercel.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'carhive.vercel.app'
+      }
+    ]
   },
 };
 

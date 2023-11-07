@@ -13,7 +13,11 @@
   },
   "settings": {
     "tailwindcss": {
-      "callees": ["cn"]
+      "callees": ["cn"],
+      "config": "tailwind.config.js"
+    },
+    "next": {
+      "rootDir": true
     }
   },
   "overrides": [

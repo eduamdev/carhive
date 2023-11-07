@@ -1,8 +1,6 @@
 import { ReadonlyURLSearchParams } from 'next/navigation';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { addDays, differenceInDays } from 'date-fns';
-import { EBodyStyles, EEngineTypes, ETransmissions } from '@/types/car';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,61 +16,35 @@ export const createUrl = (
   return `${pathname}${queryString}`;
 };
 
-export function convertToKebabCase(inputString: string): string {
-  // Replace spaces and underscores with dashes, then convert to lowercase
-  return inputString.replace(/[\s_]+/g, '-').toLowerCase();
-}
-
-export function reverseMapToEnum(
-  inputString: string,
-): EBodyStyles | ETransmissions | EEngineTypes | undefined {
-  const kebabToEnumMap: {
-    [key: string]: EBodyStyles | ETransmissions | EEngineTypes;
-  } = {
-    suv: EBodyStyles.SUV,
-    minivan: EBodyStyles.MINIVAN,
-    'pickup-truck': EBodyStyles.PICKUP_TRUCK,
-    'sports-car': EBodyStyles.SPORTS_CAR,
-    hatchback: EBodyStyles.HATCHBACK,
-    sedan: EBodyStyles.SEDAN,
-    automatic: ETransmissions.AUTOMATIC,
-    manual: ETransmissions.MANUAL,
-    gas: EEngineTypes.GAS,
-    hybrid: EEngineTypes.HYBRID,
-    electric: EEngineTypes.ELECTRIC,
-  };
-
-  return kebabToEnumMap[inputString.toLowerCase()];
-}
-
-export function formatCurrency(
-  amount: number,
-  currencyCode: string = 'USD',
-  showDecimals: boolean = false,
-): string {
-  const options: Intl.NumberFormatOptions = {
+export const formatCurrency = (amount: number, currency: string = 'USD') => {
+  return amount.toLocaleString('en-US', {
     style: 'currency',
-    currency: currencyCode,
-  };
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+};
 
-  if (!showDecimals) {
-    options.minimumFractionDigits = 0;
-    options.maximumFractionDigits = 0;
+export function slugify(str: string) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim leading/trailing white space
+  str = str.toLowerCase(); // convert string to lowercase
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove any non-alphanumeric characters
+    .replace(/\s+/g, '-') // replace spaces with hyphens
+    .replace(/-+/g, '-'); // remove consecutive hyphens
+  return str;
+}
+
+export function absoluteUrl(path: string) {
+  switch (process.env.NEXT_PUBLIC_VERCEL_ENV) {
+    case 'production':
+      return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}${path}`;
+
+    case 'preview':
+      return `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}${path}`;
+
+    default:
+      // development
+      return `http://localhost:${process.env.PORT ?? 3000}${path}`;
   }
-
-  const formattedAmount = new Intl.NumberFormat(undefined, options).format(
-    amount,
-  );
-  return formattedAmount;
-}
-
-export function addDaysToDate(
-  inputDate: Date,
-  numberOfDaysToAdd: number,
-): Date {
-  return addDays(inputDate, numberOfDaysToAdd);
-}
-
-export function getDaysDifference(startDate: Date, endDate: Date): number {
-  return differenceInDays(endDate, startDate);
 }
