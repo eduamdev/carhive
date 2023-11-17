@@ -1,5 +1,3 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   future: {
@@ -18,7 +16,7 @@ module.exports = {
         lg: '1128px',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans],
+        sans: ['var(--font-sans)'],
       },
       maxWidth: {
         '8xl': '86rem',

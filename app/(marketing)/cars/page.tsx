@@ -5,8 +5,8 @@ import {
 } from '@/app/components/skeletons';
 import { SiteHeader } from '@/app/components/site-header';
 import { SearchForm } from '@/app/components/search-form';
-import { FiltersModal } from './components/modal';
-import { CarCard } from './components/card';
+import { FiltersModal } from './components/filters-modal';
+import { CarCard } from './components/car-card';
 import { MapContainer } from './components/map-container';
 import { fetchCars, fetchLocations } from '@/db/queries';
 import { slugify } from '@/app/lib/utils';
@@ -14,15 +14,12 @@ import { SearchParams } from '@/app/lib/types';
 
 interface CarsPageProps {
   searchParams: {
-    [SearchParams.LOCATION]?: string;
-    [SearchParams.CHECKIN]?: string;
-    [SearchParams.CHECKOUT]?: string;
     [SearchParams.MIN_PRICE]?: string;
     [SearchParams.MAX_PRICE]?: string;
     [SearchParams.BODY_STYLE]?: string[];
     [SearchParams.ENGINE_TYPE]?: string[];
-    [SearchParams.MIN_SEATS]?: string;
     [SearchParams.TRANSMISSION]?: string[];
+    [SearchParams.MIN_SEATS]?: string;
   };
 }
 

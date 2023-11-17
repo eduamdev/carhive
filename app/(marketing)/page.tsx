@@ -12,7 +12,7 @@ import { HeroSkeleton } from '@/app/components/skeletons';
 import { LogoSlider } from '@/app/components/logo-slider';
 import { Icons } from '@/app/components/icons';
 import { SearchForm } from '@/app/components/search-form';
-import { bodyStyles } from '@/app/(marketing)/cars/components/filters';
+import { bodyStyles } from './cars/components/filters/body-styles';
 
 import hatchback from '/public/images/cars/body-styles/hatchback.avif';
 import minivan from '/public/images/cars/body-styles/minivan.avif';

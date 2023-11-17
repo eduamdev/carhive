@@ -1,0 +1,79 @@
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { SelectedFilters } from '@/app/lib/types';
+import { cn } from '@/app/lib/utils';
+import { Button } from '@/app/components/ui/button';
+
+interface SeatingCapacityFiltersProps {
+  selectedFilters: SelectedFilters;
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
+}
+
+export function SeatingCapacityFilters({
+  selectedFilters,
+  setSelectedFilters,
+}: SeatingCapacityFiltersProps) {
+  function handleClick(
+    seats: number | undefined,
+    selectedFilters: SelectedFilters,
+    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
+  ) {
+    setSelectedFilters({
+      ...selectedFilters,
+      seats: selectedFilters.seats === seats ? undefined : seats,
+    });
+  }
+
+  const seatingCapacity: ReadonlyArray<number> = [2, 3, 4, 5, 6, 7];
+
+  return (
+    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
+      <section>
+        <h3 className="pb-6 text-xl font-semibold">Seating capacity</h3>
+        <div className="mb-2 flex flex-row flex-wrap items-center gap-3">
+          <Filter
+            selected={!selectedFilters.seats}
+            onClick={() =>
+              handleClick(undefined, selectedFilters, setSelectedFilters)
+            }
+          >
+            Any
+          </Filter>
+          {seatingCapacity.map((seats, index, array) => (
+            <Filter
+              key={seats}
+              selected={selectedFilters.seats === seats}
+              onClick={() =>
+                handleClick(seats, selectedFilters, setSelectedFilters)
+              }
+            >
+              {index === array.length - 1 ? `${seats}+` : seats}
+            </Filter>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+interface FilterProps {
+  children: ReactNode;
+  selected: boolean;
+  onClick: () => void;
+}
+
+export function Filter({ children, selected, onClick }: FilterProps) {
+  return (
+    <Button
+      variant="filter"
+      size="pill"
+      className={cn(
+        'font-normal',
+        selected &&
+          'border-black bg-black text-white after:absolute after:-left-px after:-top-px after:h-[calc(100%_+_2px)] after:w-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  );
+}

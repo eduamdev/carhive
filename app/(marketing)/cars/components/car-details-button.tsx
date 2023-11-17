@@ -6,7 +6,7 @@ import { Button } from '@/app/components/ui/button';
 import { createUrl } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
 
-export function ViewCarDetails({ slug }: { slug: string }) {
+export function CarDetailsButton({ slug }: { slug: string }) {
   const searchParams = useSearchParams();
   const newParams = new URLSearchParams(searchParams.toString());
 

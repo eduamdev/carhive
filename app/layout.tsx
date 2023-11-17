@@ -60,9 +60,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={cn('min-h-screen font-sans', fontSans.variable)}>
-        <div className="relative flex min-h-screen flex-col">{children}</div>
+    <html lang="en" className={fontSans.variable}>
+      <body>
+        <div className="relative flex flex-col">{children}</div>
         <Toaster />
       </body>
     </html>

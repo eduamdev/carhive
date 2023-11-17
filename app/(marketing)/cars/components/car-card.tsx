@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-import { ViewCarDetails } from '../components/view-car-details';
+import { CarDetailsButton } from './car-details-button';
 import { Separator } from '@/app/components/ui/separator';
 import { Icons } from '@/app/components/icons';
 import { fetchCarBySlug } from '@/db/queries';
@@ -114,7 +114,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <ViewCarDetails slug={slug} />
+        <CarDetailsButton slug={slug} />
       </CardFooter>
     </Card>
   );

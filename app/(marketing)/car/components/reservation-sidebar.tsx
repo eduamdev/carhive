@@ -1,25 +1,23 @@
 import { ReservationForm } from '../components/reservation-form';
 import { Icons } from '@/app/components/icons';
 import { formatCurrency } from '@/app/lib/utils';
-import { fetchCarBySlug, fetchLocations } from '@/db/queries';
+import { Location } from '@/db/definitions';
 
 interface ReservationSidebarProps {
-  slug: string;
+  pricePerDay: number;
+  currency: string;
+  rating: number;
+  reviews: number;
+  locations: Location[];
 }
 
-export async function ReservationSidebar({ slug }: ReservationSidebarProps) {
-  const [car, locations] = await Promise.all([
-    fetchCarBySlug(slug),
-    fetchLocations(),
-  ]);
-
-  if (!car) {
-    return null;
-  }
-
-  const pricePerDay = car.discounted_price_per_day || car.retail_price_per_day;
-  const currency = car.discounted_price_currency || car.retail_price_currency;
-
+export function ReservationSidebar({
+  pricePerDay,
+  currency,
+  rating,
+  reviews,
+  locations,
+}: ReservationSidebarProps) {
   return (
     <div className="hidden normal-nums md:block">
       <div className="sticky top-[var(--card-reserve-top-offset)] rounded-xl border p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
@@ -34,14 +32,12 @@ export async function ReservationSidebar({ slug }: ReservationSidebarProps) {
           </div>
           <div className="flex flex-row items-baseline justify-start gap-1 tracking-tight lg:justify-end">
             <Icons.star className="h-[15px] w-[15px] self-center" />
-            <span className="text-sm font-medium leading-none">
-              {car.rating}
-            </span>
-            {car.reviews > 0 && (
+            <span className="text-sm font-medium leading-none">{rating}</span>
+            {reviews > 0 && (
               <>
                 <span>·</span>
                 <span className="text-sm leading-none text-neutral-600">
-                  {car.reviews} reviews
+                  {reviews} reviews
                 </span>
               </>
             )}
