@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { SiteHeader } from '@/components/layout/site-header';
-import { SiteFooter } from '@/components/layout/site-footer';
+import { Button } from '@/app/components/ui/button';
+import { SiteHeader } from '@/app/components/site-header';
+import { SiteFooter } from '@/app/components/site-footer';
 
 export default function Error({
   error,

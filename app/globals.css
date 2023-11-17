@@ -12,10 +12,7 @@
 
     --site-header-height: 60px;
     --search-bar-height: 0px;
-    /* TW Screen LG */
-    @media screen and (min-width: 1128px) {
-      --search-bar-height: 70px;
-    }
+
     --header-gap: calc(var(--site-header-height) + var(--search-bar-height));
     --cars-page-main-content-height: calc(100dvh - var(--header-gap));
     --map-container-height: var(--cars-page-main-content-height);
@@ -35,10 +32,13 @@
       100dvh - var(--modal-filters-header-height) -
         var(--modal-filters-footer-height) - var(--modal-filters-viewport-gap)
     );
+  }
 
-    --skeleton-bg-start-0: #eeeeee;
-    --skeleton-bg-start-75: #eeeeee;
-    --skeleton-bg-mid-50: #dedede;
+  /* Tailwind lg size screen */
+  @media screen and (min-width: 1128px) {
+    :root {
+      --search-bar-height: 70px;
+    }
   }
 
   html,

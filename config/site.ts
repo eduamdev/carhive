@@ -1,8 +1,6 @@
 export const siteConfig = {
   name: 'CarHive',
   url: 'https://carhive.eduam.dev',
-  ogImage: '/opengraph-image.png',
-  manifest: '/manifest.webmanifest',
   author: {
     name: 'eduamdev',
     url: 'https://eduam.dev',
