@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LogoWordmark } from '@/app/components/logo-wordmark';
+import { Icons } from '@/app/components/icons';
 import { NewsletterSubscriptionForm } from '@/app/components/newsletter-subscription-form';
 import { siteConfig } from '@/config/site';
 
@@ -41,7 +41,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <LogoWordmark />
+              <Icons.logoWordmark className="h-[18px] shrink-0" />
             </Link>
           </div>
           {footerLinks.map((section) => (
@@ -75,7 +75,7 @@ export function SiteFooter() {
         <div className="mt-14 lg:mt-16">
           <p className="text-sm text-neutral-600">
             Built by{' '}
-            <a href={githubUrl} target="_blank" rel="noreferrer">
+            <a href={siteConfig.author.url} target="_blank" rel="noreferrer">
               <strong>eduamdev</strong>
             </a>
             . The source code is available on{' '}

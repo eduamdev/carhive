@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { LogoWordmark } from '@/app/components/logo-wordmark';
 import { Icons } from '@/app/components/icons';
 
 export function SiteHeader() {
   return (
     <header className="flex h-full items-center justify-between">
       <Link href="/" className="z-20">
-        <LogoWordmark />
+        <Icons.logoWordmark className="h-[18px] shrink-0" />
       </Link>
       <nav>
         <div className="flex items-center justify-center text-neutral-800">
