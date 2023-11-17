@@ -41,34 +41,20 @@ export function CarCardSkeleton() {
   );
 }
 
-export function CarCardsSkeleton() {
-  return (
-    <>
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-      <CarCardSkeleton />
-    </>
-  );
-}
-
 export function CarCatalogSkeleton() {
   return (
-    <>
-      <div className="mx-5 my-[18px] flex items-center justify-between sm:mx-6">
-        <Skeleton className="h-4 w-12" />
-        <Skeleton className="h-9 w-24" />
+    <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
+        <CarCardSkeleton />
       </div>
-      <div className="mx-5 mb-12 sm:mx-6">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
-          <CarCardsSkeleton />
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 
