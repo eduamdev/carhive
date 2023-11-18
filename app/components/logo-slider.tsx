@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Icons } from '@/app/components/icons';
 import { cn } from '@/app/lib/utils';
 
@@ -57,7 +57,7 @@ export function LogoSlider() {
   const logosListRef = useRef<HTMLUListElement>(null);
   const logoElementsRef = useRef<NodeListOf<HTMLLIElement> | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const logoList = logosListRef.current;
     const logoElements = logoList?.querySelectorAll<HTMLLIElement>('li');
 
@@ -92,7 +92,7 @@ export function LogoSlider() {
   return (
     <div
       className={cn(
-        "relative flex h-[132px] w-screen items-center overflow-hidden whitespace-nowrap transition-opacity before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64",
+        "relative flex h-[132px] min-h-[132px] w-screen items-center overflow-hidden whitespace-nowrap transition-opacity before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64",
         isReady ? 'opacity-100' : 'opacity-0',
       )}
     >
