@@ -90,25 +90,27 @@ export function LogoSlider() {
   }, []);
 
   return (
-    <div
-      className={cn(
-        "relative flex h-[132px] min-h-[132px] w-screen items-center overflow-hidden whitespace-nowrap transition-opacity before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64",
-        isReady ? 'opacity-100' : 'opacity-0',
-      )}
-    >
-      <ul
-        ref={logosListRef}
-        className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-50 grayscale"
+    <div className="relative flex h-[132px] min-h-[132px] w-screen items-center overflow-hidden whitespace-nowrap before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64">
+      <div
+        className={cn(
+          'transition-opacity',
+          isReady ? 'opacity-100' : 'opacity-0',
+        )}
       >
-        {logosData.map(({ id, icon: Icon, height }) => (
-          <li
-            key={id}
-            className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
-          >
-            <Icon style={{ height }} />
-          </li>
-        ))}
-      </ul>
+        <ul
+          ref={logosListRef}
+          className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-50 grayscale"
+        >
+          {logosData.map(({ id, icon: Icon, height }) => (
+            <li
+              key={id}
+              className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
+            >
+              <Icon style={{ height }} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
