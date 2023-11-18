@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import { Icons } from '@/app/components/icons';
 import { cn } from '@/app/lib/utils';
 
@@ -35,29 +35,12 @@ const logosData: LogoData[] = Object.keys(logoHeights).map((id) => ({
   height: logoHeights[id],
 }));
 
-function cloneLogos(
-  logoElements: NodeListOf<HTMLLIElement>,
-  logoListElement: HTMLUListElement | null,
-  totalSets: number,
-) {
-  for (let set = 1; set <= totalSets; set++) {
-    logoElements.forEach((logo, index) => {
-      const clone = logo.cloneNode(true) as HTMLLIElement;
-      clone.id = `logo-clone-${set}-${index + 1}`;
-
-      if (logoListElement) {
-        logoListElement.appendChild(clone);
-      }
-    });
-  }
-}
-
 export function LogoSlider() {
   const [isReady, setIsReady] = useState(false);
+  const [logos, setLogos] = useState<LogoData[]>(logosData);
   const logosListRef = useRef<HTMLUListElement>(null);
-  const logoElementsRef = useRef<NodeListOf<HTMLLIElement> | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const logoList = logosListRef.current;
     const logoElements = logoList?.querySelectorAll<HTMLLIElement>('li');
 
@@ -68,26 +51,42 @@ export function LogoSlider() {
         totalLogos.toString(),
       );
 
-      logoElementsRef.current = logoElements;
-
-      const totalSetsToClone = 2;
-      cloneLogos(logoElements, logoList, totalSetsToClone);
-
       setIsReady(true);
     }
 
     return () => {
-      const clones = document.querySelectorAll<HTMLLIElement>(
-        "li[id^='logo-clone']",
-      );
-
-      if (logoList) {
-        clones.forEach((clone) => {
-          logoList.removeChild(clone);
-        });
-      }
+      setLogos(logosData); // Reset logos to initial state
     };
   }, []);
+
+  useLayoutEffect(() => {
+    const logoList = logosListRef.current;
+    const logoElements = logoList?.querySelectorAll<HTMLLIElement>('li');
+
+    if (logoList && logoElements) {
+      const totalSetsToClone = 2;
+      const clonedLogos = cloneLogos(logoElements, totalSetsToClone);
+
+      setLogos((prevLogos) => [...prevLogos, ...clonedLogos]);
+    }
+  }, []);
+
+  const cloneLogos = (
+    logoElements: NodeListOf<HTMLLIElement>,
+    totalSets: number,
+  ) => {
+    const clonedLogos: LogoData[] = [];
+    for (let set = 1; set <= totalSets; set++) {
+      logoElements.forEach((logo, index) => {
+        const icon = logosData[index % logosData.length].icon;
+        const height = logosData[index % logosData.length].height;
+        const id = `logo-clone-${set}-${logo.id}`;
+
+        clonedLogos.push({ id, icon, height });
+      });
+    }
+    return clonedLogos;
+  };
 
   return (
     <div className="relative flex h-[132px] min-h-[132px] w-screen items-center overflow-hidden whitespace-nowrap before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64">
@@ -101,9 +100,10 @@ export function LogoSlider() {
           ref={logosListRef}
           className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-50 grayscale"
         >
-          {logosData.map(({ id, icon: Icon, height }) => (
+          {logos.map(({ id, icon: Icon, height }) => (
             <li
               key={id}
+              id={id}
               className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
             >
               <Icon style={{ height }} />
