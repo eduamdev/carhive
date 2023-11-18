@@ -83,7 +83,9 @@ async function Hero() {
       <div className="mt-5 hidden md:block">
         <SearchForm locations={locations} />
       </div>
-      <LogoSlider />
+      <div className="mt-16 ">
+        <LogoSlider />
+      </div>
     </section>
   );
 }
