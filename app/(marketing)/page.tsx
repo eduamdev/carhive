@@ -83,7 +83,7 @@ async function Hero() {
       <div className="mt-5 hidden md:block">
         <SearchForm locations={locations} />
       </div>
-      <div className="pt-14">
+      <div className="mt-14">
         <LogoSlider />
       </div>
     </section>
