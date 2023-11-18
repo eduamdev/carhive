@@ -106,7 +106,7 @@ function BodyStyleCarExplorer() {
         <h2 className="text-2xl font-bold">Popular Rental Car Choices</h2>
         <div className="relative mt-8 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
           <ScrollArea>
-            <div className="mb-3 whitespace-nowrap">
+            <div className="mb-5 whitespace-nowrap">
               {bodyStyles.map(({ slug, name }) => {
                 const imageUrl = imageMap[slug];
 
@@ -176,7 +176,7 @@ async function DestinationCarExplorer() {
         <h2 className="text-2xl font-bold">
           Renting Trends: Must-Visit Places
         </h2>
-        <div className="group -mx-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 lg:grid-cols-4 [&_a:hover_img]:!opacity-100">
+        <div className="group -mx-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 md:grid-cols-4 [&_a:hover_img]:!opacity-100">
           {featuredLocations.map(({ id, value, name }) => {
             const imageUrl = imageMap[value];
 
@@ -189,7 +189,7 @@ async function DestinationCarExplorer() {
                     [SearchParams.LOCATION]: value,
                   },
                 }}
-                className="px-2 pb-4 pt-1 lg:pb-1"
+                className="px-1.5 pb-4 pt-1"
               >
                 <div className="h-full w-full group-hover:[&_img]:opacity-50">
                   <AspectRatio ratio={1 / 1}>
