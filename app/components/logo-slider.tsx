@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Icons } from '@/app/components/icons';
 import { cn } from '@/app/lib/utils';
 
@@ -29,16 +29,18 @@ const logoHeights: Record<string, string> = {
   mercedesBenz: '42px',
 };
 
-const logosData: LogoData[] = Object.keys(logoHeights).map((id) => ({
+const initialLogosData: LogoData[] = Object.keys(logoHeights).map((id) => ({
   id,
   icon: Icons[id as keyof typeof Icons],
   height: logoHeights[id],
 }));
 
 export function LogoSlider() {
-  const [isReady, setIsReady] = useState(false);
-  const [logos, setLogos] = useState<LogoData[]>(logosData);
+  const [isInitialLogosLoading, setIsInitialLogosLoading] = useState(false);
+  const [logos, setLogos] = useState<LogoData[]>(initialLogosData);
   const logosListRef = useRef<HTMLUListElement>(null);
+  const [areAllLogosRendered, setAreAllLogosRendered] = useState(false);
+  const TOTAL_SETS_TO_CLONE = 2;
 
   useEffect(() => {
     const logoList = logosListRef.current;
@@ -51,38 +53,34 @@ export function LogoSlider() {
         totalLogos.toString(),
       );
 
-      setIsReady(true);
+      setIsInitialLogosLoading(true);
     }
-
-    return () => {
-      setLogos(logosData); // Reset logos to initial state
-    };
   }, []);
 
   useLayoutEffect(() => {
-    const logoList = logosListRef.current;
-    const logoElements = logoList?.querySelectorAll<HTMLLIElement>('li');
-
-    if (logoList && logoElements) {
-      const totalSetsToClone = 2;
-      const clonedLogos = cloneLogos(logoElements, totalSetsToClone);
-
-      setLogos((prevLogos) => [...prevLogos, ...clonedLogos]);
+    if (isInitialLogosLoading) {
+      setLogos((prevLogos) => [
+        ...prevLogos,
+        ...generateClonedLogos(initialLogosData, TOTAL_SETS_TO_CLONE),
+      ]);
     }
-  }, []);
+  }, [isInitialLogosLoading]);
 
-  const cloneLogos = (
-    logoElements: NodeListOf<HTMLLIElement>,
+  useEffect(() => {
+    if (logos.length === initialLogosData.length * (TOTAL_SETS_TO_CLONE + 1)) {
+      setAreAllLogosRendered(true);
+    }
+  }, [logos]);
+
+  const generateClonedLogos = (
+    logosToClone: LogoData[],
     totalSets: number,
-  ) => {
+  ): LogoData[] => {
     const clonedLogos: LogoData[] = [];
     for (let set = 1; set <= totalSets; set++) {
-      logoElements.forEach((logo, index) => {
-        const icon = logosData[index % logosData.length].icon;
-        const height = logosData[index % logosData.length].height;
-        const id = `logo-clone-${set}-${logo.id}`;
-
-        clonedLogos.push({ id, icon, height });
+      logosToClone.forEach(({ id, icon, height }) => {
+        const clonedId = `logo-clone-${set}-${id}`;
+        clonedLogos.push({ id: clonedId, icon, height });
       });
     }
     return clonedLogos;
@@ -92,8 +90,8 @@ export function LogoSlider() {
     <div className="relative flex h-[132px] min-h-[132px] w-screen items-center overflow-hidden whitespace-nowrap before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-40 before:bg-gradient-to-r before:from-neutral-50 before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-40 after:bg-gradient-to-l after:from-neutral-50 after:content-[''] md:before:w-64 md:after:w-64">
       <div
         className={cn(
-          'transition-opacity',
-          isReady ? 'opacity-100' : 'opacity-0',
+          'h-[52px] min-h-[52px] transition-opacity',
+          areAllLogosRendered ? 'opacity-100' : 'opacity-0',
         )}
       >
         <ul
