@@ -9,12 +9,6 @@
       'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
 
-    --slider-total-logos: 16;
-    --slider-logo-width: 10rem;
-    --slider-total-logo-width: calc(
-      var(--slider-total-logos) * var(--slider-logo-width) * 3
-    );
-
     --site-header-height: 60px;
     --search-bar-height: 0px;
 

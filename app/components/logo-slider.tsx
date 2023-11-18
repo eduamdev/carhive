@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Icons } from '@/app/components/icons';
-import { cn } from '@/app/lib/utils';
+import { cn, setCSSVariable } from '@/app/lib/utils';
 
 type LogoData = {
   id: string;
@@ -29,18 +29,19 @@ const logoHeights: Record<string, string> = {
   mercedesBenz: '42px',
 };
 
-const initialLogosData: LogoData[] = Object.keys(logoHeights).map((id) => ({
+const initialLogos: LogoData[] = Object.keys(logoHeights).map((id) => ({
   id,
   icon: Icons[id as keyof typeof Icons],
   height: logoHeights[id],
 }));
 
 export function LogoSlider() {
-  const [isInitialLogosLoading, setIsInitialLogosLoading] = useState(false);
-  const [logos, setLogos] = useState<LogoData[]>(initialLogosData);
-  const logosListRef = useRef<HTMLUListElement>(null);
-  const [areAllLogosRendered, setAreAllLogosRendered] = useState(false);
+  const LOGO_WIDTH = '10rem';
   const TOTAL_SETS_TO_CLONE = 2;
+
+  const logosListRef = useRef<HTMLUListElement>(null);
+  const [isSliderInitialized, setIsSliderInitialized] = useState(false);
+  const [clonedLogos, setClonedLogos] = useState<LogoData[]>([]);
 
   useEffect(() => {
     const logoList = logosListRef.current;
@@ -48,37 +49,32 @@ export function LogoSlider() {
 
     if (logoList && logoElements) {
       const totalLogos = logoElements.length;
-      document.documentElement.style.setProperty(
-        '--slider-total-logos',
-        totalLogos.toString(),
+      setCSSVariable('--slider-total-logos', totalLogos.toString());
+      setCSSVariable('--slider-logo-width', LOGO_WIDTH);
+      setCSSVariable(
+        '--slider-total-logo-width',
+        `calc(
+             var(--slider-total-logos) * var(--slider-logo-width) * (${TOTAL_SETS_TO_CLONE} + 1)
+           )`,
       );
 
-      setIsInitialLogosLoading(true);
+      setIsSliderInitialized(true);
     }
   }, []);
 
   useLayoutEffect(() => {
-    if (isInitialLogosLoading) {
-      setLogos((prevLogos) => [
-        ...prevLogos,
-        ...generateClonedLogos(initialLogosData, TOTAL_SETS_TO_CLONE),
-      ]);
+    if (isSliderInitialized) {
+      setClonedLogos(generateClonedLogos(initialLogos, TOTAL_SETS_TO_CLONE));
     }
-  }, [isInitialLogosLoading]);
-
-  useEffect(() => {
-    if (logos.length === initialLogosData.length * (TOTAL_SETS_TO_CLONE + 1)) {
-      setAreAllLogosRendered(true);
-    }
-  }, [logos]);
+  }, [isSliderInitialized]);
 
   const generateClonedLogos = (
-    logosToClone: LogoData[],
+    logos: LogoData[],
     totalSets: number,
   ): LogoData[] => {
     const clonedLogos: LogoData[] = [];
     for (let set = 1; set <= totalSets; set++) {
-      logosToClone.forEach(({ id, icon, height }) => {
+      logos.forEach(({ id, icon, height }) => {
         const clonedId = `logo-clone-${set}-${id}`;
         clonedLogos.push({ id: clonedId, icon, height });
       });
@@ -91,14 +87,15 @@ export function LogoSlider() {
       <div
         className={cn(
           'h-[52px] min-h-[52px] transition-opacity',
-          areAllLogosRendered ? 'opacity-100' : 'opacity-0',
+          clonedLogos.length > 0 ? 'opacity-100' : 'opacity-0',
         )}
       >
         <ul
           ref={logosListRef}
-          className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-50 grayscale"
+          className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-60 grayscale"
         >
-          {logos.map(({ id, icon: Icon, height }) => (
+          <InitialLogos />
+          {clonedLogos.map(({ id, icon: Icon, height }) => (
             <li
               key={id}
               id={id}
@@ -110,5 +107,21 @@ export function LogoSlider() {
         </ul>
       </div>
     </div>
+  );
+}
+
+function InitialLogos() {
+  return (
+    <>
+      {initialLogos.map(({ id, icon: Icon, height }) => (
+        <li
+          key={id}
+          id={id}
+          className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
+        >
+          <Icon style={{ height }} />
+        </li>
+      ))}
+    </>
   );
 }

@@ -109,34 +109,6 @@ export function SearchFormSkeleton({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function HeroSkeleton() {
-  return (
-    <section className="bg-gradient-to-b from-white via-neutral-50 to-neutral-50 pt-12">
-      <h1 className="text-center text-3xl font-extrabold">Find your car</h1>
-      <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 items-center justify-center gap-4 md:flex md:flex-row md:gap-12">
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">No hidden fees.</span>
-        </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">Transparent pricing.</span>
-        </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">
-            Flexible cancellations.
-          </span>
-        </div>
-      </div>
-      <div className="mt-5 hidden md:block">
-        <SearchFormSkeleton />
-      </div>
-      <LogoSlider />
-    </section>
-  );
-}
-
 export function CarOverviewSkeleton() {
   return (
     <div className="p-6 px-0 pb-0 md:pb-0 md:pr-6">

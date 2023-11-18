@@ -49,3 +49,9 @@ export function absoluteUrl(path: string) {
       return `http://localhost:${process.env.PORT ?? 3000}${path}`;
   }
 }
+
+export const setCSSVariable = (name: string, value: string) => {
+  if (typeof window !== 'undefined' && window?.document?.documentElement) {
+    window.document.documentElement.style.setProperty(name, value);
+  }
+};

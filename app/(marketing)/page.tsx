@@ -8,7 +8,7 @@ import { AspectRatio } from '@/app/components/ui/aspect-ratio';
 import { Button } from '@/app/components/ui/button';
 import { SiteHeader } from '@/app/components/site-header';
 import { SiteFooter } from '@/app/components/site-footer';
-import { HeroSkeleton } from '@/app/components/skeletons';
+import { SearchFormSkeleton } from '@/app/components/skeletons';
 import { LogoSlider } from '@/app/components/logo-slider';
 import { Icons } from '@/app/components/icons';
 import { SearchForm } from '@/app/components/search-form';
@@ -44,9 +44,7 @@ export default function HomePage() {
         </div>
       </div>
       <main>
-        <Suspense fallback={<HeroSkeleton />}>
-          <Hero />
-        </Suspense>
+        <Hero />
         <BodyStyleCarExplorer />
         <DestinationCarExplorer />
         <Features />
@@ -81,7 +79,9 @@ async function Hero() {
         </div>
       </div>
       <div className="mt-5 hidden md:block">
-        <SearchForm locations={locations} />
+        <Suspense fallback={<SearchFormSkeleton />}>
+          <SearchForm locations={locations} />
+        </Suspense>
       </div>
       <div className="mt-14 overflow-x-hidden">
         <LogoSlider />
