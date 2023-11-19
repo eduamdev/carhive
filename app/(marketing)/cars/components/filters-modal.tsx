@@ -14,18 +14,24 @@ import { Button } from '@/app/components/ui/button';
 import { Icons } from '@/app/components/icons';
 import { CounterBadge } from '@/app/components/counter-badge';
 import { PriceRangeFilters } from './filters/price-range';
-import { BodyStyleFilters } from './filters/body-styles';
-import { EngineTypeFilters } from './filters/engine-types';
+import { BodyStyle, BodyStyleFilters } from './filters/body-styles';
+import { EngineType, EngineTypeFilters } from './filters/engine-types';
 import { SeatingCapacityFilters } from './filters/seating-capacity';
-import { TransmissionFilters } from './filters/transmission-types';
-import { createUrl } from '@/app/lib/utils';
 import {
-  BodyStyle,
-  EngineType,
-  SearchParams,
-  SelectedFilters,
   Transmission,
-} from '@/app/lib/types';
+  TransmissionFilters,
+} from './filters/transmission-types';
+import { createUrl } from '@/app/lib/utils';
+import { SearchParams } from '@/app/lib/types';
+
+export type SelectedFilters = {
+  minPrice: number;
+  maxPrice: number;
+  seats: number | undefined;
+  bodyStyles: BodyStyle[];
+  engineTypes: EngineType[];
+  transmissions: Transmission[];
+};
 
 interface FiltersModalProps {
   minPrice: number;
@@ -38,7 +44,7 @@ export function FiltersModal({ minPrice, maxPrice }: FiltersModalProps) {
   const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
     fetchSelectedFilters(),
   );
-  const [count, setCount] = useState<number>(0);
+  const [totalSelectedFilters, setTotalSelectedFilters] = useState<number>(0);
 
   function handleOpenChange() {
     if (!open) {
@@ -74,32 +80,26 @@ export function FiltersModal({ minPrice, maxPrice }: FiltersModalProps) {
   }
 
   useEffect(() => {
-    function getSelectedFiltersCount() {
-      let count = 0;
+    const filterParams = Object.values(SearchParams);
+    let count = 0;
 
-      if (searchParams.has(SearchParams.MIN_SEATS)) count++;
+    filterParams.forEach((param) => {
+      const paramValue = searchParams.getAll(param);
       if (
-        searchParams.has(SearchParams.MIN_PRICE) ||
-        searchParams.has(SearchParams.MAX_PRICE)
-      )
-        count++;
-      if (searchParams.has(SearchParams.BODY_STYLE)) {
-        count += searchParams.getAll(SearchParams.BODY_STYLE).length;
+        param === SearchParams.MIN_SEATS ||
+        param === SearchParams.MIN_PRICE ||
+        param === SearchParams.MAX_PRICE
+      ) {
+        count += paramValue.length > 0 ? 1 : 0;
+      } else {
+        count += paramValue.length;
       }
-      if (searchParams.has(SearchParams.TRANSMISSION)) {
-        count += searchParams.getAll(SearchParams.TRANSMISSION).length;
-      }
-      if (searchParams.has(SearchParams.ENGINE_TYPE)) {
-        count += searchParams.getAll(SearchParams.ENGINE_TYPE).length;
-      }
+    });
 
-      return count;
-    }
-
-    setCount(getSelectedFiltersCount());
+    setTotalSelectedFilters(count);
 
     return () => {
-      setCount(0);
+      setTotalSelectedFilters(0);
     };
   }, [searchParams]);
 
@@ -112,7 +112,7 @@ export function FiltersModal({ minPrice, maxPrice }: FiltersModalProps) {
         >
           <Icons.filters className="h-[22px] w-[22px]" />
           <span>Filters</span>
-          <CounterBadge count={count} />
+          <CounterBadge count={totalSelectedFilters} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[var(--modal-filters-max-width)] gap-0 !rounded-xl p-0">
@@ -201,9 +201,7 @@ function ResetFilters({
   maxPrice,
   setSelectedFilters,
 }: ResetFiltersProps) {
-  function handleClick(
-    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
-  ) {
+  function handleClick() {
     setSelectedFilters({
       minPrice,
       maxPrice,
@@ -218,7 +216,7 @@ function ResetFilters({
     <Button
       variant="ghost"
       className="-ml-2 px-2.5 text-[15px] font-semibold underline"
-      onClick={() => handleClick(setSelectedFilters)}
+      onClick={handleClick}
     >
       Clear all
     </Button>
@@ -241,10 +239,7 @@ function ApplyFilters({
   const { push } = useRouter();
   const searchParams = useSearchParams();
 
-  function onClick(
-    selectedFilters: SelectedFilters,
-    setOpen: Dispatch<SetStateAction<boolean>>,
-  ) {
+  function handleClick() {
     const newParams = new URLSearchParams(searchParams.toString());
 
     newParams.delete(SearchParams.MIN_PRICE);
@@ -295,7 +290,7 @@ function ApplyFilters({
     <Button
       size="xl"
       className="text-[15px] font-semibold"
-      onClick={() => onClick(selectedFilters, setOpen)}
+      onClick={handleClick}
     >
       Show cars
     </Button>

@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SelectedFilters } from '@/app/lib/types';
 import { Slider } from '@/app/components/ui/slider';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
+import { Separator } from '@/app/components/ui/separator';
+import { SelectedFilters } from '../filters-modal';
 
 interface PriceRangeFiltersProps {
   minPrice: number;
@@ -17,17 +18,13 @@ export function PriceRangeFilters({
   selectedFilters,
   setSelectedFilters,
 }: PriceRangeFiltersProps) {
-  function handleSliderChange(
-    priceRange: number[],
-    selectedFilters: SelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
-  ) {
+  const handleSliderChange = (priceRange: number[]) => {
     setSelectedFilters({
       ...selectedFilters,
       minPrice: priceRange[0],
       maxPrice: priceRange[1],
     });
-  }
+  };
 
   return (
     <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
@@ -37,9 +34,7 @@ export function PriceRangeFilters({
           <Slider
             defaultValue={[MIN_PRICE, MAX_PRICE]}
             value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
-            onValueChange={(values) =>
-              handleSliderChange(values, selectedFilters, setSelectedFilters)
-            }
+            onValueChange={handleSliderChange}
             min={MIN_PRICE}
             max={MAX_PRICE}
             step={1}
@@ -63,7 +58,11 @@ export function PriceRangeFilters({
                 readOnly
               />
             </div>
-            <div className="h-px shrink-0 basis-4 bg-neutral-400"></div>
+            <Separator
+              decorative
+              orientation="horizontal"
+              className="h-px shrink-0 basis-4 bg-neutral-400"
+            />
             <div className="relative h-14 w-full">
               <Label
                 htmlFor="price_filter_max"

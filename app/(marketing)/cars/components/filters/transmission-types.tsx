@@ -2,7 +2,12 @@ import { Dispatch, SetStateAction } from 'react';
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { Label } from '@/app/components/ui/label';
 import { CheckedState } from '@radix-ui/react-checkbox';
-import { SelectedFilters, Transmission } from '@/app/lib/types';
+import { SelectedFilters } from '../filters-modal';
+
+export enum Transmission {
+  AUTOMATIC = 'automatic',
+  MANUAL = 'manual',
+}
 
 const transmissions = [
   {
@@ -21,27 +26,21 @@ export function TransmissionFilters({
   selectedFilters,
   setSelectedFilters,
 }: TransmissionFiltersProps) {
-  function handleCheckedChange(
+  const handleCheckedChange = (
     checked: CheckedState,
     transmission: Transmission,
-    selectedFilters: SelectedFilters,
-    setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
-  ) {
-    let transmissionsSelected: Transmission[] = [];
-
-    if (!checked || checked === 'indeterminate') {
-      transmissionsSelected = selectedFilters.transmissions.filter(
-        (selected) => selected !== transmission,
-      );
-    } else {
-      transmissionsSelected = [...selectedFilters.transmissions, transmission];
-    }
+  ) => {
+    const transmissionsSelected = checked
+      ? [...selectedFilters.transmissions, transmission]
+      : selectedFilters.transmissions.filter(
+          (selected) => selected !== transmission,
+        );
 
     setSelectedFilters({
       ...selectedFilters,
       transmissions: transmissionsSelected,
     });
-  }
+  };
 
   return (
     <div className="mb-2 px-6 py-8">
@@ -53,12 +52,7 @@ export function TransmissionFilters({
               <Checkbox
                 id={slug}
                 onCheckedChange={(checked) =>
-                  handleCheckedChange(
-                    checked,
-                    slug,
-                    selectedFilters,
-                    setSelectedFilters,
-                  )
+                  handleCheckedChange(checked, slug)
                 }
                 checked={selectedFilters.transmissions.includes(slug)}
               />
