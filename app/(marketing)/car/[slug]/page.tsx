@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ReservationSidebar } from '../components/reservation-sidebar';
 import { fetchCarBySlug, fetchCars, fetchLocations } from '@/db/queries';
 import { Icons } from '@/app/components/icons';
+import { Separator } from '@/app/components/ui/separator';
 
 interface CarPageProps {
   params: { slug: string };
@@ -79,7 +80,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
             </div>
-            <hr className="my-6" />
+            <Separator decorative orientation="horizontal" className="my-6" />
             <div className="flex flex-col gap-6">
               <div className="flex flex-row gap-8">
                 <Icons.gift className="h-6 w-6 shrink-0" />
@@ -112,7 +113,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
             </div>
-            <hr className="my-6" />
+            <Separator decorative orientation="horizontal" className="my-6" />
             <div className="mt-10 space-y-6">
               {car.descriptions.map((paragraph) => (
                 <p key={paragraph} className="text-neutral-600">
@@ -120,7 +121,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </p>
               ))}
             </div>
-            <hr className="my-12" />
+            <Separator decorative orientation="horizontal" className="my-12" />
             <div className="mb-6">
               <h2 className="text-lg font-semibold">Features</h2>
               <div className="mt-6 grid grid-cols-2 gap-4">

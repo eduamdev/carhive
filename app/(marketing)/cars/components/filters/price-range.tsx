@@ -61,7 +61,7 @@ export function PriceRangeFilters({
             <Separator
               decorative
               orientation="horizontal"
-              className="h-px shrink-0 basis-4 bg-neutral-400"
+              className="shrink-0 basis-4 border-neutral-400"
             />
             <div className="relative h-14 w-full">
               <Label

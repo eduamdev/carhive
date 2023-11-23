@@ -30,7 +30,8 @@ import { Button } from '@/app/components/ui/button';
 import { addDays, differenceInDays, format, isAfter } from 'date-fns';
 import { SearchParams } from '@/app/lib/types';
 import { Location } from '@/db/definitions';
-import { cn, formatCurrency } from '@/app/lib/utils';
+import { cn, createUrl, formatCurrency } from '@/app/lib/utils';
+import { Separator } from '@/app/components/ui/separator';
 
 const FormSchema = z
   .object({
@@ -64,7 +65,14 @@ export function ReservationForm({
   function onSubmit(values: z.infer<typeof FormSchema>) {
     const { location, checkin, checkout } = values;
 
+    const newParams = new URLSearchParams(searchParams.toString());
+
+    newParams.set(SearchParams.LOCATION, location);
+    newParams.set(SearchParams.CHECKIN, checkin.toISOString());
+    newParams.set(SearchParams.CHECKOUT, checkout.toISOString());
+
     console.log({ location, checkin, checkout });
+    push(createUrl('/reservation', newParams));
   }
 
   useEffect(() => {
@@ -256,28 +264,26 @@ export function ReservationForm({
       <p className="mt-4 text-center text-sm text-neutral-600">
         You won&apos;t be charged yet
       </p>
-      <div className="mt-5">
-        <div className="flex items-center justify-between">
-          <div className="text-neutral-600 underline">
-            {formatCurrency(pricePerDay, currency)} x {days}{' '}
-            {days > 1 ? 'days' : 'day'}
+      <div className="mt-5 text-neutral-600">
+        <div className="flex flex-col gap-y-3">
+          <div className="flex items-center justify-between">
+            <span className="underline">
+              {formatCurrency(pricePerDay, currency)} x {days}{' '}
+              {days > 1 ? 'days' : 'day'}
+            </span>
+            <span>{formatCurrency(pricePerDay * days, currency)}</span>
           </div>
-          <div className="text-neutral-600">
-            {formatCurrency(pricePerDay * days, currency)}
-          </div>
-        </div>
-        <div className="mt-3 flex items-center justify-between">
-          <div className="text-neutral-600 underline">Taxes and fees</div>
-          <div className="text-neutral-600">
-            {formatCurrency(taxesAndFees, currency)}
+          <div className="flex items-center justify-between">
+            <span className="underline">Taxes and fees</span>
+            <span>{formatCurrency(taxesAndFees, currency)}</span>
           </div>
         </div>
-        <hr className="my-6" />
-        <div className="flex items-center justify-between">
-          <div className="font-semibold">Total (taxes included)</div>
-          <div className="font-semibold">
+        <Separator decorative orientation="horizontal" className="my-6" />
+        <div className="flex items-center justify-between font-semibold">
+          <span>Total (taxes included)</span>
+          <span>
             {formatCurrency(pricePerDay * days + taxesAndFees, currency)}
-          </div>
+          </span>
         </div>
       </div>
     </>

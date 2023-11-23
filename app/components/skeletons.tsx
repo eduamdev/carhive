@@ -1,8 +1,6 @@
 import { Skeleton } from '@/app/components/ui/skeleton';
 import { Separator } from '@/app/components/ui/separator';
 import { LoadingDots } from '@/app/components/loading-dots';
-import { Icons } from '@/app/components/icons';
-import { LogoSlider } from '@/app/components/logo-slider';
 import { cn } from '@/app/lib/utils';
 
 export function CarCardSkeleton() {
@@ -22,13 +20,13 @@ export function CarCardSkeleton() {
           <Separator
             orientation="vertical"
             decorative
-            className="h-4 bg-neutral-100"
+            className="h-4 border-neutral-100"
           />
           <Skeleton className=" h-4 w-1/4" />
           <Separator
             orientation="vertical"
             decorative
-            className="h-4 bg-neutral-100"
+            className="h-4 border-neutral-100"
           />
           <Skeleton className=" h-4 w-1/4" />
         </div>
@@ -129,7 +127,7 @@ export function CarOverviewSkeleton() {
           <Skeleton className="h-14 w-20 md:w-24" />
         </div>
       </div>
-      <hr className="my-6" />
+      <Separator decorative orientation="horizontal" className="my-6" />
       <div className="flex flex-col gap-6">
         <div className="flex flex-row gap-8">
           <Skeleton className="h-6 w-6 shrink-0" />
@@ -150,7 +148,7 @@ export function CarOverviewSkeleton() {
           <Skeleton className="h-5 w-56" />
         </div>
       </div>
-      <hr className="my-6" />
+      <Separator decorative orientation="horizontal" className="my-6" />
       <div className="mt-10 space-y-6">
         <div className="space-y-2">
           <Skeleton className="h-5 w-full" />
@@ -161,7 +159,7 @@ export function CarOverviewSkeleton() {
           <Skeleton className="h-5 w-2/3" />
         </div>
       </div>
-      <hr className="my-12" />
+      <Separator decorative orientation="horizontal" className="my-12" />
       <div className="mb-6">
         <Skeleton className="h-6 w-48" />
         <div className="mt-6 grid grid-cols-2 gap-4">
@@ -241,7 +239,7 @@ export function ReservationSidebarSkeleton() {
             <Skeleton className="h-5 w-28" />
             <Skeleton className="h-5 w-20" />
           </div>
-          <hr className="my-6" />
+          <Separator decorative orientation="horizontal" className="my-6" />
           <div className="flex items-center justify-between">
             <Skeleton className="h-5 w-36" />
             <Skeleton className="h-5 w-28" />
