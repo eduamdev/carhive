@@ -22,9 +22,11 @@ module.exports = {
         '8xl': '86rem',
       },
       keyframes: {
-        slide: {
+        slider: {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(calc(-100% /3))' },
+          '100%': {
+            transform: 'translateX(calc(-100% / var(--slider-total-sets)))',
+          },
         },
         'dot-pulse-before': {
           '0%': { boxShadow: '9984px 0 0 -5px' },
@@ -47,7 +49,7 @@ module.exports = {
         },
       },
       animation: {
-        slide: 'slide 48s linear infinite',
+        slider: 'slider 100s linear infinite',
         'dot-pulse-before': 'dot-pulse-before 1.5s infinite linear',
         'dot-pulse': 'dot-pulse 1.5s infinite linear',
         'dot-pulse-after': 'dot-pulse-after 1.5s infinite linear',

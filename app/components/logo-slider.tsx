@@ -49,6 +49,10 @@ export function LogoSlider() {
 
     if (logoList && logoElements) {
       const totalLogos = logoElements.length;
+      setCSSVariable(
+        '--slider-total-sets',
+        (TOTAL_SETS_TO_CLONE + 1).toString(),
+      );
       setCSSVariable('--slider-total-logos', totalLogos.toString());
       setCSSVariable('--slider-logo-width', LOGO_WIDTH);
       setCSSVariable(
@@ -92,7 +96,7 @@ export function LogoSlider() {
       >
         <ul
           ref={logosListRef}
-          className="flex w-[var(--slider-total-logo-width)] animate-slide items-center opacity-60 grayscale"
+          className="flex w-[var(--slider-total-logo-width)] animate-slider items-center opacity-60 grayscale"
         >
           <InitialLogos />
           {clonedLogos.map(({ id, icon: Icon, height }) => (
