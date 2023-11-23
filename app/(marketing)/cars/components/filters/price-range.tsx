@@ -3,7 +3,7 @@ import { Slider } from '@/app/components/ui/slider';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
 import { Separator } from '@/app/components/ui/separator';
-import { SelectedFilters } from '../filters-modal';
+import { SelectedFilters } from '../filters';
 
 interface PriceRangeFiltersProps {
   minPrice: number;

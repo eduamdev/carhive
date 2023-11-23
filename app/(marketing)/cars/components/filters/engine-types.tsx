@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { Label } from '@/app/components/ui/label';
-import { SelectedFilters } from '../filters-modal';
 import { CheckedState } from '@radix-ui/react-checkbox';
+import { SelectedFilters } from '../filters';
 
 export enum EngineType {
   GAS = 'gas',

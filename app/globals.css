@@ -5,9 +5,9 @@
 @layer base {
   :root {
     --font-sans: var(--font-inter);
-    --font-sans-fallback: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
+    --font-sans-fallback: 'InterVariable', 'Inter', -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
     --site-header-height: 60px;
     --search-bar-height: 0px;
@@ -23,13 +23,13 @@
       var(--site-header-height) + var(--car-page-main-content-padding-y)
     );
 
-    --modal-filters-max-width: 780px;
-    --modal-filters-header-height: 64px;
-    --modal-filters-footer-height: 80px;
-    --modal-filters-viewport-gap: 80px;
-    --modal-filters-content-max-height: calc(
-      100dvh - var(--modal-filters-header-height) -
-        var(--modal-filters-footer-height) - var(--modal-filters-viewport-gap)
+    --modal-max-width: 780px;
+    --modal-header-height: 64px;
+    --modal-footer-height: 80px;
+    --modal-viewport-gap: 80px;
+    --modal-content-max-height: calc(
+      100dvh - var(--modal-header-height) - var(--modal-footer-height) -
+        var(--modal-viewport-gap)
     );
   }
 
@@ -44,13 +44,16 @@
   body {
     font-family: var(--font-sans), var(--font-sans-fallback);
     /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
-    touch-action: manipulation;
-    min-width: 360px;
     font-synthesis-weight: none;
+    font-feature-settings:
+      'liga' 1,
+      'calt' 1;
     text-rendering: optimizeLegibility;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-width: 360px;
+    touch-action: manipulation;
     @apply tabular-nums;
   }
   body {

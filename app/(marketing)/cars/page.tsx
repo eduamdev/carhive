@@ -5,7 +5,7 @@ import {
 } from '@/app/components/skeletons';
 import { SiteHeader } from '@/app/components/site-header';
 import { SearchForm } from '@/app/components/search-form';
-import { FiltersModal } from './components/filters-modal';
+import { Filters } from './components/filters';
 import { CarCard } from './components/car-card';
 import { MapContainer } from './components/map-container';
 import { fetchCars, fetchLocations } from '@/db/queries';
@@ -94,7 +94,10 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
                     ? `${filteredCars.length} cars`
                     : `${filteredCars.length} car`)}
               </p>
-              <FiltersModal minPrice={MIN_PRICE} maxPrice={MAX_PRICE} />
+              <Filters
+                initialMinPrice={MIN_PRICE}
+                initialMaxPrice={MAX_PRICE}
+              />
             </div>
           </div>
         </div>

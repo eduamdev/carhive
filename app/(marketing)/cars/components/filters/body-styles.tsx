@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Icons } from '@/app/components/icons';
 import { Button } from '@/app/components/ui/button';
 import { cn } from '@/app/lib/utils';
-import { SelectedFilters } from '../filters-modal';
+import { SelectedFilters } from '../filters';
 
 export enum BodyStyle {
   SUV = 'suv',
