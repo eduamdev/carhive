@@ -49,7 +49,7 @@ module.exports = {
         },
       },
       animation: {
-        slider: 'slider 100s linear infinite',
+        slider: 'slider 64s linear infinite',
         'dot-pulse-before': 'dot-pulse-before 1.5s infinite linear',
         'dot-pulse': 'dot-pulse 1.5s infinite linear',
         'dot-pulse-after': 'dot-pulse-after 1.5s infinite linear',

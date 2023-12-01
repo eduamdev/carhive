@@ -729,7 +729,7 @@ const locations = [
   {
     id: 'fae436f3-6341-486a-8691-0633f64e1997',
     name: 'Amsterdam, Netherlands',
-    value: 'amsterdam',
+    slug: 'amsterdam',
     latitude: 52.3547,
     longitude: 4.904,
     featured: false,
@@ -737,7 +737,7 @@ const locations = [
   {
     id: '6132dc81-cc1a-4a2e-93c3-d176139bec4f',
     name: 'Barcelona, Spain',
-    value: 'barcelona',
+    slug: 'barcelona',
     latitude: 41.3925,
     longitude: 2.1404,
     image_url: '',
@@ -746,7 +746,7 @@ const locations = [
   {
     id: '92331cbf-254a-4acf-9671-a77810faef4c',
     name: 'Cancún, México',
-    value: 'cancun',
+    slug: 'cancun',
     latitude: 21.1617,
     longitude: -86.851,
     featured: true,
@@ -754,7 +754,7 @@ const locations = [
   {
     id: 'e27e9e7c-5bf9-44f9-b24f-3b5df6417c77',
     name: 'Dubai, United Arab Emirates',
-    value: 'dubai',
+    slug: 'dubai',
     latitude: 25.2652,
     longitude: 55.2928,
     featured: true,
@@ -762,7 +762,7 @@ const locations = [
   {
     id: 'fd1e4b0d-5e1a-41db-a89b-6e33eed72ace',
     name: 'New York, United States',
-    value: 'new-york',
+    slug: 'new-york',
     latitude: 40.6975,
     longitude: -73.9795,
     featured: false,
@@ -770,7 +770,7 @@ const locations = [
   {
     id: '45d07433-25e2-4ce7-b039-f0317e694048',
     name: 'Paris, France',
-    value: 'paris',
+    slug: 'paris',
     latitude: 48.8589,
     longitude: 2.3469,
     featured: true,
@@ -778,7 +778,7 @@ const locations = [
   {
     id: 'd9b23370-3be4-4936-ae23-3ad54b310fd8',
     name: 'Rio de Janeiro, Brazil',
-    value: 'rio',
+    slug: 'rio',
     latitude: -22.9148,
     longitude: -43.4075,
     featured: false,
@@ -786,7 +786,7 @@ const locations = [
   {
     id: '2538dcf8-b531-4c68-a87a-b49a42be0c23',
     name: 'Rome, Italy',
-    value: 'rome',
+    slug: 'rome',
     latitude: 41.8931,
     longitude: 12.4832,
     featured: true,
@@ -794,7 +794,7 @@ const locations = [
   {
     id: 'b31d9e0c-77c6-427b-9a19-37382ea62d7b',
     name: 'Sydney, Australia',
-    value: 'sydney',
+    slug: 'sydney',
     latitude: -33.8693,
     longitude: 151.209,
     featured: false,
@@ -802,7 +802,7 @@ const locations = [
   {
     id: 'ff841d10-0682-4e51-9330-47c5abb00643',
     name: 'Tokyo, Japan',
-    value: 'tokyo',
+    slug: 'tokyo',
     latitude: 35.6841,
     longitude: 139.7742,
     featured: false,

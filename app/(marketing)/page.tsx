@@ -177,8 +177,8 @@ async function DestinationCarExplorer() {
           Renting Trends: Must-Visit Places
         </h2>
         <div className="group -mx-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 md:grid-cols-4 [&_a:hover_img]:!opacity-100">
-          {featuredLocations.map(({ id, value, name }) => {
-            const imageUrl = imageMap[value];
+          {featuredLocations.map(({ id, slug, name }) => {
+            const imageUrl = imageMap[slug];
 
             return (
               <Link
@@ -186,7 +186,7 @@ async function DestinationCarExplorer() {
                 href={{
                   pathname: '/cars',
                   query: {
-                    [SearchParams.LOCATION]: value,
+                    [SearchParams.LOCATION]: slug,
                   },
                 }}
                 className="px-1.5 pb-4 pt-1"

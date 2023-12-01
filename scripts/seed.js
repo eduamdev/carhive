@@ -190,7 +190,7 @@ async function seedLocations() {
       CREATE TABLE IF NOT EXISTS locations (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        value VARCHAR(255) NOT NULL UNIQUE,
+        slug VARCHAR(255) NOT NULL UNIQUE,
         latitude VARCHAR(255) NOT NULL,
         longitude VARCHAR(255) NOT NULL,
         featured BOOLEAN DEFAULT false NOT NULL
@@ -203,8 +203,8 @@ async function seedLocations() {
     const insertedLocations = await Promise.all(
       locations.map(
         (location) => sql`
-        INSERT INTO locations (id, name, value, latitude, longitude, featured)
-        VALUES (${location.id}, ${location.name}, ${location.value}, ${location.latitude}, ${location.longitude}, ${location.featured})
+        INSERT INTO locations (id, name, slug, latitude, longitude, featured)
+        VALUES (${location.id}, ${location.name}, ${location.slug}, ${location.latitude}, ${location.longitude}, ${location.featured})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),

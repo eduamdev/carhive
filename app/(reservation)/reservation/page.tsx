@@ -5,19 +5,40 @@ import { Separator } from '@/app/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import { formatCurrency } from '@/app/lib/utils';
 import { NavigateBack } from './components/navigate-back';
+import { SearchParams } from '@/app/lib/types';
+import { getLocationBySlug } from '@/db/queries';
+import { formatDates } from './lib/dates';
+import { differenceInDays } from 'date-fns';
 
-export default function ReservationPage() {
-  const location = 'New York, USA';
-  const checkin = 'Dec 1';
-  const checkout = 'Dec 16';
+interface ReservationPageProps {
+  searchParams: {
+    [SearchParams.LOCATION]: string;
+    [SearchParams.CHECKIN]: string;
+    [SearchParams.CHECKOUT]: string;
+  };
+}
+
+export default async function ReservationPage({
+  searchParams,
+}: ReservationPageProps) {
+  const { location: locationSlug, checkin, checkout } = searchParams;
+
+  const location = await getLocationBySlug(locationSlug);
+
+  if (!location) {
+    throw new Error('Location is required to make a reservation.');
+  }
+
   const bodyStyle = 'Minivan';
   const carName = 'Community Minivan';
   const rating = 4.91;
   const reviews = 11;
-  const pricerPerDay = 3611.93;
+  const pricePerDay = 2900;
   const currency = 'MXN';
-  const days = 5;
-  const taxes = 3013.39;
+
+  const days = differenceInDays(new Date(checkout), new Date(checkin));
+  const subtotal = pricePerDay * days;
+  const taxesAndFees = subtotal * 0.16;
 
   return (
     <>
@@ -63,22 +84,20 @@ export default function ReservationPage() {
                 <div className="flex flex-col gap-y-3 pt-6 text-neutral-600">
                   <div className="flex items-center justify-between">
                     <span className="underline">
-                      {formatCurrency(pricerPerDay, currency)} x {days} days
+                      {formatCurrency(pricePerDay, currency)} x {days} days
                     </span>
-                    <span>{formatCurrency(pricerPerDay * days, currency)}</span>
+                    <span>{formatCurrency(subtotal, currency)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="underline">Taxes and fees</span>
-                    <span>{formatCurrency(taxes, currency)}</span>
+                    <span>{formatCurrency(taxesAndFees, currency)}</span>
                   </div>
                 </div>
               </div>
               <Separator decorative orientation="horizontal" className="my-6" />
               <div className="flex items-center justify-between font-semibold">
                 <span>Total ({currency})</span>
-                <span>
-                  {formatCurrency(pricerPerDay * days + taxes, currency)}
-                </span>
+                <span>{formatCurrency(subtotal + taxesAndFees, currency)}</span>
               </div>
             </div>
             <div className="md:mb-16">
@@ -88,13 +107,15 @@ export default function ReservationPage() {
                   <h3 className="text-base">
                     <strong>Dates</strong>
                   </h3>
-                  <p className="text-neutral-600">Dec 1 - 16</p>
+                  <p className="text-neutral-600">
+                    {formatDates(checkin, checkout)}
+                  </p>
                 </div>
                 <div className="mt-5 space-y-1">
                   <h3 className="text-base">
                     <strong>Place</strong>
                   </h3>
-                  <p className="text-neutral-600">{location}</p>
+                  <p className="text-neutral-600">{location.name}</p>
                 </div>
               </div>
               <Separator orientation="horizontal" decorative className="my-8" />
@@ -135,15 +156,13 @@ export default function ReservationPage() {
                     <div className="flex flex-col gap-y-3 pt-6 text-neutral-600">
                       <div className="flex items-center justify-between">
                         <span className="underline">
-                          {formatCurrency(pricerPerDay, currency)} x {days} days
+                          {formatCurrency(pricePerDay, currency)} x {days} days
                         </span>
-                        <span>
-                          {formatCurrency(pricerPerDay * days, currency)}
-                        </span>
+                        <span>{formatCurrency(subtotal, currency)}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="underline">Taxes and fees</span>
-                        <span>{formatCurrency(taxes, currency)}</span>
+                        <span>{formatCurrency(taxesAndFees, currency)}</span>
                       </div>
                     </div>
                   </div>
@@ -155,7 +174,7 @@ export default function ReservationPage() {
                   <div className="flex items-center justify-between font-semibold">
                     <span>Total ({currency})</span>
                     <span>
-                      {formatCurrency(pricerPerDay * days + taxes, currency)}
+                      {formatCurrency(subtotal + taxesAndFees, currency)}
                     </span>
                   </div>
                 </div>

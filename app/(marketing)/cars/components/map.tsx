@@ -22,7 +22,7 @@ export function Map({ locations }: { locations: Location[] }) {
       if (searchParams.has(SearchParams.LOCATION)) {
         const newLocation = locations.find(
           (location) =>
-            location.value === searchParams.get(SearchParams.LOCATION),
+            location.slug === searchParams.get(SearchParams.LOCATION),
         );
 
         if (!newLocation)

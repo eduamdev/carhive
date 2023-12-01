@@ -47,10 +47,10 @@ export async function fetchFeaturedLocations() {
   }
 }
 
-export async function fetchLocationByValue(value: string) {
+export async function getLocationBySlug(slug: string) {
   try {
     const data =
-      await sql<Location>`SELECT * FROM locations WHERE value = ${value};`;
+      await sql<Location>`SELECT * FROM locations WHERE slug = ${slug};`;
 
     const location = data.rows[0];
 

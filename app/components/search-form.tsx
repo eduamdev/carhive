@@ -137,7 +137,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
                       >
                         {field.value
                           ? locations.find(
-                              (location) => location.value === field.value,
+                              (location) => location.slug === field.value,
                             )?.name
                           : 'Select location'}
                       </Button>
@@ -151,15 +151,15 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
                         {locations.map((location) => (
                           <CommandItem
                             value={location.name}
-                            key={location.value}
+                            key={location.slug}
                             onSelect={() => {
-                              form.setValue('location', location.value);
+                              form.setValue('location', location.slug);
                             }}
                           >
                             <Icons.check
                               className={cn(
                                 'mr-2 h-4 w-4 shrink-0',
-                                location.value === field.value
+                                location.slug === field.value
                                   ? 'opacity-100'
                                   : 'opacity-0',
                               )}

@@ -94,8 +94,9 @@ export function ReservationForm({
   const checkIn = addDays(new Date(), 7);
   const checkOut = addDays(new Date(), 14);
 
-  const days: number = differenceInDays(checkOut, checkIn);
-  const taxesAndFees: number = pricePerDay * days * 0.16;
+  const days = differenceInDays(checkOut, checkIn);
+  const subtotal = pricePerDay * days;
+  const taxesAndFees = subtotal * 0.16;
 
   return (
     <>
@@ -122,7 +123,7 @@ export function ReservationForm({
                           <span className="w-full">
                             {field.value
                               ? locations.find(
-                                  (location) => location.value === field.value,
+                                  (location) => location.slug === field.value,
                                 )?.name
                               : 'Select location'}
                           </span>
@@ -137,15 +138,15 @@ export function ReservationForm({
                           {locations.map((location) => (
                             <CommandItem
                               value={location.name}
-                              key={location.value}
+                              key={location.slug}
                               onSelect={() => {
-                                form.setValue('location', location.value);
+                                form.setValue('location', location.slug);
                               }}
                             >
                               <Icons.check
                                 className={cn(
                                   'mr-2 h-4 w-4 shrink-0',
-                                  location.value === field.value
+                                  location.slug === field.value
                                     ? 'opacity-100'
                                     : 'opacity-0',
                                 )}
@@ -271,7 +272,7 @@ export function ReservationForm({
               {formatCurrency(pricePerDay, currency)} x {days}{' '}
               {days > 1 ? 'days' : 'day'}
             </span>
-            <span>{formatCurrency(pricePerDay * days, currency)}</span>
+            <span>{formatCurrency(subtotal, currency)}</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="underline">Taxes and fees</span>
@@ -281,9 +282,7 @@ export function ReservationForm({
         <Separator decorative orientation="horizontal" className="my-6" />
         <div className="flex items-center justify-between font-semibold">
           <span>Total (taxes included)</span>
-          <span>
-            {formatCurrency(pricePerDay * days + taxesAndFees, currency)}
-          </span>
+          <span>{formatCurrency(subtotal + taxesAndFees, currency)}</span>
         </div>
       </div>
     </>
