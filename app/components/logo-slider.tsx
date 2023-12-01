@@ -104,6 +104,7 @@ export function LogoSlider() {
               key={id}
               id={id}
               className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
+              aria-hidden="true"
             >
               <Icon style={{ height }} />
             </li>
