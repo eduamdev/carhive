@@ -154,6 +154,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
                             key={location.slug}
                             onSelect={() => {
                               form.setValue('location', location.slug);
+                              form.clearErrors('location')
                             }}
                           >
                             <Icons.check

@@ -165,6 +165,7 @@ export function ReservationForm({
                               key={location.slug}
                               onSelect={() => {
                                 form.setValue('location', location.slug);
+                                form.clearErrors('location')
                               }}
                             >
                               <Icons.check
@@ -219,6 +220,7 @@ export function ReservationForm({
                           onSelect={(selected) => {
                             if (selected) {
                               form.setValue('checkin', selected);
+                              form.clearErrors('checkin')
                             } else {
                               form.resetField('checkin');
                             }
@@ -265,6 +267,7 @@ export function ReservationForm({
                           onSelect={(selected) => {
                             if (selected) {
                               form.setValue('checkout', selected);
+                              form.clearErrors('checkout')
                             } else {
                               form.resetField('checkout');
                             }
