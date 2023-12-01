@@ -26,6 +26,7 @@ export async function subscribeToNewsletter(
   if (!validatedField.success) {
     return {
       errors: validatedField.error.flatten().fieldErrors.email,
+      subscribed: false
     };
   }
 
@@ -41,6 +42,6 @@ export async function subscribeToNewsletter(
     return { subscribed: true };
   } catch (error) {
     // return 'Database Error: Failed to Subscribe to Newsletter.'
-    return { message: 'Database Error: Failed to Subscribe to Newsletter.' };
+    return { errors: ['Database Error: Failed to Subscribe to Newsletter.'], subscribed: false };
   }
 }

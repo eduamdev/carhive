@@ -27,7 +27,6 @@ function SubmitButton() {
 export function NewsletterSubscriptionForm() {
   const initialState = {
     errors: [],
-    message: null,
     subscribed: false,
   };
 
@@ -53,9 +52,6 @@ export function NewsletterSubscriptionForm() {
             {error}
           </p>
         ))}
-        {state?.message && (
-          <p className="mt-2 text-sm text-red-500">{state.message}</p>
-        )}
         {state?.subscribed && (
           <p className="mt-2 flex flex-row items-center gap-1.5 text-sm text-neutral-600">
             <Icons.checkCircle
