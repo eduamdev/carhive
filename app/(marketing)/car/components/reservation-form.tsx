@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,6 +32,7 @@ import { SearchParams } from '@/app/lib/types';
 import { Location } from '@/db/definitions';
 import { cn, createUrl, formatCurrency } from '@/app/lib/utils';
 import { Separator } from '@/app/components/ui/separator';
+import { Skeleton } from '@/app/components/ui/skeleton';
 
 const FormSchema = z
   .object({
@@ -58,6 +59,12 @@ export function ReservationForm({
   const { push } = useRouter();
   const searchParams = useSearchParams();
 
+  const [days, setDays] = useState<number | undefined>(undefined);
+  const [subtotal, setSubtotal] = useState<number | undefined>(undefined);
+  const [taxesAndFees, setTaxesAndFees] = useState<number | undefined>(
+    undefined,
+  );
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -75,6 +82,26 @@ export function ReservationForm({
     push(createUrl('/reservation', newParams));
   }
 
+  const updateTotal = useCallback(() => {
+    const checkin = form.getValues('checkin');
+    const checkout = form.getValues('checkout');
+
+    if (checkin && checkout && isAfter(checkout, checkin)) {
+      const calculatedDays = differenceInDays(checkout, checkin);
+      const calculatedSubtotal = pricePerDay * calculatedDays;
+      const calculatedTaxesAndFees = calculatedSubtotal * 0.16;
+
+      setDays(calculatedDays);
+      setSubtotal(calculatedSubtotal);
+      setTaxesAndFees(calculatedTaxesAndFees);
+    } else {
+      // Reset values if either check-in or checkout is not set or if checkout is not after check-in
+      setDays(undefined);
+      setSubtotal(undefined);
+      setTaxesAndFees(undefined);
+    }
+  }, [form, pricePerDay]);
+
   useEffect(() => {
     const location = searchParams.get(SearchParams.LOCATION);
     const checkin = searchParams.get(SearchParams.CHECKIN);
@@ -84,19 +111,16 @@ export function ReservationForm({
     if (checkin) form.setValue('checkin', new Date(checkin));
     if (checkout) form.setValue('checkout', new Date(checkout));
 
+    updateTotal();
+
     return () => {
       form.resetField('location');
       form.resetField('checkin');
       form.resetField('checkout');
+
+      updateTotal();
     };
-  }, [searchParams, form]);
-
-  const checkIn = addDays(new Date(), 7);
-  const checkOut = addDays(new Date(), 14);
-
-  const days = differenceInDays(checkOut, checkIn);
-  const subtotal = pricePerDay * days;
-  const taxesAndFees = subtotal * 0.16;
+  }, [searchParams, form, updateTotal]);
 
   return (
     <>
@@ -192,7 +216,15 @@ export function ReservationForm({
                           initialFocus
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
+                          onSelect={(selected) => {
+                            if (selected) {
+                              form.setValue('checkin', selected);
+                            } else {
+                              form.resetField('checkin');
+                            }
+
+                            updateTotal();
+                          }}
                           disabled={(date) => date <= new Date()}
                         />
                       </PopoverContent>
@@ -230,7 +262,15 @@ export function ReservationForm({
                           initialFocus
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
+                          onSelect={(selected) => {
+                            if (selected) {
+                              form.setValue('checkout', selected);
+                            } else {
+                              form.resetField('checkout');
+                            }
+
+                            updateTotal();
+                          }}
                           disabled={(date) => date <= addDays(new Date(), 1)}
                         />
                       </PopoverContent>
@@ -265,26 +305,50 @@ export function ReservationForm({
       <p className="mt-4 text-center text-sm text-neutral-600">
         You won&apos;t be charged yet
       </p>
-      <div className="mt-5 text-neutral-600">
-        <div className="flex flex-col gap-y-3">
-          <div className="flex items-center justify-between">
-            <span className="underline">
-              {formatCurrency(pricePerDay, currency)} x {days}{' '}
-              {days > 1 ? 'days' : 'day'}
-            </span>
-            <span>{formatCurrency(subtotal, currency)}</span>
+      {days !== undefined &&
+      subtotal !== undefined &&
+      taxesAndFees !== undefined ? (
+        <div className="mt-5 text-neutral-600">
+          <div className="flex flex-col gap-y-3">
+            <div className="flex items-center justify-between">
+              <span className="underline">
+                {formatCurrency(pricePerDay, currency)} x {days}{' '}
+                {days > 1 ? 'days' : 'day'}
+              </span>
+              <span>{formatCurrency(subtotal, currency)}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="underline">Taxes and fees</span>
+              <span>{formatCurrency(taxesAndFees, currency)}</span>
+            </div>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="underline">Taxes and fees</span>
-            <span>{formatCurrency(taxesAndFees, currency)}</span>
+          <Separator decorative orientation="horizontal" className="my-6" />
+          <div className="flex items-center justify-between font-semibold">
+            <strong>Total (taxes included)</strong>
+            <strong>{formatCurrency(subtotal + taxesAndFees, currency)}</strong>
           </div>
         </div>
-        <Separator decorative orientation="horizontal" className="my-6" />
-        <div className="flex items-center justify-between font-semibold">
-          <span>Total (taxes included)</span>
-          <span>{formatCurrency(subtotal + taxesAndFees, currency)}</span>
+      ) : (
+        <div className="mt-5 text-neutral-600">
+          <div className="flex flex-col gap-y-3">
+            <div className="flex items-center justify-between">
+              <span className="underline">
+                {formatCurrency(pricePerDay, currency)} x ? days
+              </span>
+              <Skeleton className="h-4 w-20" />
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="underline">Taxes and fees</span>
+              <Skeleton className="h-4 w-16" />
+            </div>
+          </div>
+          <Separator decorative orientation="horizontal" className="my-6" />
+          <div className="flex items-center justify-between font-semibold">
+            <strong>Total (taxes included)</strong>
+            <Skeleton className="h-4 w-24" />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
