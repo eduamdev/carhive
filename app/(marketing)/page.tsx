@@ -1,9 +1,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import Image, { StaticImageData } from 'next/image';
 
 import { ScrollArea, ScrollBar } from '@/app/components/ui/scroll-area';
-import { Skeleton } from '@/app/components/ui/skeleton';
 import { AspectRatio } from '@/app/components/ui/aspect-ratio';
 import { Button } from '@/app/components/ui/button';
 import { SiteHeader } from '@/app/components/site-header';
@@ -12,19 +10,8 @@ import { SearchFormSkeleton } from '@/app/components/skeletons';
 import { LogoSlider } from '@/app/components/logo-slider';
 import { Icons } from '@/app/components/icons';
 import { SearchForm } from '@/app/components/search-form';
+import CldImage from '@/app/components/cld-image';
 import { bodyStyles } from './cars/components/filters/body-styles';
-
-import hatchback from '/public/images/cars/body-styles/hatchback.avif';
-import minivan from '/public/images/cars/body-styles/minivan.avif';
-import pickupTruck from '/public/images/cars/body-styles/pickup-truck.avif';
-import sportsCar from '/public/images/cars/body-styles/sports-car.avif';
-import suv from '/public/images/cars/body-styles/suv.avif';
-import sedan from '/public/images/cars/body-styles/sedan.avif';
-
-import paris from '/public/images/locations/paris.avif';
-import dubai from '/public/images/locations/dubai.avif';
-import cancun from '/public/images/locations/cancun.avif';
-import rome from '/public/images/locations/rome.avif';
 
 import {
   fetchLocations,
@@ -92,12 +79,12 @@ async function Hero() {
 
 function BodyStyleCarExplorer() {
   const imageMap = {
-    hatchback: hatchback,
-    minivan: minivan,
-    'pickup-truck': pickupTruck,
-    'sports-car': sportsCar,
-    suv: suv,
-    sedan: sedan,
+    hatchback: 'cars/body-styles/hatchback_wzyzoz',
+    minivan: 'cars/body-styles/minivan_xybc4t',
+    'pickup-truck': 'cars/body-styles/pickup-truck_a2mlme',
+    'sports-car': 'cars/body-styles/sports-car_w52w60',
+    suv: 'cars/body-styles/suv_y8n1fx',
+    sedan: 'cars/body-styles/sedan_nwfglr',
   };
 
   return (
@@ -113,7 +100,7 @@ function BodyStyleCarExplorer() {
                 return (
                   <div
                     key={slug}
-                    className="relative mr-2.5 inline-block h-36 w-[250px]"
+                    className="relative mr-2.5 inline-block h-[141px] w-[250px]"
                   >
                     <Link
                       href={{
@@ -131,19 +118,14 @@ function BodyStyleCarExplorer() {
                         {name}
                       </span>
                     </div>
-                    {imageUrl ? (
-                      <Image
-                        priority
-                        src={imageUrl}
-                        alt={name}
-                        width={250}
-                        height={144}
-                        className="h-full w-full rounded-2xl bg-gradient-to-r from-[#f9f9f9] to-[#e9e9e9] object-cover object-center"
-                        placeholder="blur"
-                      />
-                    ) : (
-                      <Skeleton className="h-full w-full rounded-2xl" />
-                    )}
+                    <CldImage
+                      priority
+                      src={imageUrl}
+                      alt={name}
+                      width={250}
+                      height={141}
+                      className="rounded-2xl"
+                    />
                   </div>
                 );
               })}
@@ -157,13 +139,6 @@ function BodyStyleCarExplorer() {
 }
 
 async function DestinationCarExplorer() {
-  const imageMap: { [key: string]: StaticImageData } = {
-    paris: paris,
-    dubai: dubai,
-    cancun: cancun,
-    rome: rome,
-  };
-
   const currency = 'MXN';
   const [featuredLocations, minPrice] = await Promise.all([
     fetchFeaturedLocations(),
@@ -177,47 +152,38 @@ async function DestinationCarExplorer() {
           Renting Trends: Must-Visit Places
         </h2>
         <div className="group -mx-2 mt-8 grid grid-cols-1 items-center justify-between sm:grid-cols-2 md:grid-cols-4 [&_a:hover_img]:!opacity-100">
-          {featuredLocations.map(({ id, slug, name }) => {
-            const imageUrl = imageMap[slug];
-
-            return (
-              <Link
-                key={id}
-                href={{
-                  pathname: '/cars',
-                  query: {
-                    [SearchParams.LOCATION]: slug,
-                  },
-                }}
-                className="px-1.5 pb-4 pt-1"
-              >
-                <div className="h-full w-full group-hover:[&_img]:opacity-50">
-                  <AspectRatio ratio={1 / 1}>
-                    {imageUrl ? (
-                      <Image
-                        src={imageUrl}
-                        alt={name}
-                        fill
-                        sizes="(max-width: 549px) 100vw, (max-width: 1127px) 50vw, 25vw"
-                        className="h-full w-full rounded-2xl border object-cover object-center transition-opacity duration-150"
-                        placeholder="blur"
-                      />
-                    ) : (
-                      <Skeleton className="h-full w-full rounded-2xl" />
-                    )}
-                  </AspectRatio>
-                </div>
-                <div className="mt-3">
-                  <h3 className="text-[15px] font-semibold">{name}</h3>
-                  {minPrice && (
-                    <p className="mt-1 text-sm text-neutral-600">
-                      Cars from {formatCurrency(minPrice, currency)}+
-                    </p>
-                  )}
-                </div>
-              </Link>
-            );
-          })}
+          {featuredLocations.map(({ id, slug, image_url, name }) => (
+            <Link
+              key={id}
+              href={{
+                pathname: '/cars',
+                query: {
+                  [SearchParams.LOCATION]: slug,
+                },
+              }}
+              className="px-1.5 pb-4 pt-1"
+            >
+              <div className="h-full w-full group-hover:[&_img]:opacity-50">
+                <AspectRatio ratio={1 / 1}>
+                  <CldImage
+                    src={image_url}
+                    alt={name}
+                    fill
+                    sizes="(max-width: 549px) 100vw, (max-width: 1127px) 50vw, 25vw"
+                    className="h-full w-full rounded-2xl border object-cover object-center transition-opacity duration-150"
+                  />
+                </AspectRatio>
+              </div>
+              <div className="mt-3">
+                <h3 className="text-[15px] font-semibold">{name}</h3>
+                {minPrice && (
+                  <p className="mt-1 text-sm text-neutral-600">
+                    Cars from {formatCurrency(minPrice, currency)}+
+                  </p>
+                )}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>
@@ -285,12 +251,12 @@ async function Testimonials() {
                   “{testimonial.comment}”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <Image
+                  <CldImage
                     src={testimonial.image_url}
                     alt={testimonial.name}
                     height={40}
                     width={40}
-                    className="h-10 w-10 rounded-full border bg-white"
+                    className="h-10 w-10 rounded-full border bg-white object-cover object-center"
                   />
                   <div>
                     <p className="text-sm font-semibold">{testimonial.name}</p>

@@ -193,7 +193,8 @@ async function seedLocations() {
         slug VARCHAR(255) NOT NULL UNIQUE,
         latitude VARCHAR(255) NOT NULL,
         longitude VARCHAR(255) NOT NULL,
-        featured BOOLEAN DEFAULT false NOT NULL
+        featured BOOLEAN DEFAULT false NOT NULL,
+        image_url VARCHAR(255)
       );
     `;
 
@@ -203,8 +204,8 @@ async function seedLocations() {
     const insertedLocations = await Promise.all(
       locations.map(
         (location) => sql`
-        INSERT INTO locations (id, name, slug, latitude, longitude, featured)
-        VALUES (${location.id}, ${location.name}, ${location.slug}, ${location.latitude}, ${location.longitude}, ${location.featured})
+        INSERT INTO locations (id, name, slug, latitude, longitude, featured, image_url)
+        VALUES (${location.id}, ${location.name}, ${location.slug}, ${location.latitude}, ${location.longitude}, ${location.featured}, ${location.image_url})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),

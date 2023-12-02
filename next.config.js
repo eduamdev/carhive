@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'carhive.vercel.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      }
     ],
   },
 };

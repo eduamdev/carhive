@@ -13,6 +13,7 @@ export type Location = {
   latitude: number;
   longitude: number;
   featured: boolean;
+  image_url: string;
 };
 
 export type Car = {

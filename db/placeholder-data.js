@@ -14,7 +14,7 @@ const testimonials = [
     comment:
       "Best Car Rental Experience! The website's interface is intuitive, making it easy to find the ideal car. The reviews from other users were incredibly helpful, and the entire process, from booking to return, was a breeze. Highly recommended!",
     username: 'oliviaparker',
-    image_url: '/images/avatars/olivia-parker.avif',
+    image_url: '/avatars/olivia-parker_aembie',
   },
   {
     id: '6671f37d-75ad-404f-bf23-04ddff964aa5',
@@ -22,7 +22,7 @@ const testimonials = [
     comment:
       'A Seamless Experience! This website made renting a car hassle-free. The search filters helped me find the perfect car for my trip, and the customer support was responsive and friendly. 5-star service all the way!',
     username: 'emmathompson',
-    image_url: '/images/avatars/emma-thompson.avif',
+    image_url: '/avatars/emma-thompson_o2ivnb',
   },
   {
     id: '8ecd373f-65c7-4651-a575-63325489297a',
@@ -30,7 +30,7 @@ const testimonials = [
     comment:
       "Reliable and Affordable! I've used several car rental websites before, but this one stands out. The prices are transparent, no hidden fees, and the cars are well-maintained. I'll be coming back for all my future trips.",
     username: 'sophiarodriguez',
-    image_url: '/images/avatars/sophia-rodriguez.avif',
+    image_url: 'avatars/sophia-rodriguez_rxxvrc',
   },
   {
     id: '944fdb07-590d-4cb1-a797-e7fb672c84e1',
@@ -38,7 +38,7 @@ const testimonials = [
     comment:
       'Exceptional Service! From booking to drop-off, everything was smooth and easy. The selection of cars was impressive, and the prices were unbeatable. Will definitely recommend to friends!',
     username: 'danjohnson',
-    image_url: '/images/avatars/daniel-johnson.avif',
+    image_url: '/avatars/daniel-johnson_vnlm3m',
   },
 ];
 
@@ -733,6 +733,7 @@ const locations = [
     latitude: 52.3547,
     longitude: 4.904,
     featured: false,
+    image_url: '',
   },
   {
     id: '6132dc81-cc1a-4a2e-93c3-d176139bec4f',
@@ -740,8 +741,8 @@ const locations = [
     slug: 'barcelona',
     latitude: 41.3925,
     longitude: 2.1404,
-    image_url: '',
     featured: false,
+    image_url: '',
   },
   {
     id: '92331cbf-254a-4acf-9671-a77810faef4c',
@@ -750,6 +751,7 @@ const locations = [
     latitude: 21.1617,
     longitude: -86.851,
     featured: true,
+    image_url: 'locations/cancun_c1tw5i',
   },
   {
     id: 'e27e9e7c-5bf9-44f9-b24f-3b5df6417c77',
@@ -758,6 +760,7 @@ const locations = [
     latitude: 25.2652,
     longitude: 55.2928,
     featured: true,
+    image_url: 'locations/dubai_joqiup',
   },
   {
     id: 'fd1e4b0d-5e1a-41db-a89b-6e33eed72ace',
@@ -766,6 +769,7 @@ const locations = [
     latitude: 40.6975,
     longitude: -73.9795,
     featured: false,
+    image_url: '',
   },
   {
     id: '45d07433-25e2-4ce7-b039-f0317e694048',
@@ -774,6 +778,7 @@ const locations = [
     latitude: 48.8589,
     longitude: 2.3469,
     featured: true,
+    image_url: 'locations/paris_tfbyw0',
   },
   {
     id: 'd9b23370-3be4-4936-ae23-3ad54b310fd8',
@@ -782,6 +787,7 @@ const locations = [
     latitude: -22.9148,
     longitude: -43.4075,
     featured: false,
+    image_url: '',
   },
   {
     id: '2538dcf8-b531-4c68-a87a-b49a42be0c23',
@@ -790,6 +796,7 @@ const locations = [
     latitude: 41.8931,
     longitude: 12.4832,
     featured: true,
+    image_url: 'locations/rome_g8hdhk',
   },
   {
     id: 'b31d9e0c-77c6-427b-9a19-37382ea62d7b',
@@ -798,6 +805,7 @@ const locations = [
     latitude: -33.8693,
     longitude: 151.209,
     featured: false,
+    image_url: '',
   },
   {
     id: 'ff841d10-0682-4e51-9330-47c5abb00643',
@@ -806,6 +814,7 @@ const locations = [
     latitude: 35.6841,
     longitude: 139.7742,
     featured: false,
+    image_url: '',
   },
 ];
 

@@ -36,7 +36,7 @@ export async function fetchFeaturedLocations() {
     console.log('Fetching featured locations data...');
 
     const data =
-      await sql<Location>`SELECT * FROM locations WHERE featured = true`;
+      await sql<Location>`SELECT * FROM locations WHERE featured = true ORDER BY name ASC`;
 
     console.log('Data fetch complete.');
 
