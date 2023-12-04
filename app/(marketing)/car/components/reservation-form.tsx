@@ -32,7 +32,6 @@ import { SearchParams } from '@/app/lib/types';
 import { Location } from '@/db/definitions';
 import { cn, createUrl, formatCurrency } from '@/app/lib/utils';
 import { Separator } from '@/app/components/ui/separator';
-import { Skeleton } from '@/app/components/ui/skeleton';
 
 const FormSchema = z
   .object({
@@ -82,7 +81,7 @@ export function ReservationForm({
     push(createUrl('/reservation', newParams));
   }
 
-  const updateTotal = useCallback(() => {
+  const calculateTotal = useCallback(() => {
     const checkin = form.getValues('checkin');
     const checkout = form.getValues('checkout');
 
@@ -111,16 +110,16 @@ export function ReservationForm({
     if (checkin) form.setValue('checkin', new Date(checkin));
     if (checkout) form.setValue('checkout', new Date(checkout));
 
-    updateTotal();
+    calculateTotal();
 
     return () => {
       form.resetField('location');
       form.resetField('checkin');
       form.resetField('checkout');
 
-      updateTotal();
+      calculateTotal();
     };
-  }, [searchParams, form, updateTotal]);
+  }, [searchParams, form, calculateTotal]);
 
   return (
     <>
@@ -165,7 +164,7 @@ export function ReservationForm({
                               key={location.slug}
                               onSelect={() => {
                                 form.setValue('location', location.slug);
-                                form.clearErrors('location')
+                                form.clearErrors('location');
                               }}
                             >
                               <Icons.check
@@ -220,12 +219,12 @@ export function ReservationForm({
                           onSelect={(selected) => {
                             if (selected) {
                               form.setValue('checkin', selected);
-                              form.clearErrors('checkin')
+                              form.clearErrors('checkin');
                             } else {
                               form.resetField('checkin');
                             }
 
-                            updateTotal();
+                            calculateTotal();
                           }}
                           disabled={(date) => date <= new Date()}
                         />
@@ -267,12 +266,12 @@ export function ReservationForm({
                           onSelect={(selected) => {
                             if (selected) {
                               form.setValue('checkout', selected);
-                              form.clearErrors('checkout')
+                              form.clearErrors('checkout');
                             } else {
                               form.resetField('checkout');
                             }
 
-                            updateTotal();
+                            calculateTotal();
                           }}
                           disabled={(date) => date <= addDays(new Date(), 1)}
                         />
@@ -308,50 +307,32 @@ export function ReservationForm({
       <p className="mt-4 text-center text-sm text-neutral-600">
         You won&apos;t be charged yet
       </p>
-      {days !== undefined &&
-      subtotal !== undefined &&
-      taxesAndFees !== undefined ? (
-        <div className="mt-5 text-neutral-600">
-          <div className="flex flex-col gap-y-3">
-            <div className="flex items-center justify-between">
-              <span className="underline">
-                {formatCurrency(pricePerDay, currency)} x {days}{' '}
-                {days > 1 ? 'days' : 'day'}
-              </span>
-              <span>{formatCurrency(subtotal, currency)}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="underline">Taxes and fees</span>
-              <span>{formatCurrency(taxesAndFees, currency)}</span>
-            </div>
+      <div className="mt-5 text-neutral-600">
+        <div className="flex flex-col gap-y-3">
+          <div className="flex items-center justify-between">
+            <span className="underline">
+              {formatCurrency(pricePerDay, currency)} x {days ? days : '—'}{' '}
+              {days ? (days > 1 ? 'days' : 'day') : 'days'}
+            </span>
+            <span>{subtotal ? formatCurrency(subtotal, currency) : '—'}</span>
           </div>
-          <Separator decorative orientation="horizontal" className="my-6" />
-          <div className="flex items-center justify-between font-semibold">
-            <strong>Total (taxes included)</strong>
-            <strong>{formatCurrency(subtotal + taxesAndFees, currency)}</strong>
+          <div className="flex items-center justify-between">
+            <span className="underline">Taxes and fees</span>
+            <span>
+              {taxesAndFees ? formatCurrency(taxesAndFees, currency) : '—'}
+            </span>
           </div>
         </div>
-      ) : (
-        <div className="mt-5 text-neutral-600">
-          <div className="flex flex-col gap-y-3">
-            <div className="flex items-center justify-between">
-              <span className="underline">
-                {formatCurrency(pricePerDay, currency)} x ? days
-              </span>
-              <Skeleton className="h-4 w-20" />
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="underline">Taxes and fees</span>
-              <Skeleton className="h-4 w-16" />
-            </div>
-          </div>
-          <Separator decorative orientation="horizontal" className="my-6" />
-          <div className="flex items-center justify-between font-semibold">
-            <strong>Total (taxes included)</strong>
-            <Skeleton className="h-4 w-24" />
-          </div>
+        <Separator decorative orientation="horizontal" className="my-6" />
+        <div className="flex items-center justify-between font-semibold">
+          <strong>Total (taxes included)</strong>
+          <strong>
+            {subtotal && taxesAndFees
+              ? formatCurrency(subtotal + taxesAndFees, currency)
+              : '—'}
+          </strong>
         </div>
-      )}
+      </div>
     </>
   );
 }

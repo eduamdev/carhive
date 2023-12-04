@@ -10,7 +10,7 @@ import { Separator } from '@/app/components/ui/separator';
 import { Icons } from '@/app/components/icons';
 import { fetchCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/app/lib/utils';
-import CldImage from '@/app/components/cld-image';
+import { CloudinaryImage } from '@/app/components/cloudinary-image';
 
 interface CarCardProps {
   index: number;
@@ -67,11 +67,11 @@ export async function CarCard({ index, slug }: CarCardProps) {
       </CardHeader>
       <CardContent>
         <div className="mt-4 flex items-center justify-center">
-          <CldImage
+          <CloudinaryImage
             src={image_url}
             alt={name}
-            height={80}
-            width={142}
+            height={72}
+            width={128}
             priority={index < 8}
           />
         </div>

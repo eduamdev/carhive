@@ -109,7 +109,7 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
       </div>
       <main>
         <div className="flex">
-          <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
+          <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
             <Suspense fallback={<CarCatalogSkeleton />}>
               <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
                 {!filteredCars.length ? (

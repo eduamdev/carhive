@@ -10,7 +10,7 @@ import { SearchFormSkeleton } from '@/app/components/skeletons';
 import { LogoSlider } from '@/app/components/logo-slider';
 import { Icons } from '@/app/components/icons';
 import { SearchForm } from '@/app/components/search-form';
-import CldImage from '@/app/components/cld-image';
+import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { bodyStyles } from './cars/components/filters/body-styles';
 
 import {
@@ -118,7 +118,7 @@ function BodyStyleCarExplorer() {
                         {name}
                       </span>
                     </div>
-                    <CldImage
+                    <CloudinaryImage
                       priority
                       src={imageUrl}
                       alt={name}
@@ -165,7 +165,7 @@ async function DestinationCarExplorer() {
             >
               <div className="h-full w-full group-hover:[&_img]:opacity-50">
                 <AspectRatio ratio={1 / 1}>
-                  <CldImage
+                  <CloudinaryImage
                     src={image_url}
                     alt={name}
                     fill
@@ -251,7 +251,7 @@ async function Testimonials() {
                   “{testimonial.comment}”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <CldImage
+                  <CloudinaryImage
                     src={testimonial.image_url}
                     alt={testimonial.name}
                     height={40}

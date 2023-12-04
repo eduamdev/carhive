@@ -5,7 +5,7 @@ import { cn } from '@/app/lib/utils';
 
 export function CarCardSkeleton() {
   return (
-    <div className="h-full w-full rounded-xl border border-black/10 shadow-sm">
+    <div className="h-full w-full rounded-xl border border-black/10 bg-white shadow-sm">
       <div className="mb-8 flex justify-between p-6">
         <Skeleton className="h-5 w-1/2" />
         <div className="flex w-1/3 gap-1.5">
@@ -13,16 +13,16 @@ export function CarCardSkeleton() {
           <Skeleton className="h-5 w-full" />
         </div>
       </div>
-      <div className="p-6 pt-2">
-        <Skeleton className="h-20 w-full" />
-        <div className="mt-10 flex items-center justify-between gap-2">
-          <Skeleton className=" h-4 w-1/4" />
+      <div className="mt-2 p-6 pt-2">
+        <Skeleton className="h-[75px] w-full" />
+        <div className="mt-9 flex items-center justify-between gap-2">
+          <Skeleton className="h-3.5 w-1/4" />
           <Separator
             orientation="vertical"
             decorative
-            className="h-4 border-neutral-100"
+            className="h-3.5 border-neutral-100"
           />
-          <Skeleton className=" h-4 w-1/4" />
+          <Skeleton className="h-3.5 w-1/4" />
           <Separator
             orientation="vertical"
             decorative
@@ -30,7 +30,7 @@ export function CarCardSkeleton() {
           />
           <Skeleton className=" h-4 w-1/4" />
         </div>
-        <Skeleton className="mt-5 h-5 w-1/2" />
+        <Skeleton className="mt-5 h-4 w-1/2" />
       </div>
       <div className="p-6 pt-0">
         <Skeleton className="h-10 w-full" />
@@ -124,7 +124,7 @@ export function CarOverviewSkeleton() {
           </div>
         </div>
         <div className="flex flex-col justify-self-end">
-          <Skeleton className="h-14 w-20 md:w-24" />
+          <Skeleton className="h-[48px] w-[85px]" />
         </div>
       </div>
       <Separator decorative orientation="horizontal" className="my-6" />

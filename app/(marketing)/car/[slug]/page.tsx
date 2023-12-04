@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import CldImage from '@/app/components/cld-image';
+import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { ReservationSidebar } from '../components/reservation-sidebar';
 import { fetchCarBySlug, fetchCars, fetchLocations } from '@/db/queries';
 import { Icons } from '@/app/components/icons';
@@ -68,7 +68,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
               <div className="flex flex-col justify-self-end">
-                <CldImage
+                <CloudinaryImage
                   src={car.image_url}
                   alt={car.name}
                   height={48}

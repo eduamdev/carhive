@@ -28,7 +28,7 @@ export default function Loading() {
         </div>
       </div>
       <div className="flex">
-        <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
+        <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
           <CarCatalogSkeleton />
         </div>
         <div className="hidden flex-auto md:block">
