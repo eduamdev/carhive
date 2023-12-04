@@ -65,7 +65,7 @@ export async function fetchCars() {
   try {
     console.log('Fetching cars data...');
 
-    const data = await sql<Car>`SELECT * FROM cars`;
+    const data = await sql<Car>`SELECT * FROM cars ORDER BY name ASC`;
 
     console.log('Data fetch complete.');
 

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import {
   Card,
   CardContent,
@@ -11,6 +10,7 @@ import { Separator } from '@/app/components/ui/separator';
 import { Icons } from '@/app/components/icons';
 import { fetchCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/app/lib/utils';
+import CldImage from '@/app/components/cld-image';
 
 interface CarCardProps {
   index: number;
@@ -67,17 +67,13 @@ export async function CarCard({ index, slug }: CarCardProps) {
       </CardHeader>
       <CardContent>
         <div className="mt-4 flex items-center justify-center">
-          <div className="relative h-20 w-[70%]">
-            <Image
-              src={image_url}
-              alt={name}
-              fill={true}
-              sizes="250px"
-              className="object-contain object-center"
-              priority={index < 8}
-              quality={100}
-            />
-          </div>
+          <CldImage
+            src={image_url}
+            alt={name}
+            height={80}
+            width={142}
+            priority={index < 8}
+          />
         </div>
         <div className="mt-8 flex items-center justify-between gap-x-2">
           <p className="text-sm text-neutral-600">{transmission}</p>

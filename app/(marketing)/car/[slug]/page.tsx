@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import CldImage from '@/app/components/cld-image';
 import { ReservationSidebar } from '../components/reservation-sidebar';
 import { fetchCarBySlug, fetchCars, fetchLocations } from '@/db/queries';
 import { Icons } from '@/app/components/icons';
@@ -68,16 +68,13 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
               <div className="flex flex-col justify-self-end">
-                <div className="relative h-14 w-20 md:w-24">
-                  <Image
-                    src={car.image_url}
-                    alt={car.name}
-                    fill={true}
-                    sizes="(max-width: 949px) 80px, 96px"
-                    className="object-contain object-center"
-                    priority
-                  />
-                </div>
+                <CldImage
+                  src={car.image_url}
+                  alt={car.name}
+                  height={48}
+                  width={85}
+                  priority
+                />
               </div>
             </div>
             <Separator decorative orientation="horizontal" className="my-6" />
