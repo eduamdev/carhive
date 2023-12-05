@@ -4,6 +4,7 @@ import { formatCurrency } from '@/app/lib/utils';
 import { Location } from '@/db/definitions';
 
 interface ReservationSidebarProps {
+  carSlug: string;
   pricePerDay: number;
   currency: string;
   rating: number;
@@ -12,6 +13,7 @@ interface ReservationSidebarProps {
 }
 
 export function ReservationSidebar({
+  carSlug,
   pricePerDay,
   currency,
   rating,
@@ -44,6 +46,7 @@ export function ReservationSidebar({
           </div>
         </div>
         <ReservationForm
+          carSlug={carSlug}
           locations={locations}
           pricePerDay={pricePerDay}
           currency={currency}

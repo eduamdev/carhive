@@ -8,7 +8,7 @@ import { SearchForm } from '@/app/components/search-form';
 import { Filters } from './components/filters';
 import { CarCard } from './components/car-card';
 import { MapContainer } from './components/map-container';
-import { fetchCars, fetchLocations } from '@/db/queries';
+import { getCars, getLocations } from '@/db/queries';
 import { slugify } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
 
@@ -24,7 +24,7 @@ interface CarsPageProps {
 }
 
 export default async function CarsPage({ searchParams }: CarsPageProps) {
-  const [cars, locations] = await Promise.all([fetchCars(), fetchLocations()]);
+  const [cars, locations] = await Promise.all([getCars(), getLocations()]);
 
   const carPrices = cars.map((car) => {
     return car.discounted_price_per_day || car.retail_price_per_day;

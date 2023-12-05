@@ -21,7 +21,7 @@ export function CarDetailsButton({ slug }: { slug: string }) {
   const href = createUrl(`/car/${slug}`, newParams);
 
   return (
-    <Button className="w-full" asChild>
+    <Button size={'sm'} className="w-full rounded-[5px]" asChild>
       <Link href={href}>View details</Link>
     </Button>
   );

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { Icons } from '@/app/components/icons';
 import { Button } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
@@ -6,12 +7,13 @@ import { siteConfig } from '@/config/site';
 import { formatCurrency } from '@/app/lib/utils';
 import { NavigateBack } from './components/navigate-back';
 import { SearchParams } from '@/app/lib/types';
-import { getLocationBySlug } from '@/db/queries';
+import { getCarBySlug, getLocationBySlug } from '@/db/queries';
 import { formatDates } from './lib/dates';
 import { differenceInDays } from 'date-fns';
 
 interface ReservationPageProps {
   searchParams: {
+    [SearchParams.CAR_SLUG]: string;
     [SearchParams.LOCATION]: string;
     [SearchParams.CHECKIN]: string;
     [SearchParams.CHECKOUT]: string;
@@ -21,20 +23,32 @@ interface ReservationPageProps {
 export default async function ReservationPage({
   searchParams,
 }: ReservationPageProps) {
-  const { location: locationSlug, checkin, checkout } = searchParams;
+  const {
+    [SearchParams.CAR_SLUG]: carSlug,
+    location: locationSlug,
+    checkin,
+    checkout,
+  } = searchParams;
 
-  const location = await getLocationBySlug(locationSlug);
+  const [car, location] = await Promise.all([
+    getCarBySlug(carSlug),
+    getLocationBySlug(locationSlug),
+  ]);
+
+  if (!car) {
+    throw new Error('Car is required to make a reservation.');
+  }
 
   if (!location) {
     throw new Error('Location is required to make a reservation.');
   }
 
-  const bodyStyle = 'Minivan';
-  const carName = 'Community Minivan';
-  const rating = 4.91;
-  const reviews = 11;
-  const pricePerDay = 2900;
-  const currency = 'MXN';
+  const bodyStyle = car.body_style;
+  const carName = car.name;
+  const rating = car.rating;
+  const reviews = car.reviews;
+  const pricePerDay = car.discounted_price_per_day || car.retail_price_per_day;
+  const currency = car.discounted_price_currency || car.retail_price_currency;
 
   const days = differenceInDays(new Date(checkout), new Date(checkin));
   const subtotal = pricePerDay * days;
@@ -127,8 +141,15 @@ export default async function ReservationPage({
             </div>
             <div className="mb-10 mt-4 normal-nums md:mb-20 md:mt-0">
               <div className="sticky top-[calc(var(--site-header-height)_+_160px)] rounded-xl md:border md:p-6">
-                <div className="flex gap-x-4">
-                  <div className="h-20 w-20 bg-neutral-50"></div>
+                <div className="flex flex-row gap-x-5">
+                  <CloudinaryImage
+                    src={car.image_url}
+                    alt={car.name}
+                    className="h-[36px] w-[64px] shrink-0 grow-0"
+                    height={36}
+                    width={64}
+                    priority
+                  />
                   <div className="grid grid-cols-1 grid-rows-1 items-start justify-between">
                     <div>
                       <span className="text-[13px] text-neutral-600">
@@ -139,7 +160,7 @@ export default async function ReservationPage({
                     <div className="flex items-baseline space-x-1 text-xs">
                       <Icons.star className="h-3 w-3" />
                       <span className="font-semibold">{rating}</span>
-                      <span className="text-neutral-600">
+                      <span className="mt-5 text-neutral-600">
                         ({reviews} reviews)
                       </span>
                     </div>

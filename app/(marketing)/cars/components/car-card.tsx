@@ -8,7 +8,7 @@ import {
 import { CarDetailsButton } from './car-details-button';
 import { Separator } from '@/app/components/ui/separator';
 import { Icons } from '@/app/components/icons';
-import { fetchCarBySlug } from '@/db/queries';
+import { getCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/app/lib/utils';
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
 
@@ -18,7 +18,7 @@ interface CarCardProps {
 }
 
 export async function CarCard({ index, slug }: CarCardProps) {
-  const car = await fetchCarBySlug(slug);
+  const car = await getCarBySlug(slug);
 
   if (!car) {
     return null;
@@ -66,7 +66,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="mt-4 flex items-center justify-center">
+        <div className="flex items-center justify-center py-4">
           <CloudinaryImage
             src={image_url}
             alt={name}
@@ -75,7 +75,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
             priority={index < 8}
           />
         </div>
-        <div className="mt-8 flex items-center justify-between gap-x-2">
+        <div className="mx-auto mt-8 flex max-w-[220px] items-center justify-between gap-x-1.5">
           <p className="text-sm text-neutral-600">{transmission}</p>
           <Separator orientation="vertical" decorative className="h-4" />
           <p className="text-sm text-neutral-600">
@@ -109,7 +109,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
           </span>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="p-2.5 pt-0">
         <CarDetailsButton slug={slug} />
       </CardFooter>
     </Card>

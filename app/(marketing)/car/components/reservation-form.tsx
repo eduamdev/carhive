@@ -45,12 +45,14 @@ const FormSchema = z
   });
 
 interface ReservationFormProps {
+  carSlug: string;
   locations: Location[];
   pricePerDay: number;
   currency: string;
 }
 
 export function ReservationForm({
+  carSlug,
   locations,
   pricePerDay,
   currency,
@@ -73,6 +75,7 @@ export function ReservationForm({
 
     const newParams = new URLSearchParams(searchParams.toString());
 
+    newParams.set(SearchParams.CAR_SLUG, carSlug);
     newParams.set(SearchParams.LOCATION, location);
     newParams.set(SearchParams.CHECKIN, checkin.toISOString());
     newParams.set(SearchParams.CHECKOUT, checkout.toISOString());
@@ -284,17 +287,17 @@ export function ReservationForm({
           </div>
           <div className="mt-2" aria-live="polite">
             {form.formState.errors.location && (
-              <p className="mt-1 text-left text-xs font-medium text-red-500">
+              <p className="mt-1 text-center text-xs font-medium text-red-500">
                 {form.formState.errors.location.message}
               </p>
             )}
             {form.formState.errors.checkin && (
-              <p className="mt-1 text-left text-xs font-medium text-red-500">
+              <p className="mt-1 text-center text-xs font-medium text-red-500">
                 {form.formState.errors.checkin.message}
               </p>
             )}
             {form.formState.errors.checkout && (
-              <p className="mt-1 text-left text-xs font-medium text-red-500">
+              <p className="mt-1 text-center text-xs font-medium text-red-500">
                 {form.formState.errors.checkout.message}
               </p>
             )}

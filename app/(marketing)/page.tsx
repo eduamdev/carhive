@@ -14,10 +14,10 @@ import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { bodyStyles } from './cars/components/filters/body-styles';
 
 import {
-  fetchLocations,
-  fetchFeaturedLocations,
+  getLocations,
+  getFeaturedLocations,
   getMinPriceFromCars,
-  fetchTestimonials,
+  getTestimonials,
 } from '@/db/queries';
 import { formatCurrency } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
@@ -44,7 +44,7 @@ export default function HomePage() {
 }
 
 async function Hero() {
-  const locations = await fetchLocations();
+  const locations = await getLocations();
 
   return (
     <section className="bg-neutral-50 pt-12">
@@ -93,7 +93,7 @@ function BodyStyleCarExplorer() {
         <h2 className="text-2xl font-bold">Popular Rental Car Choices</h2>
         <div className="relative mt-8 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
           <ScrollArea>
-            <div className="mb-4 whitespace-nowrap p-[2px]">
+            <div className="mb-3 whitespace-nowrap p-[2px]">
               {bodyStyles.map(({ slug, name }) => {
                 const imageUrl = imageMap[slug];
 
@@ -113,8 +113,8 @@ function BodyStyleCarExplorer() {
                     >
                       <span className="sr-only">{name}</span>
                     </Link>
-                    <div className="absolute left-3.5 top-3 z-10 flex items-center justify-center leading-none">
-                      <span className="rounded-md border bg-white px-2.5 py-1.5 text-[15px] font-semibold text-neutral-800">
+                    <div className="absolute left-2.5 top-2.5 z-10 flex items-center justify-center leading-none">
+                      <span className="rounded-[5px] border bg-white px-2.5 py-1.5 text-sm font-semibold leading-none text-neutral-800">
                         {name}
                       </span>
                     </div>
@@ -141,7 +141,7 @@ function BodyStyleCarExplorer() {
 async function DestinationCarExplorer() {
   const currency = 'MXN';
   const [featuredLocations, minPrice] = await Promise.all([
-    fetchFeaturedLocations(),
+    getFeaturedLocations(),
     getMinPriceFromCars(),
   ]);
 
@@ -237,7 +237,7 @@ function Features() {
 }
 
 async function Testimonials() {
-  const testimonials = await fetchTestimonials();
+  const testimonials = await getTestimonials();
 
   return (
     <section className="border-t py-12">

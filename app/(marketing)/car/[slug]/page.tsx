@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { ReservationSidebar } from '../components/reservation-sidebar';
-import { fetchCarBySlug, fetchCars, fetchLocations } from '@/db/queries';
+import { getCarBySlug, getCars, getLocations } from '@/db/queries';
 import { Icons } from '@/app/components/icons';
 import { Separator } from '@/app/components/ui/separator';
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
   const slug = params.slug;
 
   // fetch data
-  const car = await fetchCarBySlug(slug);
+  const car = await getCarBySlug(slug);
 
   if (!car) {
     return {};
@@ -31,14 +31,14 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const cars = await fetchCars();
+  const cars = await getCars();
   return cars.map((car) => ({ slug: car.slug }));
 }
 
 export default async function CarPage({ params }: CarPageProps) {
   const [car, locations] = await Promise.all([
-    fetchCarBySlug(params.slug),
-    fetchLocations(),
+    getCarBySlug(params.slug),
+    getLocations(),
   ]);
 
   if (!car) {
@@ -135,6 +135,7 @@ export default async function CarPage({ params }: CarPageProps) {
             </div>
           </div>
           <ReservationSidebar
+            carSlug={params.slug}
             pricePerDay={
               car.discounted_price_per_day || car.retail_price_per_day
             }

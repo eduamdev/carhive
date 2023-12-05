@@ -15,7 +15,7 @@ export function CarCardSkeleton() {
       </div>
       <div className="mt-2 p-6 pt-2">
         <Skeleton className="h-[75px] w-full" />
-        <div className="mt-9 flex items-center justify-between gap-2">
+        <div className="mt-[52px] flex items-center justify-between gap-2">
           <Skeleton className="h-3.5 w-1/4" />
           <Separator
             orientation="vertical"
@@ -32,8 +32,8 @@ export function CarCardSkeleton() {
         </div>
         <Skeleton className="mt-5 h-4 w-1/2" />
       </div>
-      <div className="p-6 pt-0">
-        <Skeleton className="h-10 w-full" />
+      <div className="p-2.5 pt-0">
+        <Skeleton className="h-9 w-full rounded-[5px]" />
       </div>
     </div>
   );

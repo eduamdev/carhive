@@ -1,13 +1,13 @@
 import { sql } from '@vercel/postgres';
 import { Testimonial, Location, Car } from '@/db/definitions';
 
-export async function fetchTestimonials() {
+export async function getTestimonials() {
   try {
-    console.log('Fetching testimonials data...');
+    // console.log('Fetching testimonials data...');
 
     const data = await sql<Testimonial>`SELECT * FROM testimonials`;
 
-    console.log('Data fetch complete.');
+    // console.log('Data fetch complete.');
 
     return data.rows;
   } catch (error) {
@@ -16,13 +16,13 @@ export async function fetchTestimonials() {
   }
 }
 
-export async function fetchLocations() {
+export async function getLocations() {
   try {
-    console.log('Fetching locations data...');
+    // console.log('Fetching locations data...');
 
     const data = await sql<Location>`SELECT * FROM locations ORDER BY name ASC`;
 
-    console.log('Data fetch complete.');
+    // console.log('Data fetch complete.');
 
     return data.rows;
   } catch (error) {
@@ -31,14 +31,14 @@ export async function fetchLocations() {
   }
 }
 
-export async function fetchFeaturedLocations() {
+export async function getFeaturedLocations() {
   try {
-    console.log('Fetching featured locations data...');
+    // console.log('Fetching featured locations data...');
 
     const data =
       await sql<Location>`SELECT * FROM locations WHERE featured = true ORDER BY name ASC`;
 
-    console.log('Data fetch complete.');
+    // console.log('Data fetch complete.');
 
     return data.rows;
   } catch (error) {
@@ -61,9 +61,9 @@ export async function getLocationBySlug(slug: string) {
   }
 }
 
-export async function fetchCars() {
+export async function getCars() {
   try {
-    console.log('Fetching cars data...');
+    // console.log('Fetching cars data...');
 
     const data = await sql<Car>`SELECT * FROM cars ORDER BY name ASC`;
 
@@ -76,7 +76,7 @@ export async function fetchCars() {
   }
 }
 
-export async function fetchCarBySlug(slug: string) {
+export async function getCarBySlug(slug: string) {
   try {
     const data = await sql<Car>`SELECT * FROM cars WHERE slug = ${slug};`;
 
