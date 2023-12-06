@@ -5,7 +5,7 @@ export function SiteHeader() {
   return (
     <header className="flex h-full items-center justify-between">
       <Link href="/" className="z-20">
-        <Icons.logoWordmark className="h-[18px] shrink-0" />
+        <Icons.logoWordmark className="h-5 shrink-0" />
       </Link>
       <nav>
         <div className="flex items-center justify-center text-neutral-800">

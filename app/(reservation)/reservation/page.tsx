@@ -59,7 +59,7 @@ export default async function ReservationPage({
       <div className="hidden h-[var(--site-header-height)] w-full pl-6 shadow-[inset_0_-1px_0_0_#eaeaea] md:block">
         <header className="flex h-full items-center">
           <Link href="/" className="z-20">
-            <Icons.logoWordmark className="h-[18px] shrink-0" />
+            <Icons.logoWordmark className="h-5 shrink-0" />
           </Link>
         </header>
       </div>
