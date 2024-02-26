@@ -9,8 +9,8 @@ export function SiteHeader() {
       </Link>
       <nav>
         <div className="flex items-center justify-center text-neutral-800">
-          <Icons.menu className="mr-1.5 h-6 w-6 shrink-0" />
-          <Icons.user className="h-7 w-7 shrink-0" />
+          <Icons.menu className="mr-1.5 size-6 shrink-0" />
+          <Icons.user className="size-7 shrink-0" />
         </div>
       </nav>
     </header>

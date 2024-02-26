@@ -39,7 +39,7 @@ export function SeatingCapacityFilters({
             const buttonClassName = cn(
               'font-normal',
               isSelected &&
-                'border-black bg-black text-white after:absolute after:-left-px after:-top-px after:h-[calc(100%_+_2px)] after:w-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
+                'border-black bg-black text-white after:absolute after:-left-px after:-top-px after:size-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
             );
 
             return (

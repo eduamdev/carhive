@@ -5,11 +5,11 @@ import { cn } from '@/app/lib/utils';
 
 export function CarCardSkeleton() {
   return (
-    <div className="h-full w-full rounded-xl border border-black/10 bg-white shadow-sm">
+    <div className="size-full rounded-xl border border-black/10 bg-white shadow-sm">
       <div className="mb-8 flex justify-between p-6">
         <Skeleton className="h-5 w-1/2" />
         <div className="flex w-1/3 gap-1.5">
-          <Skeleton className="h-5 w-5 shrink-0" />
+          <Skeleton className="size-5 shrink-0" />
           <Skeleton className="h-5 w-full" />
         </div>
       </div>
@@ -73,7 +73,7 @@ export function SearchFormSkeleton({ compact = false }: { compact?: boolean }) {
       )}
     >
       <div>
-        <div className="grid h-full w-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
+        <div className="grid size-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
           <Skeleton className={cn('w-28', compact ? 'h-2' : 'h-3')} />
           <Skeleton className={cn('w-24', compact ? 'h-3' : 'h-4 ')} />
         </div>
@@ -84,7 +84,7 @@ export function SearchFormSkeleton({ compact = false }: { compact?: boolean }) {
         className={compact ? 'h-6' : 'h-8'}
       />
       <div>
-        <div className="grid h-full w-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
+        <div className="grid size-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
           <Skeleton className={cn('w-16', compact ? 'h-2' : 'h-3')} />
           <Skeleton className={cn('w-20', compact ? 'h-3' : 'h-4 ')} />
         </div>
@@ -95,13 +95,13 @@ export function SearchFormSkeleton({ compact = false }: { compact?: boolean }) {
         className={compact ? 'h-6' : 'h-8'}
       />
       <div>
-        <div className="grid h-full w-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
+        <div className="grid size-full grid-cols-1 items-start justify-center gap-y-2 overflow-x-hidden px-4">
           <Skeleton className={cn('w-16', compact ? 'h-2' : 'h-3')} />
           <Skeleton className={cn('w-20', compact ? 'h-3' : 'h-4 ')} />
         </div>
       </div>
       <Skeleton
-        className={cn('rounded-full', compact ? 'h-9 w-9' : 'h-12 w-12')}
+        className={cn('rounded-full', compact ? 'size-9' : 'size-12')}
       />
     </div>
   );
@@ -130,21 +130,21 @@ export function CarOverviewSkeleton() {
       <Separator decorative orientation="horizontal" className="my-6" />
       <div className="flex flex-col gap-6">
         <div className="flex flex-row gap-8">
-          <Skeleton className="h-6 w-6 shrink-0" />
+          <Skeleton className="size-6 shrink-0" />
           <div className="flex flex-col">
             <Skeleton className="h-5 w-14" />
             <Skeleton className="mt-2 h-3 w-40" />
           </div>
         </div>
         <div className="flex flex-row gap-8">
-          <Skeleton className="h-6 w-6 shrink-0" />
+          <Skeleton className="size-6 shrink-0" />
           <div className="flex flex-col">
             <Skeleton className="h-5 w-20" />
             <Skeleton className="mt-2 h-3 w-40" />
           </div>
         </div>
         <div className="flex flex-row gap-8">
-          <Skeleton className="h-6 w-6 shrink-0" />
+          <Skeleton className="size-6 shrink-0" />
           <Skeleton className="h-5 w-56" />
         </div>
       </div>
@@ -164,27 +164,27 @@ export function CarOverviewSkeleton() {
         <Skeleton className="h-6 w-48" />
         <div className="mt-6 grid grid-cols-2 gap-4">
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
           <div className="flex flex-row gap-4">
-            <Skeleton className="h-5 w-5 shrink-0" />
+            <Skeleton className="size-5 shrink-0" />
             <Skeleton className="h-5 w-2/3" />
           </div>
         </div>
@@ -202,7 +202,7 @@ export function ReservationSidebarSkeleton() {
             <Skeleton className="h-5 w-36 shrink-0" />
           </div>
           <div className="flex flex-row items-baseline justify-start gap-1 tracking-tight lg:justify-end">
-            <Skeleton className="h-4 w-4" />
+            <Skeleton className="size-4" />
             <Skeleton className="h-4 w-28 shrink-0" />
           </div>
         </div>

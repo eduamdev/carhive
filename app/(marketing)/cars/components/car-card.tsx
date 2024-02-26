@@ -48,7 +48,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
           </CardTitle>
           <div className="text-right">
             <div className="flex items-baseline gap-1">
-              <Icons.star className="h-[14px] w-[14px] self-center" />
+              <Icons.star className="size-[14px] self-center" />
               <span className="text-sm font-medium leading-none text-neutral-600">
                 {rating} {reviews > 0 && `(${reviews})`}
               </span>
@@ -61,7 +61,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
             !unlimited_mileage && 'invisible',
           )}
         >
-          <Icons.speedometer className="mr-1.5 inline-block h-4 w-4" />
+          <Icons.speedometer className="mr-1.5 inline-block size-4" />
           Unlimited mileage
         </div>
       </CardHeader>

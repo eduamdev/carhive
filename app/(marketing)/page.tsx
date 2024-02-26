@@ -51,15 +51,15 @@ async function Hero() {
       <h1 className="text-center text-3xl font-extrabold">Find your car</h1>
       <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 items-center justify-center gap-4 md:flex md:flex-row md:gap-12">
         <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
           <span className="text-sm text-neutral-900">No hidden fees.</span>
         </div>
         <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
           <span className="text-sm text-neutral-900">Transparent pricing.</span>
         </div>
         <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="h-5 w-5 shrink-0 text-green-600" />
+          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
           <span className="text-sm text-neutral-900">
             Flexible cancellations.
           </span>
@@ -163,14 +163,14 @@ async function DestinationCarExplorer() {
               }}
               className="px-1.5 pb-4 pt-1"
             >
-              <div className="h-full w-full group-hover:[&_img]:opacity-50">
+              <div className="size-full group-hover:[&_img]:opacity-50">
                 <AspectRatio ratio={1 / 1}>
                   <CloudinaryImage
                     src={image_url}
                     alt={name}
                     fill
                     sizes="(max-width: 549px) 100vw, (max-width: 1127px) 50vw, 25vw"
-                    className="h-full w-full rounded-2xl border object-cover object-center transition-opacity duration-150"
+                    className="size-full rounded-2xl border object-cover object-center transition-opacity duration-150"
                   />
                 </AspectRatio>
               </div>
@@ -199,8 +199,8 @@ function Features() {
         </h2>
         <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.sparkle className="h-6 w-6 text-neutral-500" />
+            <div className="flex size-12 items-center justify-center rounded-full border bg-white">
+              <Icons.sparkle className="size-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Hassle-Free Booking</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -209,8 +209,8 @@ function Features() {
             </p>
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.shieldCheck className="h-6 w-6 text-neutral-500" />
+            <div className="flex size-12 items-center justify-center rounded-full border bg-white">
+              <Icons.shieldCheck className="size-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Secure Rentals</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -220,8 +220,8 @@ function Features() {
             </p>
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-white">
-              <Icons.navigationArrow className="h-6 w-6 text-neutral-500" />
+            <div className="flex size-12 items-center justify-center rounded-full border bg-white">
+              <Icons.navigationArrow className="size-6 text-neutral-500" />
             </div>
             <p className="mt-6 font-semibold">Easy Navigation</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -256,7 +256,7 @@ async function Testimonials() {
                     alt={testimonial.name}
                     height={40}
                     width={40}
-                    className="h-10 w-10 rounded-full border bg-white object-cover object-center"
+                    className="size-10 rounded-full border bg-white object-cover object-center"
                   />
                   <div>
                     <p className="text-sm font-semibold">{testimonial.name}</p>
@@ -288,7 +288,7 @@ function CarExplorer() {
               href="/cars"
               className="flex items-center justify-center gap-x-2.5"
             >
-              Explore Cars <Icons.chevronForward className="h-3 w-3" />
+              Explore Cars <Icons.chevronForward className="size-3" />
             </Link>
           </Button>
           <Button size="xl" className="hidden text-[15px] xl:flex" asChild>
@@ -297,7 +297,7 @@ function CarExplorer() {
               className="flex items-center justify-center gap-x-3"
             >
               Explore Cars{' '}
-              <Icons.chevronForward className="h-[14px] w-[14px]" />
+              <Icons.chevronForward className="size-[14px]" />
             </Link>
           </Button>
         </div>

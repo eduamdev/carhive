@@ -27,7 +27,7 @@ function Calendar({
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
           buttonVariants({ variant: 'outline' }),
-          'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+          'size-7 bg-transparent p-0 opacity-50 hover:opacity-100',
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
@@ -38,7 +38,7 @@ function Calendar({
         cell: 'text-center text-sm p-0 relative [&:has([aria-selected])]:bg-neutral-100 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
         day: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-9 w-9 p-0 font-normal aria-selected:opacity-100',
+          'size-9 p-0 font-normal aria-selected:opacity-100',
         ),
         day_selected:
           'bg-neutral-900 text-neutral-50 hover:bg-neutral-900 hover:text-neutral-50 focus:bg-neutral-900 focus:text-neutral-50',
@@ -52,9 +52,9 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <Icons.chevronBack className="h-4 w-4" />,
+        IconLeft: ({ ...props }) => <Icons.chevronBack className="size-4" />,
         IconRight: ({ ...props }) => (
-          <Icons.chevronForward className="h-4 w-4" />
+          <Icons.chevronForward className="size-4" />
         ),
       }}
       {...props}

@@ -111,10 +111,10 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
             control={form.control}
             name="location"
             render={({ field }) => (
-              <FormItem className="grid h-full w-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
+              <FormItem className="grid size-full grid-cols-1 items-start justify-center overflow-x-hidden px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold',
+                    'inline-block size-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -159,7 +159,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
                           >
                             <Icons.check
                               className={cn(
-                                'mr-2 h-4 w-4 shrink-0',
+                                'mr-2 size-4 shrink-0',
                                 location.slug === field.value
                                   ? 'opacity-100'
                                   : 'opacity-0',
@@ -195,7 +195,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
               <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold',
+                    'inline-block size-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -255,7 +255,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
               <FormItem className="grid h-full shrink-0 grow-0 grid-cols-1 items-start justify-center px-4">
                 <FormLabel
                   className={cn(
-                    'inline-block h-full w-full font-bold',
+                    'inline-block size-full font-bold',
                     compact ? 'text-xs' : 'text-[13px]',
                   )}
                 >
@@ -311,7 +311,7 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
           <Icons.magnifyingGlass
             className={cn(
               '[stroke-width:3px]',
-              compact ? 'h-[14px] w-[14px]' : 'h-[18px] w-[18px]',
+              compact ? 'size-[14px]' : 'size-[18px]',
             )}
           />
         </Button>

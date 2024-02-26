@@ -14,7 +14,7 @@ export function NavigateBack() {
       type="button"
       onClick={() => router.back()}
     >
-      <Icons.chevronBack className="h-5 w-5" />
+      <Icons.chevronBack className="size-5" />
     </Button>
   );
 }

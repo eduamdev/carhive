@@ -158,7 +158,7 @@ export default async function ReservationPage({
                       <p className="text-sm">{carName}</p>
                     </div>
                     <div className="flex items-baseline space-x-1 text-xs">
-                      <Icons.star className="h-3 w-3" />
+                      <Icons.star className="size-3" />
                       <span className="font-semibold">{rating}</span>
                       <span className="mt-5 text-neutral-600">
                         ({reviews} reviews)

@@ -63,7 +63,7 @@ export function BodyStyleFilters({
       const isSelected = selectedFilters.bodyStyles.includes(slug);
       const buttonClassName = cn(
         isSelected &&
-          'bg-neutral-50 after:absolute after:-left-px after:-top-px after:h-[calc(100%_+_2px)] after:w-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
+          'bg-neutral-50 after:absolute after:-left-px after:-top-px after:size-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
       );
 
       return (
@@ -77,7 +77,7 @@ export function BodyStyleFilters({
           }
         >
           <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-            {Icon && <Icon className="h-8 w-8" />}
+            {Icon && <Icon className="size-8" />}
             <span className="text-base font-medium">{name}</span>
           </div>
         </Button>

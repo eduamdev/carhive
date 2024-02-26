@@ -172,7 +172,7 @@ export function ReservationForm({
                             >
                               <Icons.check
                                 className={cn(
-                                  'mr-2 h-4 w-4 shrink-0',
+                                  'mr-2 size-4 shrink-0',
                                   location.slug === field.value
                                     ? 'opacity-100'
                                     : 'opacity-0',

@@ -80,7 +80,7 @@ export default async function CarPage({ params }: CarPageProps) {
             <Separator decorative orientation="horizontal" className="my-6" />
             <div className="flex flex-col gap-6">
               <div className="flex flex-row gap-8">
-                <Icons.gift className="h-6 w-6 shrink-0" />
+                <Icons.gift className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">Exclusive Deals</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -90,7 +90,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
               <div className="flex flex-row gap-8">
-                <Icons.map className="h-6 w-6 shrink-0" />
+                <Icons.map className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">Local Tips</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -100,7 +100,7 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
               <div className="flex flex-row gap-8">
-                <Icons.lifebuoy className="h-6 w-6 shrink-0" />
+                <Icons.lifebuoy className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">24/7 Roadside Assistance</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -127,7 +127,7 @@ export default async function CarPage({ params }: CarPageProps) {
                     key={feature}
                     className="flex flex-row items-center gap-4"
                   >
-                    <Icons.check className="h-4 w-4 shrink-0 [stroke-width:2.5px]" />
+                    <Icons.check className="size-4 shrink-0 [stroke-width:2.5px]" />
                     <p className="text-neutral-600">{feature}</p>
                   </div>
                 ))}

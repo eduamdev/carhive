@@ -55,7 +55,7 @@ export function NewsletterSubscriptionForm() {
         {state?.subscribed && (
           <p className="mt-2 flex flex-row items-center gap-1.5 text-sm text-neutral-600">
             <Icons.checkCircle
-              className="h-5 w-5 shrink-0 text-green-600"
+              className="size-5 shrink-0 text-green-600"
               aria-hidden="true"
             />
             Thanks for subscribing!

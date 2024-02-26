@@ -17,7 +17,7 @@ export default function NotFound() {
             href="/cars"
             className="flex items-center justify-center gap-x-2.5"
           >
-            Explore Our Cars <Icons.chevronForward className="h-3 w-3" />
+            Explore Our Cars <Icons.chevronForward className="size-3" />
           </Link>
         </Button>
         <Button size="xl" className="hidden text-[15px] xl:flex" asChild>
@@ -26,7 +26,7 @@ export default function NotFound() {
             className="flex items-center justify-center gap-x-3"
           >
             Explore Our Cars{' '}
-            <Icons.chevronForward className="h-[14px] w-[14px]" />
+            <Icons.chevronForward className="size-[14px]" />
           </Link>
         </Button>
       </div>

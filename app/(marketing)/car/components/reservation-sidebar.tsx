@@ -33,7 +33,7 @@ export function ReservationSidebar({
             </span>
           </div>
           <div className="flex flex-row items-baseline justify-start gap-1 tracking-tight lg:justify-end">
-            <Icons.star className="h-[15px] w-[15px] self-center" />
+            <Icons.star className="size-[15px] self-center" />
             <span className="text-sm font-medium leading-none">{rating}</span>
             {reviews > 0 && (
               <>

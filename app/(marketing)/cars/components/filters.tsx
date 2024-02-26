@@ -178,7 +178,7 @@ export function Filters({ initialMinPrice, initialMaxPrice }: FiltersProps) {
           variant="outline"
           className="relative flex items-center justify-center gap-x-2.5"
         >
-          <Icons.filters className="h-[22px] w-[22px]" />
+          <Icons.filters className="size-[22px]" />
           <span>Filters</span>
           <CounterBadge count={totalSelectedFilters} />
         </Button>
