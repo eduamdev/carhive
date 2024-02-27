@@ -34,16 +34,16 @@ export function SiteHeader() {
               align="end"
               collisionPadding={{ top: 40, right: 40 }}
               sideOffset={8}
-              className="w-48 px-0 py-2.5 text-neutral-800 shadow-xl"
+              className="w-60 px-0 py-2 text-neutral-800 shadow-xl"
             >
               <ul className="flex flex-col gap-0.5 text-sm">
                 <Link href={'/sign-up'}>
-                  <li className="py-2 pl-4 font-semibold hover:bg-neutral-100">
+                  <li className="py-2.5 pl-4 font-semibold hover:bg-neutral-100">
                     Sign up
                   </li>
                 </Link>
                 <Link href={'/sign-in'}>
-                  <li className="py-2 pl-4 hover:bg-neutral-100">Sign in</li>
+                  <li className="py-2.5 pl-4 hover:bg-neutral-100">Sign in</li>
                 </Link>
               </ul>
             </PopoverContent>
