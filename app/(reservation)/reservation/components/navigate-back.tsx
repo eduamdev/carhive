@@ -13,6 +13,7 @@ export function NavigateBack() {
       size="icon"
       type="button"
       onClick={() => router.back()}
+      className="size-10 rounded-full"
     >
       <Icons.chevronBack className="size-5" />
     </Button>
