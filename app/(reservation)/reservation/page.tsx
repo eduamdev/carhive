@@ -100,7 +100,7 @@ export default async function ReservationPage({
             <div className="mb-16 md:hidden">
               <Separator orientation="horizontal" decorative className="my-8" />
               <SignedOut>
-                <SignIn />
+                <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
               </SignedOut>
               <SignedIn>
                 <Button size="xl" className="w-full text-lg">
@@ -151,7 +151,7 @@ export default async function ReservationPage({
               <Separator orientation="horizontal" decorative className="my-8" />
               <div className="hidden pt-4 md:block">
                 <SignedOut>
-                  <SignIn />
+                  <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
                 </SignedOut>
                 <SignedIn>
                   <Button size="xl" className="w-full text-lg">
