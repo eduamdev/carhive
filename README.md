@@ -33,11 +33,11 @@ A car rental website built with **Next.js (App Router)**.
 
 Before running the application, ensure you have the following installed:
 
-- Node.js (version 18 or higher)
-- PNPM
-- ![Vercel account](https://vercel.com/) with a Postgres Database created
-- ![Cloudinary account](https://cloudinary.com/)
-- ![Clerk account](https://clerk.com/)
+- Node.js (v18+)
+- pnpm
+- [Vercel account](https://vercel.com/) and a [Postgres Database](https://vercel.com/docs/storage/vercel-postgres) created
+- [Cloudinary account](https://cloudinary.com/)
+- [Clerk account](https://clerk.com/)
 
 ## Running Locally
 
@@ -55,7 +55,7 @@ pnpm install
   cp .env.example .env.local
   ```
 
-- Update the `.env.local` file with your configuration details.
+- Update the `.env.local` file with your configuration details
 
 3. Seed initial data:
 
