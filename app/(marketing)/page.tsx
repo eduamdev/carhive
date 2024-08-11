@@ -166,6 +166,7 @@ async function DestinationCarExplorer() {
               <div className="size-full group-hover:[&_img]:opacity-50">
                 <AspectRatio ratio={1 / 1}>
                   <CloudinaryImage
+                    priority
                     src={image_url}
                     alt={name}
                     fill
@@ -296,8 +297,7 @@ function CarExplorer() {
               href="/cars"
               className="flex items-center justify-center gap-x-3"
             >
-              Explore Cars{' '}
-              <Icons.chevronForward className="size-[14px]" />
+              Explore Cars <Icons.chevronForward className="size-[14px]" />
             </Link>
           </Button>
         </div>

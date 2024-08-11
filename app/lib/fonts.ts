@@ -5,5 +5,4 @@ export const fontSans = FontSans({
   variable: '--font-inter',
   display: 'swap',
   weight: 'variable',
-  axes: ['slnt'],
 });
