@@ -1,5 +1,11 @@
 import Link from 'next/link';
-import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import {
+  UserButton,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+} from '@clerk/nextjs';
 import {
   Popover,
   PopoverContent,
@@ -13,19 +19,14 @@ export function SiteHeader() {
       <Link href="/" className="z-20">
         <Icons.logoWordmark className="h-[18px] shrink-0" />
       </Link>
-      <nav>
+      <div className="z-40 inline-flex">
         <SignedIn>
-          <div className="flex items-center justify-center">
-            <Icons.menu className="mr-1.5 size-6 shrink-0" />
-            <div className="size-7 shrink-0">
-              <UserButton />
-            </div>
-          </div>
+          <UserButton />
         </SignedIn>
         <SignedOut>
           <Popover>
             <PopoverTrigger>
-              <div className="flex items-center justify-center text-neutral-800">
+              <div className="flex items-center justify-center p-2 text-neutral-800">
                 <Icons.menu className="mr-1.5 size-6 shrink-0" />
                 <Icons.user className="size-7 shrink-0" />
               </div>
@@ -37,19 +38,17 @@ export function SiteHeader() {
               className="w-60 px-0 py-2 text-neutral-800 shadow-xl"
             >
               <ul className="flex flex-col gap-0.5 text-sm">
-                <Link href={'/sign-up'}>
-                  <li className="py-2.5 pl-4 font-semibold hover:bg-neutral-100">
-                    Sign up
-                  </li>
-                </Link>
-                <Link href={'/sign-in'}>
-                  <li className="py-2.5 pl-4 hover:bg-neutral-100">Sign in</li>
-                </Link>
+                <li className="[&_button]:w-full [&_button]:py-2.5 [&_button]:pl-4 [&_button]:text-left [&_button]:font-semibold [&_button]:hover:bg-neutral-100">
+                  <SignUpButton />
+                </li>
+                <li className="[&_button]:w-full [&_button]:py-2.5 [&_button]:pl-4 [&_button]:text-left [&_button]:hover:bg-neutral-100">
+                  <SignInButton />
+                </li>
               </ul>
             </PopoverContent>
           </Popover>
         </SignedOut>
-      </nav>
+      </div>
     </header>
   );
 }

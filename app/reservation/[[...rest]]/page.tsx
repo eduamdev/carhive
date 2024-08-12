@@ -5,10 +5,10 @@ import { Button } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import { formatCurrency } from '@/app/lib/utils';
-import { NavigateBack } from './components/navigate-back';
+import { NavigateBack } from '../components/navigate-back';
 import { SearchParams } from '@/app/lib/types';
 import { getCarBySlug, getLocationBySlug } from '@/db/queries';
-import { formatDates } from './lib/dates';
+import { formatDates } from '../lib/dates';
 import { differenceInDays } from 'date-fns';
 import { SignIn, SignedIn, SignedOut } from '@clerk/nextjs';
 
@@ -100,7 +100,7 @@ export default async function ReservationPage({
             <div className="mb-16 md:hidden">
               <Separator orientation="horizontal" decorative className="my-8" />
               <SignedOut>
-                <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+                <SignIn />
               </SignedOut>
               <SignedIn>
                 <Button size="xl" className="w-full text-lg">
@@ -151,7 +151,7 @@ export default async function ReservationPage({
               <Separator orientation="horizontal" decorative className="my-8" />
               <div className="hidden pt-4 md:block">
                 <SignedOut>
-                  <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+                  <SignIn />
                 </SignedOut>
                 <SignedIn>
                   <Button size="xl" className="w-full text-lg">
