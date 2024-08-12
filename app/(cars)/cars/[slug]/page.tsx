@@ -2,18 +2,18 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
-import { ReservationSidebar } from '../components/reservation-sidebar';
+import { ReservationSidebar } from './components/reservation-sidebar';
 import { getCarBySlug, getCars, getLocations } from '@/db/queries';
 import { Icons } from '@/app/components/icons';
 import { Separator } from '@/app/components/ui/separator';
 
-interface CarPageProps {
+interface CarDetailsPageProps {
   params: { slug: string };
 }
 
 export async function generateMetadata({
   params,
-}: CarPageProps): Promise<Metadata> {
+}: CarDetailsPageProps): Promise<Metadata> {
   // read route params
   const slug = params.slug;
 
@@ -35,7 +35,7 @@ export async function generateStaticParams() {
   return cars.map((car) => ({ slug: car.slug }));
 }
 
-export default async function CarPage({ params }: CarPageProps) {
+export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
   const [car, locations] = await Promise.all([
     getCarBySlug(params.slug),
     getLocations(),

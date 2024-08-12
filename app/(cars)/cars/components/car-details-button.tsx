@@ -18,7 +18,7 @@ export function CarDetailsButton({ slug }: { slug: string }) {
   if (checkin) newParams.set(SearchParams.CHECKIN, checkin);
   if (checkout) newParams.set(SearchParams.CHECKOUT, checkout);
 
-  const href = createUrl(`/car/${slug}`, newParams);
+  const href = createUrl(`/cars/${slug}`, newParams);
 
   return (
     <Button size={'sm'} className="w-full rounded-[5px]" asChild>

@@ -12,7 +12,7 @@ import { getCars, getLocations } from '@/db/queries';
 import { slugify } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
 
-interface CarsPageProps {
+interface CarCatalogPageProps {
   searchParams: {
     [SearchParams.MIN_PRICE]?: string;
     [SearchParams.MAX_PRICE]?: string;
@@ -23,7 +23,9 @@ interface CarsPageProps {
   };
 }
 
-export default async function CarsPage({ searchParams }: CarsPageProps) {
+export default async function CarCatalogPage({
+  searchParams,
+}: CarCatalogPageProps) {
   const [cars, locations] = await Promise.all([getCars(), getLocations()]);
 
   const carPrices = cars.map((car) => {
