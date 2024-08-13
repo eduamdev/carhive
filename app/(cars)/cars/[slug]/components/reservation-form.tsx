@@ -25,13 +25,13 @@ import {
   PopoverTrigger,
 } from '@/app/components/ui/popover';
 import { Calendar } from '@/app/components/ui/calendar';
-import { Icons } from '@/app/components/icons';
 import { Button } from '@/app/components/ui/button';
 import { addDays, differenceInDays, format, isAfter } from 'date-fns';
 import { SearchParams } from '@/app/lib/types';
 import { Location } from '@/db/definitions';
 import { cn, createUrl, formatCurrency } from '@/app/lib/utils';
 import { Separator } from '@/app/components/ui/separator';
+import { CheckIcon } from '@/app/components/icons/check';
 
 const FormSchema = z
   .object({
@@ -170,7 +170,7 @@ export function ReservationForm({
                                 form.clearErrors('location');
                               }}
                             >
-                              <Icons.check
+                              <CheckIcon
                                 className={cn(
                                   'mr-2 size-4 shrink-0',
                                   location.slug === field.value
@@ -302,7 +302,7 @@ export function ReservationForm({
               </p>
             )}
           </div>
-          <Button type="submit" size="xl" className="mt-4 w-full text-base">
+          <Button type="submit" size="lg" className="mt-4 w-full text-base">
             Reserve
           </Button>
         </form>

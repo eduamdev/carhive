@@ -4,7 +4,10 @@ import { notFound } from 'next/navigation';
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
 import { ReservationSidebar } from './components/reservation-sidebar';
 import { getCarBySlug, getCars, getLocations } from '@/db/queries';
-import { Icons } from '@/app/components/icons';
+import { GiftIcon } from '@/app/components/icons/gift';
+import { MapIcon } from '@/app/components/icons/map';
+import { SupportIcon } from '@/app/components/icons/support';
+import { CheckIcon } from '@/app/components/icons/check';
 import { Separator } from '@/app/components/ui/separator';
 
 interface CarDetailsPageProps {
@@ -80,7 +83,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
             <Separator decorative orientation="horizontal" className="my-6" />
             <div className="flex flex-col gap-6">
               <div className="flex flex-row gap-8">
-                <Icons.gift className="size-6 shrink-0" />
+                <GiftIcon className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">Exclusive Deals</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -90,7 +93,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
                 </div>
               </div>
               <div className="flex flex-row gap-8">
-                <Icons.map className="size-6 shrink-0" />
+                <MapIcon className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">Local Tips</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -100,7 +103,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
                 </div>
               </div>
               <div className="flex flex-row gap-8">
-                <Icons.lifebuoy className="size-6 shrink-0" />
+                <SupportIcon className="size-6 shrink-0" />
                 <div className="flex flex-col">
                   <p className="font-semibold">24/7 Roadside Assistance</p>
                   <p className="mt-0.5 text-[13px] leading-5 text-neutral-500">
@@ -127,7 +130,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
                     key={feature}
                     className="flex flex-row items-center gap-4"
                   >
-                    <Icons.check className="size-4 shrink-0 [stroke-width:2.5px]" />
+                    <CheckIcon className="size-4 shrink-0 [stroke-width:2.5px]" />
                     <p className="text-neutral-600">{feature}</p>
                   </div>
                 ))}

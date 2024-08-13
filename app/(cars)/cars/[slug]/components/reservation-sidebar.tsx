@@ -1,5 +1,5 @@
 import { ReservationForm } from '../components/reservation-form';
-import { Icons } from '@/app/components/icons';
+import { FilledStarIcon } from '@/app/components/icons/filled-star';
 import { formatCurrency } from '@/app/lib/utils';
 import { Location } from '@/db/definitions';
 
@@ -33,7 +33,7 @@ export function ReservationSidebar({
             </span>
           </div>
           <div className="flex flex-row items-baseline justify-start gap-1 tracking-tight lg:justify-end">
-            <Icons.star className="size-[15px] self-center" />
+            <FilledStarIcon className="size-[14px] self-center" />
             <span className="text-sm font-medium leading-none">{rating}</span>
             {reviews > 0 && (
               <>

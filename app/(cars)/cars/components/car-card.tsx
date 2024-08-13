@@ -7,7 +7,8 @@ import {
 } from '@/app/components/ui/card';
 import { CarDetailsButton } from './car-details-button';
 import { Separator } from '@/app/components/ui/separator';
-import { Icons } from '@/app/components/icons';
+import { FilledStarIcon } from '@/app/components/icons/filled-star';
+import { DashboardIcon } from '@/app/components/icons/dashboard';
 import { getCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/app/lib/utils';
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
@@ -48,7 +49,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
           </CardTitle>
           <div className="text-right">
             <div className="flex items-baseline gap-1">
-              <Icons.star className="size-[14px] self-center" />
+              <FilledStarIcon className="size-[13px] shrink-0 self-center" />
               <span className="text-sm font-medium leading-none text-neutral-600">
                 {rating} {reviews > 0 && `(${reviews})`}
               </span>
@@ -61,7 +62,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
             !unlimited_mileage && 'invisible',
           )}
         >
-          <Icons.speedometer className="mr-1.5 inline-block size-4" />
+          <DashboardIcon className="mr-1.5 inline-block size-4 shrink-0" />
           Unlimited mileage
         </div>
       </CardHeader>

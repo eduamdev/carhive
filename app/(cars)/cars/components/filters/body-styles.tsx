@@ -1,8 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Icons } from '@/app/components/icons';
-import { Button } from '@/app/components/ui/button';
-import { cn } from '@/app/lib/utils';
 import { SelectedFilters } from '../filters';
+import { Button } from '@/app/components/ui/button';
+import { SUVIcon } from '@/app/components/icons/suv';
+import { MinivanIcon } from '@/app/components/icons/minivan';
+import { TruckIcon } from '@/app/components/icons/truck';
+import { HatchbackIcon } from '@/app/components/icons/hatchback';
+import { CarIcon } from '@/app/components/icons/car';
+import { RoadsterIcon } from '@/app/components/icons/roadster';
+import { cn } from '@/app/lib/utils';
 
 export enum BodyStyle {
   SUV = 'suv',
@@ -17,21 +22,21 @@ export const bodyStyles = [
   {
     slug: BodyStyle.HATCHBACK,
     name: 'Hatchback',
-    icon: Icons.hatchback,
+    icon: HatchbackIcon,
   },
-  { slug: BodyStyle.MINIVAN, name: 'Minivan', icon: Icons.minivan },
+  { slug: BodyStyle.MINIVAN, name: 'Minivan', icon: MinivanIcon },
   {
     slug: BodyStyle.PICKUP_TRUCK,
     name: 'Pickup Truck',
-    icon: Icons.pickupTruck,
+    icon: TruckIcon,
   },
   {
     slug: BodyStyle.SPORTS_CAR,
     name: 'Sports Car',
-    icon: Icons.sportsCar,
+    icon: RoadsterIcon,
   },
-  { slug: BodyStyle.SUV, name: 'SUV', icon: Icons.suv },
-  { slug: BodyStyle.SEDAN, name: 'Sedan', icon: Icons.sedan },
+  { slug: BodyStyle.SUV, name: 'SUV', icon: SUVIcon },
+  { slug: BodyStyle.SEDAN, name: 'Sedan', icon: CarIcon },
 ];
 
 interface BodyStyleFiltersProps {
@@ -70,7 +75,7 @@ export function BodyStyleFilters({
         <Button
           key={slug}
           variant="filter"
-          size="area"
+          size="full-size"
           className={buttonClassName}
           onClick={() =>
             toggleBodyStyle(slug, selectedFilters, setSelectedFilters)

@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/app/components/ui/button';
-import { Icons } from '@/app/components/icons';
+import { ChevronLeftIcon } from '@/app/components/icons/chevron-left';
 import { useRouter } from 'next/navigation';
 
 export function NavigateBack() {
@@ -15,7 +15,7 @@ export function NavigateBack() {
       onClick={() => router.back()}
       className="size-10 rounded-full"
     >
-      <Icons.chevronBack className="size-5" />
+      <ChevronLeftIcon className="size-5 shrink-0" />
     </Button>
   );
 }

@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/app/components/ui/button';
-import { Icons } from '@/app/components/icons';
+import { FiltersIcon } from '@/app/components/icons/filters';
 import { CounterBadge } from '@/app/components/counter-badge';
 import { Modal } from '@/app/components/modal';
 import { PriceRangeFilters } from './filters/price-range';
@@ -178,7 +178,7 @@ export function Filters({ initialMinPrice, initialMaxPrice }: FiltersProps) {
           variant="outline"
           className="relative flex items-center justify-center gap-x-2.5"
         >
-          <Icons.filters className="size-[22px]" />
+          <FiltersIcon className="size-[18px]" />
           <span>Filters</span>
           <CounterBadge count={totalSelectedFilters} />
         </Button>
@@ -241,7 +241,7 @@ interface ApplyFiltersButtonProps {
 
 function ApplyFiltersButton({ onApply }: ApplyFiltersButtonProps) {
   return (
-    <Button size="xl" className="text-[15px] font-semibold" onClick={onApply}>
+    <Button size="lg" className="text-[15px] font-semibold" onClick={onApply}>
       Show cars
     </Button>
   );

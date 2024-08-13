@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
-import { Icons } from '@/app/components/icons';
 import { Button } from '@/app/components/ui/button';
 import { Separator } from '@/app/components/ui/separator';
 import { siteConfig } from '@/config/site';
@@ -11,6 +10,8 @@ import { getCarBySlug, getLocationBySlug } from '@/db/queries';
 import { formatDates } from '../lib/dates';
 import { differenceInDays } from 'date-fns';
 import { SignIn, SignedIn, SignedOut } from '@clerk/nextjs';
+import { CarhiveWordmark } from '@/app/components/icons/carhive-wordmark';
+import { FilledStarIcon } from '@/app/components/icons/filled-star';
 
 interface ReservationPageProps {
   searchParams: {
@@ -60,7 +61,7 @@ export default async function ReservationPage({
       <div className="hidden h-[var(--site-header-height)] w-full pl-6 shadow-[inset_0_-1px_0_0_#eaeaea] md:block">
         <header className="flex h-full items-center">
           <Link href="/" className="z-20">
-            <Icons.logoWordmark className="h-[18px] shrink-0" />
+            <CarhiveWordmark className="h-[18px] shrink-0" />
           </Link>
         </header>
       </div>
@@ -103,7 +104,7 @@ export default async function ReservationPage({
                 <SignIn />
               </SignedOut>
               <SignedIn>
-                <Button size="xl" className="w-full text-lg">
+                <Button size="lg" className="w-full text-lg">
                   Pay
                 </Button>
               </SignedIn>
@@ -154,7 +155,7 @@ export default async function ReservationPage({
                   <SignIn />
                 </SignedOut>
                 <SignedIn>
-                  <Button size="xl" className="w-full text-lg">
+                  <Button size="lg" className="w-full text-lg">
                     Pay
                   </Button>
                 </SignedIn>
@@ -179,7 +180,7 @@ export default async function ReservationPage({
                       <p className="text-sm">{carName}</p>
                     </div>
                     <div className="flex items-baseline space-x-1 text-xs">
-                      <Icons.star className="size-3" />
+                      <FilledStarIcon className="size-3 shrink-0" />
                       <span className="font-semibold">{rating}</span>
                       <span className="mt-5 text-neutral-600">
                         ({reviews} reviews)

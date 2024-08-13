@@ -30,11 +30,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/app/components/ui/popover';
-import { Icons } from '@/app/components/icons';
 
 import { cn, createUrl } from '@/app/lib/utils';
 import { Location } from '@/db/definitions';
 import { SearchParams } from '@/app/lib/types';
+import { SearchIcon } from './icons/search';
+import { CheckIcon } from './icons/check';
 
 const FormSchema = z
   .object({
@@ -154,10 +155,10 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
                             key={location.slug}
                             onSelect={() => {
                               form.setValue('location', location.slug);
-                              form.clearErrors('location')
+                              form.clearErrors('location');
                             }}
                           >
-                            <Icons.check
+                            <CheckIcon
                               className={cn(
                                 'mr-2 size-4 shrink-0',
                                 location.slug === field.value
@@ -308,10 +309,10 @@ export function SearchForm({ locations, compact = false }: SearchFormProps) {
           className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
         >
           <span className="sr-only">Search</span>
-          <Icons.magnifyingGlass
+          <SearchIcon
             className={cn(
               '[stroke-width:3px]',
-              compact ? 'size-[14px]' : 'size-[18px]',
+              compact ? 'size-[15px]' : 'size-[18px]',
             )}
           />
         </Button>

@@ -44,7 +44,7 @@ export default function Error({
             Try again
           </Button>
           <Button
-            size="xl"
+            size="lg"
             className="hidden text-[15px] xl:flex"
             onClick={
               // Attempt to recover by trying to re-render the current route

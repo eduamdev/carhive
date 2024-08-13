@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/app/components/ui/button';
-import { Icons } from '@/app/components/icons';
+import { CaretRightIcon } from '@/app/components/icons/caret-right';
 
 export function CallToAction() {
   return (
@@ -11,20 +11,12 @@ export function CallToAction() {
             <p>Your Journey Begins Here.</p>
             <p>Dive into Endless Possibilities!</p>
           </h2>
-          <Button className="text-[15px] xl:hidden" asChild>
-            <Link
-              href="/cars"
-              className="flex items-center justify-center gap-x-2.5"
-            >
-              Explore Cars <Icons.chevronForward className="size-3" />
-            </Link>
-          </Button>
-          <Button size="xl" className="hidden text-[15px] xl:flex" asChild>
-            <Link
-              href="/cars"
-              className="flex items-center justify-center gap-x-3"
-            >
-              Explore Cars <Icons.chevronForward className="size-[14px]" />
+          <Button size="lg" asChild>
+            <Link href="/cars">
+              <span className="flex items-center justify-center text-[15px]">
+                Explore Cars
+                <CaretRightIcon className="ml-2 size-[14px] shrink-0 opacity-60" />
+              </span>
             </Link>
           </Button>
         </div>

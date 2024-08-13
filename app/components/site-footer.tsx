@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Icons } from '@/app/components/icons';
+import { CarhiveWordmark } from './icons/carhive-wordmark';
 import { NewsletterSubscriptionForm } from '@/app/components/newsletter-subscription-form';
 import { siteConfig } from '@/config/site';
 
@@ -41,7 +41,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <Icons.logoWordmark className="h-[18px] shrink-0" />
+              <CarhiveWordmark className="h-[18px] shrink-0" />
             </Link>
           </div>
           {footerLinks.map((section) => (

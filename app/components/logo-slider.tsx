@@ -1,38 +1,51 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Icons } from '@/app/components/icons';
+import { VolvoIcon } from './icons/brands/volvo';
+import { SuvaruIcon } from './icons/brands/suvaru';
+import { JeepIcon } from './icons/brands/jeep';
+import { PorscheIcon } from './icons/brands/porsche';
+import { VolkswagenIcon } from './icons/brands/volkswagen';
+import { ToyotaIcon } from './icons/brands/toyota';
+import { BMWIcon } from './icons/brands/bmw';
+import { HondaIcon } from './icons/brands/honda';
+import { AudiIcon } from './icons/brands/audi';
+import { MiniIcon } from './icons/brands/mini';
+import { FordIcon } from './icons/brands/ford';
+import { TeslaIcon } from './icons/brands/tesla';
+import { NissanIcon } from './icons/brands/nissan';
+import { KiaIcon } from './icons/brands/kia';
+import { HyundaiIcon } from './icons/brands/hyundai';
+import { MercedesBenzIcon } from './icons/brands/mercedes-benz';
 import { cn, setCSSVariable } from '@/app/lib/utils';
 
 type LogoData = {
   id: string;
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
-  height: string;
+  icon: JSX.Element;
 };
 
-const logoHeights: Record<string, string> = {
-  volvo: '17px',
-  suvaru: '52px',
-  jeep: '28px',
-  porsche: '36px',
-  volkswagen: '40px',
-  toyota: '40px',
-  bmw: '46px',
-  honda: '32px',
-  audi: '32px',
-  mini: '40px',
-  ford: '48px',
-  tesla: '18px',
-  nissan: '46px',
-  kia: '18px',
-  hyundai: '18px',
-  mercedesBenz: '42px',
+const icons = {
+  volvo: <VolvoIcon style={{ height: '17px' }} />,
+  suvaru: <SuvaruIcon style={{ height: '52px' }} />,
+  jeep: <JeepIcon style={{ height: '28px' }} />,
+  porsche: <PorscheIcon style={{ height: '36px' }} />,
+  volkswagen: <VolkswagenIcon style={{ height: '40px' }} />,
+  toyota: <ToyotaIcon style={{ height: '40px' }} />,
+  bmw: <BMWIcon style={{ height: '46px' }} />,
+  honda: <HondaIcon style={{ height: '32px' }} />,
+  audi: <AudiIcon style={{ height: '32px' }} />,
+  mini: <MiniIcon style={{ height: '40px' }} />,
+  ford: <FordIcon style={{ height: '48px' }} />,
+  tesla: <TeslaIcon style={{ height: '18px' }} />,
+  nissan: <NissanIcon style={{ height: '46px' }} />,
+  kia: <KiaIcon style={{ height: '18px' }} />,
+  hyundai: <HyundaiIcon style={{ height: '18px' }} />,
+  mercedesBenz: <MercedesBenzIcon style={{ height: '42px' }} />,
 };
 
-const initialLogos: LogoData[] = Object.keys(logoHeights).map((id) => ({
+const initialLogos = Object.keys(icons).map((id) => ({
   id,
-  icon: Icons[id as keyof typeof Icons],
-  height: logoHeights[id],
+  icon: icons[id as keyof typeof icons],
 }));
 
 export function LogoSlider() {
@@ -78,9 +91,9 @@ export function LogoSlider() {
   ): LogoData[] => {
     const clonedLogos: LogoData[] = [];
     for (let set = 1; set <= totalSets; set++) {
-      logos.forEach(({ id, icon, height }) => {
+      logos.forEach(({ id, icon }) => {
         const clonedId = `logo-clone-${set}-${id}`;
-        clonedLogos.push({ id: clonedId, icon, height });
+        clonedLogos.push({ id: clonedId, icon });
       });
     }
     return clonedLogos;
@@ -99,14 +112,14 @@ export function LogoSlider() {
           className="flex w-[var(--slider-total-logo-width)] animate-slider items-center opacity-60 grayscale"
         >
           <InitialLogos />
-          {clonedLogos.map(({ id, icon: Icon, height }) => (
+          {clonedLogos.map(({ id, icon }) => (
             <li
               key={id}
               id={id}
               className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
               aria-hidden="true"
             >
-              <Icon style={{ height }} />
+              {icon}
             </li>
           ))}
         </ul>
@@ -118,13 +131,13 @@ export function LogoSlider() {
 function InitialLogos() {
   return (
     <>
-      {initialLogos.map(({ id, icon: Icon, height }) => (
+      {initialLogos.map(({ id, icon }) => (
         <li
           key={id}
           id={id}
           className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
         >
-          <Icon style={{ height }} />
+          {icon}
         </li>
       ))}
     </>

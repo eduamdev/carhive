@@ -1,4 +1,6 @@
-import { Icons } from '@/app/components/icons';
+import { NavigationIcon } from '@/app/components/icons/navigation';
+import { ShieldCheckIcon } from '@/app/components/icons/shield-check';
+import { SparklesIcon } from '@/app/components/icons/sparkles';
 
 export function Features() {
   return (
@@ -10,7 +12,7 @@ export function Features() {
         <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex size-12 items-center justify-center rounded-full border bg-white">
-              <Icons.sparkle className="size-6 text-neutral-500" />
+              <SparklesIcon className="size-6 shrink-0 text-blue-500" />
             </div>
             <p className="mt-6 font-semibold">Hassle-Free Booking</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -20,7 +22,7 @@ export function Features() {
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex size-12 items-center justify-center rounded-full border bg-white">
-              <Icons.shieldCheck className="size-6 text-neutral-500" />
+              <ShieldCheckIcon className="size-6 shrink-0 text-blue-500" />
             </div>
             <p className="mt-6 font-semibold">Secure Rentals</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">
@@ -31,7 +33,7 @@ export function Features() {
           </div>
           <div className="flex flex-col items-center justify-center text-center md:items-start md:text-left">
             <div className="flex size-12 items-center justify-center rounded-full border bg-white">
-              <Icons.navigationArrow className="size-6 text-neutral-500" />
+              <NavigationIcon className="size-6 shrink-0 text-blue-500" />
             </div>
             <p className="mt-6 font-semibold">Easy Navigation</p>
             <p className="mt-2 max-w-sm text-sm leading-6 text-neutral-600">

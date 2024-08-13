@@ -3,7 +3,7 @@
 import { useFormState, useFormStatus } from 'react-dom';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
-import { Icons } from '@/app/components/icons';
+import { CircleCheckIcon } from './icons/circle-check';
 import { subscribeToNewsletter } from '@/db/actions';
 import { cn } from '@/app/lib/utils';
 
@@ -54,7 +54,7 @@ export function NewsletterSubscriptionForm() {
         ))}
         {state?.subscribed && (
           <p className="mt-2 flex flex-row items-center gap-1.5 text-sm text-neutral-600">
-            <Icons.checkCircle
+            <CircleCheckIcon
               className="size-5 shrink-0 text-green-600"
               aria-hidden="true"
             />
