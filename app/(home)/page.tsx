@@ -1,7 +1,7 @@
 import { SiteHeader } from '@/app/components/site-header';
 import { SiteFooter } from '@/app/components/site-footer';
 
-import { PopularCarTypes } from './sections/popular-car-types';
+import { CarCategory } from './sections/car-category';
 import { PopularPlaces } from './sections/popular-places';
 import { Features } from './sections/features';
 import { Testimonials } from './sections/testimonials';
@@ -18,7 +18,7 @@ export default function HomePage() {
       </div>
       <main>
         <CarSearchHero />
-        <PopularCarTypes />
+        <CarCategory />
         <PopularPlaces />
         <Features />
         <Testimonials />

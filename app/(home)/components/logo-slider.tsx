@@ -48,7 +48,7 @@ const initialLogos: LogoData[] = Object.entries(logoIcons).map(
 );
 
 export function LogoSlider() {
-  const LOGO_WIDTH = '9.5rem';
+  const LOGO_WIDTH = '9rem';
   const TOTAL_SETS_TO_CLONE = 2;
 
   const logosListRef = useRef<HTMLUListElement>(null);
