@@ -11,7 +11,7 @@ import {
 } from '@/app/components/ui/carousel';
 
 export function CarCategory() {
-  const imageMap = {
+  const carCategories = {
     hatchback: 'cars/body-styles/hatchback_wzyzoz',
     minivan: 'cars/body-styles/minivan_xybc4t',
     'pickup-truck': 'cars/body-styles/pickup-truck_a2mlme',
@@ -22,12 +22,12 @@ export function CarCategory() {
 
   return (
     <section>
-      <div className="pt-12">
+      <div className="pt-8">
         <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-          <h2 className="text-lg font-semibold md:text-2xl">
+          <h2 className="text-balance text-lg font-bold md:text-xl lg:text-[22px]">
             Explore Our Car Categories
           </h2>
-          <div className="pt-4 md:pt-6">
+          <div className="pt-4 md:pt-5">
             <div className="relative">
               <div className="before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-20"></div>
               <Carousel>
@@ -52,7 +52,7 @@ export function CarCategory() {
                           </span>
                           <CloudinaryImage
                             priority
-                            src={imageMap[slug]}
+                            src={carCategories[slug]}
                             alt={name}
                             fill
                             className="rounded-xl"

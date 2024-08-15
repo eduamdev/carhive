@@ -1,22 +1,22 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { VolvoIcon } from './assets/car-logos/volvo';
-import { SuvaruIcon } from './assets/car-logos/suvaru';
-import { JeepIcon } from './assets/car-logos/jeep';
-import { PorscheIcon } from './assets/car-logos/porsche';
-import { VolkswagenIcon } from './assets/car-logos/volkswagen';
-import { ToyotaIcon } from './assets/car-logos/toyota';
-import { BMWIcon } from './assets/car-logos/bmw';
-import { HondaIcon } from './assets/car-logos/honda';
-import { AudiIcon } from './assets/car-logos/audi';
-import { MiniIcon } from './assets/car-logos/mini';
-import { FordIcon } from './assets/car-logos/ford';
-import { TeslaIcon } from './assets/car-logos/tesla';
-import { NissanIcon } from './assets/car-logos/nissan';
-import { KiaIcon } from './assets/car-logos/kia';
-import { HyundaiIcon } from './assets/car-logos/hyundai';
-import { MercedesBenzIcon } from './assets/car-logos/mercedes-benz';
+import { VolvoIcon } from './car-logos/volvo';
+import { SuvaruIcon } from './car-logos/suvaru';
+import { JeepIcon } from './car-logos/jeep';
+import { PorscheIcon } from './car-logos/porsche';
+import { VolkswagenIcon } from './car-logos/volkswagen';
+import { ToyotaIcon } from './car-logos/toyota';
+import { BMWIcon } from './car-logos/bmw';
+import { HondaIcon } from './car-logos/honda';
+import { AudiIcon } from './car-logos/audi';
+import { MiniIcon } from './car-logos/mini';
+import { FordIcon } from './car-logos/ford';
+import { TeslaIcon } from './car-logos/tesla';
+import { NissanIcon } from './car-logos/nissan';
+import { KiaIcon } from './car-logos/kia';
+import { HyundaiIcon } from './car-logos/hyundai';
+import { MercedesBenzIcon } from './car-logos/mercedes-benz';
 import { cn, setCSSVariable } from '@/app/lib/utils';
 
 type LogoData = {
@@ -25,22 +25,22 @@ type LogoData = {
 };
 
 const logoIcons = {
-  kia: <KiaIcon style={{ height: '11px', flexShrink: 0 }} />,
-  suvaru: <SuvaruIcon style={{ height: '17px', flexShrink: 0 }} />,
-  mini: <MiniIcon style={{ height: '28px', flexShrink: 0 }} />,
-  hyundai: <HyundaiIcon style={{ height: '13px', flexShrink: 0 }} />,
+  kia: <KiaIcon style={{ height: '12px', flexShrink: 0 }} />,
+  suvaru: <SuvaruIcon style={{ height: '18px', flexShrink: 0 }} />,
+  mini: <MiniIcon style={{ height: '27px', flexShrink: 0 }} />,
+  hyundai: <HyundaiIcon style={{ height: '14px', flexShrink: 0 }} />,
   mercedesBenz: <MercedesBenzIcon style={{ height: '28px', flexShrink: 0 }} />,
-  toyota: <ToyotaIcon style={{ height: '19px', flexShrink: 0 }} />,
-  bmw: <BMWIcon style={{ height: '32px', flexShrink: 0 }} />,
-  honda: <HondaIcon style={{ height: '13px', flexShrink: 0 }} />,
+  toyota: <ToyotaIcon style={{ height: '20px', flexShrink: 0 }} />,
+  bmw: <BMWIcon style={{ height: '33px', flexShrink: 0 }} />,
+  honda: <HondaIcon style={{ height: '14px', flexShrink: 0 }} />,
   audi: <AudiIcon style={{ height: '24px', flexShrink: 0 }} />,
-  volvo: <VolvoIcon style={{ height: '12px', flexShrink: 0 }} />,
-  volkswagen: <VolkswagenIcon style={{ height: '27px', flexShrink: 0 }} />,
+  volvo: <VolvoIcon style={{ height: '13px', flexShrink: 0 }} />,
+  volkswagen: <VolkswagenIcon style={{ height: '28px', flexShrink: 0 }} />,
   porsche: <PorscheIcon style={{ height: '9px', flexShrink: 0 }} />,
   nissan: <NissanIcon style={{ height: '30px', flexShrink: 0 }} />,
-  tesla: <TeslaIcon style={{ height: '10px', flexShrink: 0 }} />,
+  tesla: <TeslaIcon style={{ height: '11px', flexShrink: 0 }} />,
   jeep: <JeepIcon style={{ height: '20px', flexShrink: 0 }} />,
-  ford: <FordIcon style={{ height: '34px', flexShrink: 0 }} />,
+  ford: <FordIcon style={{ height: '35px', flexShrink: 0 }} />,
 };
 
 const initialLogos: LogoData[] = Object.entries(logoIcons).map(

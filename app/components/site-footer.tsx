@@ -36,17 +36,17 @@ export function SiteFooter() {
   const githubUrl = siteConfig.links.github;
 
   return (
-    <footer className="border-t bg-white py-10">
+    <footer className="border-t border-neutral-100 bg-white py-10">
       <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-7xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <CarhiveWordmark className="h-[18px] shrink-0" />
+              <CarhiveWordmark className="h-[17px] shrink-0" />
             </Link>
           </div>
           {footerLinks.map((section) => (
-            <div key={section.title} className="flex flex-col gap-2.5">
-              <h3 className="mb-1 text-sm font-medium text-neutral-800 lg:text-sm">
+            <div key={section.title} className="flex flex-col gap-2.5 lg:gap-3">
+              <h3 className="mb-1 text-sm font-semibold lg:text-sm">
                 {section.title}
               </h3>
               {section.links.map((link) => (
@@ -55,15 +55,15 @@ export function SiteFooter() {
                   href={githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm text-neutral-600 hover:text-black"
+                  className="text-[13px] text-neutral-600 hover:text-black lg:text-sm"
                 >
                   {link}
                 </a>
               ))}
             </div>
           ))}
-          <div className="col-span-full flex w-full flex-col gap-2 lg:max-w-[240px]">
-            <h3 className="mb-1.5 text-sm font-medium text-neutral-800 lg:text-sm">
+          <div className="col-span-full flex w-full flex-col gap-2 lg:max-w-[240px] lg:gap-2.5">
+            <h3 className="mb-1.5 text-sm font-semibold lg:text-sm">
               Subscribe to our newsletter
             </h3>
             <p className="mb-1.5 text-[13px] leading-6 text-neutral-600 lg:text-sm">
@@ -73,8 +73,8 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-14 lg:mt-16">
-          <p className="text-sm text-neutral-600">
-            Built by{' '}
+          <p className="text-[13px] leading-6 text-neutral-600 lg:text-sm">
+            Designed and built by{' '}
             <a href={siteConfig.author.url} target="_blank" rel="noreferrer">
               <strong>eduamdev</strong>
             </a>

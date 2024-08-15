@@ -2,7 +2,7 @@ import { SiteHeader } from '@/app/components/site-header';
 import { SiteFooter } from '@/app/components/site-footer';
 
 import { CarCategory } from './sections/car-category';
-import { PopularPlaces } from './sections/popular-places';
+import { PopularDestinations } from './sections/popular-destinations';
 import { Features } from './sections/features';
 import { Testimonials } from './sections/testimonials';
 import { CallToAction } from './sections/call-to-action';
@@ -19,7 +19,7 @@ export default function HomePage() {
       <main>
         <CarSearchHero />
         <CarCategory />
-        <PopularPlaces />
+        <PopularDestinations />
         <Features />
         <Testimonials />
         <CallToAction />

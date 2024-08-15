@@ -19,7 +19,7 @@ export function SiteHeader() {
   return (
     <header className="flex h-full items-center justify-between">
       <Link href="/" className="z-20">
-        <CarhiveWordmark className="h-[18px] shrink-0" />
+        <CarhiveWordmark className="h-[17px] shrink-0" />
       </Link>
       <div className="z-40 inline-flex">
         <SignedIn>
