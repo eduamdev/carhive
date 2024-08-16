@@ -5,7 +5,7 @@ A car rental website built with **Next.js (App Router)**.
 > **Warning**
 > This app is a work in progress.
 
-![opengraph-image](https://github.com/eduamdev/car-rental-react/assets/35645733/f6c831fc-3992-4972-9c31-2c2964a55b56)
+![carhive](https://github.com/user-attachments/assets/5e4cdffe-dcd0-44ee-957d-66fdb82b47ee)
 
 ## Features
 
