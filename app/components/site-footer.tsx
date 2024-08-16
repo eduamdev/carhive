@@ -36,7 +36,7 @@ export function SiteFooter() {
   const githubUrl = siteConfig.links.github;
 
   return (
-    <footer className="border-t border-neutral-100 bg-white py-10">
+    <footer className="border-t border-neutral-200 bg-white py-10">
       <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-7xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">

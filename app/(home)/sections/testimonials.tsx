@@ -6,6 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/app/components/ui/carousel';
+import { FilledStarIcon } from '@/app/components/icons/filled-star';
 
 import alex from '../../../public/assets/avatars/alex.jpg';
 import david from '../../../public/assets/avatars/david.jpg';
@@ -84,7 +85,7 @@ export function Testimonials() {
           </h2>
           <div className="pt-4 md:pt-5">
             <div className="relative">
-              <div className="before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-20"></div>
+              <div className="before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-16 lg:before:w-[10%]"></div>
               <Carousel>
                 <CarouselContent>
                   {testimonials.map(
@@ -100,7 +101,12 @@ export function Testimonials() {
                               className="flex items-center"
                               aria-label={`Rating: ${rating} out of 5`}
                             >
-                              {'⭐'.repeat(rating).padEnd(5, '☆')}
+                              {[...Array(rating)].map((_, index) => (
+                                <FilledStarIcon
+                                  key={index}
+                                  className="size-4 text-yellow-500"
+                                />
+                              ))}
                             </div>
                             <div className="pt-4">
                               {/* Comment Section */}
@@ -132,7 +138,7 @@ export function Testimonials() {
                 <CarouselPrevious className="-left-4 z-20 lg:-left-12" />
                 <CarouselNext className="-right-4 z-20 lg:-right-12" />
               </Carousel>
-              <div className="after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-12"></div>
+              <div className="after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-12 lg:after:w-[9%]"></div>
             </div>
           </div>
         </div>
