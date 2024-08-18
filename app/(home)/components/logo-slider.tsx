@@ -87,7 +87,7 @@ export function LogoSlider() {
   ): LogoData[] => {
     return Array.from({ length: totalSets }).flatMap((_, set) =>
       logos.map(({ id, icon }) => ({
-        id: `logo-clone-${set + 1}-${id}`,
+        id: `${id}-clone-${set + 1}`,
         icon,
       })),
     );
