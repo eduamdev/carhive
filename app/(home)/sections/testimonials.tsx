@@ -104,28 +104,28 @@ export function Testimonials() {
                               {[...Array(rating)].map((_, index) => (
                                 <FilledStarIcon
                                   key={index}
-                                  className="size-4 text-yellow-500"
+                                  className="size-[14px] text-yellow-500 md:size-4"
                                 />
                               ))}
                             </div>
-                            <div className="pt-4">
+                            <div className="pt-4 lg:pt-5">
                               {/* Comment Section */}
-                              <blockquote className="text-balance text-sm leading-6 text-neutral-600 lg:text-[15px] lg:leading-[1.55rem]">
+                              <blockquote className="text-balance text-sm leading-6 text-neutral-600 lg:text-base lg:leading-[1.65rem]">
                                 “{comment}”
                               </blockquote>
                             </div>
-                            <div className="pt-6">
+                            <div className="pt-5">
                               {/* Reviewer Information */}
-                              <figcaption className="flex items-center gap-3.5">
+                              <figcaption className="flex items-center gap-3">
                                 <Image
                                   src={image_url}
                                   alt={name}
-                                  height={32}
-                                  width={32}
-                                  className="size-8 rounded-full border bg-white object-cover"
+                                  className="size-[22px] rounded-full border bg-white object-cover lg:size-7"
                                 />
                                 <div>
-                                  <p className="text-sm font-medium">{name}</p>
+                                  <p className="text-[13px] font-medium text-neutral-700 md:text-sm">
+                                    {name}
+                                  </p>
                                 </div>
                               </figcaption>
                             </div>

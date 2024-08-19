@@ -1,4 +1,4 @@
-# CarHive
+# Carhive
 
 A car rental website built with **Next.js (App Router)**.
 

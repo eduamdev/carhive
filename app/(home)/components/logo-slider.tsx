@@ -25,22 +25,56 @@ type LogoData = {
 };
 
 const logoIcons = {
-  kia: <KiaIcon style={{ height: '12px', flexShrink: 0 }} />,
-  suvaru: <SuvaruIcon style={{ height: '18px', flexShrink: 0 }} />,
-  mini: <MiniIcon style={{ height: '27px', flexShrink: 0 }} />,
-  hyundai: <HyundaiIcon style={{ height: '14px', flexShrink: 0 }} />,
-  mercedesBenz: <MercedesBenzIcon style={{ height: '28px', flexShrink: 0 }} />,
-  toyota: <ToyotaIcon style={{ height: '20px', flexShrink: 0 }} />,
-  bmw: <BMWIcon style={{ height: '33px', flexShrink: 0 }} />,
-  honda: <HondaIcon style={{ height: '14px', flexShrink: 0 }} />,
-  audi: <AudiIcon style={{ height: '24px', flexShrink: 0 }} />,
-  volvo: <VolvoIcon style={{ height: '13px', flexShrink: 0 }} />,
-  volkswagen: <VolkswagenIcon style={{ height: '28px', flexShrink: 0 }} />,
-  porsche: <PorscheIcon style={{ height: '9px', flexShrink: 0 }} />,
-  nissan: <NissanIcon style={{ height: '30px', flexShrink: 0 }} />,
-  tesla: <TeslaIcon style={{ height: '11px', flexShrink: 0 }} />,
-  jeep: <JeepIcon style={{ height: '20px', flexShrink: 0 }} />,
-  ford: <FordIcon style={{ height: '35px', flexShrink: 0 }} />,
+  kia: <KiaIcon aria-hidden="true" style={{ height: '12px', flexShrink: 0 }} />,
+  suvaru: (
+    <SuvaruIcon aria-hidden="true" style={{ height: '18px', flexShrink: 0 }} />
+  ),
+  mini: (
+    <MiniIcon aria-hidden="true" style={{ height: '27px', flexShrink: 0 }} />
+  ),
+  hyundai: (
+    <HyundaiIcon aria-hidden="true" style={{ height: '14px', flexShrink: 0 }} />
+  ),
+  mercedesBenz: (
+    <MercedesBenzIcon
+      aria-hidden="true"
+      style={{ height: '28px', flexShrink: 0 }}
+    />
+  ),
+  toyota: (
+    <ToyotaIcon aria-hidden="true" style={{ height: '20px', flexShrink: 0 }} />
+  ),
+  bmw: <BMWIcon aria-hidden="true" style={{ height: '33px', flexShrink: 0 }} />,
+  honda: (
+    <HondaIcon aria-hidden="true" style={{ height: '14px', flexShrink: 0 }} />
+  ),
+  audi: (
+    <AudiIcon aria-hidden="true" style={{ height: '24px', flexShrink: 0 }} />
+  ),
+  volvo: (
+    <VolvoIcon aria-hidden="true" style={{ height: '13px', flexShrink: 0 }} />
+  ),
+  volkswagen: (
+    <VolkswagenIcon
+      aria-hidden="true"
+      style={{ height: '28px', flexShrink: 0 }}
+    />
+  ),
+  porsche: (
+    <PorscheIcon aria-hidden="true" style={{ height: '9px', flexShrink: 0 }} />
+  ),
+  nissan: (
+    <NissanIcon aria-hidden="true" style={{ height: '30px', flexShrink: 0 }} />
+  ),
+  tesla: (
+    <TeslaIcon aria-hidden="true" style={{ height: '11px', flexShrink: 0 }} />
+  ),
+  jeep: (
+    <JeepIcon aria-hidden="true" style={{ height: '20px', flexShrink: 0 }} />
+  ),
+  ford: (
+    <FordIcon aria-hidden="true" style={{ height: '35px', flexShrink: 0 }} />
+  ),
 };
 
 const initialLogos: LogoData[] = Object.entries(logoIcons).map(
@@ -110,7 +144,6 @@ export function LogoSlider() {
             key={id}
             id={id}
             className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
-            aria-hidden="true"
           >
             {icon}
           </li>

@@ -1,4 +1,4 @@
-export function SparklesIcon(props: React.HTMLAttributes<SVGElement>) {
+export function ClickIcon(props: React.HTMLAttributes<SVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,12 @@ export function SparklesIcon(props: React.HTMLAttributes<SVGElement>) {
       {...props}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" />
+      <path d="M3 12l3 0" />
+      <path d="M12 3l0 3" />
+      <path d="M7.8 7.8l-2.2 -2.2" />
+      <path d="M16.2 7.8l2.2 -2.2" />
+      <path d="M7.8 16.2l-2.2 2.2" />
+      <path d="M12 12l9 3l-4 2l-2 4l-3 -9" />
     </svg>
   );
 }

@@ -5,43 +5,43 @@ import { siteConfig } from '@/config/site';
 
 const footerLinks = [
   {
-    title: 'Destinations',
+    title: 'Services',
     links: [
-      'Beach Escapes',
-      'Historical Trails',
-      'Foodie Journeys',
-      'Urban Explorations',
-      'Wildlife Safaris',
-      'Photography Tours',
+      'Car Rentals',
+      'Insurance Options',
+      'Corporate Rentals',
+      'Special Offers',
+      'FAQs',
     ],
   },
   {
     title: 'Resources',
     links: [
-      'Blog',
-      'Car Rental Tips',
-      'Travel Insights',
-      'Safety Guides',
-      'Car Models Guide',
+      'Help Center',
+      'Privacy Policy',
+      'Terms of Service',
+      'Accessibility',
+      'Vehicle Guides',
+      'Customer Testimonials',
     ],
   },
   {
-    title: 'Policies',
-    links: ['Privacy', 'Terms of use', 'Cookie Preferences'],
+    title: 'Company',
+    links: ['About Us', 'Contact Us', 'Blog', 'Careers', 'Press'],
   },
-  { title: 'Support', links: ['Contact us', 'FAQs'] },
+  { title: 'Connect', links: ['Instagram', 'Youtube', 'Twitter'] },
 ];
 
 export function SiteFooter() {
   const githubUrl = siteConfig.links.github;
 
   return (
-    <footer className="border-t border-neutral-200 bg-white py-10">
+    <footer className="border-t border-black/[0.06] bg-white py-10">
       <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-7xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">
             <Link href="/">
-              <CarhiveWordmark className="h-[17px] shrink-0" />
+              <CarhiveWordmark className="h-4 shrink-0 lg:h-[17px]" />
             </Link>
           </div>
           {footerLinks.map((section) => (
@@ -66,19 +66,16 @@ export function SiteFooter() {
             <h3 className="mb-1.5 text-sm font-semibold lg:text-sm">
               Subscribe to our newsletter
             </h3>
-            <p className="mb-1.5 text-[13px] leading-6 text-neutral-600 lg:text-sm">
-              Join Our Community! Get exclusive travel offers and insider tips.
-            </p>
             <NewsletterSubscriptionForm />
           </div>
         </div>
         <div className="mt-14 lg:mt-16">
           <p className="text-[13px] leading-6 text-neutral-600 lg:text-sm">
-            Designed and built by{' '}
+            Crafted with care by{' '}
             <a href={siteConfig.author.url} target="_blank" rel="noreferrer">
               <strong>eduamdev</strong>
             </a>
-            . The source code is available on{' '}
+            . Check out the code on{' '}
             <a href={`${githubUrl}/carhive`} target="_blank" rel="noreferrer">
               <strong>GitHub</strong>
             </a>

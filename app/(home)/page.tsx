@@ -1,12 +1,12 @@
 import { SiteHeader } from '@/app/components/site-header';
 import { SiteFooter } from '@/app/components/site-footer';
 
-import { CarCategory } from './sections/car-category';
+import { Hero } from './sections/hero';
+import { BrowseCarTypes } from './sections/browse-car-types';
 import { PopularDestinations } from './sections/popular-destinations';
 import { Features } from './sections/features';
 import { Testimonials } from './sections/testimonials';
 import { CallToAction } from './sections/call-to-action';
-import { CarSearchHero } from './sections/car-search-hero';
 
 export default function HomePage() {
   return (
@@ -17,8 +17,8 @@ export default function HomePage() {
         </div>
       </div>
       <main>
-        <CarSearchHero />
-        <CarCategory />
+        <Hero />
+        <BrowseCarTypes />
         <PopularDestinations />
         <Features />
         <Testimonials />
