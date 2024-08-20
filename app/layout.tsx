@@ -7,6 +7,7 @@ import './styles/globals.css';
 import { fontSans } from '@/app/lib/fonts';
 import { absoluteUrl, cn } from '@/app/lib/utils';
 import { siteConfig } from '@/config/site';
+import { SiteFooter } from './components/site-footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
@@ -64,7 +65,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <ClerkProvider>
       <html lang="en" className={fontSans.variable}>
         <body>
-          <div className="relative flex flex-col">{children}</div>
+          <div className="flex flex-col">
+            {children}
+            <SiteFooter />
+          </div>
           <Toaster />
         </body>
       </html>

@@ -10,7 +10,7 @@ import { getCarBySlug, getLocationBySlug } from '@/db/queries';
 import { formatDates } from '../lib/dates';
 import { differenceInDays } from 'date-fns';
 import { SignIn, SignedIn, SignedOut } from '@clerk/nextjs';
-import { CarhiveWordmark } from '@/app/components/icons/carhive-wordmark';
+import { CarhiveLogo } from '@/app/components/icons/carhive-logo';
 import { FilledStarIcon } from '@/app/components/icons/filled-star';
 
 interface ReservationPageProps {
@@ -61,7 +61,7 @@ export default async function ReservationPage({
       <div className="hidden h-[var(--site-header-height)] w-full pl-6 shadow-[inset_0_-1px_0_0_#eaeaea] md:block">
         <header className="flex h-full items-center">
           <Link href="/" className="z-20">
-            <CarhiveWordmark className="h-[18px] shrink-0" />
+            <CarhiveLogo className="h-[18px] shrink-0" />
           </Link>
         </header>
       </div>

@@ -1,6 +1,4 @@
 import { SiteHeader } from '@/app/components/site-header';
-import { SiteFooter } from '@/app/components/site-footer';
-
 import { Hero } from './sections/hero';
 import { BrowseCarTypes } from './sections/browse-car-types';
 import { PopularDestinations } from './sections/popular-destinations';
@@ -24,7 +22,6 @@ export default function HomePage() {
         <Testimonials />
         <CallToAction />
       </main>
-      <SiteFooter />
     </>
   );
 }

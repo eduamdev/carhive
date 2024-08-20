@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/app/components/ui/button';
 import { Calendar } from '@/app/components/ui/calendar';
@@ -26,7 +26,13 @@ import { cn, createUrl } from '@/app/lib/utils';
 import { Location } from '@/db/definitions';
 import { SearchParams } from '@/app/lib/types';
 
-export function SearchPanel({ locations }: { locations: Location[] }) {
+export function SearchPanel({
+  locations,
+  compact = false,
+}: {
+  locations: Location[];
+  compact?: boolean;
+}) {
   const { push } = useRouter();
   const searchParams = useSearchParams();
 
@@ -35,6 +41,22 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
 
   const [checkInDate, setCheckInDate] = useState<Date>();
   const [checkOutDate, setCheckOutDate] = useState<Date>();
+
+  useEffect(() => {
+    const locationParam = searchParams.get(SearchParams.LOCATION);
+    const checkinParam = searchParams.get(SearchParams.CHECKIN);
+    const checkoutParam = searchParams.get(SearchParams.CHECKOUT);
+
+    if (locationParam) setLocation(locationParam);
+    if (checkinParam) setCheckInDate(new Date(checkinParam));
+    if (checkoutParam) setCheckOutDate(new Date(checkoutParam));
+
+    return () => {
+      setLocation('');
+      setCheckInDate(undefined);
+      setCheckOutDate(undefined);
+    };
+  }, [searchParams]);
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -63,8 +85,15 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
 
   return (
     <form onSubmit={submitForm}>
-      <div className="whitespace-nowrap rounded-full border border-black/10 bg-white text-black">
-        <div className="relative grid h-[68px] w-[860px] grid-cols-1 items-center">
+      <div className="whitespace-nowrap rounded-full border border-black/10 bg-white text-black transition-shadow hover:shadow hover:shadow-neutral-900/[0.05]">
+        <div
+          className={cn(
+            'relative grid grid-cols-1 items-center',
+            compact
+              ? 'h-[--compact-search-panel-height] w-[--compact-search-panel-width]'
+              : 'h-[var(--search-panel-height)] w-[--search-panel-width]',
+          )}
+        >
           <div className="grid h-full grid-cols-[33.333333%_33.333333%_33.333333%] items-center justify-center">
             <div className="relative h-full">
               <Separator
@@ -82,7 +111,12 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
                     >
                       <div className="flex size-full items-center justify-between">
                         <div className="flex size-full flex-col items-start justify-center truncate">
-                          <div className="text-[13px] font-bold">
+                          <div
+                            className={cn(
+                              'font-bold',
+                              compact ? 'text-[12px]' : 'text-[13px]',
+                            )}
+                          >
                             Pick-up / Drop-off
                           </div>
                           {location ? (
@@ -98,7 +132,12 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
                             </div>
                           )}
                         </div>
-                        <SelectorIcon className="-mr-2 ml-2 size-5 shrink-0 opacity-50" />
+                        <SelectorIcon
+                          className={cn(
+                            '-mr-2 ml-2  shrink-0 opacity-50',
+                            compact ? 'size-4' : 'size-5',
+                          )}
+                        />
                       </div>
                     </Button>
                   </PopoverTrigger>
@@ -150,7 +189,14 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
                       className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
-                        <div className="text-[13px] font-bold">Check in</div>
+                        <div
+                          className={cn(
+                            'font-bold',
+                            compact ? 'text-[12px]' : 'text-[13px]',
+                          )}
+                        >
+                          Check in
+                        </div>
                         {checkInDate ? (
                           <div className="font-semibold text-neutral-800">
                             {format(checkInDate, 'LLL dd, y')}
@@ -184,7 +230,14 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
                       className="ml-1 size-full flex-col overflow-hidden rounded-full border-none py-0 pl-5 pr-16"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
-                        <div className="text-[13px] font-bold">Check out</div>
+                        <div
+                          className={cn(
+                            'font-bold',
+                            compact ? 'text-[12px]' : 'text-[13px]',
+                          )}
+                        >
+                          Check out
+                        </div>
                         {checkOutDate ? (
                           <div className="font-semibold text-neutral-800">
                             {format(checkOutDate, 'LLL dd, y')}
@@ -213,11 +266,18 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
           <div className="absolute right-2 ">
             <Button
               type="submit"
-              size="icon-lg"
-              className="flex shrink-0 items-center justify-center rounded-full bg-black text-white"
+              className={cn(
+                'flex shrink-0 items-center justify-center rounded-full bg-black text-white',
+                compact ? 'size-[2.3rem]' : 'size-12',
+              )}
             >
               <span className="sr-only">Search</span>
-              <SearchIcon className="size-[18px] [stroke-width:3px]" />
+              <SearchIcon
+                className={cn(
+                  ' shrink-0 [stroke-width:3px]',
+                  compact ? 'size-4' : 'size-[18px]',
+                )}
+              />
             </Button>
           </div>
         </div>

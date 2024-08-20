@@ -44,7 +44,7 @@ export function Map({ locations }: { locations: Location[] }) {
 
   return (
     <MapContainer
-      className="h-[var(--map-container-height)]"
+      className="h-[var(--cars-main-content-height)]"
       center={[0, 0]}
       zoom={DEFAULT_ZOOM_LEVEL}
       ref={mapRef}

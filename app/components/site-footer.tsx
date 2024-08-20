@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { CarhiveWordmark } from './icons/carhive-wordmark';
+import { CarhiveLogo } from './icons/carhive-logo';
 import { NewsletterSubscriptionForm } from '@/app/components/newsletter-subscription-form';
 import { siteConfig } from '@/config/site';
+import { LogoLink } from './logoLink';
 
 const footerLinks = [
   {
@@ -40,9 +41,9 @@ export function SiteFooter() {
       <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-7xl">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
           <div className="col-span-full">
-            <Link href="/">
-              <CarhiveWordmark className="h-4 shrink-0 lg:h-[17px]" />
-            </Link>
+            <div className="-mt-2">
+              <LogoLink />
+            </div>
           </div>
           {footerLinks.map((section) => (
             <div key={section.title} className="flex flex-col gap-2.5 lg:gap-3">

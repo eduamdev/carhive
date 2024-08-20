@@ -1,16 +1,18 @@
 import { Suspense } from 'react';
-import {
-  CarCatalogSkeleton,
-  SearchFormSkeleton,
-} from '@/app/components/skeletons';
-import { SiteHeader } from '@/app/components/site-header';
-import { SearchForm } from '@/app/components/search-form';
+import type { Metadata } from 'next';
 import { Filters } from './components/filters';
 import { CarCard } from './components/car-card';
 import { MapContainer } from './components/map-container';
 import { getCars, getLocations } from '@/db/queries';
 import { slugify } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
+import { LogoLink } from '@/app/components/logoLink';
+import { UserMenuButton } from '@/app/components/user-menu-button';
+import { SearchPanel } from '@/app/(home)/components/search-panel';
+
+export const metadata: Metadata = {
+  title: 'Cars',
+};
 
 interface CarCatalogPageProps {
   searchParams: {
@@ -81,16 +83,26 @@ export default async function CarCatalogPage({
 
   return (
     <>
-      <div className="sticky top-0 z-30 flex h-[var(--height-gap)] w-full flex-col bg-white shadow-[inset_0_-1px_0_0_#eaeaea]">
-        <div className="shadow-[inset_0_-1px_0_0_#eaeaea]">
-          <div className="mx-auto h-[var(--site-header-height)] w-full max-w-none px-5 sm:max-w-none sm:px-6">
-            <SiteHeader />
+      <header className="sticky top-0 z-30 flex h-[var(--cars-header-height)] w-full flex-col bg-white shadow-[inset_0_-1px_0_0_#eaeaea]">
+        <div className="h-[80px] border-b border-black/[0.07]">
+          <div className="mx-auto size-full max-w-none px-5 sm:max-w-none sm:px-6">
+            <div className="flex h-full items-center justify-between gap-x-4">
+              <LogoLink />
+              <div className="hidden md:block">
+                <Suspense>
+                  <SearchPanel locations={locations} compact />
+                </Suspense>
+              </div>
+              <div className="inline-flex">
+                <UserMenuButton />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="hidden h-[var(--search-bar-height)] items-center justify-start lg:flex">
-          <div className="mx-auto w-full max-w-none px-5 sm:max-w-none sm:px-6">
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-neutral-800">
+        <div className="hidden h-[calc(var(--cars-header-height)_-_80px)] lg:block">
+          <div className="mx-auto size-full max-w-none px-5 sm:max-w-none sm:px-6">
+            <div className="flex h-full items-center justify-between">
+              <p className="text-sm font-medium text-neutral-600">
                 {filteredCars.length > 0 &&
                   (filteredCars.length > 1
                     ? `${filteredCars.length} cars`
@@ -103,16 +115,11 @@ export default async function CarCatalogPage({
             </div>
           </div>
         </div>
-        <div className="absolute top-[calc(var(--site-header-height)_/_2)] hidden w-full lg:flex">
-          <Suspense fallback={<SearchFormSkeleton compact />}>
-            <SearchForm locations={locations} compact />
-          </Suspense>
-        </div>
-      </div>
+      </header>
       <main>
-        <div className="flex">
-          <div className="w-full max-w-[var(--cars-page-main-content-max-width)] shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:min-h-[var(--cars-page-main-content-height)] md:w-[55%] xl:w-[63%]">
-            <Suspense fallback={<CarCatalogSkeleton />}>
+        <div className="flex flex-row">
+          <div className="w-full shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:w-[55%] xl:w-[63%]">
+            <Suspense>
               <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
                 {!filteredCars.length ? (
                   <div>

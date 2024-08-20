@@ -10,12 +10,14 @@
       'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
     --site-header-height: 60px;
-    --search-bar-height: 0px;
 
-    --header-gap: calc(var(--site-header-height) + var(--search-bar-height));
-    --cars-page-main-content-height: calc(100dvh - var(--header-gap));
-    --map-container-height: var(--cars-page-main-content-height);
-    --cars-page-main-content-max-width: 1184px;
+    --search-panel-height: 68px;
+    --search-panel-width: 860px;
+    --compact-search-panel-height: 55px;
+    --compact-search-panel-width: 640px;
+
+    --cars-header-height: 140px;
+    --cars-main-content-height: calc(100dvh - var(--cars-header-height));
 
     --car-page-main-content-padding-y: 32px;
     --card-reserve-width: 370px;

@@ -14,8 +14,10 @@ export function Features() {
           <div className="pt-5 md:pt-8">
             <div className="flex flex-col items-start justify-center gap-8 sm:grid sm:grid-cols-2 md:grid-cols-4">
               <div className="flex flex-col items-start justify-center text-left">
-                <ClickIcon className="size-4 shrink-0 text-neutral-500 md:size-[18px]" />
-                <div className="pt-2.5 md:pt-3.5">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white md:size-10">
+                  <ClickIcon className="size-4 shrink-0 text-blue-700 md:size-5" />
+                </div>
+                <div className="pt-2.5 md:pt-[18px]">
                   <p className="text-balance text-[15px] font-semibold md:text-base">
                     Hassle-Free Booking
                   </p>
@@ -28,8 +30,10 @@ export function Features() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center text-left">
-                <ShieldCheckIcon className="size-4 shrink-0 text-neutral-500 md:size-[18px]" />
-                <div className="pt-2.5 md:pt-3.5">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white md:size-10">
+                  <ShieldCheckIcon className="size-4 shrink-0 text-blue-700 md:size-5" />
+                </div>
+                <div className="pt-2.5 md:pt-[18px]">
                   <p className="text-balance text-[15px] font-semibold md:text-base">
                     Secure & Reliable Rentals
                   </p>
@@ -42,8 +46,10 @@ export function Features() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center text-left ">
-                <MapIcon className="size-4 shrink-0 text-neutral-500 md:size-[18px]" />
-                <div className="pt-2.5 md:pt-3.5">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white md:size-10">
+                  <MapIcon className="size-4 shrink-0 text-blue-700 [stroke-width:1.8] md:size-5" />
+                </div>
+                <div className="pt-2.5 md:pt-[18px]">
                   <p className="text-balance text-[15px] font-semibold md:text-base">
                     Simple Navigation
                   </p>
@@ -56,8 +62,10 @@ export function Features() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center text-left ">
-                <FilterIcon className="size-4 shrink-0 text-neutral-500 md:size-[18px]" />
-                <div className="pt-2.5 md:pt-3.5">
+                <div className="flex size-8 items-center justify-center rounded-full bg-white md:size-10">
+                  <FilterIcon className="size-4 shrink-0 text-blue-700 [stroke-width:1.8] md:size-5" />
+                </div>
+                <div className="pt-2.5 md:pt-[18px]">
                   <p className="text-balance text-[15px] font-semibold md:text-base">
                     Customizable Search Filters
                   </p>

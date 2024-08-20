@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { getLocations } from '@/db/queries';
-import { SearchFormSkeleton } from '@/app/components/skeletons';
 import { LogoSlider } from '../components/logo-slider';
 import { SearchPanel } from '../components/search-panel';
 
@@ -16,11 +15,11 @@ export async function Hero() {
           </h1>
           <div className="hidden md:block">
             <div className="pt-6">
-              <Suspense fallback={<SearchFormSkeleton />}>
-                <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center">
+                <Suspense>
                   <SearchPanel locations={locations} />
-                </div>
-              </Suspense>
+                </Suspense>
+              </div>
             </div>
           </div>
           <div className="pt-14">
