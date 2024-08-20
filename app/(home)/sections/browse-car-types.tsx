@@ -68,7 +68,7 @@ export function BrowseCarTypes() {
               <div className="before:pointer-events-none before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-10"></div>
               <div className="after:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-5"></div>
               <Carousel>
-                <CarouselContent className="m-0 space-x-4">
+                <CarouselContent className="m-0 space-x-3 lg:space-x-4">
                   {carCategories.map(({ id, slug, name, image_url }) => {
                     return (
                       <CarouselItem
@@ -86,7 +86,7 @@ export function BrowseCarTypes() {
                             }}
                             className="absolute top-0 z-20 size-full rounded-xl border-2 border-transparent focus-visible:border-neutral-950 focus-visible:outline-none"
                           ></Link>
-                          <span className="absolute left-1.5 top-1.5 z-10 inline-flex items-center justify-center rounded-2xl border border-neutral-200 bg-white px-3 py-1 text-[13px] font-semibold leading-none sm:py-1.5 md:left-2.5 md:top-2.5 xl:text-sm">
+                          <span className="absolute left-2 top-2 z-10 inline-flex items-center justify-center rounded-2xl border border-neutral-200 bg-white px-2 py-1 text-[12px] font-semibold leading-none tracking-wide sm:px-3 sm:py-1.5 sm:text-[13px] md:left-2.5 md:top-2.5 md:tracking-normal xl:py-2 xl:text-[14px]">
                             {name}
                           </span>
                           <Image
@@ -102,8 +102,8 @@ export function BrowseCarTypes() {
                     );
                   })}
                 </CarouselContent>
-                <CarouselPrevious className="-left-4 z-20 lg:-left-12" />
-                <CarouselNext className="-right-4 z-20 lg:-right-12" />
+                <CarouselPrevious className="-left-4 z-30 lg:-left-12" />
+                <CarouselNext className="-right-4 z-30 lg:-right-12" />
               </Carousel>
             </div>
           </div>

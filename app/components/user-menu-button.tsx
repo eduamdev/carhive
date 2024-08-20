@@ -28,7 +28,7 @@ export function UserMenuButton() {
         <UserButton />
       </SignedIn>
       <SignedOut>
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button variant="link" className="p-1">
               <div className="flex items-center justify-center text-neutral-800">
@@ -37,7 +37,10 @@ export function UserMenuButton() {
               </div>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" collisionPadding={20}>
+          <DropdownMenuContent
+            className="w-40 sm:w-48 lg:w-52"
+            collisionPadding={20}
+          >
             <DropdownMenuGroup>
               <DropdownMenuItem className="p-0">
                 <span className="w-full [&_button]:w-full [&_button]:px-2 [&_button]:py-[6px] [&_button]:text-left">
