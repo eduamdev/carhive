@@ -35,17 +35,22 @@
     );
   }
 
-  /* Tailwind lg size screen */
-  @media screen and (min-width: 1128px) {
-    :root {
-      --search-bar-height: 70px;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
     }
+  }
+
+  html {
+    color-scheme: light;
+    /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
+    touch-action: manipulation;
   }
 
   html,
   body {
+    background-color: white;
     font-family: var(--font-sans), var(--font-sans-fallback);
-    /* Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom */
     font-synthesis-weight: none;
     font-feature-settings:
       'liga' 1,
@@ -54,21 +59,17 @@
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-width: 360px;
-    touch-action: manipulation;
-    @apply tabular-nums;
+
     user-select: text;
+    overflow-x: clip;
   }
   body {
     overscroll-behavior-y: contain;
+    margin: 0;
     font-size: 100%;
-    min-height: 100vh;
-    height: 100dvh;
-    width: 100dvw;
-    max-height: 100dvh;
-    max-width: 100dvw;
-    background-color: white;
-    overflow-x: hidden;
+    min-height: 100%;
+    min-width: 360px;
+    max-width: 100vw;
   }
 
   a {

@@ -65,7 +65,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <ClerkProvider>
       <html lang="en" className={fontSans.variable}>
         <body>
-          <div className="flex size-full flex-col overflow-x-hidden">
+          <div className="flex min-h-screen flex-col">
             {children}
             <SiteFooter />
           </div>
