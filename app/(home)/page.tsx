@@ -16,10 +16,10 @@ export default function HomePage() {
       </div>
       <main>
         <Hero />
-        <div className="pt-10 md:pt-12">
+        <div className="pt-12 lg:pt-14">
           <BrowseCarTypes />
         </div>
-        <div className="py-12 lg:py-14">
+        <div className="py-12 lg:py-16">
           <PopularDestinations />
         </div>
         <div className="border-y border-neutral-900/5">

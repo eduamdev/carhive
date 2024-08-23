@@ -79,10 +79,10 @@ export function Testimonials() {
   return (
     <section>
       <div className="mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-balance text-[19px] font-bold sm:text-[21px] xl:text-center">
+        <h2 className="text-balance text-[19px] font-bold sm:text-[21px] lg:text-[23px] xl:text-center">
           What Our Customers Are Saying
         </h2>
-        <div className="pt-6 md:pt-8 xl:pt-10">
+        <div className="pt-6 lg:pt-8">
           <div className="relative">
             <div className="before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-16 lg:before:w-[10%]"></div>
             <Carousel>

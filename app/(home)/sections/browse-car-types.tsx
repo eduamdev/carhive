@@ -60,10 +60,10 @@ export function BrowseCarTypes() {
   return (
     <section>
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-balance text-[19px] font-bold sm:text-[21px] ">
+        <h2 className="text-balance text-[19px] font-bold sm:text-[21px] lg:text-[23px]">
           Pick Your Perfect Match
         </h2>
-        <div className="pt-5">
+        <div className="pt-6">
           <div className="relative">
             <div className="before:pointer-events-none before:absolute before:-left-1 before:top-0 before:z-10 before:h-full before:w-[7%] before:bg-gradient-to-r before:from-white before:content-[''] lg:before:-left-10"></div>
             <div className="after:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-5"></div>
