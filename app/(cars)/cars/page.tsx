@@ -9,6 +9,7 @@ import { SearchParams } from '@/app/lib/types';
 import { LogoLink } from '@/app/components/logoLink';
 import { UserMenuButton } from '@/app/components/user-menu-button';
 import { SearchPanel } from '@/app/(home)/components/search-panel';
+import { FiltersButton } from './components/filters-button';
 
 export const metadata: Metadata = {
   title: 'Cars',
@@ -102,7 +103,7 @@ export default async function CarCatalogPage({
         <div className="hidden h-[calc(var(--cars-header-height)_-_80px)] lg:block">
           <div className="mx-auto size-full max-w-none px-5 sm:max-w-none sm:px-6">
             <div className="flex h-full items-center justify-between">
-              <p className="text-sm font-medium text-neutral-600">
+              <p className="text-sm font-medium text-neutral-800">
                 {filteredCars.length > 0 &&
                   (filteredCars.length > 1
                     ? `${filteredCars.length} cars`
@@ -112,6 +113,7 @@ export default async function CarCatalogPage({
                 initialMinPrice={MIN_PRICE}
                 initialMaxPrice={MAX_PRICE}
               />
+              {/* <FiltersButton /> */}
             </div>
           </div>
         </div>
