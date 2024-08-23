@@ -3,6 +3,7 @@ export function BMWIcon(props: React.HTMLAttributes<SVGElement>) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 90.857 90.857"
+      aria-hidden="true"
       {...props}
     >
       <g fill="none" fillRule="evenodd" stroke="none" strokeWidth={1}>

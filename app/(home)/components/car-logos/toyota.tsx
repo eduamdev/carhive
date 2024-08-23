@@ -4,6 +4,7 @@ export function ToyotaIcon(props: React.HTMLAttributes<SVGElement>) {
       viewBox="-0.714 -0.432 757.474 124.611"
       xmlSpace="preserve"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
       {...props}
     >
       <g fill="#000">

@@ -1,8 +1,6 @@
-import Link from 'next/link';
-import { CarhiveLogo } from './icons/carhive-logo';
-import { NewsletterSubscriptionForm } from '@/app/components/newsletter-subscription-form';
 import { siteConfig } from '@/config/site';
 import { LogoLink } from './logoLink';
+import { Button } from './ui/button';
 
 const footerLinks = [
   {
@@ -28,60 +26,78 @@ const footerLinks = [
   },
   {
     title: 'Company',
-    links: ['About Us', 'Contact Us', 'Blog', 'Careers', 'Press'],
+    links: [
+      'About',
+      'Contact Us',
+      'Blog',
+      'Partners',
+      'Customers',
+      'Careers',
+      'Press',
+    ],
   },
-  { title: 'Connect', links: ['Instagram', 'Youtube', 'Twitter'] },
+  {
+    title: 'Social',
+    links: ['Youtube', 'Twitter', 'Instagram', 'Facebook'],
+  },
 ];
 
 export function SiteFooter() {
   const githubUrl = siteConfig.links.github;
 
   return (
-    <footer className="border-t border-black/[0.06] bg-white py-10">
-      <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 2xl:max-w-7xl">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-between gap-x-2 gap-y-10 sm:gap-x-6 md:flex md:flex-wrap">
-          <div className="col-span-full">
-            <div className="-mt-2">
-              <LogoLink />
-            </div>
+    <footer className="border-t border-black/[0.06] py-12">
+      <div className="mx-auto w-full max-w-none px-5 text-sm sm:max-w-[90%] sm:px-0 xl:max-w-5xl">
+        <div className="grid grid-cols-12 items-start justify-center gap-y-11">
+          <div className="col-span-full md:col-span-3">
+            <LogoLink />
           </div>
-          {footerLinks.map((section) => (
-            <div key={section.title} className="flex flex-col gap-2.5 lg:gap-3">
-              <h3 className="mb-1 text-sm font-semibold lg:text-sm">
-                {section.title}
-              </h3>
-              {section.links.map((link) => (
+          <nav className="col-span-full grid grid-cols-12 gap-x-6 gap-y-11 md:col-span-9">
+            {footerLinks.map((section) => (
+              <ul
+                key={section.title}
+                className="col-span-6 flex flex-col gap-3 md:col-span-3 lg:gap-3"
+              >
+                <div className="pb-1.5">
+                  <h2 className="whitespace-nowrap text-balance font-semibold leading-none text-neutral-950">
+                    {section.title}
+                  </h2>
+                </div>
+                {section.links.map((link) => (
+                  <li key={link} className="text-neutral-600">
+                    <Button
+                      variant={'link'}
+                      className="h-auto text-balance rounded-none p-0 text-[13px] font-normal leading-none sm:text-sm"
+                      asChild
+                    >
+                      <a href={githubUrl} target="_blank" rel="noreferrer">
+                        {link}
+                      </a>
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </nav>
+          <div className="col-span-full">
+            <p className="text-[13px] leading-6 text-neutral-600 sm:text-sm">
+              Crafted with care by{' '}
+              <Button
+                variant={'link'}
+                className="h-auto rounded-none p-0 text-[13px] font-normal leading-none sm:text-sm"
+                asChild
+              >
                 <a
-                  key={link}
-                  href={githubUrl}
+                  href={siteConfig.author.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[13px] text-neutral-600 hover:text-black lg:text-sm"
                 >
-                  {link}
+                  <strong>eduamdev</strong>
                 </a>
-              ))}
-            </div>
-          ))}
-          <div className="col-span-full flex w-full flex-col gap-2 lg:max-w-[240px] lg:gap-2.5">
-            <h3 className="mb-1.5 text-sm font-semibold lg:text-sm">
-              Subscribe to our newsletter
-            </h3>
-            <NewsletterSubscriptionForm />
+              </Button>
+              .
+            </p>
           </div>
-        </div>
-        <div className="mt-14 lg:mt-16">
-          <p className="text-[13px] leading-6 text-neutral-600 lg:text-sm">
-            Crafted with care by{' '}
-            <a href={siteConfig.author.url} target="_blank" rel="noreferrer">
-              <strong>eduamdev</strong>
-            </a>
-            . Check out the code on{' '}
-            <a href={`${githubUrl}/carhive`} target="_blank" rel="noreferrer">
-              <strong>GitHub</strong>
-            </a>
-            .
-          </p>
         </div>
       </div>
     </footer>

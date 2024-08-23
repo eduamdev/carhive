@@ -33,7 +33,7 @@ export function Map({ locations }: { locations: Location[] }) {
           lng: Number(newLocation?.longitude),
         };
 
-        const zoom = 12;
+        const zoom = 11;
 
         map.setView(center, zoom);
       }

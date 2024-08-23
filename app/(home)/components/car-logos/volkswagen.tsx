@@ -4,6 +4,7 @@ export function VolkswagenIcon(props: React.HTMLAttributes<SVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1024 1024"
       enableBackground="new 0 0 1400 980"
+      aria-hidden="true"
       {...props}
     >
       <path fill="none" d="M0 0h1024v1024H0z" />

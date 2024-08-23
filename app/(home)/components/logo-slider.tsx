@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { VolvoIcon } from './car-logos/volvo';
-import { SuvaruIcon } from './car-logos/suvaru';
+import { SubaruIcon } from './car-logos/subaru';
 import { JeepIcon } from './car-logos/jeep';
 import { PorscheIcon } from './car-logos/porsche';
 import { VolkswagenIcon } from './car-logos/volkswagen';
@@ -17,77 +17,52 @@ import { NissanIcon } from './car-logos/nissan';
 import { KiaIcon } from './car-logos/kia';
 import { HyundaiIcon } from './car-logos/hyundai';
 import { MercedesBenzIcon } from './car-logos/mercedes-benz';
-import { cn, setCSSVariable } from '@/app/lib/utils';
+import { setCSSVariable } from '@/app/lib/utils';
 
-type LogoData = {
+const LOGO_WIDTH = '120px';
+const TOTAL_SETS_TO_CLONE = 2;
+
+interface LogoData {
   id: string;
   icon: JSX.Element;
-};
+}
 
-const logoIcons = {
-  kia: <KiaIcon aria-hidden="true" style={{ height: '12px', flexShrink: 0 }} />,
-  suvaru: (
-    <SuvaruIcon aria-hidden="true" style={{ height: '18px', flexShrink: 0 }} />
-  ),
-  mini: (
-    <MiniIcon aria-hidden="true" style={{ height: '27px', flexShrink: 0 }} />
-  ),
-  hyundai: (
-    <HyundaiIcon aria-hidden="true" style={{ height: '14px', flexShrink: 0 }} />
-  ),
-  mercedesBenz: (
-    <MercedesBenzIcon
-      aria-hidden="true"
-      style={{ height: '28px', flexShrink: 0 }}
-    />
-  ),
-  toyota: (
-    <ToyotaIcon aria-hidden="true" style={{ height: '20px', flexShrink: 0 }} />
-  ),
-  bmw: <BMWIcon aria-hidden="true" style={{ height: '33px', flexShrink: 0 }} />,
-  honda: (
-    <HondaIcon aria-hidden="true" style={{ height: '14px', flexShrink: 0 }} />
-  ),
-  audi: (
-    <AudiIcon aria-hidden="true" style={{ height: '24px', flexShrink: 0 }} />
-  ),
-  volvo: (
-    <VolvoIcon aria-hidden="true" style={{ height: '13px', flexShrink: 0 }} />
-  ),
-  volkswagen: (
-    <VolkswagenIcon
-      aria-hidden="true"
-      style={{ height: '28px', flexShrink: 0 }}
-    />
-  ),
-  porsche: (
-    <PorscheIcon aria-hidden="true" style={{ height: '9px', flexShrink: 0 }} />
-  ),
-  nissan: (
-    <NissanIcon aria-hidden="true" style={{ height: '30px', flexShrink: 0 }} />
-  ),
-  tesla: (
-    <TeslaIcon aria-hidden="true" style={{ height: '11px', flexShrink: 0 }} />
-  ),
-  jeep: (
-    <JeepIcon aria-hidden="true" style={{ height: '20px', flexShrink: 0 }} />
-  ),
-  ford: (
-    <FordIcon aria-hidden="true" style={{ height: '35px', flexShrink: 0 }} />
-  ),
+const logoIcons: Record<string, JSX.Element> = {
+  kia: <KiaIcon style={{ height: '10px', flexShrink: 0 }} />,
+  subaru: <SubaruIcon style={{ height: '15px', flexShrink: 0 }} />,
+  mini: <MiniIcon style={{ height: '24px', flexShrink: 0 }} />,
+  hyundai: <HyundaiIcon style={{ height: '12px', flexShrink: 0 }} />,
+  mercedesBenz: <MercedesBenzIcon style={{ height: '24px', flexShrink: 0 }} />,
+  toyota: <ToyotaIcon style={{ height: '17px', flexShrink: 0 }} />,
+  bmw: <BMWIcon style={{ height: '28px', flexShrink: 0 }} />,
+  honda: <HondaIcon style={{ height: '12px', flexShrink: 0 }} />,
+  audi: <AudiIcon style={{ height: '21px', flexShrink: 0 }} />,
+  volvo: <VolvoIcon style={{ height: '11px', flexShrink: 0 }} />,
+  volkswagen: <VolkswagenIcon style={{ height: '25px', flexShrink: 0 }} />,
+  porsche: <PorscheIcon style={{ height: '8px', flexShrink: 0 }} />,
+  nissan: <NissanIcon style={{ height: '26px', flexShrink: 0 }} />,
+  tesla: <TeslaIcon style={{ height: '10px', flexShrink: 0 }} />,
+  jeep: <JeepIcon style={{ height: '18px', flexShrink: 0 }} />,
+  ford: <FordIcon style={{ height: '29px', flexShrink: 0 }} />,
 };
 
 const initialLogos: LogoData[] = Object.entries(logoIcons).map(
   ([id, icon]) => ({ id, icon }),
 );
 
-export function LogoSlider() {
-  const LOGO_WIDTH = '9rem';
-  const TOTAL_SETS_TO_CLONE = 2;
+function generateClonedLogos(logos: LogoData[], totalSets: number): LogoData[] {
+  return Array.from({ length: totalSets }).flatMap((_, set) =>
+    logos.map(({ id, icon }) => ({
+      id: `${id}-clone-${set + 1}`,
+      icon,
+    })),
+  );
+}
 
-  const logosListRef = useRef<HTMLUListElement>(null);
-  const [isSliderInitialized, setIsSliderInitialized] = useState(false);
+export function LogoSlider() {
+  const logosListRef = useRef<HTMLDivElement>(null);
   const [clonedLogos, setClonedLogos] = useState<LogoData[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const logoList = logosListRef.current;
@@ -105,66 +80,35 @@ export function LogoSlider() {
         `calc(var(--slider-total-logos) * var(--slider-logo-width) * (${TOTAL_SETS_TO_CLONE} + 1))`,
       );
 
-      setIsSliderInitialized(true);
+      setClonedLogos(generateClonedLogos(initialLogos, TOTAL_SETS_TO_CLONE));
+      setIsVisible(true);
     }
   }, []);
 
-  useLayoutEffect(() => {
-    if (isSliderInitialized) {
-      setClonedLogos(generateClonedLogos(initialLogos, TOTAL_SETS_TO_CLONE));
-    }
-  }, [isSliderInitialized]);
-
-  const generateClonedLogos = (
-    logos: LogoData[],
-    totalSets: number,
-  ): LogoData[] => {
-    return Array.from({ length: totalSets }).flatMap((_, set) =>
-      logos.map(({ id, icon }) => ({
-        id: `${id}-clone-${set + 1}`,
-        icon,
-      })),
-    );
-  };
-
   return (
-    <div
-      className={cn(
-        'transition-opacity',
-        clonedLogos.length > 0 ? 'opacity-70' : 'opacity-0',
-      )}
-    >
-      <ul
-        ref={logosListRef}
-        className="flex w-[var(--slider-total-logo-width)] animate-slider items-center opacity-70 grayscale"
+    <div ref={logosListRef} className="animate-slider">
+      <div
+        className={`grayscale transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'} flex w-[var(--slider-total-logo-width)] items-center`}
       >
-        <InitialLogos />
-        {clonedLogos.map(({ id, icon }) => (
-          <li
+        {initialLogos.map(({ id, icon }) => (
+          <div
             key={id}
             id={id}
             className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
           >
             {icon}
-          </li>
+          </div>
         ))}
-      </ul>
+        {clonedLogos.map(({ id, icon }) => (
+          <div
+            key={id}
+            id={id}
+            className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
+          >
+            {icon}
+          </div>
+        ))}
+      </div>
     </div>
-  );
-}
-
-function InitialLogos() {
-  return (
-    <>
-      {initialLogos.map(({ id, icon }) => (
-        <li
-          key={id}
-          id={id}
-          className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
-        >
-          {icon}
-        </li>
-      ))}
-    </>
   );
 }

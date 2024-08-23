@@ -1,13 +1,15 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/app/components/ui/button';
 import { SearchParams } from '@/app/lib/types';
-import { AspectRatio } from '@/app/components/ui/aspect-ratio';
 import { formatCurrency } from '@/app/lib/utils';
 
 import Cancun from '../../../public/assets/destinations/cancun.jpg';
 import Dubai from '../../../public/assets/destinations/dubai.jpg';
 import Paris from '../../../public/assets/destinations/paris.jpg';
 import Rome from '../../../public/assets/destinations/rome.jpg';
+import Sydney from '../../../public/assets/destinations/sydney.jpg';
+import Rio from '../../../public/assets/destinations/rio.jpg';
 
 export function PopularDestinations() {
   const currency = 'MXN';
@@ -28,8 +30,8 @@ export function PopularDestinations() {
       starting_price: 1199,
     },
     {
-      id: 'italy',
-      slug: 'italy',
+      id: 'rome',
+      slug: 'rome',
       name: 'Rome, Italy',
       image_url: Rome,
       starting_price: 999,
@@ -41,51 +43,71 @@ export function PopularDestinations() {
       image_url: Paris,
       starting_price: 699,
     },
+    {
+      id: 'rio',
+      slug: 'rio',
+      name: 'Rio de Janeiro, Brazil',
+      image_url: Rio,
+      starting_price: 479,
+    },
+    {
+      id: 'sydney',
+      slug: 'sydney',
+      name: 'Sydney, Australia',
+      image_url: Sydney,
+      starting_price: 899,
+    },
   ];
 
   return (
-    <section className="pb-7 pt-16">
+    <section>
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-balance text-lg font-bold md:text-xl lg:text-[22px]">
-          Top Rental Destinations
+        <h2 className="text-balance text-[19px] font-bold sm:text-[21px] ">
+          Where to Rent Next
         </h2>
-        <div className="pt-4 md:pt-5">
-          <div className="group -mx-2 grid grid-cols-2 items-center justify-between sm:-mx-3 sm:grid-cols-4 [&_a:hover_img]:!opacity-100">
+        <div className="pt-5">
+          <div className="group grid grid-cols-2 gap-x-5 gap-y-9 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10 md:grid-cols-5 [&_a:hover_~_*_img]:!opacity-100">
             {trendingPlaces.map(
-              ({ id, slug, image_url, name, starting_price }) => (
-                <div key={id} className="mb-4 px-2 pt-1 md:px-3">
-                  <Link
-                    href={{
-                      pathname: '/cars',
-                      query: {
-                        [SearchParams.LOCATION]: slug,
-                      },
-                    }}
+              ({ id, slug, image_url, name, starting_price }, index) => (
+                <article
+                  key={id}
+                  className={`relative ${index === trendingPlaces.length - 1 ? 'md:hidden' : ''}`}
+                >
+                  <Button
+                    variant={'link'}
+                    className="m-0 flex size-full p-0"
+                    asChild
                   >
-                    <div className="size-full group-hover:[&_img]:opacity-50">
-                      <AspectRatio ratio={1 / 1}>
-                        <Image
-                          priority
-                          src={image_url}
-                          alt={name}
-                          fill
-                          sizes="(max-width: 549px) 100vw, (max-width: 1127px) 50vw, 25vw"
-                          className="size-full rounded-2xl border object-cover object-center transition-opacity duration-150"
-                        />
-                      </AspectRatio>
-                    </div>
-                    <div className="pt-3">
-                      <h3 className="truncate text-[15px] font-semibold">
-                        {name}
-                      </h3>
-                    </div>
-                    <div className="pt-1">
-                      <p className="truncate text-[13px] text-neutral-600 md:text-sm">
-                        Cars from {formatCurrency(starting_price, currency)}+
-                      </p>
-                    </div>
-                  </Link>
-                </div>
+                    <Link
+                      href={{
+                        pathname: '/cars',
+                        query: {
+                          [SearchParams.LOCATION]: slug,
+                        },
+                      }}
+                      className="absolute left-0 top-0 z-10 size-full"
+                    />
+                  </Button>
+                  <div className="relative aspect-square">
+                    <Image
+                      src={image_url}
+                      alt={name}
+                      quality={85}
+                      priority
+                      fill
+                      sizes="(max-width: 550px) 50vw, (max-width: 950px) 33.33vw, 20vw"
+                      className="rounded-xl object-cover transition-opacity group-hover:opacity-70"
+                    />
+                  </div>
+                  <div className="pt-3 sm:pt-4">
+                    <h3 className="truncate text-[13px] font-semibold leading-[22px] text-neutral-950 sm:text-[14px] xl:text-[15px]">
+                      {name}
+                    </h3>
+                    <p className="truncate text-[13px] leading-[21px] text-neutral-600 sm:text-[14px] sm:leading-[26px]">
+                      Cars from {formatCurrency(starting_price, currency)}+
+                    </p>
+                  </div>
+                </article>
               ),
             )}
           </div>

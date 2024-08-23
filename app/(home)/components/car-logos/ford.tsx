@@ -5,6 +5,7 @@ export function FordIcon(props: React.HTMLAttributes<SVGElement>) {
       viewBox="0 0 233.56 119.63"
       enableBackground="new 0 0 233.56 119.63"
       xmlSpace="preserve"
+      aria-hidden="true"
       {...props}
     >
       <path fill="none" d="M0 0h233.56v119.63H0z" id="positional_box" />

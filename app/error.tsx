@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { SiteHeader } from '@/app/components/site-header';
-import { SiteFooter } from '@/app/components/site-footer';
 
 export default function Error({
   error,
@@ -55,7 +54,6 @@ export default function Error({
           </Button>
         </main>
       </div>
-      <SiteFooter />
     </>
   );
 }

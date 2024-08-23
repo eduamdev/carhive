@@ -5,6 +5,7 @@ export function VolvoIcon(props: React.HTMLAttributes<SVGElement>) {
       version="1.0"
       xmlSpace="preserve"
       viewBox="0 0 800 110.066"
+      aria-hidden="true"
       {...props}
     >
       <path

@@ -3,6 +3,7 @@ export function MiniIcon(props: React.HTMLAttributes<SVGElement>) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 132.292 58.029"
+      aria-hidden="true"
       {...props}
     >
       <path
