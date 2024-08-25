@@ -1,13 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SelectedFilters } from '../filters';
-import { Button } from '@/app/components/ui/button';
+import { SelectedFilters } from '../filters-button';
 import { SUVIcon } from '@/app/components/icons/suv';
 import { MinivanIcon } from '@/app/components/icons/minivan';
 import { TruckIcon } from '@/app/components/icons/truck';
 import { HatchbackIcon } from '@/app/components/icons/hatchback';
 import { CarIcon } from '@/app/components/icons/car';
 import { RoadsterIcon } from '@/app/components/icons/roadster';
-import { cn } from '@/app/lib/utils';
+import { Toggle } from '@/app/components/ui/toggle';
 
 export enum BodyStyle {
   SUV = 'suv',
@@ -44,60 +43,41 @@ interface BodyStyleFiltersProps {
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-const toggleBodyStyle = (
-  bodyStyle: BodyStyle,
-  selectedFilters: SelectedFilters,
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
-) => {
-  const bodyStylesSelected = selectedFilters.bodyStyles.includes(bodyStyle)
-    ? selectedFilters.bodyStyles.filter((selected) => selected !== bodyStyle)
-    : [...selectedFilters.bodyStyles, bodyStyle];
-
-  setSelectedFilters({
-    ...selectedFilters,
-    bodyStyles: bodyStylesSelected,
-  });
-};
-
 export function BodyStyleFilters({
   selectedFilters,
   setSelectedFilters,
 }: BodyStyleFiltersProps) {
-  const renderBodyStyleButtons = () => {
-    return bodyStyles.map(({ icon: Icon, slug, name }) => {
-      const isSelected = selectedFilters.bodyStyles.includes(slug);
-      const buttonClassName = cn(
-        isSelected &&
-          'bg-neutral-50 after:absolute after:-left-px after:-top-px after:size-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
-      );
+  const handleBodyStyleToggle = (bodyStyle: BodyStyle) => {
+    setSelectedFilters((prevFilters) => {
+      const bodyStylesSelected = prevFilters.bodyStyles.includes(bodyStyle)
+        ? prevFilters.bodyStyles.filter((selected) => selected !== bodyStyle)
+        : [...prevFilters.bodyStyles, bodyStyle];
 
-      return (
-        <Button
-          key={slug}
-          variant="filter"
-          size="full-size"
-          className={buttonClassName}
-          onClick={() =>
-            toggleBodyStyle(slug, selectedFilters, setSelectedFilters)
-          }
-        >
-          <div className="flex h-32 min-h-full w-full flex-col items-start justify-between p-4">
-            {Icon && <Icon className="size-8" />}
-            <span className="text-base font-medium">{name}</span>
-          </div>
-        </Button>
-      );
+      return { ...prevFilters, bodyStyles: bodyStylesSelected };
     });
   };
 
   return (
-    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
-      <section>
-        <h3 className="pb-6 text-xl font-semibold">Body Style</h3>
-        <div className="grid grid-cols-2 items-center gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {renderBodyStyleButtons()}
+    <section>
+      <h3 className="text-lg font-semibold">Body Style</h3>
+      <div className="pt-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-3.5">
+          {bodyStyles.map(({ slug, name, icon: Icon }) => (
+            <Toggle
+              key={slug}
+              variant={'outline'}
+              className="h-[50px] rounded-full px-4"
+              pressed={selectedFilters.bodyStyles.includes(slug)}
+              onPressedChange={() => handleBodyStyleToggle(slug)}
+            >
+              <Icon className="mr-2.5 size-7" />
+              <span className="text-sm font-normal text-neutral-950">
+                {name}
+              </span>
+            </Toggle>
+          ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

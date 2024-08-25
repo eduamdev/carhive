@@ -13,11 +13,9 @@ export function CompactSearchPanelSkeleton() {
             />
             <div className="flex size-full items-center justify-center px-0">
               <div className="mr-1 inline-flex size-full flex-col items-center justify-center overflow-hidden whitespace-nowrap border-none px-5 py-0">
-                <div className="flex size-full flex-col items-start justify-center gap-y-1.5">
-                  <Skeleton className="h-2.5 w-12 shrink-0 rounded-lg" />
-                  <div className="pt-1">
-                    <Skeleton className="h-3 w-20 shrink-0 rounded-lg" />
-                  </div>
+                <div className="flex size-full flex-col items-start justify-center gap-y-1">
+                  <Skeleton className="h-3.5 w-12 shrink-0" />
+                  <Skeleton className="h-3.5 w-20 shrink-0" />
                 </div>
               </div>
             </div>
@@ -29,11 +27,9 @@ export function CompactSearchPanelSkeleton() {
             />
             <div className="flex size-full items-center justify-center px-0">
               <div className="inline-flex size-full flex-col items-center justify-center overflow-hidden whitespace-nowrap border-none px-5 py-0">
-                <div className="flex size-full flex-col items-start justify-center gap-y-1.5">
-                  <Skeleton className="h-2.5 w-12 shrink-0 rounded-lg" />
-                  <div className="pt-1">
-                    <Skeleton className="h-3 w-20 shrink-0 rounded-lg" />
-                  </div>
+                <div className="flex size-full flex-col items-start justify-center gap-y-1">
+                  <Skeleton className="h-3.5 w-12 shrink-0" />
+                  <Skeleton className="h-3.5 w-20 shrink-0" />
                 </div>
               </div>
             </div>
@@ -41,11 +37,9 @@ export function CompactSearchPanelSkeleton() {
           <div className="h-full">
             <div className="flex size-full items-center justify-center px-0">
               <div className="ml-1 inline-flex size-full flex-col items-center justify-center overflow-hidden whitespace-nowrap border-none px-5 py-0">
-                <div className="flex size-full flex-col items-start justify-center gap-y-1.5">
-                  <Skeleton className="h-2.5 w-12 shrink-0 rounded-lg" />
-                  <div className="pt-1">
-                    <Skeleton className="h-3 w-20 shrink-0 rounded-lg" />
-                  </div>
+                <div className="flex size-full flex-col items-start justify-center gap-y-1">
+                  <Skeleton className="h-3.5 w-12 shrink-0" />
+                  <Skeleton className="h-3.5 w-20 shrink-0" />
                 </div>
               </div>
             </div>

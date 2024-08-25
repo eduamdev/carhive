@@ -25,7 +25,7 @@
       var(--site-header-height) + var(--car-page-main-content-padding-y)
     );
 
-    --modal-max-width: 780px;
+    --modal-max-width: 568px;
     --modal-header-height: 64px;
     --modal-footer-height: 80px;
     --modal-viewport-gap: 80px;

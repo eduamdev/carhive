@@ -1,9 +1,15 @@
-import { Dispatch, SetStateAction } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { Slider } from '@/app/components/ui/slider';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
-import { Separator } from '@/app/components/ui/separator';
-import { SelectedFilters } from '../filters';
+import { SelectedFilters } from '../filters-button';
+import { useDebounce } from '@/app/hooks/use-debounce';
 
 interface PriceRangeFiltersProps {
   minPrice: number;
@@ -18,70 +24,120 @@ export function PriceRangeFilters({
   selectedFilters,
   setSelectedFilters,
 }: PriceRangeFiltersProps) {
-  const handleSliderChange = (priceRange: number[]) => {
+  const [tempMinPrice, setTempMinPrice] = useState(selectedFilters.minPrice);
+  const [tempMaxPrice, setTempMaxPrice] = useState(selectedFilters.maxPrice);
+
+  const debouncedMinPrice = useDebounce(tempMinPrice, 500);
+  const debouncedMaxPrice = useDebounce(tempMaxPrice, 500);
+
+  // Validate the debounced values and update the selected filters
+  useEffect(() => {
+    let validatedMinPrice = debouncedMinPrice;
+    let validatedMaxPrice = debouncedMaxPrice;
+
+    // Validation: debounced min price should not be higher than max prices
+    if (
+      debouncedMinPrice > MAX_PRICE ||
+      debouncedMinPrice > tempMaxPrice ||
+      debouncedMinPrice > debouncedMaxPrice
+    ) {
+      validatedMinPrice =
+        selectedFilters.minPrice <= MAX_PRICE
+          ? selectedFilters.minPrice
+          : MIN_PRICE;
+    }
+
+    // Validation: debounced max price should not be lower than min prices
+    if (
+      debouncedMaxPrice < MIN_PRICE ||
+      debouncedMaxPrice < tempMinPrice ||
+      debouncedMaxPrice < debouncedMinPrice
+    ) {
+      validatedMaxPrice =
+        selectedFilters.maxPrice >= MIN_PRICE
+          ? selectedFilters.maxPrice
+          : MAX_PRICE;
+    }
+
+    if (validatedMinPrice < MIN_PRICE) {
+      validatedMinPrice = MIN_PRICE;
+    }
+
+    if (validatedMaxPrice > MAX_PRICE) {
+      validatedMaxPrice = MAX_PRICE;
+    }
+
     setSelectedFilters({
       ...selectedFilters,
-      minPrice: priceRange[0],
-      maxPrice: priceRange[1],
+      minPrice: validatedMinPrice,
+      maxPrice: validatedMaxPrice,
     });
+    setTempMinPrice(validatedMinPrice);
+    setTempMaxPrice(validatedMaxPrice);
+  }, [debouncedMinPrice, debouncedMaxPrice]);
+
+  const handleMinPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTempMinPrice(parseInt(e.target.value, 10) || MIN_PRICE);
+  };
+
+  const handleMaxPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTempMaxPrice(parseInt(e.target.value, 10) || MAX_PRICE);
+  };
+
+  const handleSliderChange = (priceRange: number[]) => {
+    setTempMinPrice(priceRange[0]);
+    setTempMaxPrice(priceRange[1]);
   };
 
   return (
-    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
-      <section>
-        <h3 className="pb-6 text-xl font-semibold">Price range</h3>
-        <div className="mx-auto flex max-w-[600px] flex-col items-start justify-between gap-12 pt-2">
-          <Slider
-            defaultValue={[MIN_PRICE, MAX_PRICE]}
-            value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
-            onValueChange={handleSliderChange}
-            min={MIN_PRICE}
-            max={MAX_PRICE}
-            step={1}
-            minStepsBetweenThumbs={1}
-          />
-
-          <div className="flex w-full items-center justify-between gap-6">
-            <div className="relative h-14 w-full">
-              <Label
-                htmlFor="price_filter_min"
-                className="absolute left-3 top-2.5 w-full max-w-full truncate pr-6 text-xs font-normal leading-none text-neutral-500"
-              >
+    <section>
+      <h3 className="text-lg font-semibold">Price range</h3>
+      <div className="pt-0.5">
+        <p className="text-[15px] text-neutral-700">
+          Daily prices before fees and taxes
+        </p>
+      </div>
+      <div className="pt-10">
+        <Slider
+          defaultValue={[MIN_PRICE, MAX_PRICE]}
+          value={[tempMinPrice, tempMaxPrice]}
+          onValueChange={handleSliderChange}
+          min={MIN_PRICE}
+          max={MAX_PRICE}
+          step={1}
+          minStepsBetweenThumbs={1}
+        />
+        <div className="pt-7">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center gap-2.5">
+              <Label htmlFor="price_filter_min" className="text-neutral-600">
                 Minimum
               </Label>
-              <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
                 id="price_filter_min"
                 type="text"
-                className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
-                value={selectedFilters.minPrice}
-                readOnly
+                inputMode="numeric"
+                className="h-12 w-24 rounded-full text-center tabular-nums"
+                value={tempMinPrice}
+                onChange={handleMinPriceChange}
               />
             </div>
-            <Separator
-              decorative
-              orientation="horizontal"
-              className="shrink-0 basis-4 border-neutral-400"
-            />
-            <div className="relative h-14 w-full">
-              <Label
-                htmlFor="price_filter_max"
-                className="absolute left-3 top-2.5 w-full max-w-full truncate pr-6 text-xs font-normal leading-none text-neutral-500"
-              >
+            <div className="flex flex-col items-center gap-2.5">
+              <Label htmlFor="price_filter_max" className="text-neutral-600">
                 Maximum
               </Label>
-              <div className="absolute bottom-3 left-3 leading-none">$</div>
               <Input
                 id="price_filter_max"
                 type="text"
-                className="absolute inset-0 h-full rounded-lg border border-neutral-400 bg-transparent pl-7 pr-4 pt-4 tabular-nums leading-none"
-                value={selectedFilters.maxPrice}
-                readOnly
+                inputMode="numeric"
+                className="h-12 w-24 rounded-full text-center tabular-nums"
+                value={tempMaxPrice}
+                onChange={handleMaxPriceChange}
               />
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

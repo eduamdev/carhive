@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
-import { cn } from '@/app/lib/utils';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from '@/app/components/ui/button';
-import { SelectedFilters } from '../filters';
+import { SelectedFilters } from '../filters-button';
+import { MinusIcon } from '@/app/components/icons/minus';
+import { PlusIcon } from '@/app/components/icons/plus';
 
 interface SeatingCapacityFiltersProps {
   selectedFilters: SelectedFilters;
@@ -12,54 +13,64 @@ export function SeatingCapacityFilters({
   selectedFilters,
   setSelectedFilters,
 }: SeatingCapacityFiltersProps) {
-  const handleClick = (seats: number | undefined) => {
-    setSelectedFilters({
-      ...selectedFilters,
-      seats: selectedFilters.seats === seats ? undefined : seats,
+  const [counter, setCounter] = useState(selectedFilters.seats || 0);
+
+  const handleMinusClick = () => {
+    setCounter((prevCounter) => {
+      const newCounter = prevCounter - 1;
+      setSelectedFilters({
+        ...selectedFilters,
+        seats: newCounter > 0 ? newCounter : undefined,
+      });
+      return newCounter;
     });
   };
 
-  const seatingCapacity: ReadonlyArray<number | undefined> = [
-    undefined,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-  ];
+  const handlePlusClick = () => {
+    setCounter((prevCounter) => {
+      const newCounter = prevCounter + 1;
+      setSelectedFilters({
+        ...selectedFilters,
+        seats: newCounter > 0 ? newCounter : undefined,
+      });
+      return newCounter;
+    });
+  };
 
   return (
-    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
-      <section>
-        <h3 className="pb-6 text-xl font-semibold">Seating capacity</h3>
-        <div className="mb-2 flex flex-row flex-wrap items-center gap-3">
-          {seatingCapacity.map((seats, index, array) => {
-            const isSelected = selectedFilters.seats === seats;
-            const buttonClassName = cn(
-              'font-normal',
-              isSelected &&
-                'border-black bg-black text-white after:absolute after:-left-px after:-top-px after:size-[calc(100%_+_2px)] after:border-2 after:border-black after:content-[""] after:[border-radius:inherit]',
-            );
+    <section>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Seats</h3>
+        <div className="flex flex-row items-center justify-center gap-x-4">
+          <Button
+            onClick={handleMinusClick}
+            variant={'outline'}
+            size={'icon'}
+            className="shrink-0 rounded-full hover:border-black hover:bg-neutral-50"
+            disabled={counter <= 0}
+          >
+            <MinusIcon className="inline size-4 shrink-0" />
+          </Button>
 
-            return (
-              <Button
-                key={seats ?? 'any'}
-                variant="filter"
-                size="pill"
-                className={buttonClassName}
-                onClick={() => handleClick(seats)}
-              >
-                {seats === undefined
-                  ? 'Any'
-                  : index === array.length - 1
-                  ? `${seats}+`
-                  : seats}
-              </Button>
-            );
-          })}
+          <div className="w-9 text-center tabular-nums">
+            {!selectedFilters.seats
+              ? 'Any'
+              : selectedFilters.seats === 7
+                ? `${selectedFilters.seats}+`
+                : selectedFilters.seats}
+          </div>
+
+          <Button
+            onClick={handlePlusClick}
+            variant={'outline'}
+            size={'icon'}
+            className="shrink-0 rounded-full hover:border-black hover:bg-neutral-50"
+            disabled={counter >= 7}
+          >
+            <PlusIcon className="inline size-4 shrink-0" />
+          </Button>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

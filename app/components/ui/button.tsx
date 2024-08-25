@@ -16,8 +16,6 @@ const buttonVariants = cva(
         secondary: 'bg-neutral-100 text-neutral-900 hover:bg-neutral-100/80',
         ghost: 'hover:bg-neutral-100 hover:text-neutral-900 ',
         link: 'text-neutral-600 hover:text-black',
-        filter:
-          'relative border border-neutral-300 bg-white hover:border-black',
         unstyled:
           'ring-0 focus-visible:outline focus-visible:ring-0 rounded-none font-normal',
       },
@@ -25,10 +23,8 @@ const buttonVariants = cva(
         default: 'h-10 px-4 py-2',
         xs: 'h-7 px-2',
         sm: 'h-9 px-3',
-        lg: 'h-12 px-4',
+        lg: 'h-12 px-6',
         icon: 'size-9',
-        pill: 'px-5 py-2.5 rounded-[30px]',
-        'full-size': 'size-full p-0 m-0 rounded-xl',
       },
     },
     defaultVariants: {

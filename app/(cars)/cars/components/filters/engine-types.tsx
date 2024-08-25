@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Checkbox } from '@/app/components/ui/checkbox';
-import { Label } from '@/app/components/ui/label';
-import { CheckedState } from '@radix-ui/react-checkbox';
-import { SelectedFilters } from '../filters';
+import { ToggleGroup, ToggleGroupItem } from '@/app/components/ui/toggle-group';
+import { SelectedFilters } from '../filters-button';
+import { Separator } from '@/app/components/ui/separator';
 
 export enum EngineType {
   GAS = 'gas',
@@ -27,59 +26,53 @@ interface EngineTypeFiltersProps {
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export const toggleEngineType = (
-  engineType: EngineType,
-  checked: CheckedState,
-  selectedFilters: SelectedFilters,
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>,
-) => {
-  const engineTypesSelected =
-    !checked || checked === 'indeterminate'
-      ? selectedFilters.engineTypes.filter(
-          (selected) => selected !== engineType,
-        )
-      : [...selectedFilters.engineTypes, engineType];
-
-  setSelectedFilters({
-    ...selectedFilters,
-    engineTypes: engineTypesSelected,
-  });
-};
-
 export function EngineTypeFilters({
   selectedFilters,
   setSelectedFilters,
 }: EngineTypeFiltersProps) {
-  const renderEngineTypeCheckboxes = () => {
-    return engineTypes.map(({ slug, name }) => (
-      <div key={slug} className="flex items-center py-3">
-        <Checkbox
-          id={slug}
-          onCheckedChange={(checked) =>
-            toggleEngineType(slug, checked, selectedFilters, setSelectedFilters)
-          }
-          checked={selectedFilters.engineTypes.includes(slug)}
-        />
-        <div className="w-full">
-          <Label
-            htmlFor={slug}
-            className="block cursor-pointer pl-4 text-base font-normal"
-          >
-            {name}
-          </Label>
-        </div>
-      </div>
-    ));
+  const handleEngineTypeChange = (engineType: EngineType | null) => {
+    if (engineType) {
+      setSelectedFilters({
+        ...selectedFilters,
+        engineTypes: [engineType],
+      });
+    } else {
+      setSelectedFilters({
+        ...selectedFilters,
+        engineTypes: [],
+      });
+    }
   };
 
   return (
-    <div className="relative px-6 py-8 after:absolute after:inset-x-6 after:bottom-0 after:h-px after:bg-neutral-100 after:content-['']">
-      <section>
-        <h3 className="pb-6 text-xl font-semibold">Engine type</h3>
-        <div className="grid grid-cols-2 items-center">
-          {renderEngineTypeCheckboxes()}
-        </div>
-      </section>
-    </div>
+    <section>
+      <h3 className="text-lg font-semibold">Engine type</h3>
+      <div className="pt-5">
+        <ToggleGroup
+          type="single"
+          value={selectedFilters.engineTypes[0] || null}
+          onValueChange={(value) =>
+            handleEngineTypeChange(value as EngineType | null)
+          }
+          className="grid min-h-14 w-full auto-cols-fr grid-flow-col gap-0 rounded-2xl border border-black/[0.12] p-1"
+        >
+          {engineTypes.map(({ slug, name }) => (
+            <ToggleGroupItem
+              key={slug}
+              value={slug}
+              className="group relative m-0 size-full rounded-none p-0 first:rounded-l-xl last:rounded-r-xl hover:bg-none [&>span]:data-[state=off]:border-transparent [&>span]:data-[state=on]:border-black [&>span]:data-[state=off]:bg-transparent [&>span]:data-[state=on]:bg-neutral-50"
+            >
+              <span className="text-medium flex size-full items-center justify-center rounded-xl border-2 border-transparent text-[15px] group-hover:bg-neutral-50">
+                {name}
+              </span>
+              <Separator
+                orientation="vertical"
+                className="h-1/2 group-last:hidden"
+              />
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+      </div>
+    </section>
   );
 }

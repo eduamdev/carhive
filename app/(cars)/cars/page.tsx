@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { Filters } from './components/filters';
 import { CarCard } from './components/car-card';
 import { MapContainer } from './components/map-container';
 import { getCars, getLocations } from '@/db/queries';
@@ -109,11 +108,10 @@ export default async function CarCatalogPage({
                     ? `${filteredCars.length} cars`
                     : `${filteredCars.length} car`)}
               </p>
-              <Filters
+              <FiltersButton
                 initialMinPrice={MIN_PRICE}
                 initialMaxPrice={MAX_PRICE}
               />
-              {/* <FiltersButton /> */}
             </div>
           </div>
         </div>
