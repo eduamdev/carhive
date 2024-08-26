@@ -25,12 +25,12 @@ interface ResponsiveModalProps {
   onOpenChange: (open: boolean) => void;
   trigger: ReactNode;
   title: string;
-  description?: string;
+  description: string;
   children: ReactNode;
   footer?: ReactNode;
 }
 
-export function FiltersModal({
+export function ResponsiveModal({
   open,
   onOpenChange,
   trigger,
@@ -52,9 +52,9 @@ export function FiltersModal({
             <DialogTitle className="text-center text-base tracking-normal">
               {title}
             </DialogTitle>
-            {description && (
-              <DialogDescription>{description}</DialogDescription>
-            )}
+            <DialogDescription className="sr-only">
+              {description}
+            </DialogDescription>
           </DialogHeader>
           <div className="h-full max-h-[var(--modal-content-max-height)] overflow-y-auto border-y">
             {children}
@@ -75,7 +75,9 @@ export function FiltersModal({
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>{title}</DrawerTitle>
-          {description && <DrawerDescription>{description}</DrawerDescription>}
+          <DrawerDescription className="sr-only">
+            {description}
+          </DrawerDescription>
         </DrawerHeader>
         <div className="px-4">{children}</div>
         {footer && <DrawerFooter>{footer}</DrawerFooter>}

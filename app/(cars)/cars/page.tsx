@@ -8,7 +8,7 @@ import { SearchParams } from '@/app/lib/types';
 import { LogoLink } from '@/app/components/logoLink';
 import { UserMenuButton } from '@/app/components/user-menu-button';
 import { SearchPanel } from '@/app/(home)/components/search-panel';
-import { FiltersButton } from './components/filters-button';
+import { FiltersButton } from './components/filters/filters-button';
 
 export const metadata: Metadata = {
   title: 'Cars',

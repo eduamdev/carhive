@@ -1,13 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SelectedFilters } from '../filters-button';
 import { Toggle } from '@/app/components/ui/toggle';
 import { AutomaticGearboxIcon } from '@/app/components/icons/automatic-gearbox';
 import { ManualGearboxIcon } from '@/app/components/icons/manual-gearbox';
-
-export enum Transmission {
-  AUTOMATIC = 'automatic',
-  MANUAL = 'manual',
-}
+import { SelectedFilters, Transmission } from '../types/filter-types';
 
 const transmissions = [
   {
@@ -18,15 +13,15 @@ const transmissions = [
   { slug: Transmission.MANUAL, name: 'Manual', icon: ManualGearboxIcon },
 ];
 
-interface TransmissionFiltersProps {
+interface TransmissionTypeSectionProps {
   selectedFilters: SelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export function TransmissionFilters({
+export function TransmissionTypeSection({
   selectedFilters,
   setSelectedFilters,
-}: TransmissionFiltersProps) {
+}: TransmissionTypeSectionProps) {
   const handleTransmissionToggle = (transmission: Transmission) => {
     setSelectedFilters((prevFilters) => {
       const transmissionsSelected = prevFilters.transmissions.includes(

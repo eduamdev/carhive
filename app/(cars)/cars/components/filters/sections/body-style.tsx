@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SelectedFilters } from '../filters-button';
 import { SUVIcon } from '@/app/components/icons/suv';
 import { MinivanIcon } from '@/app/components/icons/minivan';
 import { TruckIcon } from '@/app/components/icons/truck';
@@ -7,15 +6,7 @@ import { HatchbackIcon } from '@/app/components/icons/hatchback';
 import { CarIcon } from '@/app/components/icons/car';
 import { RoadsterIcon } from '@/app/components/icons/roadster';
 import { Toggle } from '@/app/components/ui/toggle';
-
-export enum BodyStyle {
-  SUV = 'suv',
-  MINIVAN = 'minivan',
-  PICKUP_TRUCK = 'pickup-truck',
-  SPORTS_CAR = 'sports-car',
-  HATCHBACK = 'hatchback',
-  SEDAN = 'sedan',
-}
+import { BodyStyle, SelectedFilters } from '../types/filter-types';
 
 export const bodyStyles = [
   {
@@ -38,15 +29,15 @@ export const bodyStyles = [
   { slug: BodyStyle.SEDAN, name: 'Sedan', icon: CarIcon },
 ];
 
-interface BodyStyleFiltersProps {
+interface BodyStyleSectionProps {
   selectedFilters: SelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export function BodyStyleFilters({
+export function BodyStyleSection({
   selectedFilters,
   setSelectedFilters,
-}: BodyStyleFiltersProps) {
+}: BodyStyleSectionProps) {
   const handleBodyStyleToggle = (bodyStyle: BodyStyle) => {
     setSelectedFilters((prevFilters) => {
       const bodyStylesSelected = prevFilters.bodyStyles.includes(bodyStyle)

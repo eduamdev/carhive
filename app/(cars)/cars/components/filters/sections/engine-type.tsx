@@ -1,13 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@/app/components/ui/toggle-group';
-import { SelectedFilters } from '../filters-button';
 import { Separator } from '@/app/components/ui/separator';
-
-export enum EngineType {
-  GAS = 'gas',
-  HYBRID = 'hybrid',
-  ELECTRIC = 'electric',
-}
+import { EngineType, SelectedFilters } from '../types/filter-types';
 
 const engineTypes = [
   {
@@ -21,15 +15,15 @@ const engineTypes = [
   },
 ];
 
-interface EngineTypeFiltersProps {
+interface EngineTypeSectionProps {
   selectedFilters: SelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export function EngineTypeFilters({
+export function EngineTypeSection({
   selectedFilters,
   setSelectedFilters,
-}: EngineTypeFiltersProps) {
+}: EngineTypeSectionProps) {
   const handleEngineTypeChange = (engineType: EngineType | null) => {
     if (engineType) {
       setSelectedFilters({

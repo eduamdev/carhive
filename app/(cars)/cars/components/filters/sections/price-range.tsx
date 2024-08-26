@@ -1,34 +1,43 @@
 import {
   ChangeEvent,
-  Dispatch,
-  SetStateAction,
   useEffect,
   useState,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import { Slider } from '@/app/components/ui/slider';
 import { Label } from '@/app/components/ui/label';
 import { Input } from '@/app/components/ui/input';
-import { SelectedFilters } from '../filters-button';
 import { useDebounce } from '@/app/hooks/use-debounce';
+import { SelectedFilters } from '../types/filter-types';
 
-interface PriceRangeFiltersProps {
+interface PriceRangeSectionProps {
   minPrice: number;
   maxPrice: number;
   selectedFilters: SelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export function PriceRangeFilters({
+export function PriceRangeSection({
   minPrice: MIN_PRICE,
   maxPrice: MAX_PRICE,
   selectedFilters,
   setSelectedFilters,
-}: PriceRangeFiltersProps) {
-  const [tempMinPrice, setTempMinPrice] = useState(selectedFilters.minPrice);
-  const [tempMaxPrice, setTempMaxPrice] = useState(selectedFilters.maxPrice);
+}: PriceRangeSectionProps) {
+  const [tempMinPrice, setTempMinPrice] = useState(
+    selectedFilters.minPrice || MIN_PRICE,
+  );
+  const [tempMaxPrice, setTempMaxPrice] = useState(
+    selectedFilters.maxPrice || MAX_PRICE,
+  );
 
   const debouncedMinPrice = useDebounce(tempMinPrice, 500);
   const debouncedMaxPrice = useDebounce(tempMaxPrice, 500);
+
+  useEffect(() => {
+    setTempMinPrice(selectedFilters.minPrice || MIN_PRICE);
+    setTempMaxPrice(selectedFilters.maxPrice || MAX_PRICE);
+  }, [selectedFilters, MIN_PRICE, MAX_PRICE]);
 
   // Validate the debounced values and update the selected filters
   useEffect(() => {

@@ -1,18 +1,18 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Button } from '@/app/components/ui/button';
-import { SelectedFilters } from '../filters-button';
 import { MinusIcon } from '@/app/components/icons/minus';
 import { PlusIcon } from '@/app/components/icons/plus';
+import { SelectedFilters } from '../types/filter-types';
 
-interface SeatingCapacityFiltersProps {
+interface SeatingCapacitySectionProps {
   selectedFilters: SelectedFilters;
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
 }
 
-export function SeatingCapacityFilters({
+export function SeatingCapacitySection({
   selectedFilters,
   setSelectedFilters,
-}: SeatingCapacityFiltersProps) {
+}: SeatingCapacitySectionProps) {
   const [counter, setCounter] = useState(selectedFilters.seats || 0);
 
   const handleMinusClick = () => {
