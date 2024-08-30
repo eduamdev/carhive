@@ -1,34 +1,34 @@
-import { ClickIcon } from '@/app/components/icons/click';
-import { FilterSearchIcon } from '@/app/components/icons/filter-search';
-import { MapPinIcon } from '@/app/components/icons/map-pin';
-import { ShieldCheckIcon } from '@/app/components/icons/shield-check';
+import { ClickIcon } from "@/app/components/icons/click"
+import { FilterSearchIcon } from "@/app/components/icons/filter-search"
+import { MapPinIcon } from "@/app/components/icons/map-pin"
+import { ShieldCheckIcon } from "@/app/components/icons/shield-check"
 
 const featuresData = [
   {
     icon: ClickIcon,
-    title: 'Hassle-Free Booking',
+    title: "Hassle-Free Booking",
     description:
-      'Book your perfect car in just a few clicks. Enjoy seamless reservations and fantastic deals.',
+      "Book your perfect car in just a few clicks. Enjoy seamless reservations and fantastic deals.",
   },
   {
     icon: ShieldCheckIcon,
-    title: 'Secure & Reliable Rentals',
+    title: "Secure & Reliable Rentals",
     description:
-      'Drive with confidence. Our vehicles are thoroughly inspected and fully insured for your peace of mind.',
+      "Drive with confidence. Our vehicles are thoroughly inspected and fully insured for your peace of mind.",
   },
   {
     icon: MapPinIcon,
-    title: 'Simple Navigation',
+    title: "Simple Navigation",
     description:
-      'Navigate with ease. Our user-friendly tools make every journey smooth and enjoyable.',
+      "Navigate with ease. Our user-friendly tools make every journey smooth and enjoyable.",
   },
   {
     icon: FilterSearchIcon,
-    title: 'Customizable Search Filters',
+    title: "Customizable Search Filters",
     description:
-      'Find exactly what you need. Apply filters to tailor your search, ensuring you get the best match for your preferences.',
+      "Find exactly what you need. Apply filters to tailor your search, ensuring you get the best match for your preferences.",
   },
-];
+]
 
 export function Features() {
   return (
@@ -56,5 +56,5 @@ export function Features() {
         </div>
       </div>
     </section>
-  );
+  )
 }

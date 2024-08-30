@@ -1,10 +1,11 @@
-import { SiteHeader } from '@/app/components/site-header';
-import { Hero } from './sections/hero';
-import { BrowseCarTypes } from './sections/browse-car-types';
-import { PopularDestinations } from './sections/popular-destinations';
-import { Features } from './sections/features';
-import { Testimonials } from './sections/testimonials';
-import { CallToAction } from './sections/call-to-action';
+import { SiteHeader } from "@/app/components/site-header"
+
+import { BrowseCarTypes } from "./sections/browse-car-types"
+import { CallToAction } from "./sections/call-to-action"
+import { Features } from "./sections/features"
+import { Hero } from "./sections/hero"
+import { PopularDestinations } from "./sections/popular-destinations"
+import { Testimonials } from "./sections/testimonials"
 
 export default function HomePage() {
   return (
@@ -35,5 +36,5 @@ export default function HomePage() {
         </div>
       </main>
     </>
-  );
+  )
 }

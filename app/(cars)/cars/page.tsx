@@ -1,43 +1,45 @@
-import { Suspense } from 'react';
-import type { Metadata } from 'next';
-import { CarCard } from './components/car-card';
-import { MapContainer } from './components/map-container';
-import { getCars, getLocations } from '@/db/queries';
-import { slugify } from '@/app/lib/utils';
-import { SearchParams } from '@/app/lib/types';
-import { LogoLink } from '@/app/components/logoLink';
-import { UserMenuButton } from '@/app/components/user-menu-button';
-import { SearchPanel } from '@/app/(home)/components/search-panel';
-import { FiltersButton } from './components/filters/filters-button';
+import { Suspense } from "react"
+import type { Metadata } from "next"
+import { getCars, getLocations } from "@/db/queries"
+
+import { SearchPanel } from "@/app/(home)/components/search-panel"
+import { LogoLink } from "@/app/components/logoLink"
+import { UserMenuButton } from "@/app/components/user-menu-button"
+import { SearchParams } from "@/app/lib/types"
+import { slugify } from "@/app/lib/utils"
+
+import { CarCard } from "./components/car-card"
+import { FiltersButton } from "./components/filters/filters-button"
+import { MapContainer } from "./components/map-container"
 
 export const metadata: Metadata = {
-  title: 'Cars',
-};
+  title: "Cars",
+}
 
 interface CarCatalogPageProps {
   searchParams: {
-    [SearchParams.MIN_PRICE]?: string;
-    [SearchParams.MAX_PRICE]?: string;
-    [SearchParams.BODY_STYLE]?: string[];
-    [SearchParams.ENGINE_TYPE]?: string[];
-    [SearchParams.TRANSMISSION]?: string[];
-    [SearchParams.MIN_SEATS]?: string;
-  };
+    [SearchParams.MIN_PRICE]?: string
+    [SearchParams.MAX_PRICE]?: string
+    [SearchParams.BODY_STYLE]?: string[]
+    [SearchParams.ENGINE_TYPE]?: string[]
+    [SearchParams.TRANSMISSION]?: string[]
+    [SearchParams.MIN_SEATS]?: string
+  }
 }
 
 export default async function CarCatalogPage({
   searchParams,
 }: CarCatalogPageProps) {
-  const [cars, locations] = await Promise.all([getCars(), getLocations()]);
+  const [cars, locations] = await Promise.all([getCars(), getLocations()])
 
   const carPrices = cars.map((car) => {
-    return car.discounted_price_per_day || car.retail_price_per_day;
-  });
+    return car.discounted_price_per_day || car.retail_price_per_day
+  })
 
-  const MIN_PRICE = Math.min(...carPrices);
-  const MAX_PRICE = Math.max(...carPrices);
+  const MIN_PRICE = Math.min(...carPrices)
+  const MAX_PRICE = Math.max(...carPrices)
 
-  let filteredCars = cars;
+  let filteredCars = cars
 
   const {
     [SearchParams.MIN_PRICE]: minPrice,
@@ -46,39 +48,39 @@ export default async function CarCatalogPage({
     [SearchParams.ENGINE_TYPE]: engineTypes,
     [SearchParams.TRANSMISSION]: transmissions,
     [SearchParams.MIN_SEATS]: minSeats,
-  } = searchParams;
+  } = searchParams
 
   if (minPrice) {
     filteredCars = filteredCars.filter((car) => {
       const currentPrice =
-        car.discounted_price_per_day || car.retail_price_per_day;
-      return currentPrice >= Number(minPrice);
-    });
+        car.discounted_price_per_day || car.retail_price_per_day
+      return currentPrice >= Number(minPrice)
+    })
   }
   if (maxPrice) {
     filteredCars = filteredCars.filter((car) => {
       const currentPrice =
-        car.discounted_price_per_day || car.retail_price_per_day;
-      return currentPrice <= Number(maxPrice);
-    });
+        car.discounted_price_per_day || car.retail_price_per_day
+      return currentPrice <= Number(maxPrice)
+    })
   }
   if (bodyStyles) {
     filteredCars = filteredCars.filter((car) =>
-      bodyStyles.includes(slugify(car.body_style)),
-    );
+      bodyStyles.includes(slugify(car.body_style))
+    )
   }
   if (engineTypes) {
     filteredCars = filteredCars.filter((car) =>
-      engineTypes.includes(slugify(car.engine_type)),
-    );
+      engineTypes.includes(slugify(car.engine_type))
+    )
   }
   if (transmissions) {
     filteredCars = filteredCars.filter((car) =>
-      transmissions.includes(slugify(car.transmission)),
-    );
+      transmissions.includes(slugify(car.transmission))
+    )
   }
   if (minSeats) {
-    filteredCars = filteredCars.filter((car) => car.seats >= Number(minSeats));
+    filteredCars = filteredCars.filter((car) => car.seats >= Number(minSeats))
   }
 
   return (
@@ -144,5 +146,5 @@ export default async function CarCatalogPage({
         </div>
       </main>
     </>
-  );
+  )
 }

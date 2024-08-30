@@ -1,52 +1,54 @@
-'use client';
+"use client"
 
-import { useCallback, useState, useMemo } from 'react';
-import { FiltersIcon } from '@/app/components/icons/filters';
-import { Button } from '@/app/components/ui/button';
-import { ResponsiveModal } from '@/app/components/responsive-modal';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { createUrl } from '@/app/lib/utils';
-import { Badge } from '@/app/components/ui/badge';
-import { ResetFiltersButton } from './reset-filters-button';
-import { ApplyFiltersButton } from './apply-filters-button';
-import { FiltersContent } from './filters-content';
-import { SelectedFilters } from './types/filter-types';
+import { useCallback, useMemo, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+
+import { FiltersIcon } from "@/app/components/icons/filters"
+import { ResponsiveModal } from "@/app/components/responsive-modal"
+import { Badge } from "@/app/components/ui/badge"
+import { Button } from "@/app/components/ui/button"
+import { createUrl } from "@/app/lib/utils"
+
+import { ApplyFiltersButton } from "./apply-filters-button"
+import { FiltersContent } from "./filters-content"
 import {
   calculateTotalFiltersFromParams,
   getInitialFilters,
   updateSearchParams,
-} from './lib/utils';
+} from "./lib/utils"
+import { ResetFiltersButton } from "./reset-filters-button"
+import { SelectedFilters } from "./types"
 
 interface FiltersButtonProps {
-  initialMinPrice: number;
-  initialMaxPrice: number;
+  initialMinPrice: number
+  initialMaxPrice: number
 }
 
 export function FiltersButton({
   initialMinPrice,
   initialMaxPrice,
 }: FiltersButtonProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const initialFilters = useMemo(
     () => getInitialFilters(searchParams, initialMinPrice, initialMaxPrice),
-    [searchParams, initialMinPrice, initialMaxPrice],
-  );
+    [searchParams, initialMinPrice, initialMaxPrice]
+  )
 
   const [selectedFilters, setSelectedFilters] =
-    useState<SelectedFilters>(initialFilters);
+    useState<SelectedFilters>(initialFilters)
 
   const totalSelectedFilters = useMemo(
     () =>
       calculateTotalFiltersFromParams(
         searchParams,
         initialMinPrice,
-        initialMaxPrice,
+        initialMaxPrice
       ),
-    [searchParams, initialMinPrice, initialMaxPrice],
-  );
+    [searchParams, initialMinPrice, initialMaxPrice]
+  )
 
   const handleFiltersReset = useCallback(() => {
     setSelectedFilters({
@@ -56,20 +58,20 @@ export function FiltersButton({
       engineTypes: [],
       seats: undefined,
       transmissions: [],
-    });
-  }, [initialMinPrice, initialMaxPrice]);
+    })
+  }, [initialMinPrice, initialMaxPrice])
 
   const handleFiltersApply = useCallback(() => {
-    const newParams = new URLSearchParams(searchParams.toString());
+    const newParams = new URLSearchParams(searchParams.toString())
     updateSearchParams(
       newParams,
       selectedFilters,
       initialMinPrice,
-      initialMaxPrice,
-    );
-    router.push(createUrl('/cars', newParams));
-    setIsModalOpen(false);
-  }, [searchParams, selectedFilters, initialMinPrice, initialMaxPrice, router]);
+      initialMaxPrice
+    )
+    router.push(createUrl("/cars", newParams))
+    setIsModalOpen(false)
+  }, [searchParams, selectedFilters, initialMinPrice, initialMaxPrice, router])
 
   return (
     <ResponsiveModal
@@ -85,7 +87,7 @@ export function FiltersButton({
           <FiltersIcon className="size-[18px]" />
           <span>Filters</span>
           {totalSelectedFilters > 0 && (
-            <Badge variant={'counter'} className="absolute -right-2 -top-2">
+            <Badge variant={"counter"} className="absolute -right-2 -top-2">
               {totalSelectedFilters}
             </Badge>
           )}
@@ -105,5 +107,5 @@ export function FiltersButton({
         initialMaxPrice={initialMaxPrice}
       />
     </ResponsiveModal>
-  );
+  )
 }

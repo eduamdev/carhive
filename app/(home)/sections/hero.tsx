@@ -1,10 +1,11 @@
-import { Suspense } from 'react';
-import { getLocations } from '@/db/queries';
-import { LogoSlider } from '../components/logo-slider';
-import { SearchPanel } from '../components/search-panel';
+import { Suspense } from "react"
+import { getLocations } from "@/db/queries"
+
+import { LogoSlider } from "../components/logo-slider"
+import { SearchPanel } from "../components/search-panel"
 
 export async function Hero() {
-  const locations = await getLocations();
+  const locations = await getLocations()
 
   return (
     <section className="bg-gradient-to-b from-white to-neutral-50">
@@ -34,5 +35,5 @@ export async function Hero() {
         </div>
       </div>
     </section>
-  );
+  )
 }

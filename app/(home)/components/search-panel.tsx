@@ -1,14 +1,15 @@
-'use client';
+"use client"
 
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Button } from '@/app/components/ui/button';
-import { Calendar } from '@/app/components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/app/components/ui/popover';
+import { useEffect, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { Location } from "@/db/definitions"
+import { addDays, format } from "date-fns"
+
+import { CheckIcon } from "@/app/components/icons/check"
+import { SearchIcon } from "@/app/components/icons/search"
+import { SelectorIcon } from "@/app/components/icons/selector"
+import { Button } from "@/app/components/ui/button"
+import { Calendar } from "@/app/components/ui/calendar"
 import {
   Command,
   CommandEmpty,
@@ -16,71 +17,71 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/app/components/ui/command';
-import { Separator } from '@/app/components/ui/separator';
-import { SearchIcon } from '@/app/components/icons/search';
-import { CheckIcon } from '@/app/components/icons/check';
-import { SelectorIcon } from '@/app/components/icons/selector';
-import { addDays, format } from 'date-fns';
-import { cn, createUrl } from '@/app/lib/utils';
-import { Location } from '@/db/definitions';
-import { SearchParams } from '@/app/lib/types';
+} from "@/app/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/app/components/ui/popover"
+import { Separator } from "@/app/components/ui/separator"
+import { SearchParams } from "@/app/lib/types"
+import { cn, createUrl } from "@/app/lib/utils"
 
 export function SearchPanel({
   locations,
   compact = false,
 }: {
-  locations: Location[];
-  compact?: boolean;
+  locations: Location[]
+  compact?: boolean
 }) {
-  const { push } = useRouter();
-  const searchParams = useSearchParams();
+  const { push } = useRouter()
+  const searchParams = useSearchParams()
 
-  const [open, setOpen] = useState(false);
-  const [location, setLocation] = useState('');
+  const [open, setOpen] = useState(false)
+  const [location, setLocation] = useState("")
 
-  const [checkInDate, setCheckInDate] = useState<Date>();
-  const [checkOutDate, setCheckOutDate] = useState<Date>();
+  const [checkInDate, setCheckInDate] = useState<Date>()
+  const [checkOutDate, setCheckOutDate] = useState<Date>()
 
   useEffect(() => {
-    const locationParam = searchParams.get(SearchParams.LOCATION);
-    const checkinParam = searchParams.get(SearchParams.CHECKIN);
-    const checkoutParam = searchParams.get(SearchParams.CHECKOUT);
+    const locationParam = searchParams.get(SearchParams.LOCATION)
+    const checkinParam = searchParams.get(SearchParams.CHECKIN)
+    const checkoutParam = searchParams.get(SearchParams.CHECKOUT)
 
-    if (locationParam) setLocation(locationParam);
-    if (checkinParam) setCheckInDate(new Date(checkinParam));
-    if (checkoutParam) setCheckOutDate(new Date(checkoutParam));
+    if (locationParam) setLocation(locationParam)
+    if (checkinParam) setCheckInDate(new Date(checkinParam))
+    if (checkoutParam) setCheckOutDate(new Date(checkoutParam))
 
     return () => {
-      setLocation('');
-      setCheckInDate(undefined);
-      setCheckOutDate(undefined);
-    };
-  }, [searchParams]);
+      setLocation("")
+      setCheckInDate(undefined)
+      setCheckOutDate(undefined)
+    }
+  }, [searchParams])
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!location && !checkInDate && !checkOutDate) {
-      return;
+      return
     }
 
-    const newParams = new URLSearchParams(searchParams.toString());
+    const newParams = new URLSearchParams(searchParams.toString())
 
-    newParams.delete(SearchParams.LOCATION);
-    newParams.delete(SearchParams.CHECKIN);
-    newParams.delete(SearchParams.CHECKOUT);
+    newParams.delete(SearchParams.LOCATION)
+    newParams.delete(SearchParams.CHECKIN)
+    newParams.delete(SearchParams.CHECKOUT)
 
-    if (location) newParams.set(SearchParams.LOCATION, location);
+    if (location) newParams.set(SearchParams.LOCATION, location)
 
-    const checkinISOString = checkInDate?.toISOString();
-    if (checkinISOString) newParams.set(SearchParams.CHECKIN, checkinISOString);
+    const checkinISOString = checkInDate?.toISOString()
+    if (checkinISOString) newParams.set(SearchParams.CHECKIN, checkinISOString)
 
-    const checkoutISOString = checkOutDate?.toISOString();
+    const checkoutISOString = checkOutDate?.toISOString()
     if (checkoutISOString)
-      newParams.set(SearchParams.CHECKOUT, checkoutISOString);
+      newParams.set(SearchParams.CHECKOUT, checkoutISOString)
 
-    push(createUrl('/cars', newParams));
+    push(createUrl("/cars", newParams))
   }
 
   return (
@@ -88,10 +89,10 @@ export function SearchPanel({
       <div className="whitespace-nowrap rounded-full border border-black/10 bg-white text-black transition-shadow hover:shadow hover:shadow-neutral-900/[0.05]">
         <div
           className={cn(
-            'relative grid grid-cols-1 items-center',
+            "relative grid grid-cols-1 items-center",
             compact
-              ? 'h-[--compact-search-panel-height] w-[--compact-search-panel-width]'
-              : 'h-[var(--search-panel-height)] w-[--search-panel-width]',
+              ? "h-[--compact-search-panel-height] w-[--compact-search-panel-width]"
+              : "h-[var(--search-panel-height)] w-[--search-panel-width]"
           )}
         >
           <div className="grid h-full grid-cols-[33.333333%_33.333333%_33.333333%] items-center justify-center">
@@ -113,8 +114,8 @@ export function SearchPanel({
                         <div className="flex size-full flex-col items-start justify-center truncate">
                           <div
                             className={cn(
-                              'font-bold',
-                              compact ? 'text-[12px]' : 'text-[13px]',
+                              "font-bold",
+                              compact ? "text-[12px]" : "text-[13px]"
                             )}
                           >
                             Pick-up / Drop-off
@@ -134,8 +135,8 @@ export function SearchPanel({
                         </div>
                         <SelectorIcon
                           className={cn(
-                            '-mr-2 ml-2  shrink-0 opacity-50',
-                            compact ? 'size-4' : 'size-5',
+                            "-mr-2 ml-2  shrink-0 opacity-50",
+                            compact ? "size-4" : "size-5"
                           )}
                         />
                       </div>
@@ -153,17 +154,17 @@ export function SearchPanel({
                               value={loc.slug}
                               onSelect={(currentValue) => {
                                 setLocation(
-                                  currentValue === location ? '' : currentValue,
-                                );
-                                setOpen(false);
+                                  currentValue === location ? "" : currentValue
+                                )
+                                setOpen(false)
                               }}
                             >
                               <CheckIcon
                                 className={cn(
-                                  'mr-2 size-4 shrink-0',
+                                  "mr-2 size-4 shrink-0",
                                   location === loc.slug
-                                    ? 'opacity-100'
-                                    : 'opacity-0',
+                                    ? "opacity-100"
+                                    : "opacity-0"
                                 )}
                               />
                               {loc.name}
@@ -185,21 +186,21 @@ export function SearchPanel({
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
-                      variant={'ghost'}
+                      variant={"ghost"}
                       className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
                         <div
                           className={cn(
-                            'font-bold',
-                            compact ? 'text-[12px]' : 'text-[13px]',
+                            "font-bold",
+                            compact ? "text-[12px]" : "text-[13px]"
                           )}
                         >
                           Check in
                         </div>
                         {checkInDate ? (
                           <div className="font-semibold text-neutral-800">
-                            {format(checkInDate, 'LLL dd, y')}
+                            {format(checkInDate, "LLL dd, y")}
                           </div>
                         ) : (
                           <div className="truncate text-neutral-500">
@@ -226,21 +227,21 @@ export function SearchPanel({
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
-                      variant={'ghost'}
+                      variant={"ghost"}
                       className="ml-1 size-full flex-col overflow-hidden rounded-full border-none py-0 pl-5 pr-16"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
                         <div
                           className={cn(
-                            'font-bold',
-                            compact ? 'text-[12px]' : 'text-[13px]',
+                            "font-bold",
+                            compact ? "text-[12px]" : "text-[13px]"
                           )}
                         >
                           Check out
                         </div>
                         {checkOutDate ? (
                           <div className="font-semibold text-neutral-800">
-                            {format(checkOutDate, 'LLL dd, y')}
+                            {format(checkOutDate, "LLL dd, y")}
                           </div>
                         ) : (
                           <div className="truncate text-neutral-500">
@@ -267,15 +268,15 @@ export function SearchPanel({
             <Button
               type="submit"
               className={cn(
-                'flex shrink-0 items-center justify-center rounded-full bg-black text-white',
-                compact ? 'size-[2.3rem]' : 'size-12',
+                "flex shrink-0 items-center justify-center rounded-full bg-black text-white",
+                compact ? "size-[2.3rem]" : "size-12"
               )}
             >
               <span className="sr-only">Search</span>
               <SearchIcon
                 className={cn(
-                  ' shrink-0 [stroke-width:3px]',
-                  compact ? 'size-4' : 'size-[18px]',
+                  " shrink-0 [stroke-width:3px]",
+                  compact ? "size-4" : "size-[18px]"
                 )}
               />
             </Button>
@@ -283,5 +284,5 @@ export function SearchPanel({
         </div>
       </div>
     </form>
-  );
+  )
 }

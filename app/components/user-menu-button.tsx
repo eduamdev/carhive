@@ -1,14 +1,13 @@
-import Link from 'next/link';
+import Link from "next/link"
 import {
-  UserButton,
   SignedIn,
   SignedOut,
   SignInButton,
   SignUpButton,
-} from '@clerk/nextjs';
-import { MenuIcon } from './icons/menu';
-import { UserCircleIcon } from './icons/user-circle';
-import { Button } from './ui/button';
+  UserButton,
+} from "@clerk/nextjs"
+
+import { siteConfig } from "@/config/site"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +15,14 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/app/components/ui/dropdown-menu';
-import { siteConfig } from '@/config/site';
+} from "@/app/components/ui/dropdown-menu"
+
+import { MenuIcon } from "./icons/menu"
+import { UserCircleIcon } from "./icons/user-circle"
+import { Button } from "./ui/button"
 
 export function UserMenuButton() {
-  const githubUrl = siteConfig.links.github;
+  const githubUrl = siteConfig.links.github
 
   return (
     <>
@@ -70,5 +72,5 @@ export function UserMenuButton() {
         </DropdownMenu>
       </SignedOut>
     </>
-  );
+  )
 }

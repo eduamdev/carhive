@@ -1,20 +1,21 @@
-'use client';
+"use client"
 
-import { useEffect } from 'react';
-import { Button } from '@/app/components/ui/button';
-import { SiteHeader } from '@/app/components/site-header';
+import { useEffect } from "react"
+
+import { SiteHeader } from "@/app/components/site-header"
+import { Button } from "@/app/components/ui/button"
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
     // Optionally log the error to an error reporting service
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
     <>
@@ -55,5 +56,5 @@ export default function Error({
         </main>
       </div>
     </>
-  );
+  )
 }

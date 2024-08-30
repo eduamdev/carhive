@@ -1,23 +1,28 @@
-import { Dispatch, SetStateAction } from 'react';
-import { ToggleGroup, ToggleGroupItem } from '@/app/components/ui/toggle-group';
-import { Separator } from '@/app/components/ui/separator';
-import { EngineType, SelectedFilters } from '../types/filter-types';
+import { Dispatch, SetStateAction } from "react"
 
-const engineTypes = [
+import { Separator } from "@/app/components/ui/separator"
+import { ToggleGroup, ToggleGroupItem } from "@/app/components/ui/toggle-group"
+
+import { EngineType, SelectedFilters } from "../types"
+
+const engineTypes: {
+  slug: EngineType
+  name: string
+}[] = [
   {
-    slug: EngineType.GAS,
-    name: 'Gas',
+    slug: "gas",
+    name: "Gas",
   },
-  { slug: EngineType.HYBRID, name: 'Hybrid' },
+  { slug: "hybrid", name: "Hybrid" },
   {
-    slug: EngineType.ELECTRIC,
-    name: 'Electric',
+    slug: "electric",
+    name: "Electric",
   },
-];
+]
 
 interface EngineTypeSectionProps {
-  selectedFilters: SelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
+  selectedFilters: SelectedFilters
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
 export function EngineTypeSection({
@@ -29,14 +34,14 @@ export function EngineTypeSection({
       setSelectedFilters({
         ...selectedFilters,
         engineTypes: [engineType],
-      });
+      })
     } else {
       setSelectedFilters({
         ...selectedFilters,
         engineTypes: [],
-      });
+      })
     }
-  };
+  }
 
   return (
     <section>
@@ -68,5 +73,5 @@ export function EngineTypeSection({
         </ToggleGroup>
       </div>
     </section>
-  );
+  )
 }

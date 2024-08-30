@@ -1,63 +1,64 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/app/components/ui/button';
-import { SearchParams } from '@/app/lib/types';
-import { formatCurrency } from '@/app/lib/utils';
+import Image from "next/image"
+import Link from "next/link"
 
-import Cancun from '../../../public/assets/destinations/cancun.jpg';
-import Dubai from '../../../public/assets/destinations/dubai.jpg';
-import Paris from '../../../public/assets/destinations/paris.jpg';
-import Rome from '../../../public/assets/destinations/rome.jpg';
-import Sydney from '../../../public/assets/destinations/sydney.jpg';
-import Rio from '../../../public/assets/destinations/rio.jpg';
+import { Button } from "@/app/components/ui/button"
+import { SearchParams } from "@/app/lib/types"
+import { formatCurrency } from "@/app/lib/utils"
+
+import Cancun from "../../../public/assets/destinations/cancun.jpg"
+import Dubai from "../../../public/assets/destinations/dubai.jpg"
+import Paris from "../../../public/assets/destinations/paris.jpg"
+import Rio from "../../../public/assets/destinations/rio.jpg"
+import Rome from "../../../public/assets/destinations/rome.jpg"
+import Sydney from "../../../public/assets/destinations/sydney.jpg"
 
 export function PopularDestinations() {
-  const currency = 'MXN';
+  const currency = "MXN"
 
   const trendingPlaces = [
     {
-      id: 'cancun',
-      slug: 'cancun',
-      name: 'Cancún, México',
+      id: "cancun",
+      slug: "cancun",
+      name: "Cancún, México",
       image_url: Cancun,
       starting_price: 499,
     },
     {
-      id: 'dubai',
-      slug: 'dubai',
-      name: 'Dubai, United Arab Emirates',
+      id: "dubai",
+      slug: "dubai",
+      name: "Dubai, United Arab Emirates",
       image_url: Dubai,
       starting_price: 1199,
     },
     {
-      id: 'rome',
-      slug: 'rome',
-      name: 'Rome, Italy',
+      id: "rome",
+      slug: "rome",
+      name: "Rome, Italy",
       image_url: Rome,
       starting_price: 999,
     },
     {
-      id: 'paris',
-      slug: 'paris',
-      name: 'Paris, France',
+      id: "paris",
+      slug: "paris",
+      name: "Paris, France",
       image_url: Paris,
       starting_price: 699,
     },
     {
-      id: 'rio',
-      slug: 'rio',
-      name: 'Rio de Janeiro, Brazil',
+      id: "rio",
+      slug: "rio",
+      name: "Rio de Janeiro, Brazil",
       image_url: Rio,
       starting_price: 479,
     },
     {
-      id: 'sydney',
-      slug: 'sydney',
-      name: 'Sydney, Australia',
+      id: "sydney",
+      slug: "sydney",
+      name: "Sydney, Australia",
       image_url: Sydney,
       starting_price: 899,
     },
-  ];
+  ]
 
   return (
     <section>
@@ -71,16 +72,16 @@ export function PopularDestinations() {
               ({ id, slug, image_url, name, starting_price }, index) => (
                 <article
                   key={id}
-                  className={`relative ${index === trendingPlaces.length - 1 ? 'md:hidden' : ''}`}
+                  className={`relative ${index === trendingPlaces.length - 1 ? "md:hidden" : ""}`}
                 >
                   <Button
-                    variant={'link'}
+                    variant={"link"}
                     className="m-0 flex size-full p-0"
                     asChild
                   >
                     <Link
                       href={{
-                        pathname: '/cars',
+                        pathname: "/cars",
                         query: {
                           [SearchParams.LOCATION]: slug,
                         },
@@ -108,11 +109,11 @@ export function PopularDestinations() {
                     </p>
                   </div>
                 </article>
-              ),
+              )
             )}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

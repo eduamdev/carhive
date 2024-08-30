@@ -1,5 +1,5 @@
-import { UserMenuButton } from './user-menu-button';
-import { LogoLink } from './logoLink';
+import { LogoLink } from "./logoLink"
+import { UserMenuButton } from "./user-menu-button"
 
 export function SiteHeader() {
   return (
@@ -9,5 +9,5 @@ export function SiteHeader() {
         <UserMenuButton />
       </div>
     </header>
-  );
+  )
 }

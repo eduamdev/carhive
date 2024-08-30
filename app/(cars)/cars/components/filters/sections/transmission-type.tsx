@@ -1,21 +1,27 @@
-import { Dispatch, SetStateAction } from 'react';
-import { Toggle } from '@/app/components/ui/toggle';
-import { AutomaticGearboxIcon } from '@/app/components/icons/automatic-gearbox';
-import { ManualGearboxIcon } from '@/app/components/icons/manual-gearbox';
-import { SelectedFilters, Transmission } from '../types/filter-types';
+import { Dispatch, SetStateAction } from "react"
 
-const transmissions = [
+import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
+import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
+import { Toggle } from "@/app/components/ui/toggle"
+
+import { SelectedFilters, Transmission } from "../types"
+
+const transmissions: {
+  slug: Transmission
+  name: string
+  icon: (props: React.HTMLAttributes<SVGElement>) => JSX.Element
+}[] = [
   {
-    slug: Transmission.AUTOMATIC,
-    name: 'Automatic',
+    slug: "automatic",
+    name: "Automatic",
     icon: AutomaticGearboxIcon,
   },
-  { slug: Transmission.MANUAL, name: 'Manual', icon: ManualGearboxIcon },
-];
+  { slug: "manual", name: "Manual", icon: ManualGearboxIcon },
+]
 
 interface TransmissionTypeSectionProps {
-  selectedFilters: SelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
+  selectedFilters: SelectedFilters
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
 export function TransmissionTypeSection({
@@ -25,16 +31,16 @@ export function TransmissionTypeSection({
   const handleTransmissionToggle = (transmission: Transmission) => {
     setSelectedFilters((prevFilters) => {
       const transmissionsSelected = prevFilters.transmissions.includes(
-        transmission,
+        transmission
       )
         ? prevFilters.transmissions.filter(
-            (selected) => selected !== transmission,
+            (selected) => selected !== transmission
           )
-        : [...prevFilters.transmissions, transmission];
+        : [...prevFilters.transmissions, transmission]
 
-      return { ...prevFilters, transmissions: transmissionsSelected };
-    });
-  };
+      return { ...prevFilters, transmissions: transmissionsSelected }
+    })
+  }
 
   return (
     <section>
@@ -44,7 +50,7 @@ export function TransmissionTypeSection({
           {transmissions.map(({ slug, name, icon: Icon }) => (
             <Toggle
               key={slug}
-              variant={'outline'}
+              variant={"outline"}
               className="h-[50px] rounded-full px-4"
               pressed={selectedFilters.transmissions.includes(slug)}
               onPressedChange={() => handleTransmissionToggle(slug)}
@@ -58,5 +64,5 @@ export function TransmissionTypeSection({
         </div>
       </div>
     </section>
-  );
+  )
 }

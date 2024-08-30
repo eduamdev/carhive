@@ -1,37 +1,43 @@
-import { Dispatch, SetStateAction } from 'react';
-import { SUVIcon } from '@/app/components/icons/suv';
-import { MinivanIcon } from '@/app/components/icons/minivan';
-import { TruckIcon } from '@/app/components/icons/truck';
-import { HatchbackIcon } from '@/app/components/icons/hatchback';
-import { CarIcon } from '@/app/components/icons/car';
-import { RoadsterIcon } from '@/app/components/icons/roadster';
-import { Toggle } from '@/app/components/ui/toggle';
-import { BodyStyle, SelectedFilters } from '../types/filter-types';
+import { Dispatch, SetStateAction } from "react"
 
-export const bodyStyles = [
+import { CarIcon } from "@/app/components/icons/car"
+import { HatchbackIcon } from "@/app/components/icons/hatchback"
+import { MinivanIcon } from "@/app/components/icons/minivan"
+import { RoadsterIcon } from "@/app/components/icons/roadster"
+import { SUVIcon } from "@/app/components/icons/suv"
+import { TruckIcon } from "@/app/components/icons/truck"
+import { Toggle } from "@/app/components/ui/toggle"
+
+import { BodyStyle, SelectedFilters } from "../types"
+
+export const bodyStyles: {
+  slug: BodyStyle
+  name: string
+  icon: (props: React.HTMLAttributes<SVGElement>) => JSX.Element
+}[] = [
   {
-    slug: BodyStyle.HATCHBACK,
-    name: 'Hatchback',
+    slug: "hatchback",
+    name: "Hatchback",
     icon: HatchbackIcon,
   },
-  { slug: BodyStyle.MINIVAN, name: 'Minivan', icon: MinivanIcon },
+  { slug: "minivan", name: "Minivan", icon: MinivanIcon },
   {
-    slug: BodyStyle.PICKUP_TRUCK,
-    name: 'Pickup Truck',
+    slug: "pickup-truck",
+    name: "Pickup Truck",
     icon: TruckIcon,
   },
   {
-    slug: BodyStyle.SPORTS_CAR,
-    name: 'Sports Car',
+    slug: "sports-car",
+    name: "Sports Car",
     icon: RoadsterIcon,
   },
-  { slug: BodyStyle.SUV, name: 'SUV', icon: SUVIcon },
-  { slug: BodyStyle.SEDAN, name: 'Sedan', icon: CarIcon },
-];
+  { slug: "suv", name: "SUV", icon: SUVIcon },
+  { slug: "sedan", name: "Sedan", icon: CarIcon },
+]
 
 interface BodyStyleSectionProps {
-  selectedFilters: SelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
+  selectedFilters: SelectedFilters
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
 export function BodyStyleSection({
@@ -42,11 +48,11 @@ export function BodyStyleSection({
     setSelectedFilters((prevFilters) => {
       const bodyStylesSelected = prevFilters.bodyStyles.includes(bodyStyle)
         ? prevFilters.bodyStyles.filter((selected) => selected !== bodyStyle)
-        : [...prevFilters.bodyStyles, bodyStyle];
+        : [...prevFilters.bodyStyles, bodyStyle]
 
-      return { ...prevFilters, bodyStyles: bodyStylesSelected };
-    });
-  };
+      return { ...prevFilters, bodyStyles: bodyStylesSelected }
+    })
+  }
 
   return (
     <section>
@@ -56,7 +62,7 @@ export function BodyStyleSection({
           {bodyStyles.map(({ slug, name, icon: Icon }) => (
             <Toggle
               key={slug}
-              variant={'outline'}
+              variant={"outline"}
               className="h-[50px] rounded-full px-4"
               pressed={selectedFilters.bodyStyles.includes(slug)}
               onPressedChange={() => handleBodyStyleToggle(slug)}
@@ -70,5 +76,5 @@ export function BodyStyleSection({
         </div>
       </div>
     </section>
-  );
+  )
 }

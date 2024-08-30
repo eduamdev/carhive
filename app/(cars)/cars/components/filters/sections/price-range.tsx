@@ -1,21 +1,23 @@
 import {
   ChangeEvent,
-  useEffect,
-  useState,
   Dispatch,
   SetStateAction,
-} from 'react';
-import { Slider } from '@/app/components/ui/slider';
-import { Label } from '@/app/components/ui/label';
-import { Input } from '@/app/components/ui/input';
-import { useDebounce } from '@/app/hooks/use-debounce';
-import { SelectedFilters } from '../types/filter-types';
+  useEffect,
+  useState,
+} from "react"
+
+import { Input } from "@/app/components/ui/input"
+import { Label } from "@/app/components/ui/label"
+import { Slider } from "@/app/components/ui/slider"
+import { useDebounce } from "@/app/hooks/use-debounce"
+
+import { SelectedFilters } from "../types"
 
 interface PriceRangeSectionProps {
-  minPrice: number;
-  maxPrice: number;
-  selectedFilters: SelectedFilters;
-  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>;
+  minPrice: number
+  maxPrice: number
+  selectedFilters: SelectedFilters
+  setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
 export function PriceRangeSection({
@@ -25,24 +27,24 @@ export function PriceRangeSection({
   setSelectedFilters,
 }: PriceRangeSectionProps) {
   const [tempMinPrice, setTempMinPrice] = useState(
-    selectedFilters.minPrice || MIN_PRICE,
-  );
+    selectedFilters.minPrice || MIN_PRICE
+  )
   const [tempMaxPrice, setTempMaxPrice] = useState(
-    selectedFilters.maxPrice || MAX_PRICE,
-  );
+    selectedFilters.maxPrice || MAX_PRICE
+  )
 
-  const debouncedMinPrice = useDebounce(tempMinPrice, 500);
-  const debouncedMaxPrice = useDebounce(tempMaxPrice, 500);
+  const debouncedMinPrice = useDebounce(tempMinPrice, 500)
+  const debouncedMaxPrice = useDebounce(tempMaxPrice, 500)
 
   useEffect(() => {
-    setTempMinPrice(selectedFilters.minPrice || MIN_PRICE);
-    setTempMaxPrice(selectedFilters.maxPrice || MAX_PRICE);
-  }, [selectedFilters, MIN_PRICE, MAX_PRICE]);
+    setTempMinPrice(selectedFilters.minPrice || MIN_PRICE)
+    setTempMaxPrice(selectedFilters.maxPrice || MAX_PRICE)
+  }, [selectedFilters, MIN_PRICE, MAX_PRICE])
 
   // Validate the debounced values and update the selected filters
   useEffect(() => {
-    let validatedMinPrice = debouncedMinPrice;
-    let validatedMaxPrice = debouncedMaxPrice;
+    let validatedMinPrice = debouncedMinPrice
+    let validatedMaxPrice = debouncedMaxPrice
 
     // Validation: debounced min price should not be higher than max prices
     if (
@@ -53,7 +55,7 @@ export function PriceRangeSection({
       validatedMinPrice =
         selectedFilters.minPrice <= MAX_PRICE
           ? selectedFilters.minPrice
-          : MIN_PRICE;
+          : MIN_PRICE
     }
 
     // Validation: debounced max price should not be lower than min prices
@@ -65,38 +67,38 @@ export function PriceRangeSection({
       validatedMaxPrice =
         selectedFilters.maxPrice >= MIN_PRICE
           ? selectedFilters.maxPrice
-          : MAX_PRICE;
+          : MAX_PRICE
     }
 
     if (validatedMinPrice < MIN_PRICE) {
-      validatedMinPrice = MIN_PRICE;
+      validatedMinPrice = MIN_PRICE
     }
 
     if (validatedMaxPrice > MAX_PRICE) {
-      validatedMaxPrice = MAX_PRICE;
+      validatedMaxPrice = MAX_PRICE
     }
 
     setSelectedFilters({
       ...selectedFilters,
       minPrice: validatedMinPrice,
       maxPrice: validatedMaxPrice,
-    });
-    setTempMinPrice(validatedMinPrice);
-    setTempMaxPrice(validatedMaxPrice);
-  }, [debouncedMinPrice, debouncedMaxPrice]);
+    })
+    setTempMinPrice(validatedMinPrice)
+    setTempMaxPrice(validatedMaxPrice)
+  }, [debouncedMinPrice, debouncedMaxPrice])
 
   const handleMinPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTempMinPrice(parseInt(e.target.value, 10) || MIN_PRICE);
-  };
+    setTempMinPrice(parseInt(e.target.value, 10) || MIN_PRICE)
+  }
 
   const handleMaxPriceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTempMaxPrice(parseInt(e.target.value, 10) || MAX_PRICE);
-  };
+    setTempMaxPrice(parseInt(e.target.value, 10) || MAX_PRICE)
+  }
 
   const handleSliderChange = (priceRange: number[]) => {
-    setTempMinPrice(priceRange[0]);
-    setTempMaxPrice(priceRange[1]);
-  };
+    setTempMinPrice(priceRange[0])
+    setTempMaxPrice(priceRange[1])
+  }
 
   return (
     <section>
@@ -148,5 +150,5 @@ export function PriceRangeSection({
         </div>
       </div>
     </section>
-  );
+  )
 }

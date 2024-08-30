@@ -5,9 +5,9 @@
 @layer base {
   :root {
     --font-sans: var(--font-inter);
-    --font-sans-fallback: 'InterVariable', 'Inter', -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-sans-fallback: "InterVariable", "Inter", -apple-system,
+      BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
     --site-header-height: 60px;
 
@@ -53,8 +53,8 @@
     font-family: var(--font-sans), var(--font-sans-fallback);
     font-synthesis-weight: none;
     font-feature-settings:
-      'liga' 1,
-      'calt' 1;
+      "liga" 1,
+      "calt" 1;
     text-rendering: optimizeLegibility;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
@@ -81,14 +81,14 @@
 
   strong {
     font-weight: 600;
-    color: theme('colors.neutral.900');
+    color: theme("colors.neutral.900");
   }
 
   /* https://bugs.webkit.org/show_bug.cgi?id=243601
   https://nextjs.org/docs/pages/api-reference/components/image#known-browser-bugs 
   Safari 15 and 16 display a gray border while loading */
   @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-    img[loading='lazy'] {
+    img[loading="lazy"] {
       clip-path: inset(0.6px);
     }
   }

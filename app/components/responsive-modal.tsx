@@ -1,33 +1,34 @@
-import { ReactNode } from 'react';
-import { useMediaQuery } from '@/app/hooks/use-media-query';
+import { ReactNode } from "react"
+
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
   DialogTrigger,
-  DialogFooter,
-} from '@/app/components/ui/dialog';
+} from "@/app/components/ui/dialog"
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerDescription,
   DrawerTrigger,
-  DrawerFooter,
-} from '@/app/components/ui/drawer';
-import { DESKTOP_MEDIA_QUERY } from '@/app/lib/constants';
+} from "@/app/components/ui/drawer"
+import { useMediaQuery } from "@/app/hooks/use-media-query"
+import { DESKTOP_MEDIA_QUERY } from "@/app/lib/constants"
 
 interface ResponsiveModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  trigger: ReactNode;
-  title: string;
-  description: string;
-  children: ReactNode;
-  footer?: ReactNode;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  trigger: ReactNode
+  title: string
+  description: string
+  children: ReactNode
+  footer?: ReactNode
 }
 
 export function ResponsiveModal({
@@ -39,7 +40,7 @@ export function ResponsiveModal({
   children,
   footer,
 }: ResponsiveModalProps) {
-  const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY);
+  const isDesktop = useMediaQuery(DESKTOP_MEDIA_QUERY)
 
   if (isDesktop) {
     return (
@@ -66,7 +67,7 @@ export function ResponsiveModal({
           )}
         </DialogContent>
       </Dialog>
-    );
+    )
   }
 
   return (
@@ -83,5 +84,5 @@ export function ResponsiveModal({
         {footer && <DrawerFooter>{footer}</DrawerFooter>}
       </DrawerContent>
     </Drawer>
-  );
+  )
 }

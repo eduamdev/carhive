@@ -1,49 +1,50 @@
-import { siteConfig } from '@/config/site';
-import { LogoLink } from './logoLink';
-import { Button } from './ui/button';
+import { siteConfig } from "@/config/site"
+
+import { LogoLink } from "./logoLink"
+import { Button } from "./ui/button"
 
 const footerLinks = [
   {
-    title: 'Services',
+    title: "Services",
     links: [
-      'Car Rentals',
-      'Insurance Options',
-      'Corporate Rentals',
-      'Special Offers',
-      'FAQs',
+      "Car Rentals",
+      "Insurance Options",
+      "Corporate Rentals",
+      "Special Offers",
+      "FAQs",
     ],
   },
   {
-    title: 'Resources',
+    title: "Resources",
     links: [
-      'Help Center',
-      'Privacy Policy',
-      'Terms of Service',
-      'Accessibility',
-      'Vehicle Guides',
-      'Customer Testimonials',
+      "Help Center",
+      "Privacy Policy",
+      "Terms of Service",
+      "Accessibility",
+      "Vehicle Guides",
+      "Customer Testimonials",
     ],
   },
   {
-    title: 'Company',
+    title: "Company",
     links: [
-      'About',
-      'Contact Us',
-      'Blog',
-      'Partners',
-      'Customers',
-      'Careers',
-      'Press',
+      "About",
+      "Contact Us",
+      "Blog",
+      "Partners",
+      "Customers",
+      "Careers",
+      "Press",
     ],
   },
   {
-    title: 'Social',
-    links: ['Youtube', 'Twitter', 'Instagram', 'Facebook'],
+    title: "Social",
+    links: ["Youtube", "Twitter", "Instagram", "Facebook"],
   },
-];
+]
 
 export function SiteFooter() {
-  const githubUrl = siteConfig.links.github;
+  const githubUrl = siteConfig.links.github
 
   return (
     <footer className="border-t border-black/[0.06] py-12">
@@ -66,7 +67,7 @@ export function SiteFooter() {
                 {section.links.map((link) => (
                   <li key={link} className="text-neutral-600">
                     <Button
-                      variant={'link'}
+                      variant={"link"}
                       className="h-auto text-balance rounded-none p-0 text-[13px] font-normal leading-none sm:text-sm"
                       asChild
                     >
@@ -81,9 +82,9 @@ export function SiteFooter() {
           </nav>
           <div className="col-span-full">
             <p className="text-[13px] leading-6 text-neutral-600 sm:text-sm">
-              Crafted with care by{' '}
+              Crafted with care by{" "}
               <Button
-                variant={'link'}
+                variant={"link"}
                 className="h-auto rounded-none p-0 text-[13px] font-normal leading-none sm:text-sm"
                 asChild
               >
@@ -101,5 +102,5 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

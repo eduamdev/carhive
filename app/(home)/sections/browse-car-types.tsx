@@ -1,61 +1,62 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/app/components/ui/button';
-import { SearchParams } from '@/app/lib/types';
+import Image from "next/image"
+import Link from "next/link"
+
+import { Button } from "@/app/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/app/components/ui/carousel';
+} from "@/app/components/ui/carousel"
+import { SearchParams } from "@/app/lib/types"
 
-import hatchback from '../../../public/assets/car-types/hatchback.jpg';
-import minivan from '../../../public/assets/car-types/minivan.jpg';
-import pickupTruck from '../../../public/assets/car-types/pickup-truck.jpg';
-import sedan from '../../../public/assets/car-types/sedan.jpg';
-import sportsCar from '../../../public/assets/car-types/sports-car.jpg';
-import suv from '../../../public/assets/car-types/suv.jpg';
+import hatchback from "../../../public/assets/car-types/hatchback.jpg"
+import minivan from "../../../public/assets/car-types/minivan.jpg"
+import pickupTruck from "../../../public/assets/car-types/pickup-truck.jpg"
+import sedan from "../../../public/assets/car-types/sedan.jpg"
+import sportsCar from "../../../public/assets/car-types/sports-car.jpg"
+import suv from "../../../public/assets/car-types/suv.jpg"
 
 export function BrowseCarTypes() {
   const carCategories = [
     {
-      id: 'hatchback',
-      slug: 'hatchback',
-      name: 'Hatchback',
+      id: "hatchback",
+      slug: "hatchback",
+      name: "Hatchback",
       image_url: hatchback,
     },
     {
-      id: 'minivan',
-      slug: 'minivan',
-      name: 'Minivan',
+      id: "minivan",
+      slug: "minivan",
+      name: "Minivan",
       image_url: minivan,
     },
     {
-      id: 'sports-car',
-      slug: 'sports-car',
-      name: 'Sports Car',
+      id: "sports-car",
+      slug: "sports-car",
+      name: "Sports Car",
       image_url: sportsCar,
     },
     {
-      id: 'pickup-truck',
-      slug: 'pickup-truck',
-      name: 'Pickup Truck',
+      id: "pickup-truck",
+      slug: "pickup-truck",
+      name: "Pickup Truck",
       image_url: pickupTruck,
     },
     {
-      id: 'suv',
-      slug: 'suv',
-      name: 'SUV',
+      id: "suv",
+      slug: "suv",
+      name: "SUV",
       image_url: suv,
     },
     {
-      id: 'sedan',
-      slug: 'sedan',
-      name: 'Sedan',
+      id: "sedan",
+      slug: "sedan",
+      name: "Sedan",
       image_url: sedan,
     },
-  ];
+  ]
 
   return (
     <section>
@@ -76,13 +77,13 @@ export function BrowseCarTypes() {
                       className="relative basis-1/2 p-0 sm:basis-1/3 md:basis-1/4 xl:basis-1/5"
                     >
                       <Button
-                        variant={'link'}
+                        variant={"link"}
                         className="m-0 flex size-full p-0 ring-inset"
                         asChild
                       >
                         <Link
                           href={{
-                            pathname: '/cars',
+                            pathname: "/cars",
                             query: {
                               [SearchParams.BODY_STYLE]: slug,
                             },
@@ -104,7 +105,7 @@ export function BrowseCarTypes() {
                         />
                       </div>
                     </CarouselItem>
-                  );
+                  )
                 })}
               </CarouselContent>
               <CarouselPrevious className="-left-4 z-30 lg:-left-12" />
@@ -114,5 +115,5 @@ export function BrowseCarTypes() {
         </div>
       </div>
     </section>
-  );
+  )
 }
