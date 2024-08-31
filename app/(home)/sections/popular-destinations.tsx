@@ -13,50 +13,48 @@ import Rome from "../../../public/assets/destinations/rome.jpg"
 import Sydney from "../../../public/assets/destinations/sydney.jpg"
 
 export function PopularDestinations() {
-  const currency = "MXN"
-
   const trendingPlaces = [
     {
       id: "cancun",
       slug: "cancun",
       name: "Cancún, México",
       image_url: Cancun,
-      starting_price: 499,
+      starting_price: 49,
     },
     {
       id: "dubai",
       slug: "dubai",
       name: "Dubai, United Arab Emirates",
       image_url: Dubai,
-      starting_price: 1199,
+      starting_price: 89,
     },
     {
       id: "rome",
       slug: "rome",
       name: "Rome, Italy",
       image_url: Rome,
-      starting_price: 999,
+      starting_price: 79,
     },
     {
       id: "paris",
       slug: "paris",
       name: "Paris, France",
       image_url: Paris,
-      starting_price: 699,
+      starting_price: 69,
     },
     {
       id: "rio",
       slug: "rio",
       name: "Rio de Janeiro, Brazil",
       image_url: Rio,
-      starting_price: 479,
+      starting_price: 59,
     },
     {
       id: "sydney",
       slug: "sydney",
       name: "Sydney, Australia",
       image_url: Sydney,
-      starting_price: 899,
+      starting_price: 89,
     },
   ]
 
@@ -105,7 +103,7 @@ export function PopularDestinations() {
                       {name}
                     </h3>
                     <p className="truncate text-[13px] leading-[21px] text-neutral-600 sm:text-[14px] sm:leading-[26px]">
-                      Cars from {formatCurrency(starting_price, currency)}+
+                      Cars from {formatCurrency(starting_price)}+
                     </p>
                   </div>
                 </article>

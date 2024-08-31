@@ -1,115 +1,91 @@
-import { CarDetailsButton } from './car-details-button';
-import { FilledStarIcon } from '@/app/components/icons/filled-star';
-import { getCarBySlug } from '@/db/queries';
-import { formatCurrency } from '@/app/lib/utils';
-import { CloudinaryImage } from '@/app/components/cloudinary-image';
-import Image from 'next/image';
-import { AutomaticGearboxIcon } from '@/app/components/icons/automatic-gearbox';
-import { ManualGearboxIcon } from '@/app/components/icons/manual-gearbox';
-import { UsersIcon } from '@/app/components/icons/users';
-import { GasStationIcon } from '@/app/components/icons/gas-station';
-import { ChargingPileIcon } from '@/app/components/icons/charging-pile';
+import { getCarBySlug } from "@/db/queries"
+
+import { CloudinaryImage } from "@/app/components/cloudinary-image"
+import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
+import { ChargingPileIcon } from "@/app/components/icons/charging-pile"
+import { FilledStarIcon } from "@/app/components/icons/filled-star"
+import { GasStationIcon } from "@/app/components/icons/gas-station"
+import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
+import { formatCurrency } from "@/app/lib/utils"
+
+import { CarDetailsButton } from "./car-details-button"
 
 interface CarCardProps {
-  index: number;
-  slug: string;
+  index: number
+  slug: string
 }
 
 export async function CarCard({ index, slug }: CarCardProps) {
-  const car = await getCarBySlug(slug);
+  const car = await getCarBySlug(slug)
 
   if (!car) {
-    return null;
+    return null
   }
 
   const {
     name,
     image_url,
     transmission,
-    engine_type,
-    seats,
-    discounted_price_per_day,
-    discounted_price_currency,
-    retail_price_per_day,
-    retail_price_currency,
+    powertrain,
+    price_per_day,
+    currency,
     rating,
-    reviews,
-  } = car;
+    review_count,
+  } = car
 
   return (
-    <article className="rounded-[10px] border border-black/[0.08] bg-white text-sm shadow-sm">
-      <div className="p-5">
-        <div className="flex items-center justify-between">
-          <span className="font-semibold">{name}</span>
-          <div className="inline-flex items-center justify-center gap-x-1">
+    <article className="overflow-hidden rounded-[10px] border border-black/[0.08] bg-white text-sm shadow-sm">
+      <div className="relative aspect-video h-40 w-full">
+        <CloudinaryImage
+          src={image_url}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(max-width: 569px) 100vw, (max-width: 840px) 50vw, (max-width: 949px) 33vw, (max-width: 1036px) 60vw, (max-width: 1336px) 30vw, 300px"
+          priority
+        />
+      </div>
+      <div className="flex flex-col gap-1.5 p-5">
+        <div className="flex items-center justify-between gap-1">
+          <span className="truncate font-semibold">{name}</span>
+          <div className="inline-flex shrink-0 items-center justify-center gap-x-1">
             <FilledStarIcon className="inline size-3 shrink-0 " />
             <span className="leading-none">
-              <span className="font-medium">{rating}</span>{' '}
+              <span className="font-medium">{rating}</span>{" "}
               <span className="text-neutral-600">
-                {reviews > 0 && `(${reviews})`}
+                {review_count > 0 && `(${review_count})`}
               </span>
             </span>
           </div>
         </div>
-      </div>
-
-      <div className="relative aspect-video h-40 w-full">
-        <Image
-          src={`https://media.ford.com/content/dam/fordmedia/North%20America/US/product/2024/ranger/MediaDrive/RangerRaptor/2024%20Ford%20Ranger%20Raptor_14.jpg/jcr:content/renditions/cq5dam.web.881.495.jpeg`}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-      </div>
-
-      <div className="p-5">
-        <div className="flex flex-row items-center justify-between gap-2">
+        <div className="capitalize text-neutral-600">
           <div className="flex items-center">
-            {engine_type.toLowerCase() === 'gas' ? (
-              <GasStationIcon className="mr-1.5 inline size-[15px] shrink-0 text-neutral-600" />
+            {powertrain.toLowerCase() === "gasoline" ? (
+              <GasStationIcon className="mr-1.5 inline size-[14px] shrink-0" />
             ) : (
-              <ChargingPileIcon className="mr-1.5 inline size-[15px] shrink-0 text-neutral-600" />
+              <ChargingPileIcon className="mr-1.5 inline size-[14px] shrink-0" />
             )}
-            <span>{engine_type}</span>
+            <span>{powertrain}</span>
           </div>
           <div className="flex items-center">
-            <UsersIcon className="mr-1.5 inline size-[15px] shrink-0 text-neutral-600" />
-            <span>{seats}</span>
-          </div>
-          <div className="flex items-center">
-            {transmission.toLowerCase() === 'automatic' ? (
-              <AutomaticGearboxIcon className="mr-1.5 inline size-[15px] shrink-0 text-neutral-600" />
+            {transmission.toLowerCase() === "automatic" ? (
+              <AutomaticGearboxIcon className="mr-1.5 inline size-[14px] shrink-0" />
             ) : (
-              <ManualGearboxIcon className="mr-1.5 inline size-[15px] shrink-0 text-neutral-600" />
+              <ManualGearboxIcon className="mr-1.5 inline size-[14px] shrink-0" />
             )}
             <span>{transmission}</span>
           </div>
         </div>
-        <div className="pt-3">
-          {discounted_price_per_day ? (
-            <>
-              <span className="mr-1.5 text-[13px] leading-none text-neutral-500 line-through">
-                {formatCurrency(retail_price_per_day, retail_price_currency)}
-              </span>
-              <span className="font-medium tabular-nums leading-none">
-                {formatCurrency(
-                  discounted_price_per_day,
-                  discounted_price_currency,
-                )}
-              </span>
-            </>
-          ) : (
-            <span className="font-medium tabular-nums leading-none">
-              {formatCurrency(retail_price_per_day, retail_price_currency)}
-            </span>
-          )}
-          <span className="ml-1 leading-none">day</span>
+        <div className="pt-1">
+          <span className="text-[15px] font-semibold tabular-nums leading-none">
+            {formatCurrency(price_per_day, currency)}
+          </span>
+          <span className="ml-1 leading-none text-neutral-900">day</span>
         </div>
-        <div className="pt-5">
+        <div className="pt-4">
           <CarDetailsButton slug={slug} />
         </div>
       </div>
     </article>
-  );
+  )
 }

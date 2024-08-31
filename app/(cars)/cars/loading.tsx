@@ -1,9 +1,10 @@
-import { Skeleton } from '@/app/components/ui/skeleton';
-import { LogoLink } from '@/app/components/logoLink';
-import { UserMenuButton } from '@/app/components/user-menu-button';
-import { CompactSearchPanelSkeleton } from '@/app/components/skeletons/compact-search-panel';
-import { MapSkeleton } from '@/app/components/skeletons/map';
-import { CarCardSkeleton } from '@/app/components/skeletons/car-card';
+import { LogoLink } from "@/app/components/logoLink"
+import { CompactSearchPanelSkeleton } from "@/app/components/skeletons/compact-search-panel"
+import { Skeleton } from "@/app/components/ui/skeleton"
+import { UserMenuButton } from "@/app/components/user-menu-button"
+
+import { CarCardSkeleton } from "./components/skeletons/car-card"
+import { MapSkeleton } from "./components/skeletons/map"
 
 export default function Loading() {
   return (
@@ -35,7 +36,7 @@ export default function Loading() {
         <div className="flex flex-row">
           <div className="w-full shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:w-[55%] xl:w-[63%]">
             <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-[22px]">
                 <CarCardSkeleton />
                 <CarCardSkeleton />
                 <CarCardSkeleton />
@@ -53,5 +54,5 @@ export default function Loading() {
         </div>
       </main>
     </>
-  );
+  )
 }

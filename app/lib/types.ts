@@ -6,7 +6,7 @@ export enum SearchParams {
   MIN_PRICE = "min-price",
   MAX_PRICE = "max-price",
   BODY_STYLE = "body-style",
-  ENGINE_TYPE = "engine-type",
+  POWERTRAIN = "powertrain",
   MIN_SEATS = "min-seats",
   TRANSMISSION = "transmission",
 }

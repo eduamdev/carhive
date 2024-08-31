@@ -1,4 +1,4 @@
-export function UsersIcon(props: React.HTMLAttributes<SVGElement>) {
+export function WifiIcon(props: React.HTMLAttributes<SVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,10 +13,10 @@ export function UsersIcon(props: React.HTMLAttributes<SVGElement>) {
       {...props}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-      <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+      <path d="M12 18l.01 0" />
+      <path d="M9.172 15.172a4 4 0 0 1 5.656 0" />
+      <path d="M6.343 12.343a8 8 0 0 1 11.314 0" />
+      <path d="M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0" />
     </svg>
-  );
+  )
 }

@@ -3,16 +3,17 @@ import { Dispatch, SetStateAction } from "react"
 import { Separator } from "@/app/components/ui/separator"
 import { ToggleGroup, ToggleGroupItem } from "@/app/components/ui/toggle-group"
 
-import { EngineType, SelectedFilters } from "../types"
+import { Powertrain, SelectedFilters } from "../types"
 
-const engineTypes: {
-  slug: EngineType
+const powertrains: {
+  slug: Powertrain
   name: string
 }[] = [
   {
-    slug: "gas",
-    name: "Gas",
+    slug: "gasoline",
+    name: "Gasoline",
   },
+  { slug: "diesel", name: "Diesel" },
   { slug: "hybrid", name: "Hybrid" },
   {
     slug: "electric",
@@ -20,42 +21,35 @@ const engineTypes: {
   },
 ]
 
-interface EngineTypeSectionProps {
+interface PowertrainSectionProps {
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function EngineTypeSection({
+export function PowertrainSection({
   selectedFilters,
   setSelectedFilters,
-}: EngineTypeSectionProps) {
-  const handleEngineTypeChange = (engineType: EngineType | null) => {
-    if (engineType) {
-      setSelectedFilters({
-        ...selectedFilters,
-        engineTypes: [engineType],
-      })
-    } else {
-      setSelectedFilters({
-        ...selectedFilters,
-        engineTypes: [],
-      })
-    }
+}: PowertrainSectionProps) {
+  const handlePowertrainChange = (powertrain: Powertrain | undefined) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      powertrain: powertrain ?? undefined,
+    }))
   }
 
   return (
     <section>
-      <h3 className="text-lg font-semibold">Engine type</h3>
+      <h3 className="text-lg font-semibold">Powertrain</h3>
       <div className="pt-5">
         <ToggleGroup
           type="single"
-          value={selectedFilters.engineTypes[0] || null}
+          value={selectedFilters.powertrain ?? ""}
           onValueChange={(value) =>
-            handleEngineTypeChange(value as EngineType | null)
+            handlePowertrainChange(value as Powertrain | undefined)
           }
           className="grid min-h-14 w-full auto-cols-fr grid-flow-col gap-0 rounded-2xl border border-black/[0.12] p-1"
         >
-          {engineTypes.map(({ slug, name }) => (
+          {powertrains.map(({ slug, name }) => (
             <ToggleGroupItem
               key={slug}
               value={slug}

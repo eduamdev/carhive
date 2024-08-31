@@ -21,7 +21,7 @@ interface CarCatalogPageProps {
     [SearchParams.MIN_PRICE]?: string
     [SearchParams.MAX_PRICE]?: string
     [SearchParams.BODY_STYLE]?: string[]
-    [SearchParams.ENGINE_TYPE]?: string[]
+    [SearchParams.POWERTRAIN]?: string
     [SearchParams.TRANSMISSION]?: string[]
     [SearchParams.MIN_SEATS]?: string
   }
@@ -32,56 +32,34 @@ export default async function CarCatalogPage({
 }: CarCatalogPageProps) {
   const [cars, locations] = await Promise.all([getCars(), getLocations()])
 
-  const carPrices = cars.map((car) => {
-    return car.discounted_price_per_day || car.retail_price_per_day
-  })
-
-  const MIN_PRICE = Math.min(...carPrices)
-  const MAX_PRICE = Math.max(...carPrices)
-
-  let filteredCars = cars
+  const { MIN_PRICE, MAX_PRICE } = cars.reduce(
+    (acc, car) => {
+      acc.MIN_PRICE = Math.min(acc.MIN_PRICE, car.price_per_day)
+      acc.MAX_PRICE = Math.max(acc.MAX_PRICE, car.price_per_day)
+      return acc
+    },
+    { MIN_PRICE: Infinity, MAX_PRICE: -Infinity }
+  )
 
   const {
     [SearchParams.MIN_PRICE]: minPrice,
     [SearchParams.MAX_PRICE]: maxPrice,
     [SearchParams.BODY_STYLE]: bodyStyles,
-    [SearchParams.ENGINE_TYPE]: engineTypes,
+    [SearchParams.POWERTRAIN]: powertrain,
     [SearchParams.TRANSMISSION]: transmissions,
     [SearchParams.MIN_SEATS]: minSeats,
   } = searchParams
 
-  if (minPrice) {
-    filteredCars = filteredCars.filter((car) => {
-      const currentPrice =
-        car.discounted_price_per_day || car.retail_price_per_day
-      return currentPrice >= Number(minPrice)
-    })
-  }
-  if (maxPrice) {
-    filteredCars = filteredCars.filter((car) => {
-      const currentPrice =
-        car.discounted_price_per_day || car.retail_price_per_day
-      return currentPrice <= Number(maxPrice)
-    })
-  }
-  if (bodyStyles) {
-    filteredCars = filteredCars.filter((car) =>
-      bodyStyles.includes(slugify(car.body_style))
+  const filteredCars = cars.filter((car) => {
+    return (
+      (!minPrice || car.price_per_day >= Number(minPrice)) &&
+      (!maxPrice || car.price_per_day <= Number(maxPrice)) &&
+      (!bodyStyles || bodyStyles.includes(slugify(car.body_style))) &&
+      (!powertrain || powertrain === car.powertrain) &&
+      (!transmissions || transmissions.includes(slugify(car.transmission))) &&
+      (!minSeats || car.seats >= Number(minSeats))
     )
-  }
-  if (engineTypes) {
-    filteredCars = filteredCars.filter((car) =>
-      engineTypes.includes(slugify(car.engine_type))
-    )
-  }
-  if (transmissions) {
-    filteredCars = filteredCars.filter((car) =>
-      transmissions.includes(slugify(car.transmission))
-    )
-  }
-  if (minSeats) {
-    filteredCars = filteredCars.filter((car) => car.seats >= Number(minSeats))
-  }
+  })
 
   return (
     <>
@@ -131,7 +109,7 @@ export default async function CarCatalogPage({
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-6">
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-[22px]">
                     {filteredCars.map(({ id, slug }, index) => (
                       <CarCard key={id} index={index} slug={slug} />
                     ))}

@@ -55,7 +55,7 @@ export function FiltersButton({
       minPrice: initialMinPrice,
       maxPrice: initialMaxPrice,
       bodyStyles: [],
-      engineTypes: [],
+      powertrain: undefined,
       seats: undefined,
       transmissions: [],
     })

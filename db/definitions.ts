@@ -21,17 +21,15 @@ export type Car = {
   slug: string
   name: string
   body_style: string
-  engine_type: string
+  powertrain: string
   transmission: string
   seats: number
-  descriptions: string[]
+  description: string
   features: string[]
   rating: number
-  reviews: number
+  review_count: number
   unlimited_mileage: boolean
   image_url: string
-  retail_price_per_day: number
-  retail_price_currency: string
-  discounted_price_per_day?: number
-  discounted_price_currency?: string
+  price_per_day: number
+  currency: string
 }

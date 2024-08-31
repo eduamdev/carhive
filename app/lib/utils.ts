@@ -19,7 +19,7 @@ export const createUrl = (
 }
 
 export const formatCurrency = (amount: number, currency: string = "USD") => {
-  return amount.toLocaleString("en-US", {
+  return Math.round(amount).toLocaleString("en-US", {
     style: "currency",
     currency,
     minimumFractionDigits: 0,

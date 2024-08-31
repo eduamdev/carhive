@@ -3,7 +3,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react"
 import { Separator } from "@/app/components/ui/separator"
 
 import { BodyStyleSection } from "./sections/body-style"
-import { EngineTypeSection } from "./sections/engine-type"
+import { PowertrainSection } from "./sections/powertrain"
 import { PriceRangeSection } from "./sections/price-range"
 import { SeatingCapacitySection } from "./sections/seating-capacity"
 import { TransmissionTypeSection } from "./sections/transmission-type"
@@ -25,7 +25,7 @@ export function FiltersContent({
   return (
     <div className="px-6">
       <FilterSection>
-        <EngineTypeSection
+        <PowertrainSection
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />

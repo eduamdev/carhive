@@ -3,7 +3,7 @@ export type SelectedFilters = {
   maxPrice: number
   seats: number | undefined
   bodyStyles: BodyStyle[]
-  engineTypes: EngineType[]
+  powertrain: Powertrain | undefined
   transmissions: Transmission[]
 }
 
@@ -14,5 +14,5 @@ export type BodyStyle =
   | "sports-car"
   | "hatchback"
   | "sedan"
-export type EngineType = "gas" | "hybrid" | "electric"
+export type Powertrain = "gasoline" | "diesel" | "hybrid" | "electric"
 export type Transmission = "automatic" | "manual"
