@@ -1,25 +1,27 @@
-import Link from 'next/link';
-import { CloudinaryImage } from '@/app/components/cloudinary-image';
-import { Button } from '@/app/components/ui/button';
-import { Separator } from '@/app/components/ui/separator';
-import { siteConfig } from '@/config/site';
-import { formatCurrency } from '@/app/lib/utils';
-import { NavigateBack } from '../components/navigate-back';
-import { SearchParams } from '@/app/lib/types';
-import { getCarBySlug, getLocationBySlug } from '@/db/queries';
-import { formatDates } from '../lib/dates';
-import { differenceInDays } from 'date-fns';
-import { SignIn, SignedIn, SignedOut } from '@clerk/nextjs';
-import { CarhiveLogo } from '@/app/components/icons/carhive-logo';
-import { FilledStarIcon } from '@/app/components/icons/filled-star';
+import Link from "next/link"
+import { getCarBySlug, getLocationBySlug } from "@/db/queries"
+import { SignedIn, SignedOut, SignIn } from "@clerk/nextjs"
+import { differenceInDays } from "date-fns"
+
+import { siteConfig } from "@/config/site"
+import { CloudinaryImage } from "@/app/components/cloudinary-image"
+import { CarhiveLogo } from "@/app/components/icons/carhive-logo"
+import { FilledStarIcon } from "@/app/components/icons/filled-star"
+import { Button } from "@/app/components/ui/button"
+import { Separator } from "@/app/components/ui/separator"
+import { SearchParams } from "@/app/lib/types"
+import { formatCurrency } from "@/app/lib/utils"
+
+import { NavigateBack } from "../components/navigate-back"
+import { formatDates } from "../lib/dates"
 
 interface ReservationPageProps {
   searchParams: {
-    [SearchParams.CAR_SLUG]: string;
-    [SearchParams.LOCATION]: string;
-    [SearchParams.CHECKIN]: string;
-    [SearchParams.CHECKOUT]: string;
-  };
+    [SearchParams.CAR_SLUG]: string
+    [SearchParams.LOCATION]: string
+    [SearchParams.CHECKIN]: string
+    [SearchParams.CHECKOUT]: string
+  }
 }
 
 export default async function ReservationPage({
@@ -30,31 +32,24 @@ export default async function ReservationPage({
     location: locationSlug,
     checkin,
     checkout,
-  } = searchParams;
+  } = searchParams
 
   const [car, location] = await Promise.all([
     getCarBySlug(carSlug),
     getLocationBySlug(locationSlug),
-  ]);
+  ])
 
   if (!car) {
-    throw new Error('Car is required to make a reservation.');
+    throw new Error("Car is required to make a reservation.")
   }
 
   if (!location) {
-    throw new Error('Location is required to make a reservation.');
+    throw new Error("Location is required to make a reservation.")
   }
 
-  const bodyStyle = car.body_style;
-  const carName = car.name;
-  const rating = car.rating;
-  const reviews = car.reviews;
-  const pricePerDay = car.discounted_price_per_day || car.retail_price_per_day;
-  const currency = car.discounted_price_currency || car.retail_price_currency;
-
-  const days = differenceInDays(new Date(checkout), new Date(checkin));
-  const subtotal = pricePerDay * days;
-  const taxesAndFees = subtotal * 0.16;
+  const days = differenceInDays(new Date(checkout), new Date(checkin))
+  const subtotal = car.price_per_day * days
+  const taxesAndFees = subtotal * 0.16
 
   return (
     <>
@@ -115,20 +110,23 @@ export default async function ReservationPage({
                 <div className="flex flex-col gap-y-3 pt-6 text-neutral-600">
                   <div className="flex items-center justify-between">
                     <span className="underline">
-                      {formatCurrency(pricePerDay, currency)} x {days} days
+                      {formatCurrency(car.price_per_day, car.currency)} x {days}{" "}
+                      days
                     </span>
-                    <span>{formatCurrency(subtotal, currency)}</span>
+                    <span>{formatCurrency(subtotal, car.currency)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="underline">Taxes and fees</span>
-                    <span>{formatCurrency(taxesAndFees, currency)}</span>
+                    <span>{formatCurrency(taxesAndFees, car.currency)}</span>
                   </div>
                 </div>
               </div>
               <Separator decorative orientation="horizontal" className="my-6" />
               <div className="flex items-center justify-between font-semibold">
-                <span>Total ({currency})</span>
-                <span>{formatCurrency(subtotal + taxesAndFees, currency)}</span>
+                <span>Total ({car.currency})</span>
+                <span>
+                  {formatCurrency(subtotal + taxesAndFees, car.currency)}
+                </span>
               </div>
             </div>
             <div className="md:mb-16">
@@ -175,15 +173,15 @@ export default async function ReservationPage({
                   <div className="grid grid-cols-1 grid-rows-1 items-start justify-between">
                     <div>
                       <span className="text-[13px] text-neutral-600">
-                        {bodyStyle}
+                        {car.body_style}
                       </span>
-                      <p className="text-sm">{carName}</p>
+                      <p className="text-sm">{car.name}</p>
                     </div>
                     <div className="flex items-baseline space-x-1 text-xs">
                       <FilledStarIcon className="size-3 shrink-0" />
-                      <span className="font-semibold">{rating}</span>
+                      <span className="font-semibold">{car.rating}</span>
                       <span className="mt-5 text-neutral-600">
-                        ({reviews} reviews)
+                        ({car.review_count} reviews)
                       </span>
                     </div>
                   </div>
@@ -199,13 +197,16 @@ export default async function ReservationPage({
                     <div className="flex flex-col gap-y-3 pt-6 text-neutral-600">
                       <div className="flex items-center justify-between">
                         <span className="underline">
-                          {formatCurrency(pricePerDay, currency)} x {days} days
+                          {formatCurrency(car.price_per_day, car.currency)} x{" "}
+                          {days} days
                         </span>
-                        <span>{formatCurrency(subtotal, currency)}</span>
+                        <span>{formatCurrency(subtotal, car.currency)}</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="underline">Taxes and fees</span>
-                        <span>{formatCurrency(taxesAndFees, currency)}</span>
+                        <span>
+                          {formatCurrency(taxesAndFees, car.currency)}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -215,9 +216,9 @@ export default async function ReservationPage({
                     className="my-6"
                   />
                   <div className="flex items-center justify-between font-semibold">
-                    <span>Total ({currency})</span>
+                    <span>Total ({car.currency})</span>
                     <span>
-                      {formatCurrency(subtotal + taxesAndFees, currency)}
+                      {formatCurrency(subtotal + taxesAndFees, car.currency)}
                     </span>
                   </div>
                 </div>
@@ -231,7 +232,7 @@ export default async function ReservationPage({
           <footer className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 xl:max-w-8xl">
             <div>
               <p className="text-sm text-neutral-600">
-                Built by{' '}
+                Built by{" "}
                 <a
                   href={siteConfig.author.url}
                   target="_blank"
@@ -239,7 +240,7 @@ export default async function ReservationPage({
                 >
                   <strong>eduamdev</strong>
                 </a>
-                . The source code is available on{' '}
+                . The source code is available on{" "}
                 <a
                   href={`${siteConfig.links.github}/carhive`}
                   target="_blank"
@@ -254,5 +255,5 @@ export default async function ReservationPage({
         </div>
       </div>
     </>
-  );
+  )
 }
