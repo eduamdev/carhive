@@ -6,15 +6,15 @@ import { Button } from "@/app/components/ui/button"
 
 import { SelectedFilters } from "../types"
 
-interface SeatingCapacitySectionProps {
+interface SeatingCapacityFiltersProps {
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function SeatingCapacitySection({
+export function SeatingCapacityFilters({
   selectedFilters,
   setSelectedFilters,
-}: SeatingCapacitySectionProps) {
+}: SeatingCapacityFiltersProps) {
   const [counter, setCounter] = useState(selectedFilters.seats || 0)
 
   const handleMinusClick = () => {

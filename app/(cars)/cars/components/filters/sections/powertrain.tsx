@@ -21,15 +21,15 @@ const powertrains: {
   },
 ]
 
-interface PowertrainSectionProps {
+interface PowertrainFiltersProps {
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function PowertrainSection({
+export function PowertrainFilters({
   selectedFilters,
   setSelectedFilters,
-}: PowertrainSectionProps) {
+}: PowertrainFiltersProps) {
   const handlePowertrainChange = (powertrain: Powertrain | undefined) => {
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,

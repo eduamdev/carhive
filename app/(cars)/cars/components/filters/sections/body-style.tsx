@@ -35,15 +35,15 @@ export const bodyStyles: {
   { slug: "sedan", name: "Sedan", icon: CarIcon },
 ]
 
-interface BodyStyleSectionProps {
+interface BodyStyleFiltersProps {
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function BodyStyleSection({
+export function BodyStyleFilters({
   selectedFilters,
   setSelectedFilters,
-}: BodyStyleSectionProps) {
+}: BodyStyleFiltersProps) {
   const handleBodyStyleToggle = (bodyStyle: BodyStyle) => {
     setSelectedFilters((prevFilters) => {
       const bodyStylesSelected = prevFilters.bodyStyles.includes(bodyStyle)

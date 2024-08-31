@@ -18,6 +18,8 @@ export function PopularDestinations() {
       id: "cancun",
       slug: "cancun",
       name: "Cancún, México",
+      lat: 21.1617,
+      lng: -86.851,
       image_url: Cancun,
       starting_price: 49,
     },
@@ -25,6 +27,8 @@ export function PopularDestinations() {
       id: "dubai",
       slug: "dubai",
       name: "Dubai, United Arab Emirates",
+      lat: 25.2652,
+      lng: 55.2928,
       image_url: Dubai,
       starting_price: 89,
     },
@@ -32,6 +36,8 @@ export function PopularDestinations() {
       id: "rome",
       slug: "rome",
       name: "Rome, Italy",
+      lat: 41.8931,
+      lng: 12.4832,
       image_url: Rome,
       starting_price: 79,
     },
@@ -39,6 +45,8 @@ export function PopularDestinations() {
       id: "paris",
       slug: "paris",
       name: "Paris, France",
+      lat: 48.8589,
+      lng: 2.3469,
       image_url: Paris,
       starting_price: 69,
     },
@@ -46,6 +54,8 @@ export function PopularDestinations() {
       id: "rio",
       slug: "rio",
       name: "Rio de Janeiro, Brazil",
+      lat: -22.9148,
+      lng: -43.4075,
       image_url: Rio,
       starting_price: 59,
     },
@@ -53,6 +63,8 @@ export function PopularDestinations() {
       id: "sydney",
       slug: "sydney",
       name: "Sydney, Australia",
+      lat: -33.8693,
+      lng: 151.209,
       image_url: Sydney,
       starting_price: 89,
     },
@@ -67,7 +79,10 @@ export function PopularDestinations() {
         <div className="pt-6">
           <div className="group grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-8 md:grid-cols-5 [&_a:hover_~_*_img]:!opacity-100">
             {trendingPlaces.map(
-              ({ id, slug, image_url, name, starting_price }, index) => (
+              (
+                { id, slug, image_url, lat, lng, name, starting_price },
+                index
+              ) => (
                 <article
                   key={id}
                   className={`relative ${index === trendingPlaces.length - 1 ? "md:hidden" : ""}`}
@@ -82,6 +97,8 @@ export function PopularDestinations() {
                         pathname: "/cars",
                         query: {
                           [SearchParams.LOCATION]: slug,
+                          [SearchParams.LAT]: lat,
+                          [SearchParams.LNG]: lng,
                         },
                       }}
                       className="absolute left-0 top-0 z-10 size-full"

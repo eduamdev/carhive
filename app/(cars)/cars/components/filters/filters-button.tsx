@@ -9,14 +9,12 @@ import { Badge } from "@/app/components/ui/badge"
 import { Button } from "@/app/components/ui/button"
 import { createUrl } from "@/app/lib/utils"
 
-import { ApplyFiltersButton } from "./apply-filters-button"
 import { FiltersContent } from "./filters-content"
 import {
   calculateTotalFiltersFromParams,
   getInitialFilters,
   updateSearchParams,
 } from "./lib/utils"
-import { ResetFiltersButton } from "./reset-filters-button"
 import { SelectedFilters } from "./types"
 
 interface FiltersButtonProps {
@@ -107,5 +105,26 @@ export function FiltersButton({
         initialMaxPrice={initialMaxPrice}
       />
     </ResponsiveModal>
+  )
+}
+
+export function ApplyFiltersButton({ onApply }: { onApply: () => void }) {
+  return (
+    <Button size="lg" className="text-[15px]" onClick={onApply}>
+      Show cars
+    </Button>
+  )
+}
+
+export function ResetFiltersButton({ onReset }: { onReset: () => void }) {
+  return (
+    <Button
+      variant="ghost"
+      size={"lg"}
+      className="-ml-4 text-[15px]"
+      onClick={onReset}
+    >
+      Clear all
+    </Button>
   )
 }

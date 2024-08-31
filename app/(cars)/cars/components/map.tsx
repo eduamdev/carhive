@@ -1,45 +1,47 @@
-'use client';
+"use client"
 
-import { useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useRef } from "react"
+import { useSearchParams } from "next/navigation"
+import type { Map as LeafletMap } from "leaflet"
+import { MapContainer, TileLayer, useMap } from "react-leaflet"
 
-import type { LatLngExpression, Map as LeafletMap } from 'leaflet';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { SearchParams } from '@/app/lib/types';
-import { Location } from '@/db/definitions';
+import "leaflet/dist/leaflet.css"
 
-export function Map({ locations }: { locations: Location[] }) {
-  const searchParams = useSearchParams();
-  const mapRef = useRef<LeafletMap | null>(null);
+import { useToast } from "@/app/hooks/use-toast"
+import { DEFAULT_ZOOM_LEVEL, LOCATION_ZOOM_LEVEL } from "@/app/lib/constants"
+import { SearchParams } from "@/app/lib/types"
 
-  const DEFAULT_ZOOM_LEVEL = 2;
+export function Map() {
+  const searchParams = useSearchParams()
+  const mapRef = useRef<LeafletMap | null>(null)
 
   function Recenter() {
-    const map = useMap();
+    const map = useMap()
+    const { toast } = useToast()
 
     useEffect(() => {
-      if (searchParams.has(SearchParams.LOCATION)) {
-        const newLocation = locations.find(
-          (location) =>
-            location.slug === searchParams.get(SearchParams.LOCATION),
-        );
+      if (
+        searchParams.has(SearchParams.LAT) &&
+        searchParams.has(SearchParams.LNG)
+      ) {
+        const lat = Number(searchParams.get(SearchParams.LAT))
+        const lng = Number(searchParams.get(SearchParams.LNG))
 
-        if (!newLocation)
-          throw new Error('Could not find the requested location');
-
-        const center: LatLngExpression = {
-          lat: Number(newLocation?.latitude),
-          lng: Number(newLocation?.longitude),
-        };
-
-        const zoom = 11;
-
-        map.setView(center, zoom);
+        if (!isNaN(lat) && !isNaN(lng)) {
+          map.setView({ lat, lng }, LOCATION_ZOOM_LEVEL)
+        } else {
+          console.error("Invalid latitude or longitude values:", { lat, lng })
+          toast({
+            variant: "destructive",
+            title: "Invalid Location Data",
+            description:
+              "Either the latitude or longitude search parameters in the URL are not valid numbers. Please check the URL and try again.",
+          })
+        }
       }
-    }, [map]);
+    }, [map, toast])
 
-    return null;
+    return null
   }
 
   return (
@@ -55,5 +57,5 @@ export function Map({ locations }: { locations: Location[] }) {
       />
       <Recenter />
     </MapContainer>
-  );
+  )
 }

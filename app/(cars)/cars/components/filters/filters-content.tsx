@@ -2,11 +2,11 @@ import { Dispatch, ReactNode, SetStateAction } from "react"
 
 import { Separator } from "@/app/components/ui/separator"
 
-import { BodyStyleSection } from "./sections/body-style"
-import { PowertrainSection } from "./sections/powertrain"
-import { PriceRangeSection } from "./sections/price-range"
-import { SeatingCapacitySection } from "./sections/seating-capacity"
-import { TransmissionTypeSection } from "./sections/transmission-type"
+import { BodyStyleFilters } from "./sections/body-style"
+import { PowertrainFilters } from "./sections/powertrain"
+import { PriceRangeFilters } from "./sections/price-range"
+import { SeatingCapacityFilters } from "./sections/seating-capacity"
+import { TransmissionTypeFilters } from "./sections/transmission-type"
 import { SelectedFilters } from "./types"
 
 interface FiltersContentProps {
@@ -25,14 +25,14 @@ export function FiltersContent({
   return (
     <div className="px-6">
       <FilterSection>
-        <PowertrainSection
+        <PowertrainFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <PriceRangeSection
+        <PriceRangeFilters
           minPrice={initialMinPrice}
           maxPrice={initialMaxPrice}
           selectedFilters={selectedFilters}
@@ -41,21 +41,21 @@ export function FiltersContent({
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <BodyStyleSection
+        <BodyStyleFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <SeatingCapacitySection
+        <SeatingCapacityFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <TransmissionTypeSection
+        <TransmissionTypeFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />

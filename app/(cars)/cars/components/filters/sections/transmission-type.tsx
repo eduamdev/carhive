@@ -19,15 +19,15 @@ const transmissions: {
   { slug: "manual", name: "Manual", icon: ManualGearboxIcon },
 ]
 
-interface TransmissionTypeSectionProps {
+interface TransmissionTypeFiltersProps {
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function TransmissionTypeSection({
+export function TransmissionTypeFilters({
   selectedFilters,
   setSelectedFilters,
-}: TransmissionTypeSectionProps) {
+}: TransmissionTypeFiltersProps) {
   const handleTransmissionToggle = (transmission: Transmission) => {
     setSelectedFilters((prevFilters) => {
       const transmissionsSelected = prevFilters.transmissions.includes(

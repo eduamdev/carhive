@@ -1,4 +1,4 @@
-import { getCarBySlug } from "@/db/queries"
+import { Car } from "@/db/definitions"
 
 import { CloudinaryImage } from "@/app/components/cloudinary-image"
 import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
@@ -11,18 +11,16 @@ import { formatCurrency } from "@/app/lib/utils"
 import { CarDetailsButton } from "./car-details-button"
 
 interface CarCardProps {
-  index: number
-  slug: string
+  car: Car
 }
 
-export async function CarCard({ index, slug }: CarCardProps) {
-  const car = await getCarBySlug(slug)
-
+export async function CarCard({ car }: CarCardProps) {
   if (!car) {
     return null
   }
 
   const {
+    slug,
     name,
     image_url,
     transmission,
@@ -38,7 +36,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
       <div className="relative aspect-video h-40 w-full">
         <CloudinaryImage
           src={image_url}
-          alt=""
+          alt={name}
           fill
           className="object-cover"
           sizes="(max-width: 569px) 100vw, (max-width: 840px) 50vw, (max-width: 949px) 33vw, (max-width: 1036px) 60vw, (max-width: 1336px) 30vw, 300px"

@@ -1,5 +1,5 @@
-import { Skeleton } from '@/app/components/ui/skeleton';
-import { Separator } from '@/app/components/ui/separator';
+import { Separator } from "@/app/components/ui/separator"
+import { Skeleton } from "@/app/components/ui/skeleton"
 
 export function CompactSearchPanelSkeleton() {
   return (
@@ -50,5 +50,5 @@ export function CompactSearchPanelSkeleton() {
         </div>
       </div>
     </div>
-  );
+  )
 }

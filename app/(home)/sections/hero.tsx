@@ -1,11 +1,11 @@
-import { getLocations } from "@/db/queries"
+import { Suspense } from "react"
+
+import { SearchPanelWrapper } from "@/app/components/search-panel-wrapper"
 
 import { LogoSlider } from "../components/logo-slider"
-import { SearchPanel } from "../components/search-panel"
+import { SearchPanelSkeleton } from "../components/skeletons/search-panel"
 
-export async function Hero() {
-  const locations = await getLocations()
-
+export function Hero() {
   return (
     <section className="bg-gradient-to-b from-white to-neutral-50">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
@@ -16,7 +16,9 @@ export async function Hero() {
           <div className="hidden md:block">
             <div className="pt-10">
               <div className="flex items-center justify-center">
-                <SearchPanel locations={locations} />
+                <Suspense fallback={<SearchPanelSkeleton />}>
+                  <SearchPanelWrapper />
+                </Suspense>
               </div>
             </div>
           </div>

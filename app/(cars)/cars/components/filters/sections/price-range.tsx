@@ -13,19 +13,19 @@ import { useDebounce } from "@/app/hooks/use-debounce"
 
 import { SelectedFilters } from "../types"
 
-interface PriceRangeSectionProps {
+interface PriceRangeFiltersProps {
   minPrice: number
   maxPrice: number
   selectedFilters: SelectedFilters
   setSelectedFilters: Dispatch<SetStateAction<SelectedFilters>>
 }
 
-export function PriceRangeSection({
+export function PriceRangeFilters({
   minPrice: MIN_PRICE,
   maxPrice: MAX_PRICE,
   selectedFilters,
   setSelectedFilters,
-}: PriceRangeSectionProps) {
+}: PriceRangeFiltersProps) {
   const [tempMinPrice, setTempMinPrice] = useState(
     selectedFilters.minPrice || MIN_PRICE
   )

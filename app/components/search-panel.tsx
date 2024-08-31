@@ -72,7 +72,15 @@ export function SearchPanel({
     newParams.delete(SearchParams.CHECKIN)
     newParams.delete(SearchParams.CHECKOUT)
 
-    if (location) newParams.set(SearchParams.LOCATION, location)
+    if (location) {
+      newParams.set(SearchParams.LOCATION, location)
+
+      const currentLocation = locations.find((loc) => loc.slug === location)
+      if (currentLocation) {
+        newParams.set(SearchParams.LAT, currentLocation.latitude.toString())
+        newParams.set(SearchParams.LNG, currentLocation.longitude.toString())
+      }
+    }
 
     const checkinISOString = checkInDate?.toISOString()
     if (checkinISOString) newParams.set(SearchParams.CHECKIN, checkinISOString)
