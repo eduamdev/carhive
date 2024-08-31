@@ -2,9 +2,9 @@ import { getCarBySlug } from "@/db/queries"
 
 import { CloudinaryImage } from "@/app/components/cloudinary-image"
 import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
-import { ChargingPileIcon } from "@/app/components/icons/charging-pile"
+import { BatteryAutomotiveIcon } from "@/app/components/icons/battery-automotive"
+import { EngineIcon } from "@/app/components/icons/engine"
 import { FilledStarIcon } from "@/app/components/icons/filled-star"
-import { GasStationIcon } from "@/app/components/icons/gas-station"
 import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
 import { formatCurrency } from "@/app/lib/utils"
 
@@ -60,10 +60,10 @@ export async function CarCard({ index, slug }: CarCardProps) {
         </div>
         <div className="capitalize text-neutral-600">
           <div className="flex items-center">
-            {powertrain.toLowerCase() === "gasoline" ? (
-              <GasStationIcon className="mr-1.5 inline size-[14px] shrink-0" />
+            {powertrain.toLowerCase() === "electric" ? (
+              <BatteryAutomotiveIcon className="mr-1.5 inline size-[14px] shrink-0" />
             ) : (
-              <ChargingPileIcon className="mr-1.5 inline size-[14px] shrink-0" />
+              <EngineIcon className="mr-1.5 inline size-[14px] shrink-0" />
             )}
             <span>{powertrain}</span>
           </div>

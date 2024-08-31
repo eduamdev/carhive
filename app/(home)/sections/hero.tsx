@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { getLocations } from "@/db/queries"
 
 import { LogoSlider } from "../components/logo-slider"
@@ -17,9 +16,7 @@ export async function Hero() {
           <div className="hidden md:block">
             <div className="pt-10">
               <div className="flex items-center justify-center">
-                <Suspense>
-                  <SearchPanel locations={locations} />
-                </Suspense>
+                <SearchPanel locations={locations} />
               </div>
             </div>
           </div>

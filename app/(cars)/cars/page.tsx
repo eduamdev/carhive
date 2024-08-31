@@ -1,5 +1,5 @@
-import { Suspense } from "react"
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { getCars, getLocations } from "@/db/queries"
 
 import { SearchPanel } from "@/app/(home)/components/search-panel"
@@ -10,11 +10,22 @@ import { slugify } from "@/app/lib/utils"
 
 import { CarCard } from "./components/car-card"
 import { FiltersButton } from "./components/filters/filters-button"
-import { MapContainer } from "./components/map-container"
+import { MapSkeleton } from "./components/skeletons/map"
 
 export const metadata: Metadata = {
   title: "Cars",
 }
+
+const DynamicMap = dynamic(
+  async () => {
+    const { Map } = await import("./components/map")
+    return { default: Map }
+  },
+  {
+    loading: () => <MapSkeleton />,
+    ssr: false,
+  }
+)
 
 interface CarCatalogPageProps {
   searchParams: {
@@ -69,9 +80,7 @@ export default async function CarCatalogPage({
             <div className="flex h-full items-center justify-between gap-x-4">
               <LogoLink />
               <div className="hidden md:block">
-                <Suspense>
-                  <SearchPanel locations={locations} compact />
-                </Suspense>
+                <SearchPanel locations={locations} compact />
               </div>
               <div className="inline-flex">
                 <UserMenuButton />
@@ -89,8 +98,8 @@ export default async function CarCatalogPage({
                     : `${filteredCars.length} car`)}
               </p>
               <FiltersButton
-                initialMinPrice={MIN_PRICE}
-                initialMaxPrice={MAX_PRICE}
+                initialMinPrice={Math.round(MIN_PRICE)}
+                initialMaxPrice={Math.round(MAX_PRICE)}
               />
             </div>
           </div>
@@ -99,27 +108,27 @@ export default async function CarCatalogPage({
       <main>
         <div className="flex flex-row">
           <div className="w-full shrink-0 grow-0 flex-col overflow-y-auto bg-neutral-50 md:w-[55%] xl:w-[63%]">
-            <Suspense>
-              <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
-                {!filteredCars.length ? (
-                  <div>
-                    <h1 className="text-xl font-semibold">No exact matches</h1>
-                    <p className="mt-3 text-slate-700">
-                      Try changing or removing some of your filters.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-[22px]">
-                    {filteredCars.map(({ id, slug }, index) => (
-                      <CarCard key={id} index={index} slug={slug} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            </Suspense>
+            <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
+              {!filteredCars.length ? (
+                <div>
+                  <h1 className="text-xl font-semibold">No exact matches</h1>
+                  <p className="mt-3 text-slate-700">
+                    Try changing or removing some of your filters.
+                  </p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-[22px]">
+                  {filteredCars.map(({ id, slug }, index) => (
+                    <CarCard key={id} index={index} slug={slug} />
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
           <div className="hidden flex-auto md:block">
-            <MapContainer />
+            <div className="sticky top-[var(--cars-header-height)] z-10 basis-auto">
+              <DynamicMap locations={locations} />
+            </div>
           </div>
         </div>
       </main>
