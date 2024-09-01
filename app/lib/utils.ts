@@ -8,14 +8,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const createUrl = (
+export const buildUrlWithQueryParams = (
   pathname: string,
   params: URLSearchParams | ReadonlyURLSearchParams
 ) => {
-  const paramsString = params.toString()
-  const queryString = `${paramsString.length ? "?" : ""}${paramsString}`
-
-  return `${pathname}${queryString}`
+  const queryString = params.toString()
+  return queryString ? `${pathname}?${queryString}` : pathname
 }
 
 export const formatCurrency = (amount: number, currency: string = "USD") => {
@@ -54,5 +52,28 @@ export function absoluteUrl(path: string) {
 export const setCSSVariable = (name: string, value: string) => {
   if (typeof window !== "undefined" && window?.document?.documentElement) {
     window.document.documentElement.style.setProperty(name, value)
+  }
+}
+
+export async function convertImageUrlToDataUrl(
+  imageUrl: string
+): Promise<string | null> {
+  try {
+    const response = await fetch(imageUrl)
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image: ${response.statusText}`)
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    const base64 = Buffer.from(arrayBuffer).toString("base64")
+    const contentType =
+      response.headers.get("content-type") || "application/octet-stream"
+    const dataUrl = `data:${contentType};base64,${base64}`
+
+    return dataUrl
+  } catch (error) {
+    console.error("Error converting image URL to data URL:", error)
+    return null
   }
 }

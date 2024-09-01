@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
-import { setCSSVariable } from "@/app/lib/utils"
+import { CAR_LOGO_WIDTH, CLONE_SETS_COUNT } from "@/app/lib/constants"
+import { cn, setCSSVariable } from "@/app/lib/utils"
 
 import { AudiIcon } from "./car-logos/audi"
 import { BMWIcon } from "./car-logos/bmw"
@@ -20,9 +21,6 @@ import { TeslaIcon } from "./car-logos/tesla"
 import { ToyotaIcon } from "./car-logos/toyota"
 import { VolkswagenIcon } from "./car-logos/volkswagen"
 import { VolvoIcon } from "./car-logos/volvo"
-
-const LOGO_WIDTH = "120px"
-const TOTAL_SETS_TO_CLONE = 2
 
 interface LogoData {
   id: string
@@ -52,10 +50,10 @@ const initialLogos: LogoData[] = Object.entries(logoIcons).map(
   ([id, icon]) => ({ id, icon })
 )
 
-function generateClonedLogos(logos: LogoData[], totalSets: number): LogoData[] {
-  return Array.from({ length: totalSets }).flatMap((_, set) =>
+function createClonedLogos(logos: LogoData[], totalClones: number): LogoData[] {
+  return Array.from({ length: totalClones }).flatMap((_, index) =>
     logos.map(({ id, icon }) => ({
-      id: `${id}-clone-${set + 1}`,
+      id: `${id}-clone-${index + 1}`,
       icon,
     }))
   )
@@ -71,18 +69,18 @@ export function LogoSlider() {
 
     if (logoList) {
       const totalLogos = initialLogos.length
-      setCSSVariable(
-        "--slider-total-sets",
-        (TOTAL_SETS_TO_CLONE + 1).toString()
-      )
+
+      // IMPORTANT: This CSS Variable is used for the animate-slider keyframes
+      setCSSVariable("--slider-total-clones", (CLONE_SETS_COUNT + 1).toString())
+
       setCSSVariable("--slider-total-logos", totalLogos.toString())
-      setCSSVariable("--slider-logo-width", LOGO_WIDTH)
+      setCSSVariable("--slider-logo-width", CAR_LOGO_WIDTH)
       setCSSVariable(
         "--slider-total-logo-width",
-        `calc(var(--slider-total-logos) * var(--slider-logo-width) * (${TOTAL_SETS_TO_CLONE} + 1))`
+        `calc(var(--slider-total-logos) * var(--slider-logo-width) * (var(--slider-total-clones)))`
       )
 
-      setClonedLogos(generateClonedLogos(initialLogos, TOTAL_SETS_TO_CLONE))
+      setClonedLogos(createClonedLogos(initialLogos, CLONE_SETS_COUNT))
       setIsVisible(true)
     }
   }, [])
@@ -90,21 +88,14 @@ export function LogoSlider() {
   return (
     <div ref={logosListRef} className="animate-slider">
       <div
-        className={`grayscale transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"} flex w-[var(--slider-total-logo-width)] items-center`}
+        className={cn(
+          "flex w-[var(--slider-total-logo-width)] items-center grayscale transition-opacity duration-300",
+          isVisible ? "opacity-100" : "opacity-0"
+        )}
       >
-        {initialLogos.map(({ id, icon }) => (
+        {initialLogos.concat(clonedLogos).map(({ id, icon }) => (
           <div
             key={id}
-            id={id}
-            className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
-          >
-            {icon}
-          </div>
-        ))}
-        {clonedLogos.map(({ id, icon }) => (
-          <div
-            key={id}
-            id={id}
             className="mx-5 inline-flex w-[var(--slider-logo-width)] items-center justify-center"
           >
             {icon}

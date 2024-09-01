@@ -1,7 +1,9 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getCarBySlug, getCars } from "@/db/queries"
+import { getCldImageUrl } from "next-cloudinary"
 
+import CldImage from "@/app/components/cld-image"
 import { CheckIcon } from "@/app/components/icons/check"
 import { FilledStarIcon } from "@/app/components/icons/filled-star"
 import { HeadsetIcon } from "@/app/components/icons/headset"
@@ -9,21 +11,17 @@ import { KidIcon } from "@/app/components/icons/kid"
 import { NavigationIcon } from "@/app/components/icons/navigation"
 import { WifiIcon } from "@/app/components/icons/wifi"
 import { Separator } from "@/app/components/ui/separator"
+import { convertImageUrlToDataUrl } from "@/app/lib/utils"
 
 import { ReserveCard } from "./components/reserve-card"
 
 export async function generateMetadata({
   params,
 }: CarDetailsPageProps): Promise<Metadata> {
-  // read route params
   const slug = params.slug
-
-  // fetch data
   const car = await getCarBySlug(slug)
 
-  if (!car) {
-    return {}
-  }
+  if (!car) return {}
 
   return {
     title: car.name,
@@ -47,22 +45,119 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
     notFound()
   }
 
+  const carInteriorUrl = getCldImageUrl({
+    src: "carhive/cars/car-interior_d6nmyn",
+    width: 100, // Resize the original file to a smaller size
+  })
+  const carDoorPanelUrl = getCldImageUrl({
+    src: "carhive/cars/car-door-panel_puxkbc",
+    width: 50,
+  })
+  const carSeatUrl = getCldImageUrl({
+    src: "carhive/cars/car-seat_rnzgv6",
+    width: 50,
+  })
+
+  const [carInteriorDataUrl, carDoorPanelDataUrl, carSeatDataUrl] =
+    await Promise.all([
+      convertImageUrlToDataUrl(carInteriorUrl),
+      convertImageUrlToDataUrl(carDoorPanelUrl),
+      convertImageUrlToDataUrl(carSeatUrl),
+    ])
+
   return (
     <main
+      className="[--content-padding-y:32px] [--reserve-card-width:370px] md:[--content-padding-y:56px]"
       style={
         {
-          "--content-padding-y": "56px",
-          "--reserve-card-width": "370px",
           "--reserve-card-top-offset":
             "calc(var(--site-header-height) + var(--content-padding-y)",
         } as React.CSSProperties
       }
     >
+      <div className="mx-auto w-full max-w-none p-0 md:max-w-[90%] xl:max-w-6xl">
+        <div className="hidden md:block md:pt-8">
+          <h1 className="text-balance text-2xl font-semibold">{car.name}</h1>
+        </div>
+        <div className="md:pt-4">
+          <div className="grid h-80 grid-cols-1 grid-rows-1 gap-3 md:h-[34rem] md:grid-cols-4 md:grid-rows-2">
+            <div className="relative overflow-hidden md:col-span-3 md:row-span-2 md:rounded-l-2xl">
+              {carInteriorDataUrl ? (
+                <CldImage
+                  src={`carhive/cars/car-interior_d6nmyn`}
+                  alt="car interior"
+                  priority
+                  fill
+                  sizes="66vw"
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={carInteriorDataUrl}
+                />
+              ) : (
+                <CldImage
+                  src={`carhive/cars/car-interior_d6nmyn`}
+                  alt="car interior"
+                  priority
+                  fill
+                  sizes="66vw"
+                  className="object-cover"
+                />
+              )}
+            </div>
+            <div className="relative col-span-1 row-span-1 hidden overflow-hidden rounded-tr-2xl md:block">
+              {carDoorPanelDataUrl ? (
+                <CldImage
+                  src={`carhive/cars/car-door-panel_puxkbc`}
+                  alt="car door panel"
+                  priority
+                  fill
+                  sizes="33vw"
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={carDoorPanelDataUrl}
+                />
+              ) : (
+                <CldImage
+                  src={`carhive/cars/car-door-panel_puxkbc`}
+                  alt="car door panel"
+                  priority
+                  fill
+                  sizes="33vw"
+                  className="object-cover"
+                />
+              )}
+            </div>
+            <div className="relative col-span-1 row-span-1 hidden overflow-hidden rounded-br-2xl md:block">
+              {carSeatDataUrl ? (
+                <CldImage
+                  src={`carhive/cars/car-seat_rnzgv6`}
+                  alt="car seat"
+                  priority
+                  fill
+                  sizes="33vw"
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={carSeatDataUrl}
+                />
+              ) : (
+                <CldImage
+                  src={`carhive/cars/car-seat_rnzgv6`}
+                  alt="car seat"
+                  priority
+                  fill
+                  sizes="33vw"
+                  className="object-cover"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="py-[var(--content-padding-y)]">
         <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
           <div className="grid w-full grid-cols-1 gap-24 md:grid-cols-[1fr_auto]">
             <div className="text-balance">
-              <h1 className="text-lg font-semibold lg:text-xl">{car.name}</h1>
+              <h1 className="text-2xl font-semibold md:hidden">{car.name}</h1>
               <div className="flex flex-wrap items-center gap-1 text-[13px] capitalize text-neutral-800 lg:text-[15px]">
                 <span>{car.seats} seats</span>
                 <span className="text-xl">·</span>

@@ -4,7 +4,7 @@ import { SignedIn, SignedOut, SignIn } from "@clerk/nextjs"
 import { differenceInDays } from "date-fns"
 
 import { siteConfig } from "@/config/site"
-import { CloudinaryImage } from "@/app/components/cloudinary-image"
+import CldImage from "@/app/components/cld-image"
 import { CarhiveLogo } from "@/app/components/icons/carhive-logo"
 import { FilledStarIcon } from "@/app/components/icons/filled-star"
 import { Button } from "@/app/components/ui/button"
@@ -162,7 +162,7 @@ export default async function ReservationPage({
             <div className="mb-10 mt-4 normal-nums md:mb-20 md:mt-0">
               <div className="sticky top-[calc(var(--site-header-height)_+_160px)] rounded-xl md:border md:p-6">
                 <div className="flex flex-row gap-x-5">
-                  <CloudinaryImage
+                  <CldImage
                     src={car.image_url}
                     alt={car.name}
                     className="h-[36px] w-[64px] shrink-0 grow-0"

@@ -25,7 +25,7 @@ module.exports = {
         slider: {
           "0%": { transform: "translateX(0)" },
           "100%": {
-            transform: "translateX(calc(-100% / var(--slider-total-sets)))",
+            transform: "translateX(calc(-100% / var(--slider-total-clones)))",
           },
         },
         "dot-pulse-before": {

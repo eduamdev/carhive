@@ -113,6 +113,7 @@ export function PopularDestinations() {
                       fill
                       sizes="(max-width: 550px) 50vw, (max-width: 950px) 33.33vw, 20vw"
                       className="rounded-xl object-cover transition-opacity group-hover:opacity-70"
+                      placeholder="blur"
                     />
                   </div>
                   <div className="pt-3 sm:pt-3.5">

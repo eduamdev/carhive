@@ -23,7 +23,7 @@ import {
 } from "@/app/components/ui/popover"
 import { Separator } from "@/app/components/ui/separator"
 import { SearchParams } from "@/app/lib/types"
-import { createUrl, formatCurrency } from "@/app/lib/utils"
+import { buildUrlWithQueryParams, formatCurrency } from "@/app/lib/utils"
 
 const FormSchema = z
   .object({
@@ -69,7 +69,7 @@ export function ReservationForm({
     newParams.set(SearchParams.CHECKOUT, checkout.toISOString())
 
     console.log({ location, checkin, checkout })
-    push(createUrl("/reservation", newParams))
+    push(buildUrlWithQueryParams("/reservation", newParams))
   }
 
   const calculateTotal = useCallback(() => {

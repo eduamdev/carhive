@@ -102,6 +102,7 @@ export function BrowseCarTypes() {
                           fill
                           sizes="(max-width: 550px) 50vw, (max-width: 950px) 33vw, (max-width: 1280px) 25vw, 20vw"
                           className="rounded-xl object-cover"
+                          placeholder="blur"
                         />
                       </div>
                     </CarouselItem>

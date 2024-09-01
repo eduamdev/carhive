@@ -1,6 +1,6 @@
 import { Car } from "@/db/definitions"
 
-import { CloudinaryImage } from "@/app/components/cloudinary-image"
+import CldImage from "@/app/components/cld-image"
 import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
 import { BatteryAutomotiveIcon } from "@/app/components/icons/battery-automotive"
 import { EngineIcon } from "@/app/components/icons/engine"
@@ -34,7 +34,7 @@ export async function CarCard({ car }: CarCardProps) {
   return (
     <article className="overflow-hidden rounded-[10px] border border-black/[0.08] bg-white text-sm shadow-sm">
       <div className="relative aspect-video h-40 w-full">
-        <CloudinaryImage
+        <CldImage
           src={image_url}
           alt={name}
           fill

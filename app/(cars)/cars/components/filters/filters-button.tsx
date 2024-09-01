@@ -7,7 +7,7 @@ import { FiltersIcon } from "@/app/components/icons/filters"
 import { ResponsiveModal } from "@/app/components/responsive-modal"
 import { Badge } from "@/app/components/ui/badge"
 import { Button } from "@/app/components/ui/button"
-import { createUrl } from "@/app/lib/utils"
+import { buildUrlWithQueryParams } from "@/app/lib/utils"
 
 import { FiltersContent } from "./filters-content"
 import {
@@ -67,7 +67,7 @@ export function FiltersButton({
       initialMinPrice,
       initialMaxPrice
     )
-    router.push(createUrl("/cars", newParams))
+    router.push(buildUrlWithQueryParams("/cars", newParams))
     setIsModalOpen(false)
   }, [searchParams, selectedFilters, initialMinPrice, initialMaxPrice, router])
 
