@@ -19,12 +19,6 @@
     --cars-header-height: 140px;
     --cars-main-content-height: calc(100dvh - var(--cars-header-height));
 
-    --car-page-main-content-padding-y: 32px;
-    --card-reserve-width: 370px;
-    --card-reserve-top-offset: calc(
-      var(--site-header-height) + var(--car-page-main-content-padding-y)
-    );
-
     --modal-max-width: 568px;
     --modal-header-height: 64px;
     --modal-footer-height: 80px;
