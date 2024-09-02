@@ -1,5 +1,5 @@
 export enum SearchParams {
-  CAR_SLUG = "car-slug",
+  CAR = "car",
   LOCATION = "location",
   LAT = "lat",
   LNG = "lng",

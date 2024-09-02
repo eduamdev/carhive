@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Car } from "@/db/definitions"
 import { addDays, differenceInDays, format, isBefore, parseISO } from "date-fns"
 import { DateRange } from "react-day-picker"
@@ -14,15 +14,16 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
 import { SearchParams } from "@/app/lib/types"
-import { cn, formatCurrency } from "@/app/lib/utils"
+import { buildUrlWithQueryParams, cn, formatCurrency } from "@/app/lib/utils"
 
 interface ReserveCardProps {
   car: Car
 }
 
 export function ReserveCard({ car }: ReserveCardProps) {
-  const [date, setDate] = useState<DateRange | undefined>(undefined)
+  const { push } = useRouter()
   const searchParams = useSearchParams()
+  const [date, setDate] = useState<DateRange | undefined>(undefined)
 
   useEffect(() => {
     const checkinParam = searchParams.get(SearchParams.CHECKIN)
@@ -52,6 +53,20 @@ export function ReserveCard({ car }: ReserveCardProps) {
       setDate(undefined)
     }
   }, [searchParams])
+
+  const handleClick = () => {
+    const newParams = new URLSearchParams(searchParams.toString())
+
+    newParams.set(SearchParams.CAR, car.slug)
+    if (date?.from) {
+      newParams.set(SearchParams.CHECKIN, date?.from.toISOString())
+    }
+    if (date?.to) {
+      newParams.set(SearchParams.CHECKOUT, date?.to.toISOString())
+    }
+
+    push(buildUrlWithQueryParams("/reservation", newParams))
+  }
 
   return (
     <div className="rounded-xl border shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
@@ -132,6 +147,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
             size={"lg"}
             className="w-full text-[15px]"
             disabled={date?.from === undefined || date?.to === undefined}
+            onClick={handleClick}
           >
             Reserve
           </Button>
