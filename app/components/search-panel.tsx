@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Location } from "@/db/definitions"
-import { addDays, format } from "date-fns"
+import { addDays, format, isBefore } from "date-fns"
 
 import { CheckIcon } from "@/app/components/icons/check"
 import { SearchIcon } from "@/app/components/icons/search"
@@ -49,8 +49,21 @@ export function SearchPanel({
     const checkoutParam = searchParams.get(SearchParams.CHECKOUT)
 
     if (locationParam) setLocation(locationParam)
-    if (checkinParam) setCheckInDate(new Date(checkinParam))
-    if (checkoutParam) setCheckOutDate(new Date(checkoutParam))
+
+    const checkInDate = checkinParam ? new Date(checkinParam) : undefined
+    const checkOutDate = checkoutParam ? new Date(checkoutParam) : undefined
+
+    if (checkInDate && checkOutDate) {
+      // Only set the dates if the check-in date is before the check-out date
+      if (isBefore(checkInDate, checkOutDate)) {
+        setCheckInDate(checkInDate)
+        setCheckOutDate(checkOutDate)
+      }
+    } else {
+      // Set individual dates if they exist
+      if (checkInDate) setCheckInDate(checkInDate)
+      if (checkOutDate) setCheckOutDate(checkOutDate)
+    }
 
     return () => {
       setLocation("")

@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Car } from "@/db/definitions"
-import { addDays, differenceInDays, format } from "date-fns"
+import { addDays, differenceInDays, format, isBefore, parseISO } from "date-fns"
 import { DateRange } from "react-day-picker"
 
 import { Button } from "@/app/components/ui/button"
@@ -12,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui/popover"
+import { SearchParams } from "@/app/lib/types"
 import { cn, formatCurrency } from "@/app/lib/utils"
 
 interface ReserveCardProps {
@@ -20,6 +22,36 @@ interface ReserveCardProps {
 
 export function ReserveCard({ car }: ReserveCardProps) {
   const [date, setDate] = useState<DateRange | undefined>(undefined)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const checkinParam = searchParams.get(SearchParams.CHECKIN)
+    const checkoutParam = searchParams.get(SearchParams.CHECKOUT)
+
+    const checkinDate = checkinParam ? parseISO(checkinParam) : undefined
+    const checkoutDate = checkoutParam ? parseISO(checkoutParam) : undefined
+
+    if (checkinDate && checkoutDate) {
+      // Ensure check-in date is before the check-out date
+      if (isBefore(checkinDate, checkoutDate)) {
+        setDate({ from: checkinDate, to: checkoutDate })
+      } else {
+        setDate(undefined)
+      }
+    } else if (checkinDate || checkoutDate) {
+      // Set date if only one is provided
+      setDate({
+        from: checkinDate,
+        to: checkoutDate,
+      })
+    } else {
+      setDate(undefined) // No valid dates provided, reset date
+    }
+
+    return () => {
+      setDate(undefined)
+    }
+  }, [searchParams])
 
   return (
     <div className="rounded-xl border shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
