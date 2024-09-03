@@ -120,7 +120,7 @@ export function SearchPanel({
             <div className="relative h-full">
               <Separator
                 orientation="vertical"
-                className="absolute inset-y-0 right-0 m-auto h-7 shrink-0"
+                className="absolute inset-y-0 right-0 m-auto h-6 shrink-0"
               />
               <div className="flex size-full items-center justify-center px-0">
                 <Popover open={open} onOpenChange={setOpen}>
@@ -129,7 +129,7 @@ export function SearchPanel({
                       variant="ghost"
                       role="combobox"
                       aria-expanded={open}
-                      className="mr-1 size-full flex-col overflow-hidden rounded-full border-none px-5 py-0"
+                      className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0 focus-visible:z-10"
                     >
                       <div className="flex size-full items-center justify-between">
                         <div className="flex size-full flex-col items-start justify-center truncate">
@@ -201,14 +201,14 @@ export function SearchPanel({
             <div className="relative h-full">
               <Separator
                 orientation="vertical"
-                className="absolute inset-y-0 right-0 m-auto h-7 shrink-0"
+                className="absolute inset-y-0 right-0 m-auto h-6 shrink-0"
               />
               <div className="flex size-full items-center justify-center px-0">
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       variant={"ghost"}
-                      className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0"
+                      className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0 focus-visible:z-10"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
                         <div
@@ -249,7 +249,7 @@ export function SearchPanel({
                   <PopoverTrigger asChild>
                     <Button
                       variant={"ghost"}
-                      className="ml-1 size-full flex-col overflow-hidden rounded-full border-none py-0 pl-5 pr-16"
+                      className="size-full flex-col overflow-hidden rounded-full border-none py-0 pl-5 pr-16 focus-visible:z-10"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
                         <div
@@ -285,7 +285,7 @@ export function SearchPanel({
               </div>
             </div>
           </div>
-          <div className="absolute right-2 ">
+          <div className="absolute right-2 z-20">
             <Button
               type="submit"
               className={cn(

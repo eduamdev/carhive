@@ -49,7 +49,7 @@ export function Map() {
 
   return (
     <MapContainer
-      className="h-[var(--cars-main-content-height)]"
+      className="h-[calc(100dvh_-_var(--site-header-height))]"
       center={[0, 0]}
       zoom={MAP_INITIAL_ZOOM_LEVEL}
       ref={mapRef}

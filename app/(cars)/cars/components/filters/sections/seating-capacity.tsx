@@ -48,7 +48,7 @@ export function SeatingCapacityFilters({
             onClick={handleMinusClick}
             variant={"outline"}
             size={"icon"}
-            className="shrink-0 rounded-full hover:border-black hover:bg-neutral-50"
+            className="shrink-0 hover:border-black hover:bg-neutral-50"
             disabled={counter <= 0}
           >
             <MinusIcon className="inline size-4 shrink-0" />
@@ -66,7 +66,7 @@ export function SeatingCapacityFilters({
             onClick={handlePlusClick}
             variant={"outline"}
             size={"icon"}
-            className="shrink-0 rounded-full hover:border-black hover:bg-neutral-50"
+            className="shrink-0 hover:border-black hover:bg-neutral-50"
             disabled={counter >= 7}
           >
             <PlusIcon className="inline size-4 shrink-0" />

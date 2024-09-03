@@ -16,9 +16,6 @@
     --compact-search-panel-height: 55px;
     --compact-search-panel-width: 640px;
 
-    --cars-header-height: 140px;
-    --cars-main-content-height: calc(100dvh - var(--cars-header-height));
-
     --modal-max-width: 568px;
     --modal-header-height: 64px;
     --modal-footer-height: 80px;

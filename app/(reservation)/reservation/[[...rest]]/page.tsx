@@ -53,7 +53,7 @@ export default async function ReservationPage({
           <header className="sticky top-0 z-40 border-b border-black/10 bg-white">
             <div className="px-5">
               <div className="relative flex h-[var(--site-header-height)] items-center">
-                <BackButton className="-ml-2 rounded-full">
+                <BackButton className="-ml-2">
                   <ChevronLeftIcon className="size-5 shrink-0" />
                 </BackButton>
                 <div className="absolute inset-0 flex items-center justify-center self-center ">
@@ -120,7 +120,7 @@ export default async function ReservationPage({
           <div className="px-5 py-16">
             <div className="mx-auto sm:max-w-[90%] sm:px-0 xl:max-w-6xl">
               <div className="flex items-center">
-                <BackButton className="-ml-12 mr-2 inline-flex size-10 rounded-full">
+                <BackButton className="-ml-12 mr-2">
                   <ChevronLeftIcon className="size-5 shrink-0" />
                 </BackButton>
                 <h1 className="text-balance text-3xl font-semibold">

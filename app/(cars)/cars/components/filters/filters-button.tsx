@@ -1,6 +1,13 @@
 "use client"
 
-import { useCallback, useMemo, useState } from "react"
+import {
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  useCallback,
+  useMemo,
+  useState,
+} from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 import { FiltersIcon } from "@/app/components/icons/filters"
@@ -20,11 +27,13 @@ import { SelectedFilters } from "./types"
 interface FiltersButtonProps {
   initialMinPrice: number
   initialMaxPrice: number
+  trigger?: React.ReactNode
 }
 
 export function FiltersButton({
   initialMinPrice,
   initialMaxPrice,
+  trigger,
 }: FiltersButtonProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -71,26 +80,50 @@ export function FiltersButton({
     setIsModalOpen(false)
   }, [searchParams, selectedFilters, initialMinPrice, initialMaxPrice, router])
 
+  const triggerWithBadge = useMemo(() => {
+    const badge = totalSelectedFilters > 0 && (
+      <Badge variant="counter" className="absolute -right-2 -top-2">
+        {totalSelectedFilters}
+      </Badge>
+    )
+
+    if (isValidElement(trigger)) {
+      return cloneElement(
+        trigger as ReactElement<{
+          className?: string
+          children?: React.ReactNode
+        }>,
+        {
+          className: `${trigger.props.className || ""} relative`, // Ensure it's positioned correctly for the badge
+          children: (
+            <>
+              {trigger.props.children}
+              {badge}
+            </>
+          ),
+        }
+      )
+    }
+
+    return (
+      <Button
+        variant="outline"
+        className="relative flex h-[46px] items-center justify-center gap-x-2.5 rounded-[10px] px-4 text-[13px]"
+      >
+        <FiltersIcon className="size-5" />
+        <span>Filters</span>
+        {badge}
+      </Button>
+    )
+  }, [trigger, totalSelectedFilters])
+
   return (
     <ResponsiveModal
       open={isModalOpen}
       onOpenChange={setIsModalOpen}
       title="Filters"
       description="Refine your search by adjusting the filters below to find your perfect match."
-      trigger={
-        <Button
-          variant="outline"
-          className="flex items-center justify-center gap-x-2.5"
-        >
-          <FiltersIcon className="size-[18px]" />
-          <span>Filters</span>
-          {totalSelectedFilters > 0 && (
-            <Badge variant={"counter"} className="absolute -right-2 -top-2">
-              {totalSelectedFilters}
-            </Badge>
-          )}
-        </Button>
-      }
+      trigger={triggerWithBadge}
       footer={
         <div className="flex w-full items-center justify-between gap-x-2">
           <ResetFiltersButton onReset={handleFiltersReset} />
