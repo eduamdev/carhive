@@ -2,7 +2,7 @@ import { Skeleton } from "@/app/components/ui/skeleton"
 
 export default function Loading() {
   return (
-    <main
+    <div
       className="h-dvh [--content-padding-y:32px] [--reserve-card-width:370px] md:[--content-padding-y:56px]"
       style={
         {
@@ -54,6 +54,6 @@ export default function Loading() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

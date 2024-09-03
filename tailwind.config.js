@@ -28,27 +28,20 @@ module.exports = {
             transform: "translateX(calc(-100% / var(--slider-total-clones)))",
           },
         },
-        "dot-pulse-before": {
-          "0%": { boxShadow: "9984px 0 0 -5px" },
-          "30%": { boxShadow: "9984px 0 0 2px" },
-          "60%,100%": { boxShadow: "9984px 0 0 -5px" },
-        },
         "dot-pulse": {
-          "0%": { boxShadow: "9999px 0 0 -5px" },
-          "30%": { boxShadow: "9999px 0 0 2px" },
-          "60%,100%": { boxShadow: "9999px 0 0 -5px" },
-        },
-        "dot-pulse-after": {
-          "0%": { boxShadow: "10014px 0 0 -5px" },
-          "30%": { boxShadow: "10014px 0 0 2px" },
-          "60%,100%": { boxShadow: "10014px 0 0 -5px" },
+          "0%,100%": {
+            transform: "Scale(1)",
+            opacity: 1,
+          },
+          "50%": {
+            transform: "scale(1.25)",
+            opacity: 0.3,
+          },
         },
       },
       animation: {
         slider: "slider 56s linear infinite",
-        "dot-pulse-before": "dot-pulse-before 1.5s infinite linear",
-        "dot-pulse": "dot-pulse 1.5s infinite linear",
-        "dot-pulse-after": "dot-pulse-after 1.5s infinite linear",
+        "dot-pulse": "dot-pulse 1s infinite ease-in-out",
       },
     },
   },
