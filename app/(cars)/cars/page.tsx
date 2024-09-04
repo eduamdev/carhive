@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: "Cars",
 }
 
-export default function CarsPage({
+export default async function CarsPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }

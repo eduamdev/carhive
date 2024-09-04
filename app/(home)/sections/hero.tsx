@@ -5,7 +5,7 @@ import { SearchPanelSkeleton } from "@/app/components/skeletons/search-panel"
 
 import { LogoSlider } from "../components/logo-slider"
 
-export function Hero() {
+export async function Hero() {
   return (
     <section className="bg-gradient-to-b from-white to-neutral-50">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
