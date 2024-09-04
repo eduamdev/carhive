@@ -15,16 +15,10 @@ import Filters from "./components/filters/filters-wrapper"
 import { CarCardSkeleton } from "./components/skeletons/car-card"
 import { MapSkeleton } from "./components/skeletons/map"
 
-const DynamicMap = dynamic(
-  async () => {
-    const { Map } = await import("./components/map")
-    return { default: Map }
-  },
-  {
-    loading: () => <MapSkeleton />,
-    ssr: false,
-  }
-)
+const DynamicMap = dynamic(() => import("./components/map"), {
+  loading: () => <MapSkeleton />,
+  ssr: false,
+})
 
 export const metadata: Metadata = {
   title: "Cars",
@@ -71,7 +65,7 @@ export default function CarsPage({
             </div>
             <div className="flex h-[calc(var(--site-header-height)_-_45px)] items-center justify-between gap-x-6 lg:grid lg:grid-cols-[auto_minmax(800px,860px)_auto]">
               <div className="hidden w-[110px] lg:block"></div>
-              <div className="flex w-full items-center justify-center [--search-panel-height:64px]">
+              <div className="flex w-full items-center justify-center [--search-panel-height:64px] xl:[--search-panel-height:68px]">
                 <Suspense fallback={<SearchPanelSkeleton />}>
                   <SearchPanelWrapper />
                 </Suspense>
