@@ -12,9 +12,6 @@
     --site-header-height: 60px;
 
     --search-panel-height: 68px;
-    --search-panel-width: 860px;
-    --compact-search-panel-height: 55px;
-    --compact-search-panel-width: 640px;
   }
 
   @media (prefers-reduced-motion: no-preference) {

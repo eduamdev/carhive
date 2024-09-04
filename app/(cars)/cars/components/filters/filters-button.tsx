@@ -14,7 +14,7 @@ import { FiltersIcon } from "@/app/components/icons/filters"
 import { ResponsiveModal } from "@/app/components/responsive-modal"
 import { Badge } from "@/app/components/ui/badge"
 import { Button } from "@/app/components/ui/button"
-import { buildUrlWithQueryParams } from "@/app/lib/utils"
+import { buildUrlWithQueryParams, cn } from "@/app/lib/utils"
 
 import { FiltersContent } from "./filters-content"
 import {
@@ -108,7 +108,10 @@ export function FiltersButton({
     return (
       <Button
         variant="outline"
-        className="relative flex h-[46px] items-center justify-center gap-x-2.5 rounded-[10px] px-4 text-[13px]"
+        className={cn(
+          "relative flex h-[46px] items-center justify-center gap-x-2.5 rounded-[10px] px-4 text-[13px] transition-shadow",
+          totalSelectedFilters > 0 && "ring-2 ring-black "
+        )}
       >
         <FiltersIcon className="size-5" />
         <span>Filters</span>

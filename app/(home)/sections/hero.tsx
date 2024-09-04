@@ -1,9 +1,9 @@
 import { Suspense } from "react"
 
 import { SearchPanelWrapper } from "@/app/components/search-panel-wrapper"
+import { SearchPanelSkeleton } from "@/app/components/skeletons/search-panel"
 
 import { LogoSlider } from "../components/logo-slider"
-import { SearchPanelSkeleton } from "../components/skeletons/search-panel"
 
 export function Hero() {
   return (
@@ -16,9 +16,11 @@ export function Hero() {
           <div className="hidden md:block">
             <div className="pt-10">
               <div className="flex items-center justify-center">
-                <Suspense fallback={<SearchPanelSkeleton />}>
-                  <SearchPanelWrapper />
-                </Suspense>
+                <div className="w-[860px]">
+                  <Suspense fallback={<SearchPanelSkeleton />}>
+                    <SearchPanelWrapper />
+                  </Suspense>
+                </div>
               </div>
             </div>
           </div>

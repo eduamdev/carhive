@@ -27,13 +27,7 @@ import { Separator } from "@/app/components/ui/separator"
 import { SearchParams } from "@/app/lib/types"
 import { buildUrlWithQueryParams, cn } from "@/app/lib/utils"
 
-export function SearchPanel({
-  locations,
-  compact = false,
-}: {
-  locations: Location[]
-  compact?: boolean
-}) {
+export function SearchPanel({ locations }: { locations: Location[] }) {
   const { push } = useRouter()
   const searchParams = useSearchParams()
 
@@ -106,16 +100,9 @@ export function SearchPanel({
   }
 
   return (
-    <form onSubmit={submitForm}>
-      <div className="whitespace-nowrap rounded-full border border-black/10 bg-white text-black transition-shadow hover:shadow hover:shadow-neutral-900/[0.05]">
-        <div
-          className={cn(
-            "relative grid grid-cols-1 items-center",
-            compact
-              ? "h-[--compact-search-panel-height] w-[--compact-search-panel-width]"
-              : "h-[var(--search-panel-height)] w-[--search-panel-width]"
-          )}
-        >
+    <form onSubmit={submitForm} className="w-full">
+      <div className="whitespace-nowrap rounded-full border border-black/10 bg-white text-black shadow-lg shadow-neutral-900/5 transition-shadow hover:shadow hover:shadow-neutral-900/5">
+        <div className="relative grid h-[var(--search-panel-height)] w-full grid-cols-1 items-center">
           <div className="grid h-full grid-cols-[33.333333%_33.333333%_33.333333%] items-center justify-center">
             <div className="relative h-full">
               <Separator
@@ -133,12 +120,7 @@ export function SearchPanel({
                     >
                       <div className="flex size-full items-center justify-between">
                         <div className="flex size-full flex-col items-start justify-center truncate">
-                          <div
-                            className={cn(
-                              "font-bold",
-                              compact ? "text-[12px]" : "text-[13px]"
-                            )}
-                          >
+                          <div className="text-[13px] font-bold">
                             Pick-up / Drop-off
                           </div>
                           {location ? (
@@ -154,12 +136,7 @@ export function SearchPanel({
                             </div>
                           )}
                         </div>
-                        <SelectorIcon
-                          className={cn(
-                            "-mr-2 ml-2  shrink-0 opacity-50",
-                            compact ? "size-4" : "size-5"
-                          )}
-                        />
+                        <SelectorIcon className="-mr-2 ml-2  size-5 shrink-0 opacity-50" />
                       </div>
                     </Button>
                   </PopoverTrigger>
@@ -211,14 +188,7 @@ export function SearchPanel({
                       className="size-full flex-col overflow-hidden rounded-full border-none px-5 py-0 focus-visible:z-10"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
-                        <div
-                          className={cn(
-                            "font-bold",
-                            compact ? "text-[12px]" : "text-[13px]"
-                          )}
-                        >
-                          Check in
-                        </div>
+                        <div className="text-[13px] font-bold">Check in</div>
                         {checkInDate ? (
                           <div className="font-semibold text-neutral-800">
                             {format(checkInDate, "LLL dd, y")}
@@ -252,14 +222,7 @@ export function SearchPanel({
                       className="size-full flex-col overflow-hidden rounded-full border-none py-0 pl-5 pr-16 focus-visible:z-10"
                     >
                       <div className="flex size-full flex-col items-start justify-center truncate">
-                        <div
-                          className={cn(
-                            "font-bold",
-                            compact ? "text-[12px]" : "text-[13px]"
-                          )}
-                        >
-                          Check out
-                        </div>
+                        <div className="text-[13px] font-bold">Check out</div>
                         {checkOutDate ? (
                           <div className="font-semibold text-neutral-800">
                             {format(checkOutDate, "LLL dd, y")}
@@ -288,18 +251,10 @@ export function SearchPanel({
           <div className="absolute right-2 z-20">
             <Button
               type="submit"
-              className={cn(
-                "flex shrink-0 items-center justify-center rounded-full bg-black text-white",
-                compact ? "size-[2.3rem]" : "size-12"
-              )}
+              className="flex size-[calc(var(--search-panel-height)_-_1.25rem)] shrink-0 items-center justify-center rounded-full bg-black text-white"
             >
               <span className="sr-only">Search</span>
-              <SearchIcon
-                className={cn(
-                  " shrink-0 [stroke-width:3px]",
-                  compact ? "size-4" : "size-[18px]"
-                )}
-              />
+              <SearchIcon className="size-[calc((var(--search-panel-height)_-_1.25rem)/2.66)] shrink-0 [stroke-width:3px]" />
             </Button>
           </div>
         </div>

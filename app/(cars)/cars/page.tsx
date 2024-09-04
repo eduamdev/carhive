@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 import { FiltersIcon } from "@/app/components/icons/filters"
 import { LogoLink } from "@/app/components/logoLink"
 import { SearchPanelWrapper } from "@/app/components/search-panel-wrapper"
+import { SearchPanelSkeleton } from "@/app/components/skeletons/search-panel"
 import { Button } from "@/app/components/ui/button"
 import { Skeleton } from "@/app/components/ui/skeleton"
 import { UserMenuButton } from "@/app/components/user-menu-button"
@@ -12,7 +13,6 @@ import { UserMenuButton } from "@/app/components/user-menu-button"
 import CarCatalog from "./components/car-catalog"
 import Filters from "./components/filters/filters-wrapper"
 import { CarCardSkeleton } from "./components/skeletons/car-card"
-import { CompactSearchPanelSkeleton } from "./components/skeletons/compact-search-panel"
 import { MapSkeleton } from "./components/skeletons/map"
 
 const DynamicMap = dynamic(
@@ -36,7 +36,7 @@ export default function CarsPage({
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
   return (
-    <div className="[--site-header-height:100px] md:[--site-header-height:160px]">
+    <div className="[--site-header-height:100px] md:[--site-header-height:170px]">
       <header className="sticky top-0 z-40 h-[var(--site-header-height)] border-b border-black/10 bg-white">
         {/* Phone and Tablets */}
         <div className="h-full md:hidden">
@@ -65,19 +65,23 @@ export default function CarsPage({
         {/* Desktop */}
         <div className="hidden h-full md:block">
           <div className="mx-auto size-full px-6">
-            <div className="flex h-[60px] items-center justify-between">
+            <div className="flex h-[45px] items-end justify-between">
               <LogoLink />
               <UserMenuButton />
             </div>
-            <div className="grid h-[calc(var(--site-header-height)_-_60px)] grid-cols-[minmax(100px,auto)_1fr_minmax(100px,auto)] items-center justify-center gap-x-6">
-              <div></div>
-              <div className="flex items-center justify-center self-start">
-                <Suspense fallback={<CompactSearchPanelSkeleton />}>
-                  <SearchPanelWrapper compact />
+            <div className="flex h-[calc(var(--site-header-height)_-_45px)] items-center justify-between gap-x-6 lg:grid lg:grid-cols-[auto_minmax(800px,860px)_auto]">
+              <div className="hidden w-[110px] lg:block"></div>
+              <div className="flex w-full items-center justify-center [--search-panel-height:64px]">
+                <Suspense fallback={<SearchPanelSkeleton />}>
+                  <SearchPanelWrapper />
                 </Suspense>
               </div>
-              <div className="justify-self-end">
-                <Suspense fallback={<Skeleton className="h-10 w-20" />}>
+              <div className="flex w-[110px] shrink-0 grow-0 justify-end justify-self-end">
+                <Suspense
+                  fallback={
+                    <Skeleton className="h-11 w-[100px] rounded-[10px]" />
+                  }
+                >
                   <Filters />
                 </Suspense>
               </div>
