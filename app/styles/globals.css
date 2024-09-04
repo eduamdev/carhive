@@ -15,15 +15,6 @@
     --search-panel-width: 860px;
     --compact-search-panel-height: 55px;
     --compact-search-panel-width: 640px;
-
-    --modal-max-width: 568px;
-    --modal-header-height: 64px;
-    --modal-footer-height: 80px;
-    --modal-viewport-gap: 80px;
-    --modal-content-max-height: calc(
-      100dvh - var(--modal-header-height) - var(--modal-footer-height) -
-        var(--modal-viewport-gap)
-    );
   }
 
   @media (prefers-reduced-motion: no-preference) {

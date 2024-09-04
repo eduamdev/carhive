@@ -41,7 +41,7 @@ export function FiltersContent({
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <BodyStyleFilters
+        <TransmissionTypeFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
@@ -55,7 +55,7 @@ export function FiltersContent({
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <TransmissionTypeFilters
+        <BodyStyleFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />

@@ -125,7 +125,7 @@ export function FiltersButton({
       description="Refine your search by adjusting the filters below to find your perfect match."
       trigger={triggerWithBadge}
       footer={
-        <div className="flex w-full items-center justify-between gap-x-2">
+        <div className="flex w-full items-center justify-between gap-x-2 px-6">
           <ResetFiltersButton onReset={handleFiltersReset} />
           <ApplyFiltersButton onApply={handleFiltersApply} />
         </div>
@@ -143,7 +143,7 @@ export function FiltersButton({
 
 export function ApplyFiltersButton({ onApply }: { onApply: () => void }) {
   return (
-    <Button size="lg" className="text-[15px]" onClick={onApply}>
+    <Button size="lg" className="text-[16px]" onClick={onApply}>
       Show cars
     </Button>
   )
@@ -153,8 +153,7 @@ export function ResetFiltersButton({ onReset }: { onReset: () => void }) {
   return (
     <Button
       variant="ghost"
-      size={"lg"}
-      className="-ml-4 text-[15px]"
+      className="-ml-2.5 px-2.5 text-[16px]"
       onClick={onReset}
     >
       Clear all

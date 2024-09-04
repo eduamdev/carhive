@@ -46,7 +46,7 @@ export default async function ReservationPage({
 
   return (
     <>
-      {/* Small devices UI */}
+      {/* Phone and Tablets */}
       <div className="md:hidden">
         <div className="flex size-full flex-col">
           {/* header */}
@@ -109,7 +109,7 @@ export default async function ReservationPage({
         </div>
       </div>
 
-      {/* Tablets and Desktop UI */}
+      {/* Desktop */}
       <div className="hidden md:block">
         <header className="h-[var(--site-header-height)] w-full border-b border-black/10">
           <div className="flex h-full items-center px-5">

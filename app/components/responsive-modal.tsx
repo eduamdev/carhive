@@ -45,11 +45,9 @@ export function ResponsiveModal({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogTrigger className="relative" asChild>
-          {trigger}
-        </DialogTrigger>
-        <DialogContent className="max-w-[var(--modal-max-width)] gap-0 !rounded-xl p-0">
-          <DialogHeader className="flex min-h-[var(--modal-header-height)] items-center justify-center px-6">
+        <DialogTrigger asChild>{trigger}</DialogTrigger>
+        <DialogContent className="max-w-[568px] gap-0 !rounded-xl p-0">
+          <DialogHeader className="flex items-center justify-center border-b border-black/10 px-6 py-5">
             <DialogTitle className="text-center text-base tracking-normal">
               {title}
             </DialogTitle>
@@ -57,11 +55,9 @@ export function ResponsiveModal({
               {description}
             </DialogDescription>
           </DialogHeader>
-          <div className="h-full max-h-[var(--modal-content-max-height)] overflow-y-auto border-y">
-            {children}
-          </div>
+          <div className="h-full max-h-[73dvh] overflow-y-auto">{children}</div>
           {footer && (
-            <DialogFooter className="flex min-h-[var(--modal-footer-height)] items-center justify-center px-6">
+            <DialogFooter className="border-t border-black/10 py-[18px]">
               {footer}
             </DialogFooter>
           )}
@@ -74,14 +70,16 @@ export function ResponsiveModal({
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{title}</DrawerTitle>
+        <DrawerHeader className="py-3">
+          <DrawerTitle className="text-center">{title}</DrawerTitle>
           <DrawerDescription className="sr-only">
             {description}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="px-4">{children}</div>
-        {footer && <DrawerFooter>{footer}</DrawerFooter>}
+        <div className="h-full max-h-[80dvh] overflow-y-auto border-y">
+          {children}
+        </div>
+        {footer && <DrawerFooter className="px-0">{footer}</DrawerFooter>}
       </DrawerContent>
     </Drawer>
   )

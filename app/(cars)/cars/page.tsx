@@ -38,7 +38,7 @@ export default function CarsPage({
   return (
     <div className="[--site-header-height:100px] md:[--site-header-height:160px]">
       <header className="sticky top-0 z-40 h-[var(--site-header-height)] border-b border-black/10 bg-white">
-        {/* Small devices */}
+        {/* Phone and Tablets */}
         <div className="h-full md:hidden">
           <div className="h-full px-5 sm:px-6">
             <div className="grid h-full grid-cols-[1fr_40px] items-center justify-center gap-x-3">
@@ -62,7 +62,7 @@ export default function CarsPage({
           </div>
         </div>
 
-        {/* Tablet and desktop devices */}
+        {/* Desktop */}
         <div className="hidden h-full md:block">
           <div className="mx-auto size-full px-6">
             <div className="flex h-[60px] items-center justify-between">
