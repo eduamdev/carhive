@@ -11,7 +11,7 @@ import { KidIcon } from "@/app/components/icons/kid"
 import { NavigationIcon } from "@/app/components/icons/navigation"
 import { WifiIcon } from "@/app/components/icons/wifi"
 import { Separator } from "@/app/components/ui/separator"
-import { convertImageUrlToDataUrl } from "@/app/lib/utils"
+import { convertImageUrlToDataUrl } from "@/app/utils/convert-image-url-to-data-url"
 
 import { ReserveCard } from "./components/reserve-card"
 

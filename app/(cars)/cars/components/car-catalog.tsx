@@ -1,7 +1,7 @@
 import { getCars } from "@/db/queries"
 
 import { SearchParams } from "@/app/lib/types"
-import { slugify } from "@/app/lib/utils"
+import { slugify } from "@/app/utils/slugify"
 
 import { CarCard } from "./car-card"
 

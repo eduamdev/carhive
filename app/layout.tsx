@@ -7,9 +7,9 @@ import "./styles/globals.css"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/app/lib/fonts"
-import { absoluteUrl, cn } from "@/app/lib/utils"
 
 import { SiteFooter } from "./components/site-footer"
+import { absoluteUrl } from "./utils/absolute-url"
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),

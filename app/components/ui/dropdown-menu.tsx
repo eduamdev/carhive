@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
-import { cn } from "@/app/lib/utils"
+import { cn } from "@/app/utils/styles"
 
 import { CheckIcon } from "../icons/check"
 import { ChevronRightIcon } from "../icons/chevron-right"

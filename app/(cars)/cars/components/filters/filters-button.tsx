@@ -14,15 +14,14 @@ import { FiltersIcon } from "@/app/components/icons/filters"
 import { ResponsiveModal } from "@/app/components/responsive-modal"
 import { Badge } from "@/app/components/ui/badge"
 import { Button } from "@/app/components/ui/button"
-import { buildUrlWithQueryParams, cn } from "@/app/lib/utils"
+import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
+import { cn } from "@/app/utils/styles"
 
 import { FiltersContent } from "./filters-content"
-import {
-  calculateTotalFiltersFromParams,
-  getInitialFilters,
-  updateSearchParams,
-} from "./lib/utils"
 import { SelectedFilters } from "./types"
+import { applyFiltersToParams } from "./utils/apply-filters-to-params"
+import { countActiveFilters } from "./utils/count-active-filters"
+import { initializeFiltersFromParams } from "./utils/initialize-filters-from-params"
 
 interface FiltersButtonProps {
   initialMinPrice: number
@@ -40,7 +39,12 @@ export function FiltersButton({
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const initialFilters = useMemo(
-    () => getInitialFilters(searchParams, initialMinPrice, initialMaxPrice),
+    () =>
+      initializeFiltersFromParams(
+        searchParams,
+        initialMinPrice,
+        initialMaxPrice
+      ),
     [searchParams, initialMinPrice, initialMaxPrice]
   )
 
@@ -48,12 +52,7 @@ export function FiltersButton({
     useState<SelectedFilters>(initialFilters)
 
   const totalSelectedFilters = useMemo(
-    () =>
-      calculateTotalFiltersFromParams(
-        searchParams,
-        initialMinPrice,
-        initialMaxPrice
-      ),
+    () => countActiveFilters(searchParams, initialMinPrice, initialMaxPrice),
     [searchParams, initialMinPrice, initialMaxPrice]
   )
 
@@ -70,13 +69,13 @@ export function FiltersButton({
 
   const handleFiltersApply = useCallback(() => {
     const newParams = new URLSearchParams(searchParams.toString())
-    updateSearchParams(
+    applyFiltersToParams(
       newParams,
       selectedFilters,
       initialMinPrice,
       initialMaxPrice
     )
-    router.push(buildUrlWithQueryParams("/cars", newParams))
+    router.push(constructUrlWithParams("/cars", newParams))
     setIsModalOpen(false)
   }, [searchParams, selectedFilters, initialMinPrice, initialMaxPrice, router])
 

@@ -14,7 +14,9 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
 import { SearchParams } from "@/app/lib/types"
-import { buildUrlWithQueryParams, cn, formatCurrency } from "@/app/lib/utils"
+import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
+import { formatCurrency } from "@/app/utils/format-currency"
+import { cn } from "@/app/utils/styles"
 
 interface ReserveCardProps {
   car: Car
@@ -64,7 +66,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
       newParams.set(SearchParams.CHECKOUT, date?.to.toISOString())
     }
 
-    push(buildUrlWithQueryParams(`/reservation/cars/${car.id}`, newParams))
+    push(constructUrlWithParams(`/reservation/cars/${car.id}`, newParams))
   }
 
   return (

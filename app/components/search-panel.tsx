@@ -25,7 +25,9 @@ import {
 } from "@/app/components/ui/popover"
 import { Separator } from "@/app/components/ui/separator"
 import { SearchParams } from "@/app/lib/types"
-import { buildUrlWithQueryParams, cn } from "@/app/lib/utils"
+
+import { constructUrlWithParams } from "../utils/construct-url-with-params"
+import { cn } from "../utils/styles"
 
 export function SearchPanel({ locations }: { locations: Location[] }) {
   const { push } = useRouter()
@@ -96,7 +98,7 @@ export function SearchPanel({ locations }: { locations: Location[] }) {
     if (checkoutISOString)
       newParams.set(SearchParams.CHECKOUT, checkoutISOString)
 
-    push(buildUrlWithQueryParams("/cars", newParams))
+    push(constructUrlWithParams("/cars", newParams))
   }
 
   return (

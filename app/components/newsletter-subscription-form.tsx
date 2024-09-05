@@ -1,14 +1,16 @@
-'use client';
+"use client"
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
-import { CircleCheckIcon } from './icons/circle-check';
-import { subscribeToNewsletter } from '@/db/actions';
-import { cn } from '@/app/lib/utils';
+import { subscribeToNewsletter } from "@/db/actions"
+import { useFormState, useFormStatus } from "react-dom"
+
+import { Button } from "@/app/components/ui/button"
+import { Input } from "@/app/components/ui/input"
+
+import { cn } from "../utils/styles"
+import { CircleCheckIcon } from "./icons/circle-check"
 
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
 
   return (
     <Button
@@ -19,22 +21,22 @@ function SubmitButton() {
       aria-disabled={pending}
       disabled={pending}
     >
-      {pending ? 'Subscribing...' : 'Subscribe'}
+      {pending ? "Subscribing..." : "Subscribe"}
     </Button>
-  );
+  )
 }
 
 export function NewsletterSubscriptionForm() {
   const initialState = {
     errors: [],
     subscribed: false,
-  };
+  }
 
-  const [state, formAction] = useFormState(subscribeToNewsletter, initialState);
+  const [state, formAction] = useFormState(subscribeToNewsletter, initialState)
 
   return (
     <form action={formAction}>
-      <div className={cn('relative', state?.subscribed && 'hidden')}>
+      <div className={cn("relative", state?.subscribed && "hidden")}>
         <Input
           name="email"
           placeholder="you@domain.com"
@@ -63,5 +65,5 @@ export function NewsletterSubscriptionForm() {
         )}
       </div>
     </form>
-  );
+  )
 }

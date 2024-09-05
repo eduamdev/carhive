@@ -1,4 +1,4 @@
-import { formatDateRange } from "@/app/lib/utils"
+import { formatDateRange } from "@/app/utils/format-date-range"
 
 export function BookDetails({
   checkinDate,

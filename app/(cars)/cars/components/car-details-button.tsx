@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 
 import { Button } from "@/app/components/ui/button"
 import { SearchParams } from "@/app/lib/types"
-import { buildUrlWithQueryParams } from "@/app/lib/utils"
+import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
 
 export function CarDetailsButton({ carId }: { carId: string }) {
   const searchParams = useSearchParams()
@@ -19,7 +19,7 @@ export function CarDetailsButton({ carId }: { carId: string }) {
   if (checkin) newParams.set(SearchParams.CHECKIN, checkin)
   if (checkout) newParams.set(SearchParams.CHECKOUT, checkout)
 
-  const href = buildUrlWithQueryParams(`/cars/${carId}`, newParams)
+  const href = constructUrlWithParams(`/cars/${carId}`, newParams)
 
   return (
     <Button

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { VariantProps } from "class-variance-authority"
 
-import { cn } from "../lib/utils"
+import { cn } from "../utils/styles"
 import { Button, buttonVariants } from "./ui/button"
 
 interface BackButtonProps extends VariantProps<typeof buttonVariants> {

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { Button } from "@/app/components/ui/button"
 import { SearchParams } from "@/app/lib/types"
-import { formatCurrency } from "@/app/lib/utils"
+import { formatCurrency } from "@/app/utils/format-currency"
 
 import Cancun from "../../../public/assets/destinations/cancun.jpg"
 import Dubai from "../../../public/assets/destinations/dubai.jpg"
