@@ -76,9 +76,9 @@ export async function getCars() {
   }
 }
 
-export async function getCarBySlug(slug: string) {
+export async function getCarById(id: string) {
   try {
-    const data = await sql<Car>`SELECT * FROM cars WHERE slug = ${slug};`
+    const data = await sql<Car>`SELECT * FROM cars WHERE id = ${id};`
 
     const car = data.rows[0]
 

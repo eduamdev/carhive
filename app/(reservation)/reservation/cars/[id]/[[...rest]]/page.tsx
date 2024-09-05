@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { getCarBySlug } from "@/db/queries"
+import { getCarById } from "@/db/queries"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import { differenceInDays } from "date-fns"
 
@@ -12,26 +12,27 @@ import { SearchParams } from "@/app/lib/types"
 import { AuthSection } from "./components/auth-section"
 import { BookDetails } from "./components/book-details"
 import { CarDetails } from "./components/car-details"
-import { Payment } from "./components/payment"
+import { PaymentDetails } from "./components/payment-details"
 import { PriceDetails } from "./components/price-details"
 
 export const metadata: Metadata = {
   title: "Confirm and pay",
 }
 
-interface ReservationPageProps {
+interface CarReservationPageProps {
+  params: { id: string }
   searchParams: {
-    [SearchParams.CAR]: string
     [SearchParams.CHECKIN]: string
     [SearchParams.CHECKOUT]: string
   }
 }
 
-export default async function ReservationPage({
+export default async function CarReservationPage({
+  params,
   searchParams,
-}: ReservationPageProps) {
-  const { [SearchParams.CAR]: slug, checkin, checkout } = searchParams
-  const car = await getCarBySlug(slug)
+}: CarReservationPageProps) {
+  const { checkin, checkout } = searchParams
+  const car = await getCarById(params.id)
 
   if (!car) {
     return null
@@ -92,7 +93,7 @@ export default async function ReservationPage({
                   <AuthSection />
                 </SignedOut>
                 <SignedIn>
-                  <Payment total={subtotal + taxes} currency={currency} />
+                  <PaymentDetails />
                 </SignedIn>
               </div>
             </div>
@@ -130,7 +131,7 @@ export default async function ReservationPage({
                       <AuthSection />
                     </SignedOut>
                     <SignedIn>
-                      <Payment total={subtotal + taxes} currency={currency} />
+                      <PaymentDetails />
                     </SignedIn>
                   </div>
                   <aside className="sticky top-[var(--site-header-height)] rounded-xl border">

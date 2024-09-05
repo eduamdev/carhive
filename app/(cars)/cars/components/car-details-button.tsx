@@ -7,7 +7,7 @@ import { Button } from "@/app/components/ui/button"
 import { SearchParams } from "@/app/lib/types"
 import { buildUrlWithQueryParams } from "@/app/lib/utils"
 
-export function CarDetailsButton({ slug }: { slug: string }) {
+export function CarDetailsButton({ carId }: { carId: string }) {
   const searchParams = useSearchParams()
   const newParams = new URLSearchParams(searchParams.toString())
 
@@ -19,7 +19,7 @@ export function CarDetailsButton({ slug }: { slug: string }) {
   if (checkin) newParams.set(SearchParams.CHECKIN, checkin)
   if (checkout) newParams.set(SearchParams.CHECKOUT, checkout)
 
-  const href = buildUrlWithQueryParams(`/cars/${slug}`, newParams)
+  const href = buildUrlWithQueryParams(`/cars/${carId}`, newParams)
 
   return (
     <Button

@@ -57,7 +57,6 @@ export function ReserveCard({ car }: ReserveCardProps) {
   const handleClick = () => {
     const newParams = new URLSearchParams(searchParams.toString())
 
-    newParams.set(SearchParams.CAR, car.slug)
     if (date?.from) {
       newParams.set(SearchParams.CHECKIN, date?.from.toISOString())
     }
@@ -65,7 +64,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
       newParams.set(SearchParams.CHECKOUT, date?.to.toISOString())
     }
 
-    push(buildUrlWithQueryParams("/reservation", newParams))
+    push(buildUrlWithQueryParams(`/reservation/cars/${car.id}`, newParams))
   }
 
   return (
