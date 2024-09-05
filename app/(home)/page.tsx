@@ -1,11 +1,11 @@
 import { SiteHeader } from "@/app/components/site-header"
 
-import { BrowseCarTypes } from "./sections/browse-car-types"
-import { CallToAction } from "./sections/call-to-action"
-import { Features } from "./sections/features"
-import { Hero } from "./sections/hero"
-import { PopularDestinations } from "./sections/popular-destinations"
-import { Testimonials } from "./sections/testimonials"
+import { BrowseCarTypes } from "./components/browse-car-types"
+import { CallToAction } from "./components/call-to-action"
+import { Features } from "./components/features"
+import { Hero } from "./components/hero"
+import { PopularDestinations } from "./components/popular-destinations"
+import { Testimonials } from "./components/testimonials"
 
 export default function HomePage() {
   return (

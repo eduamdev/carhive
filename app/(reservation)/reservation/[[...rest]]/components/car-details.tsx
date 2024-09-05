@@ -5,7 +5,7 @@ import { FilledStarIcon } from "@/app/components/icons/filled-star"
 
 export function CarDetails({ car }: { car: Car }) {
   return (
-    <div className="grid grid-cols-1 gap-5 sm:flex">
+    <div className="grid grid-cols-1 gap-5 min-[360px]:flex">
       <div className="relative aspect-square w-[100px] shrink-0">
         <CldImage
           src={car.image_url}

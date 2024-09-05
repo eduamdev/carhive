@@ -18,7 +18,9 @@ export function PriceDetails({
       <div className="pt-5">
         <div className="grid grid-cols-1 gap-3">
           <div className="flex flex-row items-center justify-between text-[15px]">
-            <span>{days} days</span>
+            <span>
+              {days} {days === 1 ? "day" : "days"}
+            </span>
             <span>{formatCurrency(subtotal, currency)}</span>
           </div>
           <div className="flex flex-row items-center justify-between text-[15px]">

@@ -3,7 +3,7 @@ import { Suspense } from "react"
 import { SearchPanelWrapper } from "@/app/components/search-panel-wrapper"
 import { SearchPanelSkeleton } from "@/app/components/skeletons/search-panel"
 
-import { LogoSlider } from "../components/logo-slider"
+import { LogoSlider } from "./logo-slider"
 
 export async function Hero() {
   return (

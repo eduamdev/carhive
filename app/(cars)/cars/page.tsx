@@ -12,7 +12,7 @@ import { UserMenuButton } from "@/app/components/user-menu-button"
 
 import CarCatalog from "./components/car-catalog"
 import Filters from "./components/filters/filters-wrapper"
-import { CarCardSkeleton } from "./components/skeletons/car-card"
+import { CarCatalogSkeleton } from "./components/skeletons/car-catalog"
 import { MapSkeleton } from "./components/skeletons/map"
 
 const DynamicMap = dynamic(() => import("./components/map"), {
@@ -88,20 +88,7 @@ export default async function CarsPage({
           <div className="w-full shrink-0 grow-0 flex-col overflow-y-auto bg-white md:w-[55%] xl:w-[63%]">
             <div className="px-5 pb-10 pt-8 sm:px-6 sm:pb-10 sm:pt-8">
               <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] items-stretch justify-center gap-[22px]">
-                <Suspense
-                  fallback={
-                    <>
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                      <CarCardSkeleton />
-                    </>
-                  }
-                >
+                <Suspense fallback={<CarCatalogSkeleton />}>
                   <CarCatalog searchParams={searchParams} />
                 </Suspense>
               </div>
