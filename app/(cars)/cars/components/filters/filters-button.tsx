@@ -10,11 +10,11 @@ import {
 } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
-import { FiltersIcon } from "@/app/components/icons/filters"
-import { ResponsiveModal } from "@/app/components/responsive-modal"
-import { Badge } from "@/app/components/ui/badge"
-import { Button } from "@/app/components/ui/button"
-import { cn, constructUrlWithParams } from "@/app/lib/utils"
+import { cn, constructUrlWithParams } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { FiltersIcon } from "@/components/icons/filters"
+import { ResponsiveModal } from "@/components/responsive-modal"
 
 import { FiltersContent } from "./filters-content"
 import {

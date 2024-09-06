@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
-import { CAR_LOGO_WIDTH, CLONE_SETS_COUNT } from "@/app/lib/constants"
-import { cn, setCSSVariable } from "@/app/lib/utils"
+import { CAR_LOGO_WIDTH, CLONE_SETS_COUNT } from "@/lib/constants"
+import { cn, setCSSVariable } from "@/lib/utils"
 
 import { AudiIcon } from "./car-logos/audi"
 import { BMWIcon } from "./car-logos/bmw"

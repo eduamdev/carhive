@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { Button } from '@/app/components/ui/button';
-import { CaretRightIcon } from '@/app/components/icons/caret-right';
+import Link from "next/link"
+
+import { Button } from "@/components/ui/button"
+import { CaretRightIcon } from "@/components/icons/caret-right"
 
 export default function NotFound() {
   return (
@@ -22,5 +23,5 @@ export default function NotFound() {
         </Button>
       </div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import { SignIn } from "@clerk/nextjs"
 
-import { LoadingDots } from "@/app/components/loading-dots"
+import { LoadingDots } from "@/components/loading-dots"
 
 export default function SignInPage() {
   return (

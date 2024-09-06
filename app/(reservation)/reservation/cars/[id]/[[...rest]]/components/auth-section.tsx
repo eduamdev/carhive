@@ -1,6 +1,6 @@
 import { SignInButton, SignUpButton } from "@clerk/nextjs"
 
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/components/ui/button"
 
 export function AuthSection() {
   return (

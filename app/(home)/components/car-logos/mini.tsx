@@ -23,5 +23,5 @@ export function MiniIcon(props: React.HTMLAttributes<SVGElement>) {
         transform="translate(-22.58 -154.432)"
       />
     </svg>
-  );
+  )
 }

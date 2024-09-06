@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
 
-import { Separator } from "@/app/components/ui/separator"
+import { Separator } from "@/components/ui/separator"
 
 import { BodyStyleFilters } from "./sections/body-style"
 import { PowertrainFilters } from "./sections/powertrain"
@@ -41,7 +41,7 @@ export function FiltersContent({
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <TransmissionTypeFilters
+        <BodyStyleFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
@@ -55,7 +55,7 @@ export function FiltersContent({
       </FilterSection>
       <FilterSeparator />
       <FilterSection>
-        <BodyStyleFilters
+        <TransmissionTypeFilters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />

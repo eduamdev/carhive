@@ -12,5 +12,5 @@ export function AudiIcon(props: React.HTMLAttributes<SVGElement>) {
         transform="translate(0 -203.582)"
       />
     </svg>
-  );
+  )
 }

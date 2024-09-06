@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react"
 
-import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
-import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
-import { Toggle } from "@/app/components/ui/toggle"
+import { Toggle } from "@/components/ui/toggle"
+import { AutomaticGearboxIcon } from "@/components/icons/automatic-gearbox"
+import { ManualGearboxIcon } from "@/components/icons/manual-gearbox"
 
 import { SelectedFilters, Transmission } from "../types"
 

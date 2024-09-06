@@ -1,4 +1,4 @@
-import { SiteHeader } from "@/app/components/site-header"
+import { SiteHeader } from "@/components/site-header"
 
 import { BrowseCarTypes } from "./components/browse-car-types"
 import { CallToAction } from "./components/call-to-action"

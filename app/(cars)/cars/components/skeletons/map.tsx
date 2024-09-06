@@ -1,4 +1,4 @@
-import { LoadingDots } from "@/app/components/loading-dots"
+import { LoadingDots } from "@/components/loading-dots"
 
 export function MapSkeleton() {
   return (

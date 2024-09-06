@@ -5,12 +5,12 @@ import { useSearchParams } from "next/navigation"
 import type { Map as LeafletMap } from "leaflet"
 import { MapContainer, TileLayer, useMap } from "react-leaflet"
 
-import { useToast } from "@/app/hooks/use-toast"
 import {
   MAP_INITIAL_ZOOM_LEVEL,
   MAP_LOCATION_ZOOM_LEVEL,
-} from "@/app/lib/constants"
-import { SearchParams } from "@/app/lib/types"
+} from "@/lib/constants"
+import { SearchParams } from "@/lib/types"
+import { useToast } from "@/hooks/use-toast"
 
 export default function Map() {
   const searchParams = useSearchParams()

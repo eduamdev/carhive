@@ -56,5 +56,5 @@ export function JeepIcon(props: React.HTMLAttributes<SVGElement>) {
         transform="matrix(6.77532 0 0 -6.77532 980.997 378.773)"
       />
     </svg>
-  );
+  )
 }

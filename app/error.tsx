@@ -2,8 +2,8 @@
 
 import { useEffect } from "react"
 
-import { SiteHeader } from "@/app/components/site-header"
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/components/ui/button"
+import { SiteHeader } from "@/components/site-header"
 
 export default function Error({
   error,

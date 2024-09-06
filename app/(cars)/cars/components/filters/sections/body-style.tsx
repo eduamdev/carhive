@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react"
 
-import { CarIcon } from "@/app/components/icons/car"
-import { HatchbackIcon } from "@/app/components/icons/hatchback"
-import { MinivanIcon } from "@/app/components/icons/minivan"
-import { RoadsterIcon } from "@/app/components/icons/roadster"
-import { SUVIcon } from "@/app/components/icons/suv"
-import { TruckIcon } from "@/app/components/icons/truck"
-import { Toggle } from "@/app/components/ui/toggle"
+import { Toggle } from "@/components/ui/toggle"
+import { CarIcon } from "@/components/icons/car"
+import { HatchbackIcon } from "@/components/icons/hatchback"
+import { MinivanIcon } from "@/components/icons/minivan"
+import { RoadsterIcon } from "@/components/icons/roadster"
+import { SUVIcon } from "@/components/icons/suv"
+import { TruckIcon } from "@/components/icons/truck"
 
 import { BodyStyle, SelectedFilters } from "../types"
 

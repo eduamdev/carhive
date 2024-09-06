@@ -11,5 +11,5 @@ export function TeslaIcon(props: React.HTMLAttributes<SVGElement>) {
         fill="currentColor"
       ></path>
     </svg>
-  );
+  )
 }

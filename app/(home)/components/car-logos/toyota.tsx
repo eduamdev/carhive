@@ -29,5 +29,5 @@ export function ToyotaIcon(props: React.HTMLAttributes<SVGElement>) {
         />
       </g>
     </svg>
-  );
+  )
 }

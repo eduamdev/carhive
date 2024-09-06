@@ -18,5 +18,5 @@ export function VolkswagenIcon(props: React.HTMLAttributes<SVGElement>) {
         </g>
       </switch>
     </svg>
-  );
+  )
 }

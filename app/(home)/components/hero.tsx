@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 
-import { SearchPanelWrapper } from "@/app/components/search-panel-wrapper"
-import { SearchPanelSkeleton } from "@/app/components/skeletons/search-panel"
+import { SearchPanelWrapper } from "@/components/search-panel-wrapper"
+import { SearchPanelSkeleton } from "@/components/skeletons/search-panel"
 
 import { LogoSlider } from "./logo-slider"
 

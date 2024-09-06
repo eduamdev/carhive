@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "seed": "node -r dotenv/config ./scripts/seed.js"
+    "seed:database": "tsx --tsconfig ./tsconfig.scripts.json -r dotenv/config ./scripts/seed-database.ts",
+    "seed:stripe": "tsx --tsconfig ./tsconfig.scripts.json -r dotenv/config ./scripts/seed-stripe-products.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.3",
@@ -26,6 +27,8 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.4.0",
     "@vercel/postgres": "^0.5.1",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
@@ -43,6 +46,7 @@
     "react-hook-form": "^7.53.0",
     "react-leaflet": "^4.2.1",
     "sharp": "^0.32.6",
+    "stripe": "^16.9.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
@@ -65,6 +69,7 @@
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^3.4.10",
+    "tsx": "^4.19.0"
   }
 }

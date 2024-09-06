@@ -11,5 +11,5 @@ export function KiaIcon(props: React.HTMLAttributes<SVGElement>) {
         fill="#131e29"
       />
     </svg>
-  );
+  )
 }

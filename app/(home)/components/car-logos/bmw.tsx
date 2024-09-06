@@ -36,5 +36,5 @@ export function BMWIcon(props: React.HTMLAttributes<SVGElement>) {
         </g>
       </g>
     </svg>
-  );
+  )
 }

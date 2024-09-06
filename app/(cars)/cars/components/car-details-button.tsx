@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
-import { Button } from "@/app/components/ui/button"
-import { SearchParams } from "@/app/lib/types"
-import { constructUrlWithParams } from "@/app/lib/utils"
+import { SearchParams } from "@/lib/types"
+import { constructUrlWithParams } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export function CarDetailsButton({ carId }: { carId: string }) {
   const searchParams = useSearchParams()

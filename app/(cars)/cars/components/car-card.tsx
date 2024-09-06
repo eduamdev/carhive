@@ -1,12 +1,12 @@
 import { Car } from "@/db/definitions"
 
-import CldImage from "@/app/components/cld-image"
-import { AutomaticGearboxIcon } from "@/app/components/icons/automatic-gearbox"
-import { BatteryAutomotiveIcon } from "@/app/components/icons/battery-automotive"
-import { EngineIcon } from "@/app/components/icons/engine"
-import { FilledStarIcon } from "@/app/components/icons/filled-star"
-import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
-import { formatCurrency } from "@/app/lib/utils"
+import { formatCurrency } from "@/lib/utils"
+import CldImage from "@/components/cld-image"
+import { AutomaticGearboxIcon } from "@/components/icons/automatic-gearbox"
+import { BatteryAutomotiveIcon } from "@/components/icons/battery-automotive"
+import { EngineIcon } from "@/components/icons/engine"
+import { FilledStarIcon } from "@/components/icons/filled-star"
+import { ManualGearboxIcon } from "@/components/icons/manual-gearbox"
 
 import { CarDetailsButton } from "./car-details-button"
 

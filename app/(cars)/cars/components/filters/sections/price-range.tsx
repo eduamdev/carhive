@@ -6,10 +6,10 @@ import {
   useState,
 } from "react"
 
-import { Input } from "@/app/components/ui/input"
-import { Label } from "@/app/components/ui/label"
-import { Slider } from "@/app/components/ui/slider"
-import { useDebounce } from "@/app/hooks/use-debounce"
+import { useDebounce } from "@/hooks/use-debounce"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
 
 import { SelectedFilters } from "../types"
 

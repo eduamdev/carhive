@@ -1,63 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
+import { carTypes } from "@/data/car-types"
 
-import { Button } from "@/app/components/ui/button"
+import { SearchParams } from "@/lib/types"
+import { Button } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/app/components/ui/carousel"
-import { SearchParams } from "@/app/lib/types"
-
-import hatchback from "../../../public/assets/car-types/hatchback.jpg"
-import minivan from "../../../public/assets/car-types/minivan.jpg"
-import pickupTruck from "../../../public/assets/car-types/pickup-truck.jpg"
-import sedan from "../../../public/assets/car-types/sedan.jpg"
-import sportsCar from "../../../public/assets/car-types/sports-car.jpg"
-import suv from "../../../public/assets/car-types/suv.jpg"
+} from "@/components/ui/carousel"
 
 export function BrowseCarTypes() {
-  const carCategories = [
-    {
-      id: "hatchback",
-      slug: "hatchback",
-      name: "Hatchback",
-      image_url: hatchback,
-    },
-    {
-      id: "minivan",
-      slug: "minivan",
-      name: "Minivan",
-      image_url: minivan,
-    },
-    {
-      id: "sports-car",
-      slug: "sports-car",
-      name: "Sports Car",
-      image_url: sportsCar,
-    },
-    {
-      id: "pickup-truck",
-      slug: "pickup-truck",
-      name: "Pickup Truck",
-      image_url: pickupTruck,
-    },
-    {
-      id: "suv",
-      slug: "suv",
-      name: "SUV",
-      image_url: suv,
-    },
-    {
-      id: "sedan",
-      slug: "sedan",
-      name: "Sedan",
-      image_url: sedan,
-    },
-  ]
-
   return (
     <section>
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
@@ -70,7 +25,7 @@ export function BrowseCarTypes() {
             <div className="after:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-5"></div>
             <Carousel>
               <CarouselContent className="m-0 space-x-3 sm:space-x-4">
-                {carCategories.map(({ id, slug, name, image_url }) => {
+                {carTypes.map(({ id, slug, name, image_url }) => {
                   return (
                     <CarouselItem
                       key={id}

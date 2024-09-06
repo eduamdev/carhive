@@ -1,74 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
+import { locationsWithImages } from "@/data/locations-with-images"
 
-import { Button } from "@/app/components/ui/button"
-import { SearchParams } from "@/app/lib/types"
-import { formatCurrency } from "@/app/utils/format-currency"
-
-import Cancun from "../../../public/assets/destinations/cancun.jpg"
-import Dubai from "../../../public/assets/destinations/dubai.jpg"
-import Paris from "../../../public/assets/destinations/paris.jpg"
-import Rio from "../../../public/assets/destinations/rio.jpg"
-import Rome from "../../../public/assets/destinations/rome.jpg"
-import Sydney from "../../../public/assets/destinations/sydney.jpg"
+import { SearchParams } from "@/lib/types"
+import { formatCurrency } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export function PopularDestinations() {
-  const trendingPlaces = [
-    {
-      id: "cancun",
-      slug: "cancun",
-      name: "Cancún, México",
-      lat: 21.1617,
-      lng: -86.851,
-      image_url: Cancun,
-      starting_price: 49,
-    },
-    {
-      id: "dubai",
-      slug: "dubai",
-      name: "Dubai, United Arab Emirates",
-      lat: 25.2652,
-      lng: 55.2928,
-      image_url: Dubai,
-      starting_price: 89,
-    },
-    {
-      id: "rome",
-      slug: "rome",
-      name: "Rome, Italy",
-      lat: 41.8931,
-      lng: 12.4832,
-      image_url: Rome,
-      starting_price: 79,
-    },
-    {
-      id: "paris",
-      slug: "paris",
-      name: "Paris, France",
-      lat: 48.8589,
-      lng: 2.3469,
-      image_url: Paris,
-      starting_price: 69,
-    },
-    {
-      id: "rio",
-      slug: "rio",
-      name: "Rio de Janeiro, Brazil",
-      lat: -22.9148,
-      lng: -43.4075,
-      image_url: Rio,
-      starting_price: 59,
-    },
-    {
-      id: "sydney",
-      slug: "sydney",
-      name: "Sydney, Australia",
-      lat: -33.8693,
-      lng: 151.209,
-      image_url: Sydney,
-      starting_price: 89,
-    },
-  ]
+  const featuredLocations = locationsWithImages.filter(
+    (location) => location.featured === true
+  )
 
   return (
     <section>
@@ -78,14 +19,22 @@ export function PopularDestinations() {
         </h2>
         <div className="pt-6">
           <div className="group grid grid-cols-2 gap-x-5 gap-y-7 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-8 md:grid-cols-5 [&_a:hover_~_*_img]:!opacity-100">
-            {trendingPlaces.map(
+            {featuredLocations.map(
               (
-                { id, slug, image_url, lat, lng, name, starting_price },
+                {
+                  id,
+                  slug,
+                  image_url,
+                  latitude,
+                  longitude,
+                  name,
+                  starting_price,
+                },
                 index
               ) => (
                 <article
                   key={id}
-                  className={`relative ${index === trendingPlaces.length - 1 ? "md:hidden" : ""}`}
+                  className={`relative ${index === featuredLocations.length - 1 ? "md:hidden" : ""}`}
                 >
                   <Button
                     variant={"link"}
@@ -97,8 +46,8 @@ export function PopularDestinations() {
                         pathname: "/cars",
                         query: {
                           [SearchParams.LOCATION]: slug,
-                          [SearchParams.LAT]: lat,
-                          [SearchParams.LNG]: lng,
+                          [SearchParams.LAT]: latitude,
+                          [SearchParams.LNG]: longitude,
                         },
                       }}
                       className="absolute left-0 top-0 z-10 size-full"

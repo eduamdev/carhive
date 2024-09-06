@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react"
 
-import { MinusIcon } from "@/app/components/icons/minus"
-import { PlusIcon } from "@/app/components/icons/plus"
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/components/ui/button"
+import { MinusIcon } from "@/components/icons/minus"
+import { PlusIcon } from "@/components/icons/plus"
 
 import { SelectedFilters } from "../types"
 

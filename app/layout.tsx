@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next"
 import { ClerkProvider } from "@clerk/nextjs"
 
-import { Toaster } from "@/app/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster"
 
-import "./styles/globals.css"
+import "../styles/globals.css"
 
 import { siteConfig } from "@/config/site"
-import { fontSans } from "@/app/lib/fonts"
-
-import { SiteFooter } from "./components/site-footer"
+import { fontSans } from "@/lib/fonts"
+import { SiteFooter } from "@/components/site-footer"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

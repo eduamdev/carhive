@@ -6,15 +6,15 @@ import { Car } from "@/db/definitions"
 import { addDays, differenceInDays, format, isBefore, parseISO } from "date-fns"
 import { DateRange } from "react-day-picker"
 
-import { Button } from "@/app/components/ui/button"
-import { Calendar } from "@/app/components/ui/calendar"
+import { SearchParams } from "@/lib/types"
+import { cn, constructUrlWithParams, formatCurrency } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/app/components/ui/popover"
-import { SearchParams } from "@/app/lib/types"
-import { cn, constructUrlWithParams, formatCurrency } from "@/app/lib/utils"
+} from "@/components/ui/popover"
 
 interface ReserveCardProps {
   car: Car

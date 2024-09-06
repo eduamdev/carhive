@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
 import Link from "next/link"
 
-import { ChevronLeftIcon } from "@/app/components/icons/chevron-left"
-import { SiteHeader } from "@/app/components/site-header"
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/components/ui/button"
+import { ChevronLeftIcon } from "@/components/icons/chevron-left"
+import { SiteHeader } from "@/components/site-header"
 
 export default function CarLayout({ children }: { children: ReactNode }) {
   return (

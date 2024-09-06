@@ -1,7 +1,7 @@
 import { Car } from "@/db/definitions"
 
-import CldImage from "@/app/components/cld-image"
-import { FilledStarIcon } from "@/app/components/icons/filled-star"
+import CldImage from "@/components/cld-image"
+import { FilledStarIcon } from "@/components/icons/filled-star"
 
 export function CarDetails({ car }: { car: Car }) {
   return (

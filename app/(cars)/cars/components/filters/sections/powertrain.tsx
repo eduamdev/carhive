@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 
-import { Separator } from "@/app/components/ui/separator"
-import { ToggleGroup, ToggleGroupItem } from "@/app/components/ui/toggle-group"
+import { Separator } from "@/components/ui/separator"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
 import { Powertrain, SelectedFilters } from "../types"
 
