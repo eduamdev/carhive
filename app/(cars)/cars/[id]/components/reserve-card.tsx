@@ -14,9 +14,7 @@ import {
   PopoverTrigger,
 } from "@/app/components/ui/popover"
 import { SearchParams } from "@/app/lib/types"
-import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
-import { formatCurrency } from "@/app/utils/format-currency"
-import { cn } from "@/app/utils/styles"
+import { cn, constructUrlWithParams, formatCurrency } from "@/app/lib/utils"
 
 interface ReserveCardProps {
   car: Car

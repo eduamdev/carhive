@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 
 import { Button } from "@/app/components/ui/button"
 import { SearchParams } from "@/app/lib/types"
-import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
+import { constructUrlWithParams } from "@/app/lib/utils"
 
 export function CarDetailsButton({ carId }: { carId: string }) {
   const searchParams = useSearchParams()

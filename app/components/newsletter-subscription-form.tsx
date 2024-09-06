@@ -5,8 +5,8 @@ import { useFormState, useFormStatus } from "react-dom"
 
 import { Button } from "@/app/components/ui/button"
 import { Input } from "@/app/components/ui/input"
+import { cn } from "@/app/lib/utils"
 
-import { cn } from "../utils/styles"
 import { CircleCheckIcon } from "./icons/circle-check"
 
 function SubmitButton() {

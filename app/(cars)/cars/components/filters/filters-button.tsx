@@ -14,14 +14,15 @@ import { FiltersIcon } from "@/app/components/icons/filters"
 import { ResponsiveModal } from "@/app/components/responsive-modal"
 import { Badge } from "@/app/components/ui/badge"
 import { Button } from "@/app/components/ui/button"
-import { constructUrlWithParams } from "@/app/utils/construct-url-with-params"
-import { cn } from "@/app/utils/styles"
+import { cn, constructUrlWithParams } from "@/app/lib/utils"
 
 import { FiltersContent } from "./filters-content"
+import {
+  applyFiltersToParams,
+  countActiveFilters,
+  initializeFiltersFromParams,
+} from "./lib/filters"
 import { SelectedFilters } from "./types"
-import { applyFiltersToParams } from "./utils/apply-filters-to-params"
-import { countActiveFilters } from "./utils/count-active-filters"
-import { initializeFiltersFromParams } from "./utils/initialize-filters-from-params"
 
 interface FiltersButtonProps {
   initialMinPrice: number

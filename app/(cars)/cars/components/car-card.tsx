@@ -6,7 +6,7 @@ import { BatteryAutomotiveIcon } from "@/app/components/icons/battery-automotive
 import { EngineIcon } from "@/app/components/icons/engine"
 import { FilledStarIcon } from "@/app/components/icons/filled-star"
 import { ManualGearboxIcon } from "@/app/components/icons/manual-gearbox"
-import { formatCurrency } from "@/app/utils/format-currency"
+import { formatCurrency } from "@/app/lib/utils"
 
 import { CarDetailsButton } from "./car-details-button"
 

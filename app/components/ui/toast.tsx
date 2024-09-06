@@ -4,7 +4,7 @@ import * as React from "react"
 import * as ToastPrimitives from "@radix-ui/react-toast"
 import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/app/utils/styles"
+import { cn } from "@/app/lib/utils"
 
 import { XIcon } from "../icons/x"
 

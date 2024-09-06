@@ -9,10 +9,9 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/app/lib/fonts"
 
 import { SiteFooter } from "./components/site-footer"
-import { absoluteUrl } from "./utils/absolute-url"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(absoluteUrl("/")),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,

@@ -26,8 +26,7 @@ import {
 import { Separator } from "@/app/components/ui/separator"
 import { SearchParams } from "@/app/lib/types"
 
-import { constructUrlWithParams } from "../utils/construct-url-with-params"
-import { cn } from "../utils/styles"
+import { cn, constructUrlWithParams } from "../lib/utils"
 
 export function SearchPanel({ locations }: { locations: Location[] }) {
   const { push } = useRouter()
