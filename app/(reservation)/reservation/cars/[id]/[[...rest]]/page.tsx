@@ -5,11 +5,11 @@ import { differenceInDays, isValid } from "date-fns"
 
 import { SearchParams } from "@/lib/types"
 import { Separator } from "@/components/ui/separator"
-import { BackButton } from "@/components/back-button"
 import { ChevronLeftIcon } from "@/components/icons/chevron-left"
 import { LogoLink } from "@/components/logoLink"
 
 import { AuthSection } from "./components/auth-section"
+import { BackButton } from "./components/back-button"
 import { BookDetails } from "./components/book-details"
 import { CarDetails } from "./components/car-details"
 import { PaymentDetails } from "./components/payment-details"
