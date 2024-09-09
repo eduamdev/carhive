@@ -1,6 +1,6 @@
 import { Car } from "@/db/definitions"
 
-import { formatCurrency } from "@/lib/utils"
+import { formatAmountForDisplay } from "@/lib/utils"
 import CldImage from "@/components/cld-image"
 import { AutomaticGearboxIcon } from "@/components/icons/automatic-gearbox"
 import { BatteryAutomotiveIcon } from "@/components/icons/battery-automotive"
@@ -64,7 +64,11 @@ export async function CarCard({ car }: CarCardProps) {
         </div>
         <div className="pt-1">
           <span className="text-[15px] font-semibold tabular-nums leading-none">
-            {formatCurrency(Math.round(car.price_per_day), car.currency)}
+            {formatAmountForDisplay(
+              Math.round(car.price_per_day),
+              car.currency,
+              true
+            )}
           </span>
           <span className="ml-1 leading-none text-neutral-900">day</span>
         </div>

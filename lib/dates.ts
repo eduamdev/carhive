@@ -23,7 +23,7 @@ function formatDateToShortMonthDay(dateString: string): string {
  * @param checkoutDate - The check-out date string in ISO format.
  * @returns A formatted date range string in the format "Mon DD – DD, YYYY" or "Mon DD, YYYY – Mon DD, YYYY".
  */
-export function formatDateRange(
+export function formatDateRangeForDisplay(
   checkinDate: string,
   checkoutDate: string
 ): string {

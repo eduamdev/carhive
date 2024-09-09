@@ -163,8 +163,8 @@ async function seedLocations() {
 
 ;(async () => {
   try {
-    // await seedUsers()
-    // await seedCars()
+    await seedUsers()
+    await seedCars()
     await seedLocations()
   } catch (error) {
     console.error("Error seeding database:", error)

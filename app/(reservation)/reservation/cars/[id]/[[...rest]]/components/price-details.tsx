@@ -1,4 +1,4 @@
-import { formatCurrency } from "@/lib/utils"
+import { formatAmountForDisplay } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
 export function PriceDetails({
@@ -21,16 +21,18 @@ export function PriceDetails({
             <span>
               {days} {days === 1 ? "day" : "days"}
             </span>
-            <span>{formatCurrency(subtotal, currency)}</span>
+            <span>{formatAmountForDisplay(subtotal, currency)}</span>
           </div>
           <div className="flex flex-row items-center justify-between text-[15px]">
             <span>Taxes</span>
-            <span>{formatCurrency(taxes, currency)}</span>
+            <span>{formatAmountForDisplay(taxes, currency)}</span>
           </div>
           <Separator className="my-3" />
           <div className="flex flex-row items-center justify-between">
             <strong>Total ({currency})</strong>
-            <strong>{formatCurrency(subtotal + taxes, currency)}</strong>
+            <strong>
+              {formatAmountForDisplay(subtotal + taxes, currency)}
+            </strong>
           </div>
         </div>
       </div>

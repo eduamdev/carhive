@@ -3,7 +3,7 @@ import Link from "next/link"
 import { locationsWithImages } from "@/data/locations-with-images"
 
 import { SearchParams } from "@/lib/types"
-import { formatCurrency } from "@/lib/utils"
+import { formatAmountForDisplay } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 export function PopularDestinations() {
@@ -70,7 +70,8 @@ export function PopularDestinations() {
                       {name}
                     </h3>
                     <p className="truncate text-[13px] leading-[21px] text-neutral-600 sm:text-[14px] sm:leading-[26px]">
-                      Cars from {formatCurrency(starting_price)}+
+                      Cars from{" "}
+                      {formatAmountForDisplay(starting_price, "usd", true)}+
                     </p>
                   </div>
                 </article>

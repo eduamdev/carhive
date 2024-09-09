@@ -69,5 +69,5 @@ function FilterSection({ children }: { children: ReactNode }) {
 }
 
 function FilterSeparator() {
-  return <Separator className="bg-neutral-100" />
+  return <Separator className="bg-black/[0.08]" />
 }

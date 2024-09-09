@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { getCarById } from "@/db/queries"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
-import { differenceInDays } from "date-fns"
+import { differenceInDays, isValid } from "date-fns"
 
 import { SearchParams } from "@/lib/types"
 import { Separator } from "@/components/ui/separator"
@@ -34,13 +34,25 @@ export default async function CarReservationPage({
   const { checkin, checkout } = searchParams
   const car = await getCarById(params.id)
 
+  // Validate required fields
   if (!car) {
-    return null
+    throw new Error("Car is missing")
+  }
+
+  // Validate date fields
+  if (!isValid(new Date(checkin)) || !isValid(new Date(checkout))) {
+    throw new Error("Invalid dates")
   }
 
   const checkinDate = new Date(checkin)
   const checkoutDate = new Date(checkout)
+
   const days = differenceInDays(checkoutDate, checkinDate)
+
+  if (days <= 0) {
+    throw new Error("Invalid date range selected")
+  }
+
   const subtotal = car.price_per_day * days
   const taxes = subtotal * 0.16
   const currency = car.currency
@@ -126,7 +138,7 @@ export default async function CarReservationPage({
                       checkinDate={checkinDate}
                       checkoutDate={checkoutDate}
                     />
-                    <Separator className="my-6" />
+                    <Separator className="my-7" />
                     <SignedOut>
                       <AuthSection />
                     </SignedOut>
@@ -137,7 +149,7 @@ export default async function CarReservationPage({
                   <aside className="sticky top-[var(--site-header-height)] rounded-xl border">
                     <div className="p-6">
                       <CarDetails car={car} />
-                      <Separator className="my-6" />
+                      <Separator className="my-7" />
                       <div className="hidden md:block">
                         <PriceDetails
                           days={days}

@@ -7,7 +7,7 @@ import { addDays, differenceInDays, format, isBefore, parseISO } from "date-fns"
 import { DateRange } from "react-day-picker"
 
 import { SearchParams } from "@/lib/types"
-import { cn, constructUrlWithParams, formatCurrency } from "@/lib/utils"
+import { cn, constructUrlWithParams, formatAmountForDisplay } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -74,11 +74,11 @@ export function ReserveCard({ car }: ReserveCardProps) {
           <>
             <span className="block text-xl font-semibold tabular-nums">
               {differenceInDays(date.to, date.from) > 0
-                ? formatCurrency(
+                ? formatAmountForDisplay(
                     car.price_per_day * differenceInDays(date.to, date.from),
                     car.currency
                   )
-                : formatCurrency(car.price_per_day, car.currency)}
+                : formatAmountForDisplay(car.price_per_day, car.currency)}
             </span>
             <span className="text-[14px] text-neutral-800">
               Total before taxes

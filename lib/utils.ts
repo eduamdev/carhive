@@ -52,15 +52,37 @@ export const convertImageUrlToDataUrl = async (
   }
 }
 
-export const formatCurrency = (
+export const formatAmountForDisplay = (
   amount: number,
-  currency: string = "USD"
+  currency: string,
+  removeCents: boolean = false
 ): string => {
   if (isNaN(amount)) return ""
-  return amount.toLocaleString("en-US", {
+  let numberFormat = new Intl.NumberFormat(["en-US"], {
     style: "currency",
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    currency: currency,
+    currencyDisplay: "symbol",
+    minimumFractionDigits: removeCents ? 0 : 2,
+    maximumFractionDigits: removeCents ? 0 : 2,
   })
+  return numberFormat.format(amount)
+}
+
+export function formatAmountForStripe(
+  amount: number,
+  currency: string
+): number {
+  let numberFormat = new Intl.NumberFormat(["en-US"], {
+    style: "currency",
+    currency: currency,
+    currencyDisplay: "symbol",
+  })
+  const parts = numberFormat.formatToParts(amount)
+  let zeroDecimalCurrency: boolean = true
+  for (let part of parts) {
+    if (part.type === "decimal") {
+      zeroDecimalCurrency = false
+    }
+  }
+  return zeroDecimalCurrency ? amount : Math.round(amount * 100)
 }

@@ -1,4 +1,4 @@
-import { formatDateRange } from "@/lib/dates"
+import { formatDateRangeForDisplay } from "@/lib/dates"
 
 export function BookDetails({
   checkinDate,
@@ -11,11 +11,6 @@ export function BookDetails({
     throw new Error("Both check-in and check-out dates must be provided.")
   }
 
-  const formattedDateRange = formatDateRange(
-    checkinDate.toISOString(),
-    checkoutDate.toISOString()
-  )
-
   return (
     <>
       <h2 className="text-[22px] font-semibold">Your trip</h2>
@@ -24,7 +19,12 @@ export function BookDetails({
           <h3 className="text-base">
             <strong>Dates</strong>
           </h3>
-          <p>{formattedDateRange}</p>
+          <p>
+            {formatDateRangeForDisplay(
+              checkinDate.toISOString(),
+              checkoutDate.toISOString()
+            )}
+          </p>
         </div>
       </div>
     </>

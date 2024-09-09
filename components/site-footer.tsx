@@ -82,7 +82,7 @@ export function SiteFooter() {
           </nav>
           <div className="col-span-full">
             <p className="text-[13px] leading-6 text-neutral-600 sm:text-sm">
-              Crafted with care by{" "}
+              Built by{" "}
               <Button
                 variant={"link"}
                 className="h-auto rounded-none p-0 text-[13px] font-normal leading-none sm:text-sm"

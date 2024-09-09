@@ -1,9 +1,10 @@
 "use server"
 
 import { differenceInDays, isValid } from "date-fns"
-import type { Stripe } from "stripe"
+import { Stripe } from "stripe"
 
 import { stripe } from "@/lib/stripe"
+import { formatAmountForStripe } from "@/lib/utils"
 
 export async function createCheckoutSession(
   data: FormData
@@ -63,4 +64,17 @@ export async function createCheckoutSession(
     client_secret: checkoutSession.client_secret,
     url: checkoutSession.url,
   }
+}
+
+export async function createPaymentIntent(
+  data: FormData
+): Promise<{ client_secret: string }> {
+  const paymentIntent: Stripe.PaymentIntent =
+    await stripe.paymentIntents.create({
+      amount: formatAmountForStripe(Number(data.get("total") as string), "usd"),
+      automatic_payment_methods: { enabled: true },
+      currency: "usd",
+    })
+
+  return { client_secret: paymentIntent.client_secret as string }
 }

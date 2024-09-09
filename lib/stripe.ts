@@ -1,8 +1,9 @@
+import { loadStripe, Stripe as StripeJS } from "@stripe/stripe-js"
 import Stripe from "stripe"
 
 import { siteConfig } from "@/config/site"
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: "2024-06-20",
   appInfo: {
@@ -20,4 +21,15 @@ export async function getSession(sessionId: string) {
     console.error("Error fetching Stripe session", error)
     return null
   }
+}
+
+let stripePromise: Promise<StripeJS | null>
+
+export default function getStripe(): Promise<StripeJS | null> {
+  if (!stripePromise)
+    stripePromise = loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+    )
+
+  return stripePromise
 }

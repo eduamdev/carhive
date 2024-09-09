@@ -47,7 +47,7 @@ export function PowertrainFilters({
           onValueChange={(value) =>
             handlePowertrainChange(value as Powertrain | undefined)
           }
-          className="grid min-h-14 w-full auto-cols-fr grid-flow-col gap-0 rounded-2xl border border-black/[0.12] p-1"
+          className="grid min-h-14 w-full auto-cols-fr grid-flow-col gap-0 rounded-2xl border border-neutral-300 p-1"
         >
           {powertrains.map(({ slug, name }) => (
             <ToggleGroupItem
