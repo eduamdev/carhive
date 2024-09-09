@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation"
 import type { Map as LeafletMap } from "leaflet"
 import { MapContainer, TileLayer, useMap } from "react-leaflet"
 
+import "leaflet/dist/leaflet.css"
+
 import {
   MAP_INITIAL_ZOOM_LEVEL,
   MAP_LOCATION_ZOOM_LEVEL,
@@ -15,12 +17,6 @@ import { useToast } from "@/hooks/use-toast"
 export default function Map() {
   const searchParams = useSearchParams()
   const mapRef = useRef<LeafletMap | null>(null)
-
-  useEffect(() => {
-    // This ensures that the leaflet CSS is included in the head
-    // even if the component is rendered after hydration.
-    require("leaflet/dist/leaflet.css")
-  }, [])
 
   function Recenter() {
     const map = useMap()
