@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { getCarById } from "@/db/queries"
+import { getCarById } from "@/db/queries/select"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import { differenceInDays, isValid } from "date-fns"
 
@@ -53,7 +53,7 @@ export default async function CarReservationPage({
     throw new Error("Invalid date range selected")
   }
 
-  const subtotal = car.price_per_day * days
+  const subtotal = Number(car.pricePerDay) * days
   const taxes = subtotal * 0.16
   const currency = car.currency
 

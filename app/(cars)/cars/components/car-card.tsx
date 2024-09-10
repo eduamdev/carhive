@@ -1,4 +1,4 @@
-import { Car } from "@/db/definitions"
+import { SelectCar } from "@/db/schema"
 
 import { formatAmountForDisplay } from "@/lib/utils"
 import CldImage from "@/components/cld-image"
@@ -11,7 +11,7 @@ import { ManualGearboxIcon } from "@/components/icons/manual-gearbox"
 import { CarDetailsButton } from "./car-details-button"
 
 interface CarCardProps {
-  car: Car
+  car: SelectCar
 }
 
 export async function CarCard({ car }: CarCardProps) {
@@ -23,7 +23,7 @@ export async function CarCard({ car }: CarCardProps) {
     <article className="overflow-hidden rounded-[10px] border border-black/[0.08] bg-white text-sm shadow-sm">
       <div className="relative aspect-video h-40 w-full">
         <CldImage
-          src={car.image_url}
+          src={car.imageUrl}
           alt={car.name}
           fill
           className="object-cover"
@@ -39,7 +39,7 @@ export async function CarCard({ car }: CarCardProps) {
             <span className="leading-none">
               <span className="font-medium">{car.rating}</span>{" "}
               <span className="text-neutral-600">
-                {car.review_count > 0 && `(${car.review_count})`}
+                {Number(car.reviewCount) > 0 && `(${car.reviewCount})`}
               </span>
             </span>
           </div>
@@ -65,7 +65,7 @@ export async function CarCard({ car }: CarCardProps) {
         <div className="pt-1">
           <span className="text-[15px] font-semibold tabular-nums leading-none">
             {formatAmountForDisplay(
-              Math.round(car.price_per_day),
+              Math.round(Number(car.pricePerDay)),
               car.currency,
               true
             )}

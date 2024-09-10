@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Location } from "@/db/definitions"
+import { SelectLocation } from "@/db/schema"
 import { addDays, format, isBefore } from "date-fns"
 
 import { SearchParams } from "@/lib/types"
@@ -28,7 +28,7 @@ import { SelectorIcon } from "@/components/icons/selector"
 
 import { cn, constructUrlWithParams } from "../lib/utils"
 
-export function SearchPanel({ locations }: { locations: Location[] }) {
+export function SearchPanel({ locations }: { locations: SelectLocation[] }) {
   const { push } = useRouter()
   const searchParams = useSearchParams()
 

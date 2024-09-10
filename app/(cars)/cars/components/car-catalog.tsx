@@ -1,4 +1,4 @@
-import { getCars } from "@/db/queries"
+import { getCars } from "@/db/queries/select"
 
 import { SearchParams } from "@/lib/types"
 import { slugify } from "@/lib/utils"
@@ -30,9 +30,9 @@ export default async function CarCatalog({ searchParams }: CarCatalogProps) {
 
   const filteredCars = cars.filter((car) => {
     return (
-      (!minPrice || car.price_per_day >= Number(minPrice)) &&
-      (!maxPrice || car.price_per_day <= Number(maxPrice)) &&
-      (!bodyStyles || bodyStyles.includes(slugify(car.body_style))) &&
+      (!minPrice || Number(car.pricePerDay) >= Number(minPrice)) &&
+      (!maxPrice || Number(car.pricePerDay) <= Number(maxPrice)) &&
+      (!bodyStyles || bodyStyles.includes(slugify(car.bodyStyle))) &&
       (!powertrain || powertrain === car.powertrain) &&
       (!transmissions || transmissions.includes(slugify(car.transmission))) &&
       (!minSeats || car.seats >= Number(minSeats))

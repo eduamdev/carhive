@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { getCars } from "@/db/queries"
+import { getCars } from "@/db/queries/select"
 
 import { FiltersButton } from "./filters-button"
 
@@ -12,8 +12,8 @@ export default async function Filters({ trigger }: FiltersProps) {
 
   const { MIN_PRICE, MAX_PRICE } = cars.reduce(
     (acc, car) => {
-      acc.MIN_PRICE = Math.min(acc.MIN_PRICE, car.price_per_day)
-      acc.MAX_PRICE = Math.max(acc.MAX_PRICE, car.price_per_day)
+      acc.MIN_PRICE = Math.min(acc.MIN_PRICE, Number(car.pricePerDay))
+      acc.MAX_PRICE = Math.max(acc.MAX_PRICE, Number(car.pricePerDay))
       return acc
     },
     { MIN_PRICE: Infinity, MAX_PRICE: -Infinity }

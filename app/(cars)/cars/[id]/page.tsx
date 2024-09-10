@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { getCarById, getCars } from "@/db/queries"
+import { getCarById, getCars } from "@/db/queries/select"
 import { getCldImageUrl } from "next-cloudinary"
 
 import { convertImageUrlToDataUrl } from "@/lib/utils"
@@ -163,7 +163,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
                 <span>{car.powertrain}</span>
                 <span className="text-xl">·</span>
                 <span>{car.transmission}</span>
-                {car.unlimited_mileage && (
+                {car.unlimitedMileage && (
                   <>
                     <span className="text-xl">·</span>
                     <span>Unlimited mileage</span>
@@ -177,9 +177,9 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
                     <span className=" tabular-nums">{car.rating}</span>
                   </div>
                   <span className="text-xl">·</span>
-                  {car.review_count > 0 && (
+                  {Number(car.reviewCount) > 0 && (
                     <span className="text-neutral-800">
-                      {car.review_count} reviews
+                      {car.reviewCount} reviews
                     </span>
                   )}
                 </div>
