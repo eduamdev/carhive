@@ -24,11 +24,11 @@ export function PopularDestinations() {
                 {
                   id,
                   slug,
-                  image_url,
+                  imageUrl,
                   latitude,
                   longitude,
                   name,
-                  starting_price,
+                  startingPrice,
                 },
                 index
               ) => (
@@ -55,7 +55,7 @@ export function PopularDestinations() {
                   </Button>
                   <div className="relative aspect-square">
                     <Image
-                      src={image_url}
+                      src={imageUrl}
                       alt={name}
                       quality={85}
                       priority
@@ -71,7 +71,7 @@ export function PopularDestinations() {
                     </h3>
                     <p className="truncate text-[13px] leading-[21px] text-neutral-600 sm:text-[14px] sm:leading-[26px]">
                       Cars from{" "}
-                      {formatAmountForDisplay(starting_price, "usd", true)}+
+                      {formatAmountForDisplay(startingPrice, "usd", true)}+
                     </p>
                   </div>
                 </article>

@@ -25,7 +25,7 @@ export function BrowseCarTypes() {
             <div className="after:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[7%] after:bg-gradient-to-l after:from-white after:content-[''] lg:after:-right-5"></div>
             <Carousel>
               <CarouselContent className="m-0 space-x-3 sm:space-x-4">
-                {carTypes.map(({ id, slug, name, image_url }) => {
+                {carTypes.map(({ id, slug, name, imageUrl }) => {
                   return (
                     <CarouselItem
                       key={id}
@@ -51,7 +51,7 @@ export function BrowseCarTypes() {
                           {name}
                         </span>
                         <Image
-                          src={image_url}
+                          src={imageUrl}
                           alt={name}
                           priority
                           fill

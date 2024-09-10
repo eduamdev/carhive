@@ -10,17 +10,17 @@ import { locations } from "./locations"
 export const locationsWithImages = locations.map((location) => {
   switch (location.slug) {
     case "cancun":
-      return { ...location, image_url: Cancun }
+      return { ...location, imageUrl: Cancun }
     case "dubai":
-      return { ...location, image_url: Dubai }
+      return { ...location, imageUrl: Dubai }
     case "paris":
-      return { ...location, image_url: Paris }
+      return { ...location, imageUrl: Paris }
     case "rio":
-      return { ...location, image_url: Rio }
+      return { ...location, imageUrl: Rio }
     case "rome":
-      return { ...location, image_url: Rome }
+      return { ...location, imageUrl: Rome }
     case "sydney":
-      return { ...location, image_url: Sydney }
+      return { ...location, imageUrl: Sydney }
     default:
       return location // For locations without images
   }
