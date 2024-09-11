@@ -64,7 +64,7 @@ export function ReserveCard({ car }: ReserveCardProps) {
       newParams.set(SearchParams.CHECKOUT, date?.to.toISOString())
     }
 
-    push(constructUrlWithParams(`/reservation/cars/${car.id}`, newParams))
+    push(constructUrlWithParams(`/reservation/cars/${car.slug}`, newParams))
   }
 
   return (

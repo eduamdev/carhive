@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { getCarById, getCars } from "@/db/queries/select"
+import { getCarBySlug, getCars } from "@/db/queries/car-repository"
 import { getCldImageUrl } from "next-cloudinary"
 
 import { convertImageUrlToDataUrl } from "@/lib/utils"
@@ -18,7 +18,7 @@ import { ReserveCard } from "./components/reserve-card"
 export async function generateMetadata({
   params,
 }: CarDetailsPageProps): Promise<Metadata> {
-  const car = await getCarById(params.id)
+  const car = await getCarBySlug(params.slug)
 
   if (!car) return {}
 
@@ -30,15 +30,15 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const cars = await getCars()
-  return cars.map((car) => ({ id: car.id }))
+  return cars.map((car) => ({ slug: car.slug }))
 }
 
 interface CarDetailsPageProps {
-  params: { id: string }
+  params: { slug: string }
 }
 
 export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
-  const car = await getCarById(params.id)
+  const car = await getCarBySlug(params.slug)
 
   if (!car) {
     notFound()

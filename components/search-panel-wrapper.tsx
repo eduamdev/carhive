@@ -1,4 +1,4 @@
-import { getLocations } from "@/db/queries/select"
+import { getLocations } from "@/db/queries/location-repository"
 
 import { SearchPanel } from "./search-panel"
 

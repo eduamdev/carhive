@@ -2,26 +2,22 @@ import {
   boolean,
   decimal,
   doublePrecision,
+  integer,
   jsonb,
   pgTable,
   smallint,
   text,
   timestamp,
-  uuid,
 } from "drizzle-orm/pg-core"
 
-export const locationsTable = pgTable("locations_table", {
-  id: uuid("id").primaryKey().defaultRandom(),
+export const locationsTable = pgTable("locations", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   slug: text("slug").notNull().unique(),
   name: text("name").notNull(),
   latitude: doublePrecision("latitude").notNull(),
   longitude: doublePrecision("longitude").notNull(),
   imageUrl: text("image_url"),
   featured: boolean("featured").default(false),
-  startingPrice: decimal("starting_price", {
-    precision: 10,
-    scale: 2,
-  }).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")
     .notNull()
@@ -29,8 +25,8 @@ export const locationsTable = pgTable("locations_table", {
     .$onUpdate(() => new Date()),
 })
 
-export const carsTable = pgTable("cars_table", {
-  id: uuid("id").primaryKey().defaultRandom(),
+export const carsTable = pgTable("cars", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   slug: text("slug").notNull().unique(),
   name: text("name").notNull(),
   bodyStyle: text("body_style").notNull(),

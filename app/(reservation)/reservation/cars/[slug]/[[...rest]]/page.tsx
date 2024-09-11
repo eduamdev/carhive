@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { getCarById } from "@/db/queries/select"
+import { getCarBySlug } from "@/db/queries/car-repository"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import { differenceInDays, isValid } from "date-fns"
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 interface CarReservationPageProps {
-  params: { id: string }
+  params: { slug: string }
   searchParams: {
     [SearchParams.CHECKIN]: string
     [SearchParams.CHECKOUT]: string
@@ -32,7 +32,7 @@ export default async function CarReservationPage({
   searchParams,
 }: CarReservationPageProps) {
   const { checkin, checkout } = searchParams
-  const car = await getCarById(params.id)
+  const car = await getCarBySlug(params.slug)
 
   // Validate required fields
   if (!car) {

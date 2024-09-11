@@ -1,4 +1,4 @@
-import { getCars } from "@/db/queries/select"
+import { getCars } from "@/db/queries/car-repository"
 
 import { SearchParams } from "@/lib/types"
 import { slugify } from "@/lib/utils"

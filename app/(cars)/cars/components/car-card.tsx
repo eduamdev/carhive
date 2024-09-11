@@ -73,7 +73,7 @@ export async function CarCard({ car }: CarCardProps) {
           <span className="ml-1 leading-none text-neutral-900">day</span>
         </div>
         <div className="pt-4">
-          <CarDetailsButton carId={car.id} />
+          <CarDetailsButton carSlug={car.slug} />
         </div>
       </div>
     </article>

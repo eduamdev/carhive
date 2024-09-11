@@ -7,7 +7,7 @@ import { SearchParams } from "@/lib/types"
 import { constructUrlWithParams } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-export function CarDetailsButton({ carId }: { carId: string }) {
+export function CarDetailsButton({ carSlug }: { carSlug: string }) {
   const searchParams = useSearchParams()
   const newParams = new URLSearchParams(searchParams.toString())
 
@@ -19,7 +19,7 @@ export function CarDetailsButton({ carId }: { carId: string }) {
   if (checkin) newParams.set(SearchParams.CHECKIN, checkin)
   if (checkout) newParams.set(SearchParams.CHECKOUT, checkout)
 
-  const href = constructUrlWithParams(`/cars/${carId}`, newParams)
+  const href = constructUrlWithParams(`/cars/${carSlug}`, newParams)
 
   return (
     <Button

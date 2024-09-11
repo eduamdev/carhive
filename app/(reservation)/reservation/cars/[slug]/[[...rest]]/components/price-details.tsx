@@ -29,7 +29,7 @@ export function PriceDetails({
           </div>
           <Separator className="my-3" />
           <div className="flex flex-row items-center justify-between">
-            <strong>Total ({currency})</strong>
+            <strong>Total ({currency.toUpperCase()})</strong>
             <strong>
               {formatAmountForDisplay(subtotal + taxes, currency)}
             </strong>

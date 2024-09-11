@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { getCars } from "@/db/queries/select"
+import { getCars } from "@/db/queries/car-repository"
 
 import { FiltersButton } from "./filters-button"
 

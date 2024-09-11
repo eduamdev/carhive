@@ -8,8 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "db:push": "pnpm dlx drizzle-kit push",
-    "db:seed": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/seed-database.ts"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx --tsconfig ./tsconfig.scripts.json ./db/migrate.ts",
+    "db:push": "drizzle-kit push",
+    "db:seed": "tsx --tsconfig ./tsconfig.scripts.json ./db/seed.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.3",
