@@ -1,45 +1,47 @@
 # Carhive
 
-A car rental website built with **Next.js (App Router)**.
-
 > **Warning**
-> This app is a work in progress.
+> This project is a work in progress and may not function consistently. It is primarily a testing demo created for educational purposes and to explore new technologies.
 
 ![carhive](https://github.com/user-attachments/assets/5e4cdffe-dcd0-44ee-957d-66fdb82b47ee)
 
 ## Features
 
-- `/app` dir
-- Routing, Layouts and Nested Layouts
-- Server and Client Components
-- Loading UI
-- Metadata files
-- Responsive User Interface
-- Styled using **Tailwind CSS**
-- UI Components built using **Shadcn/ui**
-- Interactive Map View using **Leaflet**
-- Validations using **Zod**
-- Form Validation using **React Hook Form**
-- Authentication and User Management with **Clerk**
-- Serverless SQL using **Vercel Postgres**
-- Image Management using **Cloudinary**
+- Dynamic Routing
+- **Server Components** and **Server Actions**
+- **Loading UI** and **Streaming with Suspense** for a smoother user experience
+- SEO-friendly metadata
+- Fully responsive design
+- Styled with **Tailwind CSS**
+- UI components built with **Shadcn/ui**
+- Interactive maps using **Leaflet**
+- User authentication and management via **Clerk**
+- Serverless SQL powered by **Vercel Postgres** (and Neon)
+- Image Management through **Cloudinary**
 - Infinite Logo Slider
-- Search Bar
-- Advanced Filters
-- Code Linting
-- Written in **TypeScript**
+- Search functionality with data filtering capabilities
+- Code Linting for consistent formatting
+- Written in **TypeScript** for enhanced type safety
+- **Drizzle ORM** for type-safe database interaction, schema generation, and migrations
+- **Stripe** integration for payment processing (WIP)
+
+## Requirements
+
+Ensure the following are installed:
+
+- Node.js (v18+)
+- `pnpm` as the package manager
 
 ## Prerequisites
 
-Before running the application, ensure you have the following installed:
+Before running the app, make sure you have:
 
-- Node.js (v18+)
-- pnpm
-- [Vercel account](https://vercel.com/) and a [Postgres Database](https://vercel.com/docs/storage/vercel-postgres) created
-- [Cloudinary account](https://cloudinary.com/)
-- [Clerk account](https://clerk.com/)
+- A [Vercel account](https://vercel.com/) and a [Vercel Postgres Database](https://vercel.com/docs/storage/vercel-postgres)
+- A [Cloudinary account](https://cloudinary.com/) for image management
+- A [Clerk account](https://clerk.com/) for authentication
+- A [Stripe account](https://stripe.com/) for payment processing
 
-## Running Locally
+## Running the Project Locally
 
 1. Install dependencies using pnpm:
 
@@ -49,21 +51,29 @@ pnpm install
 
 2. Set up environment variables
 
-- Copy the `.env.example` file to `.env.local` at the root of the project:
+- Copy the `.env.example` file to `.env` at the root of the project:
 
   ```bash
-  cp .env.example .env.local
+  cp .env.example .env
   ```
 
-- Update the `.env.local` file with your configuration details
+- Update the `.env` file with your own configuration details.
 
-3. Seed initial data:
+3. Generate the database
 
 ```bash
-pnpm seed
+pnpm db:generate
 ```
 
-4. Start the Development Server:
+- Update the `.env` file with your configuration details
+
+4. Seed the initial data:
+
+```bash
+pnpm db:seed
+```
+
+5. Start the development server:
 
 ```bash
 pnpm dev
