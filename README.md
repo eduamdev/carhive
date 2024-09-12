@@ -23,7 +23,7 @@
 - Code Linting for consistent formatting
 - Written in **TypeScript** for enhanced type safety
 - **Drizzle ORM** for type-safe database interaction, schema generation, and migrations
-- **Stripe** integration for payment processing (WIP)
+- **Stripe** integration for payment processing
 
 ## Requirements
 
@@ -43,13 +43,13 @@ Before running the app, make sure you have:
 
 ## Running the Project Locally
 
-1. Install dependencies using pnpm:
+1. Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-2. Set up environment variables
+2. Set up environment variables:
 
 - Copy the `.env.example` file to `.env` at the root of the project:
 
@@ -57,9 +57,9 @@ pnpm install
   cp .env.example .env
   ```
 
-- Update the `.env` file with your own configuration details.
+- Update the `.env` file with your configuration details.
 
-3. Generate the database
+3. Generate the database:
 
 ```bash
 pnpm db:generate
