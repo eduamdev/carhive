@@ -65,8 +65,6 @@ pnpm install
 pnpm db:generate
 ```
 
-- Update the `.env` file with your configuration details
-
 4. Seed the initial data:
 
 ```bash
