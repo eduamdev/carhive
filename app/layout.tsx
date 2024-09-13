@@ -7,7 +7,6 @@ import "../styles/globals.css"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
-import { SiteFooter } from "@/components/site-footer"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -64,11 +63,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
       <html lang="en" className={fontSans.variable}>
-        <body>
-          <div className="flex min-h-screen flex-col">
-            {children}
-            <SiteFooter />
-          </div>
+        <body className="flex min-h-screen flex-col">
+          {children}
           <Toaster />
         </body>
       </html>

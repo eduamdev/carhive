@@ -1,4 +1,3 @@
-import Link from "next/link"
 import {
   SignedIn,
   SignedOut,
@@ -58,14 +57,24 @@ export function UserMenuButton() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem className="p-0">
-                <Link href={githubUrl} className="w-full px-2 py-[6px]">
+                <a
+                  href={githubUrl}
+                  className="w-full px-2 py-[6px]"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Gift Cards
-                </Link>
+                </a>
               </DropdownMenuItem>
               <DropdownMenuItem className="p-0">
-                <Link href={githubUrl} className="w-full px-2 py-[6px]">
+                <a
+                  href={githubUrl}
+                  className="w-full px-2 py-[6px]"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Help Center
-                </Link>
+                </a>
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
