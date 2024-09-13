@@ -105,7 +105,10 @@ export default async function CarReservationPage({
                   <AuthSection />
                 </SignedOut>
                 <SignedIn>
-                  <PaymentDetails />
+                  <PaymentDetails
+                    amount={subtotal + taxes}
+                    currency={currency}
+                  />
                 </SignedIn>
               </div>
             </div>
@@ -143,7 +146,10 @@ export default async function CarReservationPage({
                       <AuthSection />
                     </SignedOut>
                     <SignedIn>
-                      <PaymentDetails />
+                      <PaymentDetails
+                        amount={subtotal + taxes}
+                        currency={currency}
+                      />
                     </SignedIn>
                   </div>
                   <aside className="sticky top-[var(--site-header-height)] rounded-xl border">

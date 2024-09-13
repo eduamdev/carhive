@@ -10,7 +10,8 @@ import {
 } from "@stripe/react-stripe-js"
 import type { StripeError } from "@stripe/stripe-js"
 
-import getStripe from "@/lib/stripe"
+import getStripe from "@/lib/stripe/utils/get-stripejs"
+import { formatAmountForStripe } from "@/lib/stripe/utils/stripe-helpers"
 import { cn } from "@/lib/utils"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -22,7 +23,15 @@ import { LoadingDots } from "@/components/loading-dots"
 import { CancellationPolicy } from "./cancellation-policy"
 import { StripeTestCards } from "./stripe-test-cards"
 
-function CheckoutForm() {
+function CheckoutForm({
+  userEmail,
+  amount,
+  currency,
+}: {
+  userEmail: string
+  amount: number
+  currency: string
+}) {
   const [isElementsReady, setIsElementsReady] = React.useState(false)
   const [input, setInput] = React.useState<{
     cardholderName: string
@@ -91,11 +100,11 @@ function CheckoutForm() {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}/donate-with-elements/result`,
+          return_url: `${window.location.origin}/reservation/confirmation/result`,
           payment_method_data: {
             billing_details: {
-              name: "John Doe",
-              email: "test@test.com",
+              name: input.cardholderName,
+              email: userEmail,
             },
           },
         },
@@ -138,8 +147,9 @@ function CheckoutForm() {
                 placeholder="John Doe"
                 type="text"
                 id="cardholderName"
+                name="cardholderName"
                 onChange={handleInputChange}
-                className="h-11"
+                className="h-12 text-base"
                 required
               />
             </div>
@@ -152,7 +162,8 @@ function CheckoutForm() {
               onReady={() => setIsElementsReady(true)}
             />
           </div>
-          <input type="hidden" name="total" value={420} />
+          <Input type="hidden" name="currency" value={currency} />
+          <Input type="hidden" name="amount" value={amount} />
           <Separator className="mb-7 mt-8" />
           <CancellationPolicy />
           <div className="pt-6">
@@ -174,7 +185,15 @@ function CheckoutForm() {
   )
 }
 
-export default function ElementsForm(): JSX.Element {
+export default function ElementsForm({
+  userEmail,
+  amount,
+  currency,
+}: {
+  userEmail: string
+  amount: number
+  currency: string
+}): JSX.Element {
   return (
     <Elements
       stripe={getStripe()}
@@ -182,7 +201,6 @@ export default function ElementsForm(): JSX.Element {
         appearance: {
           theme: "flat",
           variables: {
-            colorPrimary: "red",
             colorBackground: "#FFFFFF",
             colorDanger: "#dc2626",
             borderRadius: "0.375rem", // Tailwind's md border-radius (6px)
@@ -195,15 +213,13 @@ export default function ElementsForm(): JSX.Element {
               padding: "10px 12px",
               borderRadius: "0.375rem",
               boxShadow: "none",
+              lineHeight: "26px",
               transition: "border-color 0.15s ease, box-shadow 0.15s ease",
             },
             ".Input:focus, .Input:focus-visible": {
               outline: "2px solid transparent",
               outlineOffset: "2px",
               boxShadow: "0 0 0 2px #fff, 0 0 0 4px rgb(10, 10, 10)",
-            },
-            ".Input:hover option": {
-              backgroundColor: "#e2e8f0", // Background color on hover
             },
             ".Input--invalid": {
               boxShadow: "0 0 0 1px var(--colorDanger)",
@@ -221,12 +237,12 @@ export default function ElementsForm(): JSX.Element {
             },
           },
         },
-        currency: "usd",
+        currency: currency,
         mode: "payment",
-        amount: 420,
+        amount: formatAmountForStripe(amount, currency),
       }}
     >
-      <CheckoutForm />
+      <CheckoutForm userEmail={userEmail} amount={amount} currency={currency} />
     </Elements>
   )
 }
